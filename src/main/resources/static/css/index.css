@@ -8,10 +8,11 @@
 }
 
 #header #logo a {
-	background: url(../img/logo.png) no-repeat center center;
+	background: url(../img/我们的图标.png) no-repeat center center;
+	margin-left: 64px;
 	display: block;
 	height: 60px;
-	width: 140px;
+	width: 122px;
 	text-indent: 100%;
 	white-space: nowrap;
 	overflow: hidden;
@@ -36,12 +37,13 @@
 }
 
 #header li a:hover {
-	color: red;
+	color: green;
 }
 
 #login,
 #search {
 	float: right;
+	margin-right: 64px;
 }
 
 #header #login li a {
@@ -63,7 +65,7 @@
 	margin: auto;
 	position: relative;
 	overflow: hidden;
-	background-image: url(../img/lb1.jpg);
+	background-image: url(../img/首推课程.jpg);/*首页最大推荐课程*/
 	background-size: 100%;
 }
 
@@ -122,7 +124,7 @@
 
 .sub_menu h3 {
 	font-size: 16px;
-	color: red;
+	color: green;
 	padding: 10px 0;
 }
 
@@ -136,7 +138,7 @@
 }
 
 .sub_menu a:hover {
-	color: red;
+	color: green;
 }
 
 .introduce .practise,
@@ -222,7 +224,7 @@
 
 .item_class_bottom .left {
 	float: left;
-	color: red;
+	color: green;
 }
 
 .item_class_bottom .right {
@@ -268,10 +270,10 @@
 .web_l .web_l_bottom a{
 	display: block;
 	margin: 10px 0;
-	color: #c03;
+	color:#006400;
 }
 .web_l .web_l_bottom a:hover{
-	color: #ff0040;
+	color: green;
 }
 
 .web_learn .web_m,
@@ -363,5 +365,5 @@
 }
 
 .web_r .list a:hover {
-	color: red;
+	color: green;
 }
