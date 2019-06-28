@@ -20,10 +20,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-	<!--fonts-->
-	<link href='http://fonts.useso.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.useso.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-	<!--//fonts-->
 	<!-- start menu -->
 	<link href="css/memenu.css" rel="stylesheet" type="text/css" media="all"/>
 	<script type="text/javascript" src="js/memenu.js"></script>
@@ -177,13 +173,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 
-<div class="footer-class">
-	<p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/"
-																				target="_blank"
-																				title="模板之家">模板之家</a> - Collect from
-		<a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-</div>
-
 </body>
 </html>
 <script type="text/javascript">
@@ -193,16 +182,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
         var openTip = oOpenTip || "";
         var shutTip = oShutTip || "";
-        if(targetObj.style.display!="none"){
+        if(targetObj.style.display!="block"){
             if(shutAble) return;
-            targetObj.style.display="none";
-            if(openTip  &&  shutTip){
-                sourceObj.innerHTML = shutTip;
-            }
-        } else {
             targetObj.style.display="block";
             if(openTip  &&  shutTip){
                 sourceObj.innerHTML = openTip;
+            }
+        } else {
+            targetObj.style.display="none";
+            if(openTip  &&  shutTip){
+                sourceObj.innerHTML = shutTip;
             }
         }
     }
