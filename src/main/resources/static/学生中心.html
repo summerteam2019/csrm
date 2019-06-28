@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title></title>
+    <title>学生中心</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="css/student.css"/>
     <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
 </head>
@@ -19,73 +20,49 @@
     <div id="login">
         <ul>
             <li>
-                <a href="">登录</a>
+                <a href="">个人中心</a>
             </li>
             <li>
-                <a href="">注册</a>
+                <a href="">设置</a>
             </li>
         </ul>
     </div>
     <div id="search">
-        <input type="text" name="search" placeholder="搜索感兴趣课程" value=""/>
+        <input type="text" name="search" placeholder="请输入感兴趣课程" value=""/>
         <button>搜索</button>
     </div>
 </div>
-
 <div id="content">
-    <div id="menu">
-        <div class="left_menu">
-            <div id="item1" class="item">
-                <a href="">
-                    <span>计算机</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item2" class="item">
-                <a href="">
-                    <span>古典音乐</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item3" class="item">
-                <a href="">
-                    <span>管理</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item4" class="item">
-                <a href="">
-                    <span>期末宝典</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item5" class="item">
-                <a href="">
-                    <span>四六级</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item6" class="item">
-                <a href="">
-                    <span>摄影</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item7" class="item">
-                <a href="http://www.baidu.com">
-                    <span>更多</span>
-                    <i>></i>
-                </a>
-            </div>
+    <section id="banner">
+        <!-- Slider -->
+        <div id="main-slider" class="flexslider">
+            <ul class="slides">
+                <div>
+                    <img src="img/推荐课程5.jpg" height="60" width="5%" style="position:absolute; left:115px; top:140px;"/>
+                    <font size="6"><a style="color: #fff; position:absolute; left:200px; top:150px;">迷路的鹿</a></font>
+                    <font size="5"><a style="color: #fff; position:absolute; left:850px; top:170px;" href="#">学习轨迹</a></font>
+                    <font size="5"><a style="color: #fff; position:absolute; left:1000px; top:170px;" href="#">学习记录</a></font>
+                    <img src="img/slides/slider.JPG" height="300" width="100%"/>
+                </div>
+                <div class="flex-caption">
+
+                </div>
+
+            </ul>
         </div>
-
-    </div>
-
+        <!-- end slider -->
+    </section>
     <div class="introduce">
         <div class="practise">
-            <div class="title">
-                课程推荐
-                <a href="#">更多 ></a>
+            <div class="item_class_bottom">
+                <font size="5"><a href="学生中心.html">已参与课程</a><a>  |</a><a href="已发表.html">已参加讨论</a></font>
+                <br/>
+                <hr>
+            </div>
+            <div class="item_class_bottom">
+                <font size="3"><a href="已发表.html">已发表</a><a>  |</a><a href="已回复.html">已回复</a></font>
+                <br/>
+                <hr>
             </div>
             <div class="item_class">
                 <img src="img/推荐课程1.jpg" height="124" width="100%"/>
@@ -143,9 +120,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 <div id="footer">
 
