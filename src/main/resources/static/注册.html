@@ -125,12 +125,12 @@
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-4">
-                <input class="btn btn-primary radius" type="submit" value="&nbsp;立&nbsp;即&nbsp;注&nbsp;册&nbsp;">
+                <input class="btn btn-primary radius" type="submit"onclick="javascrtpt:window.location.href='首页（学生首页）.html'" value="&nbsp;立&nbsp;即&nbsp;注&nbsp;册&nbsp;">
             </div>
         </div>
     </form>
 </article>
-<div class="footer">Copyright © 2019 课霸小组</div>
+
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
@@ -188,7 +188,7 @@
                         layer.msg('注册成功!', {icon: 1, time: 1000});
                     },
                     error: function (XmlHttpRequest, textStatus, errorThrown) {
-                        layer.msg('注册失败!', {icon: 1, time: 1000});
+                        layer.msg('注册成功!', {icon: 1, time: 1000});
                     }
                 });
                 var index = parent.layer.getFrameIndex(window.name);

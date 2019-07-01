@@ -3,23 +3,11 @@
 
 <head>
     <meta charset="utf-8"/>
-    <title>教师中心</title>
+    <title></title>
     <link rel="stylesheet" type="text/css" href="css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="css/indexTeacher.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
-    <style>
-        a.one
-        {
-            border-style:groove;
-            border-color:lightgray;
-            border-width:5px;
-        }
-        a.color
-        {
-            background-color :lightseagreen;
-        }
-    </style>
 </head>
 
 <body>
@@ -31,35 +19,75 @@
     <div id="login">
         <ul>
             <li>
-                <a href="">个人中心</a>
+                <a href="登陆.html">登录</a>
             </li>
             <li>
-                <a href="">设置</a>
+                <a href="注册.html">注册</a>
             </li>
         </ul>
     </div>
     <div id="search">
-        <input type="text" name="search" placeholder="请输入感兴趣课程" value=""/>
-        <button>搜索</button>
+        <input type="text" name="search" placeholder="搜索感兴趣课程" value="">
+        <button onclick="javascrtpt:window.location.href='搜索结果.html'">搜索</button>
     </div>
 </div>
 
-
 <div id="content">
-   <div>
-     <img src="img/Web.png" width="50" height="50"style="position:absolute;left:150px; top:160px;"/>
-     <a style="color: #fff; font-size:30px;position:absolute; left:220px; top:160px;">迷路的鹿</a>
-     <a style="color: #fff; font-size:20px;position:absolute; left:850px; top:190px;" href="#">通知记录</a>
-     <a style="color: #fff; font-size:20px;position:absolute; left:1000px; top:190px;" href="#">公共资源</a>
-     <img src="img/slider.JPG" width=auto height=300px;/>
-   </div>
-     <div class="introduce">
-            <div class="title">
-                <a ;href="#">教授课程</a>  |
-                <a href="#">参与讨论 </a>
-                <hr>
+    <div id="menu">
+        <div class="left_menu">
+            <div id="item1" class="item">
+                <a href="搜索结果.html">
+                    <span>计算机</span>
+                    <i>></i>
+                </a>
             </div>
-            <div class="item_class">
+            <div id="item2" class="item">
+                <a href="搜索结果.html">
+                    <span>古典音乐</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item3" class="item">
+                <a href="搜索结果.html">
+                    <span>管理</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item4" class="item">
+                <a href="搜索结果.html">
+                    <span>期末宝典</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item5" class="item">
+                <a href="搜索结果.html">
+                    <span>四六级</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item6" class="item">
+                <a href="搜索结果.html">
+                    <span>摄影</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item7" class="item">
+                <a href="http://www.baidu.com">
+                    <span>更多</span>
+                    <i>></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="introduce">
+        <div class="practise">
+            <div class="title">
+                课程推荐
+                <a href="http://www.baidu.com">更多 ></a>
+            </div>
+            <div class="item_class" onclick="window.open('学生课程详情页面V2.html','_self')">
                 <img src="img/推荐课程1.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -70,7 +98,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class">
+            <div class="item_class"onclick="window.open('学生课程详情页面V2.html','_self')">
                 <img src="img/推荐课程2.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -81,7 +109,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class">
+            <div class="item_class"onclick="window.open('学生课程详情页面V2.html','_self')">
                 <img src="img/推荐课程3.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -92,7 +120,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class">
+            <div class="item_class"onclick="window.open('学生课程详情页面V2.html','_self')">
                 <img src="img/推荐课程4.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -103,7 +131,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class" style="margin-right: 0;">
+            <div class="item_class" style="margin-right: 0;"onclick="window.open('学生课程详情页面V2.html','_self')">
                 <img src="img/推荐课程5.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -114,7 +142,10 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
+        </div>
+
     </div>
+
 </div>
 <div id="footer">
 
