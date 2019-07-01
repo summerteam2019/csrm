@@ -65,7 +65,7 @@
 	margin: auto;
 	position: relative;
 	overflow: hidden;
-	background-image: url(../img/首推课程.jpg);/*首页最大推荐课程*/
+	background-image: url(../images/si.png);/*首页最大推荐课程*/
 	background-size: 100%;
 }
 
