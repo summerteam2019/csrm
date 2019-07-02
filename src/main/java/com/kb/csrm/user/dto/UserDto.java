@@ -43,7 +43,7 @@ public class UserDto {
      * 角色ID
      */
     @Column
-    private int roleId;
+    private String roleName;
     /**
      * 邮箱
      */
@@ -112,12 +112,12 @@ public class UserDto {
         this.password = password;
     }
 
-    public int getRoleId() {
-        return roleId;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
+    public void setRoleId(String roleName) {
+        this.roleName = roleName;
     }
 
     public String getMail() {

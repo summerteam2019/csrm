@@ -8,5 +8,20 @@
 
 package com.kb.csrm.user.service;
 
+import com.kb.csrm.user.dto.UserDto;
+
 public interface IUserService {
+
+    /**
+     * 添加新用户
+     * @param userDto
+     */
+    void insertUser (UserDto userDto);
+
+    /**
+     * 按ID查找用户
+     * @param userId
+     * @return
+     */
+    UserDto selectUserById (Long userId);
 }

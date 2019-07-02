@@ -10,7 +10,9 @@ package com.kb.csrm.user.mapper;
 
 import com.kb.csrm.user.dto.UserDto;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface UserMapper {
 
     /**
