@@ -14,6 +14,8 @@ import com.kb.csrm.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements IUserService {
 
@@ -28,5 +30,10 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserDto selectUserById(Long userId) {
         return userMapper.selectUserById(userId);
+    }
+
+    @Override
+    public List<UserDto> query() {
+        return userMapper.query();
     }
 }

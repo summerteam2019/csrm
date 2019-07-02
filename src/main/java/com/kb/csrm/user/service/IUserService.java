@@ -10,6 +10,8 @@ package com.kb.csrm.user.service;
 
 import com.kb.csrm.user.dto.UserDto;
 
+import java.util.List;
+
 public interface IUserService {
 
     /**
@@ -24,4 +26,10 @@ public interface IUserService {
      * @return
      */
     UserDto selectUserById (Long userId);
+
+    /**
+     * 查找所有用户
+     * @return
+     */
+    List<UserDto> query();
 }

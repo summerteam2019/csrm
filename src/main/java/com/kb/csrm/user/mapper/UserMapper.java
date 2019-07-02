@@ -12,6 +12,8 @@ import com.kb.csrm.user.dto.UserDto;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public interface UserMapper {
 
@@ -27,4 +29,6 @@ public interface UserMapper {
      * @return
      */
     UserDto selectUserById(@Param(value = "userID") double userId);
+
+    List<UserDto> query();
 }

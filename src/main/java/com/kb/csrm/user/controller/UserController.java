@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -35,12 +36,19 @@ public class UserController extends BaseController {
         return new ResponseData(true);
     }
 
-    @RequestMapping("/create")
+    @RequestMapping("/selectOne")
     @ResponseBody
     public ResponseData selectUserById(@RequestBody Long userId, HttpServletRequest request){
 
         userService.selectUserById(userId);
         return new ResponseData(true);
+    }
+
+    @RequestMapping("/query")
+    @ResponseBody
+    public ResponseData queryUser(@RequestBody List<UserDto> userDtos, HttpServletRequest request){
+
+        return new ResponseData(userService.query());
     }
 
 }
