@@ -3,6 +3,8 @@ package com.kb.csrm;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 系统启动类
@@ -11,7 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0
  * @date Created on 2019/06/25
  */
-@MapperScan("com.kb.csrm.user.mapper")
+
 @SpringBootApplication
 public class CsrmApplication {
 
