@@ -40,7 +40,7 @@ public class BaseController {
     private DefaultConfiguration configuration;
     @Autowired
     private MessageSource messageSource;
-    @Qualifier("defaultValidator")
+    @Qualifier("mvcValidator")
     @Autowired
     private Validator validator;
     private Logger logger = LoggerFactory.getLogger(BaseController.class);

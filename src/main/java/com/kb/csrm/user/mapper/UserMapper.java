@@ -9,12 +9,12 @@
 package com.kb.csrm.user.mapper;
 
 import com.kb.csrm.user.dto.UserDto;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
-@Component
+@Mapper
 public interface UserMapper {
 
     /**
@@ -30,5 +30,9 @@ public interface UserMapper {
      */
     UserDto selectUserById(@Param(value = "userID") double userId);
 
+    /**
+     * 根据筛选条件查询用户
+     * @return
+     */
     List<UserDto> query();
 }
