@@ -85,11 +85,11 @@
             <label class="form-label col-xs-4 col-sm-4">身份类型</label>
             <div class="formControls col-xs-8 col-sm-4 skin-minimal">
                 <div class="radio-box">
-                    <input name="sex" type="radio" id="sex-1" checked>
+                    <input name="sex" type="radio" id="sex-1" value="student" checked>
                     <label for="sex-1">学生</label>
                 </div>
                 <div class="radio-box">
-                    <input type="radio" id="sex-2" name="sex">
+                    <input name="sex" type="radio" id="sex-2" name="sex" value="teacher">
                     <label for="sex-2">老师</label>
                 </div>
             </div>
@@ -102,7 +102,7 @@
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-4">
-                <input class="btn btn-primary radius" type="submit"onclick="javascrtpt:window.location.href='首页（学生首页）.html'" value="&nbsp;立&nbsp;即&nbsp;注&nbsp;册&nbsp;">
+                <input id="zhuce" class="btn btn-primary radius" type="submit" value="&nbsp;立&nbsp;即&nbsp;注&nbsp;册&nbsp;">
             </div>
         </div>
     </form>
@@ -110,9 +110,9 @@
 
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+
 <script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+ <!--/_footer 作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
@@ -154,18 +154,78 @@
                 },
 
             },
-
-
-
-
-
-
-
-
-
-
         });
     });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#zhuce").click(function () {
+            var username = $("#mobilePhone").val();
+            var password = $("#password").val();
+            var passwordagain = $("#password2")
+            var adminname = $("#adminName").val();
+            var email = $("#email").val();
+            var rolename =  $("input[name='sex']:checked").val();
+            if (!username) {
+                alert("手机号码必填!");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            if (!password) {
+                alert("密码必填!");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            if (!passwordagain) {
+                alert("必须确认密码!");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            if (!adminname) {
+                alert("用户名必填!");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            if (!email) {
+                alert("邮箱必填!");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            if (!rolename) {
+                alert("角色类型必选!");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: "",//请求程序页面
+                dataType: "json",
+                async: false,//当有返回值以后才会进行后面的js程序。
+                data: {
+                    "username": username,
+                    "password": password,
+                    "adminname": adminname,
+                    "email": email,
+                    "rolename": rolename
+                },//请求需要发送的处理数据
+                success: function (result) {
+                    console.log(result);
+                   if (result){
+                       alert("注册成功");
+                       window.location.href = "登陆.html";
+                   }
+                   else{
+                       alert("注册失败");
+                   }
+                },
+
+            });
+
+        });
+
+    });
+
 </script>
 
 </body>

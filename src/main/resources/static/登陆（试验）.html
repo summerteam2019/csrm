@@ -72,7 +72,7 @@
                     <input id="denglu" name="" type="button" class="btn btn-success radius size-L"
                            value="&nbsp;&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;陆&nbsp;&nbsp;">
                     <input name="" type="button" value="&nbsp;&nbsp;注&nbsp;&nbsp;&nbsp;&nbsp;册&nbsp;&nbsp;"
-                           class="btn btn-default radius size-L">
+                           class="btn btn-default radius size-L"onclick="window.location.href='注册.html'">
                     <a href="资料修改.html">忘了密码</a>
 
                 </div>
@@ -110,8 +110,9 @@
             $.ajax({
                 type: "POST",
                 url: "",//请求程序页面
+                dataType: "json",
                 async: false,//当有返回值以后才会进行后面的js程序。
-                data: '{"username":username,"password":password}',//请求需要发送的处理数据
+                data: {"username":username,"password":password},//请求需要发送的处理数据
                 success: function (msg) {
                     if (msg == "student") {//根据返回值进行跳转
                         window.location.href = '你的跳转的目标地址';
