@@ -46,7 +46,7 @@ public class UserController extends BaseController {
 
     @RequestMapping("/query")
     @ResponseBody
-    public ResponseData queryUser(@RequestBody List<UserDto> userDtos, HttpServletRequest request){
+    public ResponseData queryUser (HttpServletRequest request){
 
         return new ResponseData(userService.query());
     }

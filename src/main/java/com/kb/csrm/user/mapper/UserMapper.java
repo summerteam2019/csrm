@@ -35,4 +35,10 @@ public interface UserMapper {
      * @return
      */
     List<UserDto> query();
+
+    /**
+     * 登陆校验
+     * @param account
+     */
+    UserDto login(@Param(value = "account") int account);
 }

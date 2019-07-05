@@ -55,11 +55,6 @@ public class UserDto {
     @Column
     private int collegeId;
     /**
-     * 院系ID
-     */
-    @Column
-    private int facultyId;
-    /**
      * 年龄
      */
     @Column
@@ -134,14 +129,6 @@ public class UserDto {
 
     public void setCollegeId(int collegeId) {
         this.collegeId = collegeId;
-    }
-
-    public int getFacultyId() {
-        return facultyId;
-    }
-
-    public void setFacultyId(int facultyId) {
-        this.facultyId = facultyId;
     }
 
     public int getAge() {

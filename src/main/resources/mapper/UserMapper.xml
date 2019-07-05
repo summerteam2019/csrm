@@ -9,7 +9,6 @@
         <result column="role_name" property="roleName" jdbcType="VARCHAR" />
         <result column="mail" property="mail" jdbcType="VARCHAR" />
         <result column="college_id" property="collegeId" jdbcType="INTEGER" />
-        <result column="faculty_id" property="facultyId" jdbcType="INTEGER" />
         <result column="age" property="age" jdbcType="INTEGER" />
         <result column="education" property="education" jdbcType="VARCHAR" />
         <result column="pw_question" property="pwQuestion" jdbcType="VARCHAR" />
@@ -25,7 +24,6 @@
         role_name,
         mail,
         college_id,
-        faculty_id,
         age,
         education,
         pw_question,
@@ -38,7 +36,6 @@
         #{roleName},
         #{mail},
         #{collegeId},
-        #{facultyId},
         #{age},
         #{education},
         #{pwQuestion},
@@ -55,7 +52,6 @@
         role_name,
         mail,
         college_id,
-        faculty_id,
         age,
         education,
         pw_question,
@@ -64,7 +60,7 @@
         WHERE user_id = #{userId}
     </select>
 
-    <select id="query" resultType="com.kb.csrm.user.dto.UserDto">
+    <select id="query" resultMap="BaseResultMap">
         SELECT
         user_id,
         user_name,
@@ -73,11 +69,27 @@
         role_name,
         mail,
         college_id,
-        faculty_id,
         age,
         education,
         pw_question,
         pw_answer
         FROM user
+    </select>
+
+    <select id="login" parameterType="INT" resultMap="BaseResultMap">
+        SELECT
+        user_id,
+        user_name,
+        account,
+        password,
+        role_name,
+        mail,
+        college_id,
+        age,
+        education,
+        pw_question,
+        pw_answer
+        FROM user
+        WHERE account = #{account}
     </select>
 </mapper>
