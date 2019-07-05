@@ -164,7 +164,7 @@
 }
 
 .item_class {
-	width: 224px;
+	width: 204px;
 	height: 186px;
 	/*-webkit-box-shadow: 0 5px 10px 0 ;*/
 	/*box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);*/
@@ -179,7 +179,7 @@
 }
 
 .item_class .item_class_intro {
-	width: 224px;
+	width: 204px;
 	height: 100px;
 	position: absolute;
 	/*left: 0;*/
@@ -215,7 +215,7 @@
 }
 
 .item_class .item_class_bottom {
-	width: 224px;
+	width: 204px;
 	position: absolute;
 	bottom: 0;
 	background-color: white;
