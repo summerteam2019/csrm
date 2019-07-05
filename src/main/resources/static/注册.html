@@ -200,7 +200,6 @@
             $.ajax({
                 type: "POST",
                 url: "",//请求程序页面
-                dataType: "json",
                 async: false,//当有返回值以后才会进行后面的js程序。
                 data: {
                     "username": username,
@@ -210,14 +209,14 @@
                     "rolename": rolename
                 },//请求需要发送的处理数据
                 success: function (result) {
-                    console.log(result);
-                   if (result){
-                       alert("注册成功");
-                       window.location.href = "登陆.html";
-                   }
-                   else{
-                       alert("注册失败");
-                   }
+                        console.log(result);
+                        if (result){
+                            alert("注册成功");
+                            window.location.href = "登陆.html";
+                        }
+                        else{
+                            alert("注册失败");
+                        }
                 },
 
             });
