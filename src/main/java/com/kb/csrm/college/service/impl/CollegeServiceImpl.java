@@ -6,74 +6,38 @@ import com.kb.csrm.college.service.ICollegeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
 @Service
-public class CollegeServiceImpl implements ICollegeService{
+public class CollegeServiceImpl implements ICollegeService {
 
     @Autowired
     private CollegeMapper collegeMapper;
 
     @Override
-    public boolean validCollege(Map<String,Object> map) {
-        boolean flag=true;
-        List<CollegeDto>list=collegeMapper.getCollegeByCon(map);
-        int x=(Integer)map.get("id");
-
-        if(x!=0){//修改
-            if((list.size()==1&&x==list.get(0).getCollegeId())){
-                flag=true;
-            }else if(list.size()==0){
-                flag=true;
-            }else{
-                flag=false;
-            }
-        }else{//添加
-            if(list.size()>0){
-                flag=false;
-            }
-        }
-        return flag;
+    public List<CollegeDto> getAllCollege(){
+        return collegeMapper.getAllCollege();
     }
 
     @Override
-    public int insertCollege(CollegeDto college){
-
-        return collegeMapper.insertCollege(college);
+    public CollegeDto getCollegeById(int collegeId){
+        return collegeMapper.getCollegeById(collegeId);
     }
 
     @Override
-    public CollegeDto selectCollegeById(double collegeId){
-        return collegeMapper.selectCollegeById(collegeId);
+    public void addCollege(CollegeDto collegeDto){
+        collegeMapper.addCollege(collegeDto);
     }
 
     @Override
-    public List<CollegeDto> queryAllCollege(){
-        return collegeMapper.queryAllCollege();
+    public void deleteCollege(Integer collegeId){
+        CollegeDto collegeDto = new CollegeDto();
+        collegeDto.setCollegeId(collegeId);
+        collegeMapper.deleteCollege(collegeDto);
     }
 
     @Override
-    public List<CollegeDto> queryCollegeList(int spage,int epage){
-        return collegeMapper.queryCollegeList(spage, epage);
-    }
-
-    @Override
-    public int getCollegeCount(){
-        return collegeMapper.getCollegeCount();
-    }
-
-    @Override
-    public int updateCollege(CollegeDto collegeDto, HttpServletRequest request){
-        int i = collegeMapper.updateCollege(collegeDto);
-        return i;
-    }
-
-    @Override
-    public int deleteCollege(double collegeId){
-        int i = collegeMapper.deleteCollege(collegeId);
-        return i;
+    public void updateCollege(CollegeDto collegeDto){
+        collegeMapper.updateCollege(collegeDto);
     }
 }
-
