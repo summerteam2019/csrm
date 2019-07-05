@@ -1,68 +1,45 @@
 package com.kb.csrm.college.mapper;
 
 import com.kb.csrm.college.dto.CollegeDto;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-import java.util.Map;
 
-@Mapper
 public interface CollegeMapper {
 
     /**
-     *根据院校名称或院校id验证院校是否唯一
-     * @param map
+     * 获取所有院校
      * @return
      */
-    List<CollegeDto> getCollegeByCon(Map<String,Object> map);
+    @Select("select * from college")
+    List<CollegeDto> getAllCollege();
 
     /**
-     * 分页查询所有院校
-     * @param spage
-     * @param epage
-     */
-    List<CollegeDto> queryCollegeList(@Param("spage")int spage,@Param("epage")int epage);
-
-    /**
-     * 统计所有院校数量
-     */
-    int getCollegeCount();
-
-    /**
-     * 添加新学院
-     * @param college
-     */
-    int insertCollege(CollegeDto college);
-
-    /**
-     * 根据ID查询学院
+     * 根据ID获取院校
      * @param collegeId
      * @return
      */
-    CollegeDto selectCollegeById(@Param(value = "collegeId") double collegeId);
+    @Select("select * from college where college_id = #{collegeId}")
+    CollegeDto getCollegeById(int collegeId);
 
     /**
-     * 查询所有学院
-     */
-    List<CollegeDto> queryAllCollege();
-
-    /**
-     * 更新学院信息
+     * 添加院校
      * @param collegeDto
-     * @return
      */
-    int updateCollege(CollegeDto collegeDto);
+    @Insert("insert into college values (#{collegeId},#{collegeName},#{facultyName})")
+    void addCollege(CollegeDto collegeDto);
 
     /**
-     * 删除学院
-     * @param collegeId
+     * 删除院校
+     * @param collegeDto
      */
-    int deleteCollege(@Param(value = "collegeId")double collegeId);
+    @Delete("delete from college where college_id = #{collegeId}")
+    void deleteCollege(CollegeDto collegeDto);
 
-
+    /**
+     * 修改院校
+     * @param collegeDto
+     */
+    @Update("update college set college_name = #{collegeName}, faculty_name = #{facultyName} where college_id = #{collegeId}")
+    void updateCollege(CollegeDto collegeDto);
 }
-

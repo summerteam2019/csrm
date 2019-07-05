@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @SpringBootApplication
+@ComponentScan("com.kb.csrm.function.service")
 public class CsrmApplication {
 
     /**

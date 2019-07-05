@@ -2,63 +2,38 @@ package com.kb.csrm.college.service;
 
 import com.kb.csrm.college.dto.CollegeDto;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
 public interface ICollegeService {
-
     /**
-     * 根据学院名称或学院id验证是否唯一
-     * @param map
+     * 获取所有院校
      * @return
      */
-    boolean validCollege(Map<String,Object> map);
+    List<CollegeDto> getAllCollege();
 
     /**
-     * 添加新学院
-     * @param college
-     */
-    int insertCollege(CollegeDto college);
-
-    /**
-     * 根据ID查询学院
+     * 根据ID获取院校
      * @param collegeId
      * @return
      */
-    CollegeDto selectCollegeById(double collegeId);
+    CollegeDto getCollegeById(int collegeId);
 
     /**
-     * 查询所有学院
-     * @return
-     */
-    List<CollegeDto> queryAllCollege();
-
-    /**
-     * 分页查询所有学院
-     * @param spage
-     * @param epage
-     * @return
-     */
-    List<CollegeDto> queryCollegeList(int spage,int epage);
-
-    /**
-     * 统计学院总数
-     * @return
-     */
-    int getCollegeCount();
-
-    /**
-     * 更新学院信息
+     * 添加院校
      * @param collegeDto
-     * @return
      */
-    int updateCollege(CollegeDto collegeDto, HttpServletRequest request);
+    void addCollege(CollegeDto collegeDto);
 
     /**
-     * 删除学院
+     * 删除院校
      * @param collegeId
      */
-    int deleteCollege(double collegeId);
-}
+    void deleteCollege(Integer collegeId);
 
+    /**
+     * 删除院校
+     * @param collegeDto
+     */
+    void updateCollege(CollegeDto collegeDto);
+
+}
