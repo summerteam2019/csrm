@@ -87,7 +87,7 @@
                 课程推荐
                 <a href="http://www.baidu.com">更多 ></a>
             </div>
-            <div class="item_class" onclick="window.open('课程详情.html','_self')">
+            <div class="item_class" onclick="" id="class1">
                 <img src="img/推荐课程1.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -98,7 +98,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class"onclick="window.open('课程详情.html','_self')">
+            <div class="item_class"onclick=""id="class2">
                 <img src="img/推荐课程2.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -109,7 +109,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class"onclick="window.open('课程详情.html','_self')">
+            <div class="item_class"onclick=""id="class3">
                 <img src="img/推荐课程3.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -120,7 +120,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class"onclick="window.open('课程详情.html','_self')">
+            <div class="item_class"onclick=""id="class4">
                 <img src="img/推荐课程4.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -131,7 +131,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class" style="margin-right: 0;"onclick="window.open('课程详情.html','_self')">
+            <div class="item_class" style="margin-right: 0;"onclick=""id="class5">
                 <img src="img/推荐课程5.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -148,8 +148,33 @@
 
 </div>
 <div id="footer">
-
 </div>
+
+<script src="js/jquery.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: "",//请求程序页面
+            success: function (data) {
+                for(var i in data){
+                    $("#class"+(i+1)).attr({
+                        "onclick" : "window.location.href= 'http://www.baidu.com'",
+                        "src" : "data[i].src",
+                        "h3" : "data[i].title",
+                        "p" : "data[i].intro",
+                        "span.left" : "data[i].teacher",
+                        "span.right" : "data[i].count"
+                    });
+                }
+            },
+        });
+    });
+
+</script>
+
 </body>
 
 </html>
