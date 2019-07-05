@@ -303,7 +303,7 @@ UE.I18N['zh-cn'] = {
         'errorHttp':'http请求错误',
         'errorServerUpload':'服务器返回出错',
         'remoteLockError':"宽高不正确,不能所定比例",
-        'numError':"请输入正确的长度或者宽度值！例如：123，400",
+        'numError':"请输入正确的长度或者宽度值！例如：CourseMapper，400",
         'imageUrlError':"不允许的图片格式或者图片域！",
         'imageLoadError':"图片加载失败！请检查链接地址或网络状态！",
         'searchRemind':"请输入搜索关键词",

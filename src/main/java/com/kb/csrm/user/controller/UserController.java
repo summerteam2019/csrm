@@ -51,4 +51,20 @@ public class UserController extends BaseController {
         return new ResponseData(userService.query());
     }
 
+    @RequestMapping("/delete")
+    @ResponseBody
+    public ResponseData deleteUserById(@RequestBody Long userId, HttpServletRequest request){
+
+        userService.deleteUserById(userId);
+        return new ResponseData(true);
+    }
+
+    @RequestMapping("/update")
+    @ResponseBody
+    public ResponseData updateUserById(@RequestBody Long userId, HttpServletRequest request){
+
+        userService.updateUserById(userId);
+        return new ResponseData(true);
+    }
+
 }

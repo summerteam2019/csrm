@@ -36,4 +36,14 @@ public class UserServiceImpl implements IUserService {
     public List<UserDto> query() {
         return userMapper.query();
     }
+
+    @Override
+    public UserDto deleteUserById(Long userId) {
+        return userMapper.deleteUserById(userId);
+    }
+
+    @Override
+    public UserDto updateUserById(Long userId) {
+        return userMapper.updateUserById(userId);
+    }
 }

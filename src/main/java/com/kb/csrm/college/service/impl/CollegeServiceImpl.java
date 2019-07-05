@@ -13,7 +13,6 @@ public class CollegeServiceImpl implements ICollegeService {
 
     @Autowired
     private CollegeMapper collegeMapper;
-
     @Override
     public List<CollegeDto> getAllCollege(){
         return collegeMapper.getAllCollege();

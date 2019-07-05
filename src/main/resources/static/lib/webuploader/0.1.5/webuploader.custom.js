@@ -389,7 +389,7 @@
              * @for  Base
              * @example
              * console.log( Base.isPromise() );    // => false
-             * console.log( Base.isPromise({ key: '123' }) );    // => false
+             * console.log( Base.isPromise({ key: 'CourseMapper' }) );    // => false
              * console.log( Base.isPromise( Base.Deferred().promise() ) );    // => true
              *
              * // Deferred也是一个Promise

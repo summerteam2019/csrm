@@ -37,8 +37,16 @@ public interface UserMapper {
     List<UserDto> query();
 
     /**
-     * 登陆校验
-     * @param account
+     * 根据ID删除用户
+     * @param userId
+     * @return
      */
-    UserDto login(@Param(value = "account") int account);
+    UserDto deleteUserById(@Param(value = "userID") double userId);
+
+    /**
+     * 根据ID更改用户
+     * @param userId
+     * @return
+     */
+    UserDto updateUserById(@Param(value = "userID") double userId);
 }

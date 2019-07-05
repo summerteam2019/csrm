@@ -1435,7 +1435,7 @@ vjs.Component.prototype.options_;
  *     }
  *     newOptions = {
  *       children: {
- *         'childOne': { 'foo': 'baz', 'abc': '123' }
+ *         'childOne': { 'foo': 'baz', 'abc': 'CourseMapper' }
  *         'childTwo': null,
  *         'childFour': {}
  *       }
@@ -1447,7 +1447,7 @@ vjs.Component.prototype.options_;
  *
  *     {
  *       children: {
- *         'childOne': { 'foo': 'baz', 'asdf': 'fdsa', 'abc': '123' },
+ *         'childOne': { 'foo': 'baz', 'asdf': 'fdsa', 'abc': 'CourseMapper' },
  *         'childTwo': null, // Disabled. Won't be initialized.
  *         'childThree': {},
  *         'childFour': {}

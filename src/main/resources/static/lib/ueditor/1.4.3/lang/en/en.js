@@ -303,7 +303,7 @@ UE.I18N['en'] = {
         'errorHttp':'Http Error',
         'errorServerUpload':'Server Result Error.',
         'remoteLockError':"Cannot Lock the Proportion between width and height",
-        'numError':"Please enter the correct Num. e.g 123,400",
+        'numError':"Please enter the correct Num. e.g CourseMapper,400",
         'imageUrlError':"The image format may be wrong!",
         'imageLoadError':"Error,please check the network or URL！",
         'searchRemind':"Enter the search keyword!",
@@ -365,7 +365,7 @@ UE.I18N['en'] = {
             'lang_upload_alignment':"Alignment",
             'lang_format_advice':"Recommends mp4 format."
         },
-        'numError':"Please enter the correct Num. e.g 123,400",
+        'numError':"Please enter the correct Num. e.g CourseMapper,400",
         'floatLeft':"Float left",
         'floatRight':"Float right",
         'default':"Default",

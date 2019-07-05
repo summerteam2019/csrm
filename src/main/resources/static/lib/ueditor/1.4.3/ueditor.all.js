@@ -1117,7 +1117,7 @@ var utils = UE.utils = {
      *
      * UE.utils.domReady( function () {
      *
-     *     console.log('123');
+     *     console.log('CourseMapper');
      *
      * } );
      *

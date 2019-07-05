@@ -32,4 +32,18 @@ public interface IUserService {
      * @return
      */
     List<UserDto> query();
+
+    /**
+     * 按ID删除用户
+     * @param userId
+     * @return
+     */
+    UserDto deleteUserById (Long userId);
+
+    /**
+     * 按ID更改用户信息
+     * @param userId
+     * @return
+     */
+    UserDto updateUserById (Long userId);
 }

@@ -175,7 +175,7 @@ function RGBColor(color_string)
     var color_defs = [
         {
             re: /^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$/,
-            example: ['rgb(123, 234, 45)', 'rgb(255,234,245)'],
+            example: ['rgb(CourseMapper, 234, 45)', 'rgb(255,234,245)'],
             process: function (bits){
                 return [
                     parseInt(bits[1]),

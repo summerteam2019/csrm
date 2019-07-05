@@ -9,6 +9,7 @@
         <result column="role_name" property="roleName" jdbcType="VARCHAR" />
         <result column="mail" property="mail" jdbcType="VARCHAR" />
         <result column="college_id" property="collegeId" jdbcType="INTEGER" />
+        <result column="faculty_id" property="facultyId" jdbcType="INTEGER" />
         <result column="age" property="age" jdbcType="INTEGER" />
         <result column="education" property="education" jdbcType="VARCHAR" />
         <result column="pw_question" property="pwQuestion" jdbcType="VARCHAR" />
@@ -24,6 +25,7 @@
         role_name,
         mail,
         college_id,
+        faculty_id,
         age,
         education,
         pw_question,
@@ -36,11 +38,12 @@
         #{roleName},
         #{mail},
         #{collegeId},
+        #{facultyId},
         #{age},
         #{education},
         #{pwQuestion},
         #{pwAnswer}
-        )
+
     </insert>
 
     <select id="selectUserById" parameterType="double" resultMap="BaseResultMap">
@@ -52,6 +55,7 @@
         role_name,
         mail,
         college_id,
+        faculty_id,
         age,
         education,
         pw_question,
@@ -60,7 +64,7 @@
         WHERE user_id = #{userId}
     </select>
 
-    <select id="query" resultMap="BaseResultMap">
+    <select id="query" resultType="com.kb.csrm.user.dto.UserDto">
         SELECT
         user_id,
         user_name,
@@ -69,6 +73,7 @@
         role_name,
         mail,
         college_id,
+        faculty_id,
         age,
         education,
         pw_question,
@@ -76,20 +81,25 @@
         FROM user
     </select>
 
-    <select id="login" parameterType="INT" resultMap="BaseResultMap">
-        SELECT
-        user_id,
-        user_name,
-        account,
-        password,
-        role_name,
-        mail,
-        college_id,
-        age,
-        education,
-        pw_question,
-        pw_answer
-        FROM user
-        WHERE account = #{account}
+    <select id="deleteUserById" parameterType="double" resultMap="BaseResultMap">
+        delete
+        form user
+        where user_id = #{userId}
+    </select>
+    <select id="updateUserById" parameterType="double" resultMap="BaseResultMap">
+        update user
+        set user_id=#{userId},
+        user_name=#{userName},
+        account=#{account},
+        password=#{password},
+        role_name=#{roleName},
+        mail=#{mail},
+        college_id=#{collegeId},
+        faculty_id=#{facultyId},
+        age=#{age},
+        education=#{education},
+        pw_question=#{pwQuestion},
+        pw_answer=#{pwAnswer}
+        where user_id = #{userId}
     </select>
 </mapper>
