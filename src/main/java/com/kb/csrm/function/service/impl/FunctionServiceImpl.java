@@ -4,9 +4,11 @@ import com.kb.csrm.function.dto.FunctionDto;
 import com.kb.csrm.function.mapper.FunctionMapper;
 import com.kb.csrm.function.service.IFunctionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class FunctionServiceImpl implements IFunctionService {
 
     @Autowired

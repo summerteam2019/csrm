@@ -20,17 +20,17 @@ public class AppraiseServiceImpl implements IAppraiseService {
     }
 
     @Override
-    public AppraiseDto getAppraiseById(int appraiseId){
+    public AppraiseDto getAppraiseById(Integer appraiseId){
         return appraiseMapper.getAppraiseById(appraiseId);
     }
 
     @Override
-    public AppraiseDto getAppraiseByUserId(int userId){
+    public AppraiseDto getAppraiseByUserId(Integer userId){
         return appraiseMapper.getAppraiseByUserId(userId);
     }
 
     @Override
-    public AppraiseDto getAppraiseByCourseId(int courseId){
+    public AppraiseDto getAppraiseByCourseId(Integer courseId){
         return appraiseMapper.getAppraiseByCourseId(courseId);
     }
 
@@ -40,7 +40,7 @@ public class AppraiseServiceImpl implements IAppraiseService {
     }
 
     @Override
-    public void deleteAppraise(int appraiseId){
+    public void deleteAppraise(Integer appraiseId){
         appraiseMapper.deleteAppraise(appraiseId);
     }
 

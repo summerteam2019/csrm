@@ -2,6 +2,8 @@ package com.kb.csrm.college.controller;
 
 import com.kb.csrm.college.dto.CollegeDto;
 import com.kb.csrm.college.service.ICollegeService;
+import com.kb.csrm.util.BaseController;
+import com.kb.csrm.util.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,29 +12,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/college")
-public class CollegeController {
+public class CollegeController extends BaseController {
 
     @Autowired
     private ICollegeService collegeService;
 
-    @RequestMapping(path="/getAllCollege.do" ,produces="application/json;charset=utf-8")
-    public List<CollegeDto> getAllCollege(ModelMap modelMap){
+    @RequestMapping(path="/getAllCollege")
+    @ResponseBody
+    public ResponseData getAllCollege(HttpServletRequest request){
         List<CollegeDto> collegeList = collegeService.getAllCollege();
-        modelMap.addAttribute("collegeList",collegeList);
-        System.out.println(collegeList);
-        return collegeList;
+        return new ResponseData(collegeList);
     }
 
-    @RequestMapping("/getCollegeById.do")
+    @RequestMapping("/getCollegeById")
+    @ResponseBody
     public CollegeDto getCollegeById(int collegeId){
         return collegeService.getCollegeById(collegeId);
     }
 
-    @RequestMapping("/addCollege.do")
+    @RequestMapping("/addCollege")
+    @ResponseBody
     public void addCollege(int collegeId, String collegeName, String facultyName){
         CollegeDto collegeDto = new CollegeDto();
         collegeDto.setCollegeId(collegeId);
@@ -41,12 +45,14 @@ public class CollegeController {
         collegeService.addCollege(collegeDto);
     }
 
-    @RequestMapping("/deleteCollege.do")
+    @RequestMapping("/deleteCollege")
+    @ResponseBody
     public void deleteCollege(Integer collegeId){
         collegeService.deleteCollege(collegeId);
     }
 
-    @RequestMapping("/updateCollege.do")
+    @RequestMapping("/updateCollege")
+    @ResponseBody
     public void updateCollege(CollegeDto collegeDto){
         collegeService.updateCollege(collegeDto);
     }

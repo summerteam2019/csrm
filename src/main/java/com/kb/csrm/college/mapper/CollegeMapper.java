@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+@Mapper
 public interface CollegeMapper {
 
     /**
@@ -20,7 +21,7 @@ public interface CollegeMapper {
      * @return
      */
     @Select("select * from college where college_id = #{collegeId}")
-    CollegeDto getCollegeById(int collegeId);
+    CollegeDto getCollegeById(@Param(value = "collegeId") int collegeId);
 
     /**
      * 添加院校

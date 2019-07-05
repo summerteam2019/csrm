@@ -28,7 +28,7 @@ public interface ICollegeService {
      * 删除院校
      * @param collegeId
      */
-    void deleteCollege(Integer collegeId);
+    void deleteCollege(int collegeId);
 
     /**
      * 删除院校

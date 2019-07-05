@@ -22,7 +22,7 @@ public interface FunctionMapper {
      * @return
      */
     @Select("select * from function_menu where function_id = #{functionId}")
-    FunctionDto getFunctionById(int functionId);
+    FunctionDto getFunctionById(@Param(value = "functionId")int functionId);
 
     /**
      * 添加功能
