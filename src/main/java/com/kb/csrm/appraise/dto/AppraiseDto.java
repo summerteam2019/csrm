@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 @Table(name="appraise")
 public class AppraiseDto {
@@ -26,7 +26,7 @@ public class AppraiseDto {
     private String appraiseContent;
 
     @Column
-    private Data appraiseTime;
+    private Date appraiseTime;
 
     @Column
     private int appraiseRaise;
@@ -71,11 +71,11 @@ public class AppraiseDto {
         this.appraiseContent = appraiseContent;
     }
 
-    public Data getAppraiseTime(){
+    public Date getAppraiseTime(){
         return appraiseTime;
     }
 
-    public void setAppraiseTime(Data appraiseTime){
+    public void setAppraiseTime(Date appraiseTime){
         this.appraiseTime = appraiseTime;
     }
 
@@ -86,4 +86,5 @@ public class AppraiseDto {
     public void setAppraiseRaise(int appraiseRaise){
         this.appraiseRaise = appraiseRaise;
     }
+
 }

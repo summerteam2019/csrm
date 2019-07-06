@@ -17,21 +17,21 @@ public interface IAppraiseService {
      * @param appraiseId
      * @return
      */
-    AppraiseDto getAppraiseById(int appraiseId);
+    AppraiseDto getAppraiseById(Integer appraiseId);
 
     /**
      * 根据用户ID获取评论
      * @param userId
      * @return
      */
-    AppraiseDto getAppraiseByUserId(int userId);
+    AppraiseDto getAppraiseByUserId(Integer userId);
 
     /**
      * 根据课程ID获取评论
      * @param courseId
      * @return
      */
-    AppraiseDto getAppraiseByCourseId(int courseId);
+    AppraiseDto getAppraiseByCourseId(Integer courseId);
 
     /**
      * 添加评论
@@ -43,7 +43,7 @@ public interface IAppraiseService {
      * 删除评论
      * @param appraiseId
      */
-    void deleteAppraise(int appraiseId);
+    void deleteAppraise(Integer appraiseId);
 
     /**
      * 编辑评论

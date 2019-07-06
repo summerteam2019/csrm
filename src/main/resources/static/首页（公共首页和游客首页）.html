@@ -161,7 +161,7 @@
             success: function (data) {
                 for(var i in data){
                     $("#class"+(i+1)).attr({
-                        "onclick" : "window.location.href= 'http://www.baidu.com'",
+                        "onclick" : "window.location.href= 'data[i].href'",
                         "src" : "data[i].src",
                         "h3" : "data[i].title",
                         "p" : "data[i].intro",

@@ -25,7 +25,7 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 权限管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<form class="Huiform" method="post" action="/function/getFunctionById" target="_self">
+		<form class="Huiform" method="get" action="/function/getFunctionById" target="_self">
 			<input type="text" class="input-text" style="width:250px" placeholder="功能名称" id="functionId" name="functionId">
 			<button type="submit" class="btn btn-success" id="findOne" onclick=""><i class="Hui-iconfont">&#xe665;</i> 搜权限节点</button>
 		</form>
@@ -81,7 +81,7 @@ $(function () {
 	$("#findOne").click(function () {
 		var functionId = $("#functionId").val();
 		$.ajax({
-			type: "POST",
+			type: "GET",
 			url: "/function/getFunctionById",//请求程序页面
 			dataType: "json",
 			async: false,//当有返回值以后才会进行后面的js程序。
@@ -101,9 +101,8 @@ $(function () {
 				xmlhttp.open("GET", "/function/getFunctionById", true);
 				xmlhttp.send();
 			}
-
-
 		});
+		return false;
 	});
 });
 

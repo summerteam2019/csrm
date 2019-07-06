@@ -99,7 +99,7 @@ function deleteCollege(){
 	var id = $("#{delete}");
 	if(confirm('您确定要删除该院校吗')){
 		$.ajax({
-			url:'college/deleteCollege',
+			url:'/college/deleteCollege',
 			type:'post',
 			dataType:'json',
 			data:{cid:id},

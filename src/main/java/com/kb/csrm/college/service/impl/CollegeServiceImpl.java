@@ -15,6 +15,7 @@ public class CollegeServiceImpl implements ICollegeService {
     private CollegeMapper collegeMapper;
     @Override
     public List<CollegeDto> getAllCollege(){
+        System.out.println(collegeMapper.getAllCollege());
         return collegeMapper.getAllCollege();
     }
 
@@ -29,7 +30,7 @@ public class CollegeServiceImpl implements ICollegeService {
     }
 
     @Override
-    public void deleteCollege(Integer collegeId){
+    public void deleteCollege(int collegeId){
         CollegeDto collegeDto = new CollegeDto();
         collegeDto.setCollegeId(collegeId);
         collegeMapper.deleteCollege(collegeDto);
