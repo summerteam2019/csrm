@@ -4,7 +4,6 @@ import com.kb.csrm.college.dto.CollegeDto;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-
 @Mapper
 public interface CollegeMapper {
 
@@ -21,7 +20,7 @@ public interface CollegeMapper {
      * @return
      */
     @Select("select * from college where college_id = #{collegeId}")
-    CollegeDto getCollegeById(@Param(value = "collegeId") int collegeId);
+    CollegeDto getCollegeById(int collegeId);
 
     /**
      * 添加院校

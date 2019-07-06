@@ -49,4 +49,7 @@ public interface UserMapper {
      * @return
      */
     UserDto updateUserById(@Param(value = "userID") double userId);
+    UserDto login(@Param(value="account")int account);
 }
+
+
