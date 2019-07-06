@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kb.csrm.course.mapper.CourseMapper">
+    <resultMap id="BaseCourseResultMap" type="com.kb.csrm.course.dto.CourseDto">
+        <result column="course_id" property="courseId" jdbcType="INTEGER" />
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+        <result column="college_id" property="collegeId" jdbcType="INTEGER" />
+        <result column="teacher_name" property="teacherName" jdbcType="VARCHAR" />
+        <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+        <result column="course_introduce" property="courseIntroduce" jdbcType="VARCHAR" />
+        <result column="course_time" property="courseTime" jdbcType="VARCHAR" />
+        <result column="course_rate" property="courseRate" jdbcType="INTEGER" />
+        <result column="course_count" property="courseCount" jdbcType="INTEGER" />
+    </resultMap>
+
+    <insert id="insertCourse"  parameterType="com.kb.csrm.course.dto.CourseDto">
+        insert into course(
+        course_id,
+        teacher_id,
+        college_id,
+        teacher_name,
+        course_name,
+        course_introduce,
+        course_time,
+        course_rate,
+        course_count
+        )values (
+        #{courseId},
+        #{teacherId},
+        #{collegeId},
+        #{teacherName},
+        #{courseName},
+        #{courseTime},
+        #{courseRate},
+        #{courseCount}
+    </insert>
+
+    <select id="selectCourseById" parameterType="double" >
+        SELECT
+        course_id,
+        teacher_id,
+        college_id,
+        teacher_name,
+        course_name,
+        course_introduce,
+        course_time,
+        course_rate,
+        course_count
+        FROM course
+        WHERE course_id = #{courseId}
+    </select>
+
+    <select id="deleteCourseById" parameterType="double" >
+        delete
+        form course
+        where course_id = #{courseId}
+    </select>
+    <select id="updateCourseById" parameterType="double" >
+        update course
+        set teacher_id=#{teacherId},
+        college_id=#{clooegeId},
+        teacher_name=#{teacherName},
+        course_name=#{courseName},
+        course_introduce=#{courseIntroduce},
+        course_time=#{courseTime},
+        course_rate=#{courseRate},
+        course_count=#{courseCount}
+        where course_id = #{courseId}
+    </select>
+
+</mapper>
