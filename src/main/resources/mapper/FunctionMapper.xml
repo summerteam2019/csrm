@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kb.csrm.function.mapper.FunctionMapper">
+    <resultMap id="BaseResultMap" type="com.kb.csrm.function.dto.FunctionDto">
+        <result column="function_id" property="functionId" jdbcType="INTEGER"/>
+        <result column="function_name" property="functionName" jdbcType="VARCHAR"/>
+        <result column="function_meaning" property="functionMeaning" jdbcType="VARCHAR"/>
+        <result column="function_url" property="functionUrl" jdbcType="VARCHAR"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getAllFunction" resultMap="BaseResultMap">
+        select *
+        from function_menu
+    </select>
+
+    <select id="getFunctionById" parameterType="int" resultMap="BaseResultMap">
+        select *
+        from function_menu
+        where function_id = #{functionId}
+    </select>
+
+    <insert id="addFunction" parameterType="com.kb.csrm.function.dto.FunctionDto">
+        insert into function_menu
+        values (
+        #{functionId},
+        #{functionName},
+        #{functionMeaning},
+        #{functionUrl},
+        #{parentId}
+        )
+    </insert>
+
+    <delete id="deleteFunction" parameterType="int">
+        delete from function_menu
+        where function_id = #{functionId}
+    </delete>
+
+    <update id="updateFunction" parameterType="com.kb.csrm.function.dto.FunctionDto">
+        update function_menu
+        set
+        function_name = #{functionName},
+        function_meaning = #{functionMeaning},
+        function_url = #{functionUrl},
+        parent_id = #{parentId}
+    </update>
+</mapper>
