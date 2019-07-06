@@ -6,7 +6,6 @@ import com.kb.csrm.util.BaseController;
 import com.kb.csrm.util.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,14 +36,14 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/getAppraiseByUserId")
     @ResponseBody
-    public ResponseData getAppraiseByUserId(@RequestBody Integer userId){
+    public ResponseData getAppraiseByUserId(@RequestBody Integer userId, HttpServletRequest request){
         appraiseService.getAppraiseByUserId(userId);
         return new ResponseData(true);
     }
 
     @RequestMapping("/getAppraiseByCourseId")
     @ResponseBody
-    public ResponseData getAppraiseByCourseId(@RequestBody Integer courseId){
+    public ResponseData getAppraiseByCourseId(@RequestBody Integer courseId, HttpServletRequest request){
         appraiseService.getAppraiseByCourseId(courseId);
         return new ResponseData(true);
     }
@@ -59,7 +58,7 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/deleteAppraise")
     @ResponseBody
-    public ResponseData deleteAppraise(Integer appraiseId){
+    public ResponseData deleteAppraise(@RequestBody Integer appraiseId, HttpServletRequest request){
 
         appraiseService.deleteAppraise(appraiseId);
         return new ResponseData(true);
@@ -67,7 +66,7 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/updateAppraise")
     @ResponseBody
-    public ResponseData updateAppraise(AppraiseDto appraiseDto){
+    public ResponseData updateAppraise(@RequestBody AppraiseDto appraiseDto, HttpServletRequest request){
         appraiseService.updateAppraise(appraiseDto);
         return new ResponseData(true);
     }
