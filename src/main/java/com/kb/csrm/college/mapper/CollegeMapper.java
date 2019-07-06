@@ -4,11 +4,13 @@ import com.kb.csrm.college.dto.CollegeDto;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+
 @Mapper
 public interface CollegeMapper {
 
     /**
      * 获取所有院校
+     *
      * @return
      */
     @Select("select * from college")
@@ -16,6 +18,7 @@ public interface CollegeMapper {
 
     /**
      * 根据ID获取院校
+     *
      * @param collegeId
      * @return
      */
@@ -24,6 +27,7 @@ public interface CollegeMapper {
 
     /**
      * 添加院校
+     *
      * @param collegeDto
      */
     @Insert("insert into college values (#{collegeId},#{collegeName},#{facultyName})")
@@ -31,6 +35,7 @@ public interface CollegeMapper {
 
     /**
      * 删除院校
+     *
      * @param collegeDto
      */
     @Delete("delete from college where college_id = #{collegeId}")
@@ -38,6 +43,7 @@ public interface CollegeMapper {
 
     /**
      * 修改院校
+     *
      * @param collegeDto
      */
     @Update("update college set college_name = #{collegeName}, faculty_name = #{facultyName} where college_id = #{collegeId}")

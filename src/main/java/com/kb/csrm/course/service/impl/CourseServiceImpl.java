@@ -5,7 +5,7 @@ import com.kb.csrm.course.mapper.CourseMapper;
 import com.kb.csrm.course.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 import java.util.Map;
 
@@ -46,12 +46,12 @@ public class CourseServiceImpl implements ICourseService{
     }
 
     @Override
-    public CourseDto deleteCourseById(Long courseId) {
-        return courseMapper.deleteCourseById(courseId);
+    public void deleteCourseById(Long courseId) {
+        courseMapper.deleteCourseById(courseId);
     }
 
     @Override
-    public CourseDto updateCourseById(Long courseId) {
-        return courseMapper.updateCourseById(courseId);
+    public void updateCourseById(Long courseId) {
+        courseMapper.updateCourseById(courseId);
     }
 }

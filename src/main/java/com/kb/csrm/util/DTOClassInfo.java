@@ -19,6 +19,7 @@ import java.util.Map;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import org.apache.commons.lang.StringUtils;
 
 public final class DTOClassInfo {
@@ -45,10 +46,10 @@ public final class DTOClassInfo {
     }
 
     private static EntityField[] getFields0(Class<?> clazz, int idx) {
-        EntityField[] fields = (EntityField[])CLASS_ANNO_MAPPING[idx].get(clazz);
+        EntityField[] fields = (EntityField[]) CLASS_ANNO_MAPPING[idx].get(clazz);
         if (fields == null) {
             analysis(clazz);
-            fields = (EntityField[])CLASS_ANNO_MAPPING[idx].get(clazz);
+            fields = (EntityField[]) CLASS_ANNO_MAPPING[idx].get(clazz);
         }
 
         return fields;
@@ -64,17 +65,17 @@ public final class DTOClassInfo {
         fields.sort(FIELD_COMPARATOR);
         List<EntityField>[] lists = new List[CONCERNED_ANNOTATION.length];
 
-        for(int i = 0; i < CONCERNED_ANNOTATION.length; ++i) {
+        for (int i = 0; i < CONCERNED_ANNOTATION.length; ++i) {
             lists[i] = new ArrayList();
         }
 
         Map<String, EntityField> fieldMap = new HashMap();
         Iterator var4 = fields.iterator();
 
-        while(var4.hasNext()) {
-            EntityField f = (EntityField)var4.next();
+        while (var4.hasNext()) {
+            EntityField f = (EntityField) var4.next();
 
-            for(int i = 0; i < CONCERNED_ANNOTATION.length; ++i) {
+            for (int i = 0; i < CONCERNED_ANNOTATION.length; ++i) {
                 if (f.getAnnotation(CONCERNED_ANNOTATION[i]) != null) {
                     lists[i].add(f);
                 }
@@ -85,25 +86,25 @@ public final class DTOClassInfo {
 
         CLASS_FIELDS_MAPPING.put(clazz, fieldMap);
 
-        for(int i = 0; i < CLASS_ANNO_MAPPING.length; ++i) {
-            EntityField[] fs = (EntityField[])lists[i].toArray(new EntityField[lists[i].size()]);
+        for (int i = 0; i < CLASS_ANNO_MAPPING.length; ++i) {
+            EntityField[] fs = (EntityField[]) lists[i].toArray(new EntityField[lists[i].size()]);
             CLASS_ANNO_MAPPING[i].put(clazz, fs);
         }
 
     }
 
     public static EntityField getEntityField(Class<?> clazz, String field) {
-        Map<String, EntityField> map = (Map)CLASS_FIELDS_MAPPING.get(clazz);
+        Map<String, EntityField> map = (Map) CLASS_FIELDS_MAPPING.get(clazz);
         if (map == null) {
             analysis(clazz);
-            map = (Map)CLASS_FIELDS_MAPPING.get(clazz);
+            map = (Map) CLASS_FIELDS_MAPPING.get(clazz);
         }
 
-        return (EntityField)map.get(field);
+        return (EntityField) map.get(field);
     }
 
     public static Map<String, EntityField> getEntityFields(Class<?> clazz) {
-        Map<String, EntityField> map = (Map)CLASS_FIELDS_MAPPING.get(clazz);
+        Map<String, EntityField> map = (Map) CLASS_FIELDS_MAPPING.get(clazz);
         if (map == null) {
             analysis(clazz);
         }
@@ -112,12 +113,12 @@ public final class DTOClassInfo {
     }
 
     public static String camelToUnderLine(String camel) {
-        String ret = (String)CAMEL_UL_MAP.get(camel);
+        String ret = (String) CAMEL_UL_MAP.get(camel);
         if (ret == null) {
             ArrayList<String> tmp = new ArrayList();
             int lastIdx = 0;
 
-            for(int i = 0; i < camel.length(); ++i) {
+            for (int i = 0; i < camel.length(); ++i) {
                 if (Character.isUpperCase(camel.charAt(i))) {
                     tmp.add(camel.substring(lastIdx, i).toLowerCase());
                     lastIdx = i;
@@ -133,11 +134,11 @@ public final class DTOClassInfo {
     }
 
     public static String underLineToCamel(String str) {
-        String camel = (String)UL_CAMEL_MAP.get(str);
+        String camel = (String) UL_CAMEL_MAP.get(str);
         if (camel == null) {
             String[] array = str.toLowerCase().split("_");
 
-            for(int i = 1; i < array.length; ++i) {
+            for (int i = 1; i < array.length; ++i) {
                 array[i] = StringUtils.capitalize(array[i]);
             }
 
@@ -149,7 +150,7 @@ public final class DTOClassInfo {
     }
 
     public static String getColumnName(EntityField field) {
-        Column col = (Column)field.getAnnotation(Column.class);
+        Column col = (Column) field.getAnnotation(Column.class);
         return col != null && !StringUtils.isEmpty(col.name()) ? col.name() : camelToUnderLine(field.getName());
     }
 
@@ -165,7 +166,7 @@ public final class DTOClassInfo {
 
     static Table getTableAnnotation(Class<?> clazz) {
         Table annotation = null;
-        annotation = (Table)clazz.getAnnotation(Table.class);
+        annotation = (Table) clazz.getAnnotation(Table.class);
         if (annotation == null && clazz.getSuperclass() != null) {
             annotation = getTableAnnotation(clazz.getSuperclass());
         }
@@ -177,7 +178,7 @@ public final class DTOClassInfo {
         CLASS_ANNO_MAPPING = new HashMap[CONCERNED_ANNOTATION.length];
         CLASS_FIELDS_MAPPING = new HashMap();
 
-        for(int i = 0; i < CLASS_ANNO_MAPPING.length; ++i) {
+        for (int i = 0; i < CLASS_ANNO_MAPPING.length; ++i) {
             CLASS_ANNO_MAPPING[i] = new HashMap();
         }
 

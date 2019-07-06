@@ -8,7 +8,7 @@
 
 package com.kb.csrm.util;
 
-public abstract class BaseException extends Exception implements IBaseException{
+public abstract class BaseException extends Exception implements IBaseException {
     private static final long serialVersionUID = 1L;
     private String code;
     private String descriptionKey;

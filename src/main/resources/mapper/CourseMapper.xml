@@ -14,17 +14,17 @@
     </resultMap>
 
     <insert id="insertCourse"  parameterType="com.kb.csrm.course.dto.CourseDto">
-        insert into course
-        values (
-        #{courseId},
-        #{teacherId},
-        #{collegeId},
+        insert into course(
+        teacher_name,
+        course_name,
+        course_introduce,
+        course_time
+        )values (
         #{teacherName},
         #{courseName},
         #{courseIntroduce},
-        #{courseTime},
-        #{courseRate},
-        #{courseCount})
+        #{courseTime}
+        )
     </insert>
 
     <select id="selectCourseById" parameterType="double" resultMap="BaseResultMap">
@@ -42,15 +42,15 @@
         WHERE course_id = #{courseId}
     </select>
 
-    <select id="deleteCourseById" parameterType="double"  resultMap="BaseResultMap">
+    <select id="deleteCourseById" parameterType="double" >
         delete
         form course
         where course_id = #{courseId}
     </select>
-    <select id="updateCourseById" parameterType="double" resultMap="BaseResultMap">
+    <select id="updateCourseById" parameterType="double" >
         update course
         set teacher_id=#{teacherId},
-        college_id=#{collegeId},
+        college_id=#{clooegeId},
         teacher_name=#{teacherName},
         course_name=#{courseName},
         course_introduce=#{courseIntroduce},

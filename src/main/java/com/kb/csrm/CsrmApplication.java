@@ -19,6 +19,7 @@ public class CsrmApplication {
 
     /**
      * 系统启动方法
+     *
      * @param args 系统参数
      */
     public static void main(String[] args) {

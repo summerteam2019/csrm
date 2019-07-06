@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.ibatis.ognl.OgnlException;
 import org.slf4j.Logger;
@@ -97,7 +98,7 @@ public class BaseController {
         if (!RequestUtil.isAjaxRequest(request) && !RequestUtil.isAPIRequest(request) && !ServletFileUpload.isMultipartContent(request)) {
             ModelAndView view = new ModelAndView("500");
             if (thr instanceof IBaseException) {
-                be = (IBaseException)thr;
+                be = (IBaseException) thr;
                 locale = RequestContextUtils.getLocale(request);
                 messageKey = be.getDescriptionKey();
                 message = this.messageSource.getMessage(messageKey, be.getParameters(), messageKey, locale);
@@ -108,7 +109,7 @@ public class BaseController {
         } else {
             ResponseData res = new ResponseData(false);
             if (thr instanceof IBaseException) {
-                be = (IBaseException)thr;
+                be = (IBaseException) thr;
                 locale = RequestContextUtils.getLocale(request);
                 messageKey = be.getDescriptionKey();
                 message = this.messageSource.getMessage(messageKey, be.getParameters(), messageKey, locale);
@@ -127,13 +128,13 @@ public class BaseController {
         String errorMessage = null;
 
         ObjectError error;
-        for(Iterator var5 = errors.getAllErrors().iterator(); var5.hasNext(); errorMessage = error.getCode()) {
-            error = (ObjectError)var5.next();
+        for (Iterator var5 = errors.getAllErrors().iterator(); var5.hasNext(); errorMessage = error.getCode()) {
+            error = (ObjectError) var5.next();
             if (error.getDefaultMessage() != null) {
                 if (error instanceof FieldErrorWithBean) {
-                    errorMessage = this.getStandardFieldErrorMessage((FieldErrorWithBean)error, locale);
+                    errorMessage = this.getStandardFieldErrorMessage((FieldErrorWithBean) error, locale);
                 } else {
-                    errorMessage = this.messageSource.getMessage(error.getDefaultMessage(), (Object[])null, locale);
+                    errorMessage = this.messageSource.getMessage(error.getDefaultMessage(), (Object[]) null, locale);
                 }
                 break;
             }
@@ -149,7 +150,7 @@ public class BaseController {
 
     protected String nls(HttpServletRequest request, String code) {
         Locale locale = RequestContextUtils.getLocale(request);
-        return this.messageSource.getMessage(code, (Object[])null, code, locale);
+        return this.messageSource.getMessage(code, (Object[]) null, code, locale);
     }
 
     protected String getStandardFieldErrorMessage(FieldErrorWithBean fieldError, Locale locale) {
@@ -157,7 +158,7 @@ public class BaseController {
         Class clazz = fieldError.getTargetBean().getClass();
         clazz = this.findDeclareClass(clazz, field);
         String fieldPromptMessageKey = clazz.getSimpleName() + "." + field;
-        String fieldPrompt = this.messageSource.getMessage(fieldPromptMessageKey.toLowerCase(), (Object[])null, locale);
+        String fieldPrompt = this.messageSource.getMessage(fieldPromptMessageKey.toLowerCase(), (Object[]) null, locale);
         String code = "hap.validation." + fieldError.getCode().toLowerCase();
         String msg = this.messageSource.getMessage(code, new Object[]{fieldPrompt}, fieldError.getDefaultMessage(), locale);
         if (code.equalsIgnoreCase(msg) && fieldError.getDefaultMessage() != null) {
@@ -170,7 +171,7 @@ public class BaseController {
     private Class findDeclareClass(Class fromClass, String fieldName) {
         Class clazz = fromClass;
 
-        while(clazz.getSuperclass() != null) {
+        while (clazz.getSuperclass() != null) {
             try {
                 clazz.getDeclaredField(fieldName);
                 return clazz;
@@ -183,12 +184,12 @@ public class BaseController {
     }
 
     private Throwable getRootCause(Throwable throwable) {
-        while(throwable.getCause() != null) {
+        while (throwable.getCause() != null) {
             throwable = throwable.getCause();
         }
 
-        if (throwable instanceof OgnlException && ((OgnlException)throwable).getReason() != null) {
-            return this.getRootCause(((OgnlException)throwable).getReason());
+        if (throwable instanceof OgnlException && ((OgnlException) throwable).getReason() != null) {
+            return this.getRootCause(((OgnlException) throwable).getReason());
         } else {
             return throwable;
         }
@@ -196,16 +197,16 @@ public class BaseController {
 
     protected Long getUserId(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        return (Long)session.getAttribute("userId");
+        return (Long) session.getAttribute("userId");
     }
 
     protected Long getRoleId(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        return (Long)session.getAttribute("roleId");
+        return (Long) session.getAttribute("roleId");
     }
 
     protected String getLanguage(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        return (String)session.getAttribute("locale");
+        return (String) session.getAttribute("locale");
     }
 }

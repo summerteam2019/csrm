@@ -1,7 +1,6 @@
 package com.kb.csrm.course.service;
 import com.kb.csrm.course.dto.CourseDto;
 
-import java.util.List;
 import java.util.Map;
 
 public interface ICourseService {
@@ -30,13 +29,13 @@ public interface ICourseService {
      * @param courseId
      * @return
      */
-    CourseDto deleteCourseById (Long courseId);
+    void deleteCourseById (Long courseId);
 
     /**
      * 按ID修改用户信息
      * @param courseId
      * @return
      */
-    CourseDto updateCourseById (Long courseId);
+    void updateCourseById (Long courseId);
 
 }

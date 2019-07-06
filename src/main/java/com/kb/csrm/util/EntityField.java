@@ -112,8 +112,9 @@ public class EntityField {
             return true;
         } else if (o != null && this.getClass() == o.getClass()) {
             boolean var10000;
-            label35: {
-                EntityField that = (EntityField)o;
+            label35:
+            {
+                EntityField that = (EntityField) o;
                 if (this.name != null) {
                     if (this.name.equals(that.name)) {
                         break label35;

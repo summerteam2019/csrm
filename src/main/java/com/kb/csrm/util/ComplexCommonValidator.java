@@ -14,6 +14,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import javax.validation.metadata.ConstraintDescriptor;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,9 +38,9 @@ public class ComplexCommonValidator extends OptionalValidatorFactoryBean {
         Validator targetValidator = this.getValidator();
         if (targetValidator != null) {
             if (target instanceof List) {
-                Iterator var4 = ((List)target).iterator();
+                Iterator var4 = ((List) target).iterator();
 
-                while(var4.hasNext()) {
+                while (var4.hasNext()) {
                     Object obj = var4.next();
                     this.validate(obj, errors);
                 }
@@ -48,7 +49,7 @@ public class ComplexCommonValidator extends OptionalValidatorFactoryBean {
                 EntityField[] var10 = DTOClassInfo.getChildrenFields(target.getClass());
                 int var11 = var10.length;
 
-                for(int var6 = 0; var6 < var11; ++var6) {
+                for (int var6 = 0; var6 < var11; ++var6) {
                     EntityField f = var10[var6];
 
                     try {
@@ -71,7 +72,7 @@ public class ComplexCommonValidator extends OptionalValidatorFactoryBean {
     protected void processConstraintViolations(Set<ConstraintViolation<Object>> violations, Errors errors) {
         Iterator var3 = violations.iterator();
 
-        while(true) {
+        while (true) {
             ConstraintViolation violation;
             String field;
             FieldError fieldError;
@@ -80,17 +81,17 @@ public class ComplexCommonValidator extends OptionalValidatorFactoryBean {
                     return;
                 }
 
-                violation = (ConstraintViolation)var3.next();
+                violation = (ConstraintViolation) var3.next();
                 field = this.determineField(violation);
                 fieldError = errors.getFieldError(field);
-            } while(fieldError != null && fieldError.isBindingFailure());
+            } while (fieldError != null && fieldError.isBindingFailure());
 
             try {
                 ConstraintDescriptor<?> cd = violation.getConstraintDescriptor();
                 String errorCode = this.determineErrorCode(cd);
                 Object[] errorArgs = this.getArgumentsForConstraint(errors.getObjectName(), field, cd);
                 if (errors instanceof BindingResult) {
-                    BindingResult bindingResult = (BindingResult)errors;
+                    BindingResult bindingResult = (BindingResult) errors;
                     String nestedField = bindingResult.getNestedPath() + field;
                     if ("".equals(nestedField)) {
                         String[] errorCodes = bindingResult.resolveMessageCodes(errorCode);

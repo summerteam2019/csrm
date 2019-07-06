@@ -34,12 +34,12 @@ public interface CourseMapper {
      * @param courseId
      * @return
      */
-    CourseDto deleteCourseById(@Param(value = "courseID") double courseId);
+    void deleteCourseById(@Param(value = "courseID") double courseId);
 
     /**
      * 根据ID修改课程信息
      * @param courseId
      * @return
      */
-    CourseDto updateCourseById(@Param(value = "courseID") double courseId);
+    void updateCourseById(@Param(value = "courseID") double courseId);
 }

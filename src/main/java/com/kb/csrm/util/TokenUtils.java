@@ -27,7 +27,7 @@ public class TokenUtils {
     }
 
     public static String getSecurityKey(HttpSession session) {
-        return session == null ? null : (String)session.getAttribute("securityKey");
+        return session == null ? null : (String) session.getAttribute("securityKey");
     }
 
     public static String setSecurityKey(HttpSession session) {
@@ -42,7 +42,7 @@ public class TokenUtils {
         EntityField[] var3 = DTOClassInfo.getIdFields(dto.getClass());
         int var4 = var3.length;
 
-        for(int var5 = 0; var5 < var4; ++var5) {
+        for (int var5 = 0; var5 < var4; ++var5) {
             EntityField f = var3[var5];
 
             try {
@@ -63,8 +63,8 @@ public class TokenUtils {
     public static void generateAndSetToken(String securityKey, Collection<? extends BaseDto> dtos) {
         Iterator var2 = dtos.iterator();
 
-        while(var2.hasNext()) {
-            BaseDto dto = (BaseDto)var2.next();
+        while (var2.hasNext()) {
+            BaseDto dto = (BaseDto) var2.next();
             generateAndSetToken(securityKey, dto);
         }
 
@@ -84,15 +84,15 @@ public class TokenUtils {
             EntityField[] var3 = DTOClassInfo.getChildrenFields(dto.getClass());
             int var4 = var3.length;
 
-            for(int var5 = 0; var5 < var4; ++var5) {
+            for (int var5 = 0; var5 < var4; ++var5) {
                 EntityField f = var3[var5];
 
                 try {
                     Object fieldValue = PropertyUtils.getProperty(dto, f.getName());
                     if (fieldValue instanceof BaseDto) {
-                        checkToken(securityKey, (BaseDto)fieldValue);
+                        checkToken(securityKey, (BaseDto) fieldValue);
                     } else if (fieldValue instanceof Collection) {
-                        checkToken(securityKey, (Collection)fieldValue);
+                        checkToken(securityKey, (Collection) fieldValue);
                     }
                 } catch (Exception var8) {
                     throw new RuntimeException(var8);
@@ -116,12 +116,12 @@ public class TokenUtils {
 
     public static void checkToken(String securityKey, Collection<? extends BaseDto> baseDtos) throws TokenException {
         if (baseDtos != null && !baseDtos.isEmpty()) {
-            Class<?> clazz = ((BaseDto)baseDtos.iterator().next()).getClass();
+            Class<?> clazz = ((BaseDto) baseDtos.iterator().next()).getClass();
             EntityField[] ids = DTOClassInfo.getIdFields(clazz);
             Iterator var4 = baseDtos.iterator();
 
-            while(var4.hasNext()) {
-                BaseDto dto = (BaseDto)var4.next();
+            while (var4.hasNext()) {
+                BaseDto dto = (BaseDto) var4.next();
                 if (hasIDValue(dto, ids)) {
                     checkToken(securityKey, dto);
                 }
@@ -134,7 +134,7 @@ public class TokenUtils {
         EntityField[] var2 = ids;
         int var3 = ids.length;
 
-        for(int var4 = 0; var4 < var3; ++var4) {
+        for (int var4 = 0; var4 < var3; ++var4) {
             EntityField f = var2[var4];
 
             try {

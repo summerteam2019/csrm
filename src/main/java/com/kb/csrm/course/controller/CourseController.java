@@ -42,7 +42,7 @@ public class CourseController extends BaseController{
     }
 
     /**添加课程*/
-    @PostMapping("/create")
+    @RequestMapping("/create")
     @ResponseBody
     public ResponseData insertCourse(@RequestBody CourseDto courseDto,HttpServletRequest request){
         courseService.insertCourse(courseDto);

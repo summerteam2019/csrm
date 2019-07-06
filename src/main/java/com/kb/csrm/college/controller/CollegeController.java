@@ -22,22 +22,22 @@ public class CollegeController extends BaseController {
     @Autowired
     private ICollegeService collegeService;
 
-    @RequestMapping(path="/getAllCollege")
+    @RequestMapping(path = "/getAllCollege")
     @ResponseBody
-    public ResponseData getAllCollege(HttpServletRequest request){
+    public ResponseData getAllCollege(HttpServletRequest request) {
         List<CollegeDto> collegeList = collegeService.getAllCollege();
         return new ResponseData(collegeList);
     }
 
     @RequestMapping("/getCollegeById")
     @ResponseBody
-    public CollegeDto getCollegeById(int collegeId){
+    public CollegeDto getCollegeById(int collegeId) {
         return collegeService.getCollegeById(collegeId);
     }
 
     @RequestMapping("/addCollege")
     @ResponseBody
-    public void addCollege(int collegeId, String collegeName, String facultyName){
+    public void addCollege(int collegeId, String collegeName, String facultyName) {
         CollegeDto collegeDto = new CollegeDto();
         collegeDto.setCollegeId(collegeId);
         collegeDto.setCollegeName(collegeName);
@@ -47,13 +47,13 @@ public class CollegeController extends BaseController {
 
     @RequestMapping("/deleteCollege")
     @ResponseBody
-    public void deleteCollege(Integer collegeId){
+    public void deleteCollege(Integer collegeId) {
         collegeService.deleteCollege(collegeId);
     }
 
     @RequestMapping("/updateCollege")
     @ResponseBody
-    public void updateCollege(CollegeDto collegeDto){
+    public void updateCollege(CollegeDto collegeDto) {
         collegeService.updateCollege(collegeDto);
     }
 }

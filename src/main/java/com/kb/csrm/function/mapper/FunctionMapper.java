@@ -11,6 +11,7 @@ public interface FunctionMapper {
 
     /**
      * 获取所有功能
+     *
      * @return
      */
     @Select("select * from function_menu")
@@ -18,6 +19,7 @@ public interface FunctionMapper {
 
     /**
      * 根据ID获取功能
+     *
      * @param functionId
      * @return
      */
@@ -26,6 +28,7 @@ public interface FunctionMapper {
 
     /**
      * 添加功能
+     *
      * @param functionDto
      */
     @Insert("insert into function_menu values (#{functionId},#{functionName},#{functionMeaning},#{functionUrl},#{parentId})")
@@ -33,6 +36,7 @@ public interface FunctionMapper {
 
     /**
      * 删除功能
+     *
      * @param functionId
      */
     @Delete("delete from function_menu where function_id = #{functionId}")
@@ -40,6 +44,7 @@ public interface FunctionMapper {
 
     /**
      * 编辑功能
+     *
      * @param functionDto
      */
     @Update("update function_menu set function_name = #{functionName}, function_meaning = #{functionMeaning}, function_url = #{functionUrl}, parent_id = #{parentId}")

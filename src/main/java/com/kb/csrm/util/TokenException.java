@@ -20,7 +20,7 @@ public class TokenException extends BaseException {
     }
 
     public TokenException(String descriptionKey, BaseDto dto) {
-        super("TOKEN_FAILURE", descriptionKey, (Object[])null);
+        super("TOKEN_FAILURE", descriptionKey, (Object[]) null);
         this.dto = dto;
     }
 

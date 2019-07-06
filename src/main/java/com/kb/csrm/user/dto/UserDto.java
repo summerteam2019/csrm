@@ -15,7 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name="user")
+@Table(name = "user")
 public class UserDto {
 
     /**
