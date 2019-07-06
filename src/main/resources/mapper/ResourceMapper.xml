@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kb.csrm.resource.mapper.ResourceMapper">
-    <resultMap id="BaseResourceResultMap" type="com.kb.csrm.course.dto.CourseDto">
+    <resultMap id="BaseResultMap" type="com.kb.csrm.resource.dto.ResourceDto">
         <result column="resource_id" property="resourceId" jdbcType="INTEGER" />
         <result column="course_id" property="courseId" jdbcType="INTEGER" />
         <result column="user_id" property="userId" jdbcType="INTEGER" />
         <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
         <result column="resource_size" property="resourceSize" jdbcType="VARCHAR" />
-        <result column="resource_filename" property="recourseFilename" jdbcType="VARCHAR" />
+        <result column="resource_filename" property="resourceFilename" jdbcType="VARCHAR" />
         <result column="resource_address" property="resourceAddress" jdbcType="VARCHAR" />
         <result column="resource_time" property="resourceTime" jdbcType="DATE" />
         <result column="download_count" property="downloadCount" jdbcType="INTEGER" />
@@ -36,7 +36,7 @@
         #{downloadCount}
     </insert>
 
-    <select id="selectResourceById" parameterType="double" resultMap="BaseResourceResultMap">
+    <select id="selectResourceById" parameterType="double" resultMap="BaseResultMap">
         SELECT
         resource_id,
         course_id,
@@ -51,13 +51,13 @@
         WHERE resource_id = #{resourceId}
     </select>
 
-    <select id="deleteResourceById" parameterType="double" resultMap="BaseResourceResultMap">
+    <select id="deleteResourceById" parameterType="double" resultMap="BaseResultMap">
         delete
         form resource
         where resource_id = #{resourceId}
     </select>
 
-    <select id="updateResourceById" parameterType="double" resultMap="BaseCourseResultMap">
+    <select id="updateResourceById" parameterType="double" resultMap="BaseResultMap">
         update resource
         set resource_id=#{resourceId},
         course_id=#{courseId},
@@ -66,7 +66,7 @@
         resource_size=#{resourceSize},
         resource_filename=#{resourceFilename},
         resource_address=#{resourceAddress},
-        resource_time=#{resourceAddress},
+        resource_time=#{resourceTime},
         download_count=#{downloadCount}
         where resource_id = #{resourceId}
     </select>

@@ -5,7 +5,6 @@ import com.kb.csrm.course.mapper.CourseMapper;
 import com.kb.csrm.course.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;

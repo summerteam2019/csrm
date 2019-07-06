@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kb.csrm.course.mapper.CourseMapper">
-    <resultMap id="BaseCourseResultMap" type="com.kb.csrm.course.dto.CourseDto">
+    <resultMap id="BaseResultMap" type="com.kb.csrm.course.dto.CourseDto">
         <result column="course_id" property="courseId" jdbcType="INTEGER" />
         <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
         <result column="college_id" property="collegeId" jdbcType="INTEGER" />
@@ -35,7 +35,7 @@
         #{courseCount}
     </insert>
 
-    <select id="selectCourseById" parameterType="double" >
+    <select id="selectCourseById" parameterType="double" resultMap="BaseResultMap">
         SELECT
         course_id,
         teacher_id,
@@ -50,15 +50,15 @@
         WHERE course_id = #{courseId}
     </select>
 
-    <select id="deleteCourseById" parameterType="double" >
+    <select id="deleteCourseById" parameterType="double"  resultMap="BaseResultMap">
         delete
         form course
         where course_id = #{courseId}
     </select>
-    <select id="updateCourseById" parameterType="double" >
+    <select id="updateCourseById" parameterType="double" resultMap="BaseResultMap">
         update course
         set teacher_id=#{teacherId},
-        college_id=#{clooegeId},
+        college_id=#{collegeId},
         teacher_name=#{teacherName},
         course_name=#{courseName},
         course_introduce=#{courseIntroduce},

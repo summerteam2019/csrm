@@ -20,19 +20,19 @@ public interface ResourceMapper {
      * @param resourceId
      * @return
      */
-    ResourceDto selectResourceById(@Param(value = "resourceID") double resourceId);
+    ResourceDto selectResourceById(@Param(value = "resourceId") double resourceId);
 
     /**
      * 根据ID删除资源
      * @param resourceId
      * @return
      */
-    ResourceDto deleteResourceById(@Param(value = "resourceID") double resourceId);
+    ResourceDto deleteResourceById(@Param(value = "resourceId") double resourceId);
 
     /**
      * 根据ID修改资源信息
      * @param resourceId
      * @return
      */
-    ResourceDto updateResourceById(@Param(value = "resourceID") double resourceId);
+    ResourceDto updateResourceById(@Param(value = "resourceId") double resourceId);
 }
