@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kb.csrm.college.mapper.CollegeMapper">
+    <resultMap id="BaseResultMap" type="com.kb.csrm.college.dto.CollegeDto">
+        <result column="college_id" property="collegeId" jdbcType="INTEGER"/>
+        <result column="college_name" property="collegeName" jdbcType="VARCHAR"/>
+        <result column="faculty_name" property="facultyName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAllCollege" resultMap="BaseResultMap">
+        select *
+        from college
+    </select>
+
+    <select id="getCollegeById" resultMap="BaseResultMap">
+        select *
+        from college
+        where college_id = #{collegeId}
+    </select>
+
+    <insert id="addCollege" parameterType="com.kb.csrm.college.dto.CollegeDto">
+        insert into college
+        values (
+        #{collegeId},
+        #{collegeName},
+        #{facultyName}
+        )
+    </insert>
+
+    <delete id="deleteCollege" parameterType="com.kb.csrm.college.dto.CollegeDto">
+        delete from college
+        where college_id = #{collegeId}
+    </delete>
+
+    <update id="updateCollege" parameterType="com.kb.csrm.college.dto.CollegeDto">
+        update college
+        set
+        college_name = #{collegeName},
+        faculty_name = #{facultyName}
+        where college_id = #{collegeId}
+    </update>
+</mapper>

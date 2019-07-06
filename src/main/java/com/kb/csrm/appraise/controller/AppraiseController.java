@@ -6,6 +6,7 @@ import com.kb.csrm.util.BaseController;
 import com.kb.csrm.util.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,9 +23,10 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/getAllAppraise")
     @ResponseBody
-    public ResponseData getAllAppraise(HttpServletRequest request){
-
-        return new ResponseData(appraiseService.getAllAppraise());
+    public List<AppraiseDto> getAllAppraise(ModelMap modelMap){
+        List<AppraiseDto> appraiseList = appraiseService.getAllAppraise();
+        modelMap.addAttribute("appraiseList",appraiseList);
+        return appraiseList;
     }
 
     @RequestMapping("/getAppraiseById")

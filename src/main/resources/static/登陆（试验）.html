@@ -82,6 +82,7 @@
 </div>
 
 <script src="js/jquery.js"></script>
+<script src="js/jquerysession.js"></script>
 <script type="text/javascript">
     $(function () {
         $("#denglu").click(function () {
@@ -107,7 +108,7 @@
                                }
                            });*/
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "login/check",//请求程序页面
                 async: false,//当有返回值以后才会进行后面的js程序。
                 data: {"username":username,"password":password},//请求需要发送的处理数据

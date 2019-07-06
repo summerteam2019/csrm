@@ -14,16 +14,16 @@
 <body>
 <div id="header">
     <div id="logo">
-        <a href="首页（公共首页和游客首页）.html">慕课网</a>
+        <a href="首页（学生首页）.html">慕课网</a>
     </div>
 
     <div id="login">
         <ul>
             <li>
-                <a href="">个人中心</a>
+                <a href="资料修改.html">资料修改</a>
             </li>
             <li>
-                <a href="">设置</a>
+                <a href="首页（公共首页和游客首页）.html">退出登录</a>
             </li>
         </ul>
     </div>
@@ -42,9 +42,10 @@
                 <li>
                     <div>
                         <img src="img/推荐课程5.jpg" height="60" width="5%" style="position:absolute; left:115px; top:140px;"/>
-                        <font size="6"><a style="color: #fff; position:absolute; left:200px; top:150px;">迷路的鹿</a></font>
-                        <font size="5"><a style="color: #fff; position:absolute; left:850px; top:170px;" href="#">学习轨迹</a></font>
-                        <font size="5"><a style="color: #fff; position:absolute; left:1000px; top:170px;" href="#">学习记录</a></font>
+                        <font size="6"><a style="color: #fff; position:absolute; left:200px; top:150px;" id="username"></a></font>
+                        <font size="5"><a style="color: #fff; position:absolute; left:850px; top:170px;"
+                                          href="#"></a></font>
+                        <font size="5"><a style="color: #fff; position:absolute; left:1000px; top:170px;" href="#">学习轨迹</a></font>
                         <img src="img/slides/slider.JPG" height="300" width="100%"/>
                     </div>
                     <div class="flex-caption">
@@ -151,6 +152,13 @@
 <div id="footer">
 
 </div>
+<script src="js/jquerysession.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var usernamehaha=$.session.get('username');
+        $("#username").html(usernamehaha);
+    });
+</script>
 </body>
 
 </html>

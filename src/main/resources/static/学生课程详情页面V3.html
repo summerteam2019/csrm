@@ -287,30 +287,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 
-</body>
-</html>
-<script type="text/javascript">
-    //===========================点击展开关闭效果====================================
-    function openShutManager(oSourceObj,oTargetObj,shutAble,oOpenTip,oShutTip){
-        var sourceObj = typeof oSourceObj == "string" ? document.getElementById(oSourceObj) : oSourceObj;
-        var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
-        var openTip = oOpenTip || "";
-        var shutTip = oShutTip || "";
-        if(targetObj.style.display!="block"){
-            if(shutAble) return;
-            targetObj.style.display="block";
-            if(openTip  &&  shutTip){
-                sourceObj.innerHTML = openTip;
-            }
-        } else {
-            targetObj.style.display="none";
-            if(openTip  &&  shutTip){
-                sourceObj.innerHTML = shutTip;
-            }
-        }
-    }
-</script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="js/jquerysession.js"></script>
 <script>
 
 	$('[name="starLevel"]').bind("click",function(){
@@ -324,5 +321,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		if(starNum == 5) $("#starStr").text("");
 	})
 </script>
+</body>
+</html>
+
+
 
 

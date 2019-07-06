@@ -24,9 +24,9 @@
 </head>
 <body>
 <div class="page-container">
-    <form action="/college/addCollege" method="post">
+    <form action="" method="post">
         <div class="form-group">
-            <label for="collegeId">学院ID:</label>
+            <label for="collegeId">学校ID:</label>
             <input type="text" class="form-control" id="collegeId" name="collegeId" value ="">
         </div>
         <div class="form-group">
@@ -37,24 +37,27 @@
             <label for="facultyName">院系名称:</label>
             <input type="text" class="form-control" id="facultyName" name="facultyName" value ="">
         </div>
-        <button type="submit" class="btn btn-primary" id="addACollege" onclick="addACollege()">提交</button>
+        <button type="submit" class="btn btn-primary" id="updateCollege" onclick="edit_college()">提交</button>
     </form>
 </div>
 
 <script type="text/javascript">
-    function addACollege(){
+    function edit_college(){
         var collegeId = $("#collegeId").val();
+        //var collegeId = request.QueryString(cid);
+        //alert(collegeId);
         var collegeName = $("#collegeName").val();
         var facultyName = $("#facultyName").val();
         $.ajax({
             type: "POST",
-            url: "college/addCollege",//请求程序页面
+            url: "college/updateCollege",//请求程序页面
             dataType: "json",
             async: true,//当有返回值以后才会进行后面的js程序。
             data: {
                 "collegeId": collegeId,
                 "collegeName": collegeName,
-                "facultyName": facultyName},//请求需要发送的处理数据
+                "facultyName": facultyName
+            },//请求需要发送的处理数据
             success: function (data) {
                 if(data){
                     window.location.href = 'college-list.html';
@@ -66,5 +69,17 @@
             }
 
         });
+    }
+</script>
+
+
+<script>
+    //获得参数的方法
+    var request = {
+        QueryString : function(val) {
+            var uri = window.location.search;
+            var re = new RegExp("" +val+ "=([^&?]*)", "ig");
+            return ((uri.match(re))?(uri.match(re)[0].substr(val.length+1)):null);
+        }
     }
 </script>
