@@ -46,13 +46,13 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-4">用户名</label>
             <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text" value="" placeholder="请输入你的用户名" id="adminName" name="adminName">
+                <input type="text" class="input-text"   id="adminName" name="adminName"disabled="disabled">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-4">邮箱</label>
             <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text" placeholder="请输入你的邮箱号码" name="email" id="email">
+                <input type="text" class="input-text"  name="email" id="email"disabled="disabled">
             </div>
         </div>
         <div class="row cl">
@@ -93,18 +93,24 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-4">年龄</label>
             <div class="formControls col-xs-8 col-sm-4"> <span class="select-box" style="width:150px;">
-                    <select class="select" name="age" size="1">
-                        <option value="0">16</option>
-                        <option value="1">17</option>
-                        <option value="2">18</option>
-                        <option value="3">19</option>
+                    <select class="select" name="age" size="1"id="age">
+                        <option value=16>16</option>
+                        <option value=17>17</option>
+                        <option value=18>18</option>
+                        <option value=19>19</option>
+                        <option value=20>20</option>
+                        <option value=21>21</option>
+                        <option value=22>22</option>
+                        <option value=23>23</option>
+                        <option value=24>24</option>
+                        <option value=25>25</option>
                     </select>
                     </span> </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-4">学历</label>
             <div class="formControls col-xs-8 col-sm-4"> <span class="select-box" style="width:150px;">
-                    <select class="select" name="education" size="1">
+                    <select class="select" name="education"id="education" size="1">
                         <option value="0">高中</option>
                         <option value="1">本科在读</option>
                         <option value="2">本科毕业</option>
@@ -117,23 +123,17 @@
             <label class="form-label col-xs-4 col-sm-4">密保问题</label>
             <div class="formControls col-xs-8 col-sm-4">
                 <input type="text" class="input-text" autocomplete="off" value="" id="protection"
-                       name="protection">
+                       name="protection"disabled="disabled">
             </div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-4">密保问题答案</label>
             <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text" autocomplete="off" value="" id=""protectionQuestion
-                       name="protectionQuestion">
+                <input type="text" class="input-text" autocomplete="off" value="" id="protectionQuestion"
+                       name="protectionAnswer">
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">密保问题提示</label>
-            <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text" autocomplete="off" value="" id="tips"
-                       name="tips">
-            </div>
-        </div>
+
         <!--        <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3">角色：</label>
                 <div class="formControls col-xs-8 col-sm-9"> <span class="select-box" style="width:150px;">
@@ -159,22 +159,19 @@
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-4">
-                <input class="btn btn-primary radius" type="submit"onclick="javascrtpt:window.location.href='学生中心.html'" value="&nbsp;保&nbsp;存&nbsp;修&nbsp;改&nbsp;">
+                <input id="xiugai" class="btn btn-primary radius" type="submit" value="&nbsp;保&nbsp;存&nbsp;修&nbsp;改&nbsp;">
             </div>
         </div>
     </form>
 </article>
 <!--<div class="footer">Copyright © 2019 课霸小组</div>-->
-<!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
-<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script src="js/jquerysession.js"></script>
 <script type="text/javascript">
     $(function () {
         $('.skin-green input').iCheck({
@@ -185,53 +182,98 @@
 
         $("#form-admin-add").validate({
             rules: {
-                mobilePhone: {
-                    required: true,
-                    isPhone: true,
-                },
                 password: {
+                    required: true,
+                },
+                newpassword: {
                     required: true,
                 },
                 newPassword2: {
                     required: false,
                     equalTo: "#newPassword"
                 },
-                sex: {
+                protectionQuestion: {
                     required: true,
                 },
-                adminName: {
-                    required: true,
-                    minlength: 4,
-                    maxlength: 16,
-
-                },
-                email: {
-                    required: true,
-                    email: true,
-                },
-
             },
-            onkeyup: false,
-            focusCleanup: true,
-            success: "valid",
-            submitHandler: function (form) {
-                $(form).ajaxSubmit({
-                    type: 'post',
-                    url: "xxxxxxx",
-                    success: function (data) {
-                        layer.msg('修改成功!', {icon: 1, time: 1000});
-                    },
-                    error: function (XmlHttpRequest, textStatus, errorThrown) {
-                        layer.msg('修改成功!', {icon: 1, time: 1000});
-                    }
-                });
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.$('.btn-refresh').click();
-                parent.layer.close(index);
-            }
+
         });
     });
 </script>
-<!--/请在上方写此页面业务相关的脚本-->
+
+<script type="text/javascript">
+    $(function () {
+        $("#adminName").val($.session.get("NAME"));
+        $("#protection").val($.session.get("PROTECTION"));
+        $("#email").val($.session.get("EMAIL"));
+        $("#school").val($.session.get("SCHOOL"));
+        $("#faculty").val($.session.get("FACULTY"));
+        $("#age").val($.session.get("AGE"));
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#xiugai").click(function () {
+            var adminname = $("#adminName").val();
+            var password = $("#password").val();
+            var newpassword = $("#newPassword").val();
+            var newpassword2 = $("#newPassword2").val();
+            var protctionanswer=$("#protectionAnswer").val();
+            var school=$("#school").val();
+            var faculty=$("#faculty").val();
+            var age=$("#age").val();
+            var education=$("#education").val();
+
+            if (!password) {
+                alert("旧密码必填!");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            if (!newpassword) {
+                alert("新密码必填！");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            if (!newpassword2) {
+                alert("必须确认密码!");
+                $("#username").focus();//获取焦点
+                return;
+            }
+            if (!protctionanswer) {
+                alert("密保答案必填!");
+                $("#protectionAnswer").focus();//获取焦点
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: "",//请求程序页面
+                async: false,//当有返回值以后才会进行后面的js程序。
+                data: {
+                    "username": adminname,
+                    "oldpassword": password,
+                    "newpassword":newpassword,
+                    "school":school,
+                    "faculty":faculty,
+                    "age": age,
+                    "education":education,
+                },//请求需要发送的处理数据
+                success: function (result) {
+                    if (result){
+                        alert("修改成功");
+                        window.location.href = "学生中心.html";
+                    }
+                    else{
+                        alert("修改失败");
+                    }
+                },
+
+            });
+
+        });
+
+    });
+
+</script>
 </body>
 </html>
