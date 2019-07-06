@@ -37,25 +37,34 @@
             <label for="facultyName">院系名称:</label>
             <input type="text" class="form-control" id="facultyName" name="facultyName" value ="">
         </div>
-        <button type="submit" class="btn btn-primary" onclick="addACollege()">提交</button>
+        <button type="submit" class="btn btn-primary" id="addACollege" onclick="addACollege()">提交</button>
     </form>
 </div>
 
-<script>
-    function addACollege() {
+<script type="text/javascript">
+    function addACollege(){
         var collegeId = $("#collegeId").val();
         var collegeName = $("#collegeName").val();
         var facultyName = $("#facultyName").val();
         $.ajax({
             type: "POST",
-            url: "/college/addCollege",//请求程序页面
+            url: "college/addCollege",//请求程序页面
             dataType: "json",
             async: true,//当有返回值以后才会进行后面的js程序。
-            data: {"collegeId": collegeId, "collegeName": collegeName, "facultyName": facultyName},//请求需要发送的处理数据
-            success: function () {
-                window.location.href = 'college-list.html';
+            data: {
+                "collegeId": collegeId,
+                "collegeName": collegeName,
+                "facultyName": facultyName},//请求需要发送的处理数据
+            success: function (data) {
+                if(data){
+                    window.location.href = 'college-list.html';
+                }
+                else {
+                    alert("添加失败！");
+                }
+
             }
 
-        })
+        });
     }
 </script>
