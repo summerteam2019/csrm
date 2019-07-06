@@ -32,24 +32,6 @@
 <article class="page-container">
 	<form action="" method="post" class="form form-horizontal" id="form-member-add">
 		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>课程ID：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="" name="course" id="course">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>教师ID：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="" name="teacher" id="teacher">
-			</div>
-		</div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>院校ID：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="" name="college" id="college">
-			</div>
-		</div>
-		<div class="row cl">
 			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>课程名：</label>
 			<div class="formControls col-xs-8 col-sm-9">
 				<input type="text" class="input-text" placeholder="" name="courseName" id="courseName">
@@ -75,18 +57,6 @@
 	    </div>
 		</div>
 		<div class="row cl">
-		    <label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>课程评分：</label>
-		    <div class="formControls col-xs-8 col-sm-9">
-		    	<input type="text" class="input-text" placeholder="" name="courseScore" id="courseScore">
-		    </div>
-	    </div>
-		<div class="row cl">
-			<label class="form-label col-xs-4 col-sm-3"><span class="c-red"></span>点击次数：</label>
-			<div class="formControls col-xs-8 col-sm-9">
-				<input type="text" class="input-text" placeholder="" name="clickCount" id="clickCount">
-			</div>
-		</div>
-		<div class="row cl">
 			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
 				<input class="btn btn-primary radius" id="btn_register"  type="button" value="&nbsp;&nbsp;添加&nbsp;&nbsp;">
 			</div>
@@ -107,37 +77,26 @@
 <script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
 
 <script type="text/javascript">
+	$(function () {
 	$("#btn_register").on("click",function () {
-		var course=$("#course").val();
-		var teacher=$("#teacher").val();
-		var college=$("#college").val();
 		var courseName=$("#courseName").val();
 		var teacherName=$("#teacherName").val();
 		var courseIntroduce=$("#courseIntroduce").val();
 		var courseTime=$("#courseTime").val();
-		var courseScore=$("#courseScore").val();
-		var clickCount=$("#clickCount").val();
 
 		var person = {
-			course:course,
-			teacher:teacher,
-			college:college,
 			courseName:courseName,
 			teacherName:teacherName,
 			courseIntroduce:courseIntroduce,
 			courseTime:courseTime,
-			courseScore:courseScore,
-			clickCount:clickCount
 		};
-		if(course==""){
-			alert("课程ID不能为空");
+		if(courseName==""){
+			alert("课程名不能为空");
 		}
 		$.ajax({
 			type:"POST",
-			// dataType:"application/json;charset=UTF-8",
-			contentType:"application/json;charset=UTF-8",
 			url:"/course/create",
-			data:JSON.stringify(person),
+			data:person,
 			success:function (data) {
 				if(data=="success"){
 					alert("添加成功！")
@@ -149,6 +108,7 @@
 				alert("请求失败");
 			}
 		})
+	})
 	})
 </script> 
 <!--/请在上方写此页面业务相关的脚本-->
