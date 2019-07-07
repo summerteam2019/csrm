@@ -25,10 +25,8 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 院校管理 <span class="c-gray en">&gt;</span> 院校列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<form class="Huiform" method="get" action="" target="_self">
-			<input type="text" class="input-text" style="width:250px" placeholder="学院名称或ID" id="collegeIdOrName" name="collegeIdOrName">
-			<button type="submit" class="btn btn-success" id="" onclick="findOneCollege()"><i class="Hui-iconfont">&#xe665;</i> 搜院校</button>
-		</form>
+		<input type="text" class="input-text" style="width:250px" placeholder="学院名称或ID" id="collegeIdOrName" name="collegeIdOrName">
+		<button type="submit" class="btn btn-success" id="" onclick="findOneCollege()"><i class="Hui-iconfont">&#xe665;</i> 搜院校</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
@@ -52,11 +50,6 @@
 		</table>
 		<br>
 	</div>
-	<form action="/college/deleteCollege" method="post">
-		<input type="text" class="form-control" id="collegeId" name="collegeId" value ="">
-		<button type="submit" class="btn btn-primary">delete</button>
-	</form>
-
 </div>
 
 <!--_footer 作为公共模版分离出去-->
@@ -86,8 +79,8 @@ $(function(){
 						"<td>"+obj[i].collegeId+"</td>" +
 						"<td>"+obj[i].collegeName+"</td>" +
 						"<td>"+obj[i].facultyName+"</td>" +
-						"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editCollege('院校编辑','college-edit.html','','400')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
-						+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteCollege(obj[i].collegeId)\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
+						"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editCollege('院校编辑','college-edit.html?cid=" +obj[i].collegeId + " ','','400')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
+						+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteCollege('" +obj[i].collegeId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
 						"</tr>";
 			};
 			document.getElementById("mesContent").innerHTML = str;
@@ -97,8 +90,7 @@ $(function(){
 	xmlhttp.send();
 }
 )
-function findOneCollege()
-{
+function findOneCollege() {
 	var collegeId = $("#collegeIdOrName").val();
 	$.ajax({
 		type:"post",
@@ -111,14 +103,6 @@ function findOneCollege()
 		},
 		success: function(data) {
 			alert(data.collegeName);
-			$("#mesContent").attr({
-				"type" : "checkbox",
-				"td": "data.collegeId",
-				"td": "data.collegeName",
-				"td": "data.facultyName",
-				"td": ""
-			});
-
 		}
 
 	});
@@ -129,21 +113,21 @@ function addACollege(title,url,w,h){
 }
 
 function deleteCollege(id){
-	//var id = $("#{delete}");
 	if(confirm('您确定要删除该院校吗')){
 		$.ajax({
 			url:"college/deleteCollege",
 			type:"post",
 			dataType:"json",
-			data:{cid:id},
+			data:{
+				"collegeId":id
+			},
 			success:function(data){
-				if(data > 0){
+				if(data){
 					alert("删除成功");
-
+					location.replace(location.href);
 				}else{
 					alert("删除失败");
 				}
-				$("#test-table").bootstrapTable('refresh');
 			},
 			error:function(){
 				alert("请求失败");
