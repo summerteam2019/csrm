@@ -27,8 +27,9 @@ public class FunctionController {
     }
 
     @RequestMapping("/getFunctionById")
-    public FunctionDto getFunctionById(int functionId){
-        FunctionDto functionDto = functionService.getFunctionById(functionId);
+    public FunctionDto getFunctionById(FunctionDto functionDto){
+        int functionId = functionDto.getFunctionId();
+        functionDto = functionService.getFunctionById(functionId);
         return functionDto;
     }
 

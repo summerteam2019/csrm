@@ -43,5 +43,6 @@
         function_meaning = #{functionMeaning},
         function_url = #{functionUrl},
         parent_id = #{parentId}
+        where function_id = #{functionId}
     </update>
 </mapper>

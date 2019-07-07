@@ -26,7 +26,7 @@
 <div class="page-container">
 	<div class="text-c">
 		<input type="text" class="input-text" style="width:250px" placeholder="学院名称或ID" id="collegeIdOrName" name="collegeIdOrName">
-		<button type="submit" class="btn btn-success" id="" onclick="findOneCollege()"><i class="Hui-iconfont">&#xe665;</i> 搜院校</button>
+		<button type="submit" class="btn btn-success" onclick="findOneCollege()"><i class="Hui-iconfont">&#xe665;</i> 搜院校</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
@@ -135,7 +135,7 @@ $(function(){
 			obj = JSON.parse(this.responseText);
 			var str = "";
 			for(i = 0; i < obj.length; i++){
-				str += "<tr>" + "<td><input type='checkbox' value= " + obj[i].collegeId + " name=''></td>" +
+				str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + obj[i].collegeId + " name=''></td>" +
 						"<td>"+obj[i].collegeId+"</td>" +
 						"<td>"+obj[i].collegeName+"</td>" +
 						"<td>"+obj[i].facultyName+"</td>" +
@@ -167,7 +167,7 @@ function findOneCollege() {
 				xmlhttp.onreadystatechange = function () {
 					if (this.readyState == 4 && this.status == 200) {
 						var str = "";
-						str += "<tr>" + "<td><input type='checkbox' value= " + data.collegeId + " name=''></td>" +
+						str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + data.collegeId + " name=''></td>" +
 								"<td>" + data.collegeId + "</td>" +
 								"<td>" + data.collegeName + "</td>" +
 								"<td>" + data.facultyName + "</td>" +
@@ -185,7 +185,7 @@ function findOneCollege() {
 			}
 		},
 		error: function(){
-			alert("请求失败！");
+			alert("不存在该院校！");
 		}
 	});
 }

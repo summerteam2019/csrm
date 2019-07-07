@@ -20,7 +20,7 @@ public interface FunctionMapper {
      * @param functionId
      * @return
      */
-    FunctionDto getFunctionById(@Param(value = "functionId")int functionId);
+    FunctionDto getFunctionById(int functionId);
 
     /**
      * 添加功能
