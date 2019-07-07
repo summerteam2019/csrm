@@ -18,12 +18,12 @@ public class ResourceServiceImpl implements IResourceService{
     }
 
     @Override
-    public ResourceDto selectResourceById(Long resourceId) {
+    public ResourceDto selectResourceById(int resourceId) {
         return resourceMapper.selectResourceById(resourceId);
     }
 
     @Override
-    public ResourceDto deleteResourceById(Long resourceId) {
+    public ResourceDto deleteResourceById(int resourceId) {
         return resourceMapper.deleteResourceById(resourceId);
     }
 

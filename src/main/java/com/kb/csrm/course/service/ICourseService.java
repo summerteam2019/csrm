@@ -5,12 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface ICourseService {
-    /**
-     * 根据学院名称或学院id验证是否唯一
-     * @param map
-     * @return
-     */
-    boolean validCourse(Map<String,Object> map);
 
     /**
      * 添加新用户
@@ -23,14 +17,14 @@ public interface ICourseService {
      * @param courseId
      * @return
      */
-    CourseDto selectCourseById (Long courseId);
+    CourseDto selectCourseById (int courseId);
 
     /**
      * 按ID删除用户
      * @param courseId
      * @return
      */
-    CourseDto deleteCourseById (Long courseId);
+    CourseDto deleteCourseById (int courseId);
 
     /**
      * 按ID修改用户信息

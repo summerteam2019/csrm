@@ -22,24 +22,21 @@ public class ResourceController extends BaseController{
     @RequestMapping("/create")
     @ResponseBody
     public ResponseData insertResource(@RequestBody ResourceDto resourceDto, HttpServletRequest request){
-
         resourceService.insertResource(resourceDto);
         return new ResponseData(true);
     }
 
 
-    @RequestMapping("/selectOne")
+    @RequestMapping("/select")
     @ResponseBody
-    public ResponseData selectResourceById(@RequestBody Long resourceId, HttpServletRequest request){
-
-        resourceService.selectResourceById(resourceId);
-        return new ResponseData(true);
+    public ResourceDto selectResourceByIdById(ResourceDto resourceDto){
+        int resourceId = resourceDto.getResourceId();
+        return resourceService.selectResourceById(resourceId);
     }
 
     @RequestMapping("/delete")
     @ResponseBody
-    public ResponseData deleteResourceById(@RequestBody Long resourceId, HttpServletRequest request){
-
+    public ResponseData deleteResourceById(@RequestBody int resourceId, HttpServletRequest request){
         resourceService.deleteResourceById(resourceId);
         return new ResponseData(true);
     }
@@ -47,7 +44,6 @@ public class ResourceController extends BaseController{
     @RequestMapping("/update")
     @ResponseBody
     public ResponseData updateResourceById(@RequestBody Long resourceId, HttpServletRequest request){
-
         resourceService.updateResourceById(resourceId);
         return new ResponseData(true);
     }

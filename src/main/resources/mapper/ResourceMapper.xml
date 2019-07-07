@@ -15,38 +15,27 @@
 
     <insert id="insertResource"  parameterType="com.kb.csrm.resource.dto.ResourceDto">
         insert into resource(
-        resource_id,
-        course_id,
-        user_id,
         resource_name,
         resource_size,
         resource_filename,
         resource_address,
-        resource_time,
-        download_count
+        resource_time
         )values (
-        #{resourceId},
-        #{courseId};
-        #{userId};
         #{resourceName};
         #{resourceSize};
         #{resourceFilename};
         #{resourceAddress};
-        #{resourceTime};
-        #{downloadCount}
+        #{resourceTime}
     </insert>
 
     <select id="selectResourceById" parameterType="double" resultMap="BaseResultMap">
         SELECT
         resource_id,
-        course_id,
-        user_id,
         resource_name,
         resource_size,
         resource_filename,
         resource_address,
-        resource_time,
-        download_count
+        resource_time
         FROM resource
         WHERE resource_id = #{resourceId}
     </select>

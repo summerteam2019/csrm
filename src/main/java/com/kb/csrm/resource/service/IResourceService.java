@@ -14,14 +14,14 @@ public interface IResourceService {
      * @param
      * @return
      */
-    ResourceDto selectResourceById (Long resourceId);
+    ResourceDto selectResourceById (int resourceId);
 
     /**
      * 按ID删除资源
      * @param
      * @return
      */
-    ResourceDto deleteResourceById (Long resourceId);
+    ResourceDto deleteResourceById (int resourceId);
 
     /**
      * 按ID修改资源信息

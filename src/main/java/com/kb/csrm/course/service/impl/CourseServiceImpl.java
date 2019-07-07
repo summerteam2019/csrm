@@ -15,38 +15,17 @@ public class CourseServiceImpl implements ICourseService{
     private CourseMapper courseMapper;
 
     @Override
-    public boolean validCourse(Map<String,Object> map) {
-        boolean flag=true;
-        List<CourseDto>list=courseMapper.getCourseByCon(map);
-        int x=(Integer)map.get("id");
-        if(x!=0){//修改
-            if((list.size()==1&&x==list.get(0).getCourseId())){
-                flag=true;
-            }else if(list.size()==0){
-                flag=true;
-            }else{
-                flag=false;
-            }
-        }else{//添加
-            if(list.size()>0){
-                flag=false;
-            }
-        }
-        return flag;
-    }
-
-    @Override
     public void insertCourse(CourseDto courseDto) {
         courseMapper.insertCourse(courseDto);
     }
 
     @Override
-    public CourseDto selectCourseById(Long courseId) {
+    public CourseDto selectCourseById(int courseId) {
         return courseMapper.selectCourseById(courseId);
     }
 
     @Override
-    public CourseDto deleteCourseById(Long courseId) {
+    public CourseDto deleteCourseById(int courseId) {
         return courseMapper.deleteCourseById(courseId);
     }
 

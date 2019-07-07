@@ -14,30 +14,24 @@
     </resultMap>
 
     <insert id="insertCourse"  parameterType="com.kb.csrm.course.dto.CourseDto">
-        insert into course
-        values (
-        #{courseId},
-        #{teacherId},
-        #{collegeId},
-        #{teacherName},
+        insert into course(
+        course_name,
+        teacher_name,
+        course_introduce,
+        course_time,
+        )values (
         #{courseName},
+        #{teacherName},
         #{courseIntroduce},
-        #{courseTime},
-        #{courseRate},
-        #{courseCount})
+        #{courseTime})
     </insert>
 
     <select id="selectCourseById" parameterType="double" resultMap="BaseResultMap">
         SELECT
         course_id,
-        teacher_id,
-        college_id,
         teacher_name,
         course_name,
-        course_introduce,
-        course_time,
         course_rate,
-        course_count
         FROM course
         WHERE course_id = #{courseId}
     </select>

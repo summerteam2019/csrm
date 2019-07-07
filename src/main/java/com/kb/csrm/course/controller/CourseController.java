@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping("/course")
 public class CourseController extends BaseController{
 
@@ -30,19 +30,18 @@ public class CourseController extends BaseController{
     }
 
     /**查询课程*/
-    @RequestMapping("/selectOne")
+    @RequestMapping("/select")
     @ResponseBody
-    public ResponseData selectCourseById(@RequestBody Long courseId, HttpServletRequest request){
-
-        courseService.selectCourseById(courseId);
-        return new ResponseData(true);
+    public CourseDto selectCourseByIdById(CourseDto courseDto){
+        int courseId = courseDto.getCourseId();
+        return courseService.selectCourseById(courseId);
     }
+
 
     /**删除课程*/
     @RequestMapping("/delete")
     @ResponseBody
-    public ResponseData deleteCourseById(@RequestBody Long courseId, HttpServletRequest request){
-
+    public ResponseData deleteCourseById(@RequestBody int courseId, HttpServletRequest request){
         courseService.deleteCourseById(courseId);
         return new ResponseData(true);
     }
