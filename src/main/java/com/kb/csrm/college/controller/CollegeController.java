@@ -50,18 +50,18 @@ public class CollegeController extends BaseController {
 
     @RequestMapping("/deleteCollege")
     @ResponseBody
-    public void deleteCollege(Integer collegeId){
+    public boolean deleteCollege(@RequestParam("collegeId") int collegeId){
         collegeService.deleteCollege(collegeId);
+        return true;
     }
 
     @RequestMapping("/updateCollege")
     @ResponseBody
-    public boolean updateCollege(int collegeId, String collegeName, String facultyName){
+    public boolean updateCollege(@RequestParam("collegeId") int collegeId, @RequestParam("collegeName")String collegeName, @RequestParam("facultyName")String facultyName){
         CollegeDto collegeDto = new CollegeDto();
         collegeDto.setCollegeId(collegeId);
         collegeDto.setCollegeName(collegeName);
         collegeDto.setFacultyName(facultyName);
-        //System.out.println(collegeName);
         collegeService.updateCollege(collegeDto);
         return true;
     }

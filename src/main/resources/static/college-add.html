@@ -24,47 +24,59 @@
 </head>
 <body>
 <div class="page-container">
-    <form action="/college/addCollege" method="post">
-        <div class="form-group">
-            <label for="collegeId">学院ID:</label>
-            <input type="text" class="form-control" id="collegeId" name="collegeId" value ="">
-        </div>
-        <div class="form-group">
-            <label for="collegeName">学校名称:</label>
-            <input type="text" class="form-control" id="collegeName" name="collegeName" value ="">
-        </div>
-        <div class="form-group">
-            <label for="facultyName">院系名称:</label>
-            <input type="text" class="form-control" id="facultyName" name="facultyName" value ="">
-        </div>
-        <button type="submit" class="btn btn-primary" id="addACollege" onclick="addACollege()">提交</button>
-    </form>
+    <div class="form-group">
+        <label for="collegeId">学院ID:</label>
+        <input type="text" class="form-control" id="collegeId" name="collegeId" value="">
+    </div>
+    <div class="form-group">
+        <label for="collegeName">学校名称:</label>
+        <input type="text" class="form-control" id="collegeName" name="collegeName" value="">
+    </div>
+    <div class="form-group">
+        <label for="facultyName">院系名称:</label>
+        <input type="text" class="form-control" id="facultyName" name="facultyName" value="">
+    </div>
+    <button type="submit" class="btn btn-primary" id="addACollege" onclick="window.close()">提交</button>
 </div>
 
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+
 <script type="text/javascript">
-    function addACollege(){
-        var collegeId = $("#collegeId").val();
-        var collegeName = $("#collegeName").val();
-        var facultyName = $("#facultyName").val();
-        $.ajax({
-            type: "POST",
-            url: "college/addCollege",//请求程序页面
-            dataType: "json",
-            async: true,//当有返回值以后才会进行后面的js程序。
-            data: {
-                "collegeId": collegeId,
-                "collegeName": collegeName,
-                "facultyName": facultyName},//请求需要发送的处理数据
-            success: function (data) {
-                if(data){
-                    window.location.href = 'college-list.html';
-                }
-                else {
-                    alert("添加失败！");
+    $(function(){
+        $("#addACollege").click(function () {
+            var collegeId = $("#collegeId").val();
+            var collegeName = $("#collegeName").val();
+            var facultyName = $("#facultyName").val();
+            $.ajax({
+                type: "POST",
+                url: "college/addCollege",//请求程序页面
+                dataType: "json",
+                async: false,//当有返回值以后才会进行后面的js程序。
+                data: {
+                    "collegeId": collegeId,
+                    "collegeName": collegeName,
+                    "facultyName": facultyName},//请求需要发送的处理数据
+                success: function (data) {
+                    if(data){
+                        alert("添加成功！");
+                        window.close();
+                    }
+                    else {
+                        alert("添加失败！");
+                    }
+
                 }
 
-            }
-
+            });
         });
-    }
+    });
 </script>
