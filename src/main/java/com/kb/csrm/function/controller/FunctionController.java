@@ -33,17 +33,20 @@ public class FunctionController {
     }
 
     @RequestMapping("/addFunction")
-    public void addFunction(FunctionDto functionDto){
+    public boolean addFunction(FunctionDto functionDto){
         functionService.addFunction(functionDto);
+        return true;
     }
 
     @RequestMapping("/deleteFunction")
-    public void deleteFunction(int functionId){
+    public boolean deleteFunction(int functionId){
         functionService.deleteFunction(functionId);
+        return true;
     }
 
     @RequestMapping("/updateFunction")
-    public void updateFunction(FunctionDto functionDto){
+    public boolean updateFunction(FunctionDto functionDto){
         functionService.updateFunction(functionDto);
+        return true;
     }
 }
