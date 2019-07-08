@@ -25,6 +25,23 @@ public class AppraiseServiceImpl implements IAppraiseService {
     }
 
     @Override
+    public String getAppraiseUser(AppraiseDto appraiseDto){
+        String userName = appraiseMapper.getAppraiseUser(appraiseDto);
+        return userName;
+    }
+
+    @Override
+    public String getAppraiseCourse(AppraiseDto appraiseDto){
+        String courseName = appraiseMapper.getAppraiseCourse(appraiseDto);
+        return courseName;
+    }
+
+    @Override
+    public List<AppraiseDto> getAppraiseByKeyWord(String keyWord){
+        return appraiseMapper.getAppraiseByKeyWord(keyWord);
+    }
+
+    @Override
     public AppraiseDto getAppraiseByUserId(int userId){
         return appraiseMapper.getAppraiseByUserId(userId);
     }

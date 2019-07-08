@@ -19,6 +19,16 @@
         select * from appraise
         where appraise_id = #{appraiseId}
     </select>
+    <select id="getAppraiseUser" parameterType="com.kb.csrm.appraise.dto.AppraiseDto" resultType="String">
+        select user_name
+        from user
+        where user_id = #{userId}
+    </select>
+    <select id="getAppraiseCourse" parameterType="com.kb.csrm.appraise.dto.AppraiseDto" resultType="String">
+        select course_name
+        from course
+        where course_id = #{courseId}
+    </select>
 
     <select id="getAppraiseByUserId" parameterType="int" resultMap="BaseResultMap">
         select * from appraise
@@ -28,6 +38,12 @@
     <select id="getAppraiseByCourseId" parameterType="int" resultMap="BaseResultMap">
          select * from appraise
          where couser_id = #{courseId}
+    </select>
+
+    <select id="getAppraiseByKeyWord" parameterType="String" resultMap="BaseResultMap">
+        select *
+        from appraise
+        where appraise_content LIKE CONCAT('%',#{appraiseContent},'%')
     </select>
 
     <insert id="addAppraise" parameterType="com.kb.csrm.appraise.dto.AppraiseDto">

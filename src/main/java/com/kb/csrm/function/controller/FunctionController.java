@@ -33,6 +33,13 @@ public class FunctionController {
         return functionDto;
     }
 
+    @RequestMapping("/getFunctionByName")
+    public FunctionDto getFunctionByName(FunctionDto functionDto){
+        String functionName = functionDto.getFunctionName();
+        functionDto = functionService.getFunctionByName(functionName);
+        return functionDto;
+    }
+
     @RequestMapping("/addFunction")
     public boolean addFunction(FunctionDto functionDto){
         functionService.addFunction(functionDto);

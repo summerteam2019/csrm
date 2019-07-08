@@ -24,6 +24,13 @@ public interface CollegeMapper {
     CollegeDto getCollegeById(int collegeId);
 
     /**
+     * 根据学校名称获取院校
+     * @param collegeName
+     * @return
+     */
+    List<CollegeDto> getCollegeByName(String collegeName);
+
+    /**
      * 添加院校
      *
      * @param collegeDto

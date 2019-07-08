@@ -30,6 +30,13 @@ public class CollegeController extends BaseController {
         return collegeList;
     }
 
+    @RequestMapping(path="/getCollegeByName")
+    @ResponseBody
+    public List<CollegeDto> getCollegeByName(String collegeName){
+        List<CollegeDto> collegeList = collegeService.getCollegeByName(collegeName);
+        return collegeList;
+    }
+
     @RequestMapping("/getCollegeById")
     @ResponseBody
     public CollegeDto getCollegeById(CollegeDto collegeDto){

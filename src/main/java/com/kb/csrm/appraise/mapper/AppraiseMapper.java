@@ -26,6 +26,8 @@ public interface AppraiseMapper {
      * @return
      */
     AppraiseDto getAppraiseByUserId(int userId);
+    String getAppraiseUser(AppraiseDto appraiseDto);
+    String getAppraiseCourse(AppraiseDto appraiseDto);
 
     /**
      * 根据课程ID获取评论
@@ -34,6 +36,12 @@ public interface AppraiseMapper {
      */
     AppraiseDto getAppraiseByCourseId(int courseId);
 
+    /**
+     * 根据关键字获取评论
+     * @param keyWord
+     * @return
+     */
+    List<AppraiseDto> getAppraiseByKeyWord(String keyWord);
     /**
      * 添加评论
      * @param appraiseDto
@@ -51,4 +59,6 @@ public interface AppraiseMapper {
      * @param appraiseDto
      */
     void updateAppraise(AppraiseDto appraiseDto);
+
+
 }

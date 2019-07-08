@@ -23,31 +23,66 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/getAllAppraise")
     @ResponseBody
-    public List<AppraiseDto> getAllAppraise(ModelMap modelMap){
+    public Object[] getAllAppraise(ModelMap modelMap){
         List<AppraiseDto> appraiseList = appraiseService.getAllAppraise();
+        Object[] allAppraise = new Object[3];
+        String[] userName = new String[appraiseList.size()];
+        String[] courseName = new String[appraiseList.size()];
+        allAppraise[0] = appraiseList;
+        allAppraise[1] = userName;
+        allAppraise[2] = courseName;
+        for(int i = 0; i < appraiseList.size(); i++){
+           userName[i] = appraiseService.getAppraiseUser(appraiseList.get(i));
+           courseName[i] = appraiseService.getAppraiseCourse(appraiseList.get(i));
+        }
         modelMap.addAttribute("appraiseList",appraiseList);
-        return appraiseList;
+        return allAppraise;
     }
 
     @RequestMapping("/getAppraiseById")
     @ResponseBody
-    public AppraiseDto getAppraiseById(@RequestBody int appraiseId){
-        appraiseService.getAppraiseById(appraiseId);
-        return appraiseService.getAppraiseById(appraiseId);
+    public Object[] getAppraiseById(AppraiseDto appraiseDto){
+        int appraiseId = appraiseDto.getAppraiseId();
+        appraiseDto = appraiseService.getAppraiseById(appraiseId);
+        String userName = appraiseService.getAppraiseUser(appraiseDto);
+        String courseName = appraiseService.getAppraiseCourse(appraiseDto);
+        Object[] appraiseObject = new Object[3];
+        appraiseObject[0] = (AppraiseDto)appraiseDto;
+        appraiseObject[1] = (String)userName;
+        appraiseObject[2] = (String)courseName;
+        return appraiseObject;
     }
 
     @RequestMapping("/getAppraiseByUserId")
     @ResponseBody
-    public ResponseData getAppraiseByUserId(@RequestBody Integer userId, HttpServletRequest request){
+    public ResponseData getAppraiseByUserId(@RequestBody int userId, HttpServletRequest request){
         appraiseService.getAppraiseByUserId(userId);
         return new ResponseData(true);
     }
 
     @RequestMapping("/getAppraiseByCourseId")
     @ResponseBody
-    public ResponseData getAppraiseByCourseId(@RequestBody Integer courseId, HttpServletRequest request){
+    public ResponseData getAppraiseByCourseId(@RequestBody int courseId, HttpServletRequest request){
         appraiseService.getAppraiseByCourseId(courseId);
         return new ResponseData(true);
+    }
+
+    @RequestMapping("/getAppraiseByKeyWord")
+    @ResponseBody
+    public Object[] getAppraiseByKeyWord(AppraiseDto appraiseDto){
+        String keyWord = appraiseDto.getAppraiseContent();
+        List<AppraiseDto> appraiseList = appraiseService.getAppraiseByKeyWord(keyWord);
+        Object[] allAppraise = new Object[3];
+        String[] kuserName = new String[appraiseList.size()];
+        String[] kcourseName = new String[appraiseList.size()];
+        for(int i = 0; i < appraiseList.size(); i++){
+            kuserName[i] = appraiseService.getAppraiseUser(appraiseList.get(i));
+            kcourseName[i] = appraiseService.getAppraiseCourse(appraiseList.get(i));
+        }
+        allAppraise[0] = appraiseList;
+        allAppraise[1] = kuserName;
+        allAppraise[2] = kcourseName;
+        return allAppraise;
     }
 
     @RequestMapping("/addAppraise")
