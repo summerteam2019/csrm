@@ -16,7 +16,6 @@ public class CourseServiceImpl implements ICourseService{
 
     @Override
     public List<CourseDto> getAllCourse(){
-        System.out.println(courseMapper.getAllCourse());
         return courseMapper.getAllCourse();
     }
 
@@ -32,14 +31,13 @@ public class CourseServiceImpl implements ICourseService{
 
     @Override
     public void deleteCourseById(int courseId) {
-        CourseDto courseDto = new CourseDto();
-        courseDto.setCourseId(courseId);
-        courseMapper.deleteCourseById(courseDto);
+        courseMapper.deleteCourseById(courseId);
     }
 
     @Override
     public void updateCourseById(CourseDto courseDto) {
-        courseMapper.updateCourseById(courseDto);
+        int courseId = courseDto.getCourseId();
+        courseMapper.updateCourseById(courseId);
     }
 
 

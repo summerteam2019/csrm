@@ -7,7 +7,7 @@ import java.util.Map;
 public interface ICourseService {
 
     /**
-     * 获取所有院校
+     * 获取全部课程
      * @return
      */
     List<CourseDto> getAllCourse();
@@ -53,5 +53,6 @@ public interface ICourseService {
      * @return
      */
     String getCollegeName(CourseDto courseDto);
+
 
 }

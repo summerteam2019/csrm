@@ -51,4 +51,10 @@ public interface CourseMapper {
      * @return
      */
     String getCollegeName(CourseDto courseDto);
+
+    /**
+     * 获取全部课程
+     * @return
+     */
+    List<CourseDto> getAllCourse();
 }

@@ -13,11 +13,6 @@
         <result column="course_count" property="courseCount" jdbcType="INTEGER" />
     </resultMap>
 
-    <select id="getAllCourse" resultMap="BaseResultMap">
-        select *
-        from course
-    </select>
-
     <insert id="insertCourse"  parameterType="com.kb.csrm.course.dto.CourseDto">
         insert into course(
         course_name,
@@ -37,17 +32,17 @@
         WHERE course_id = #{courseId}
     </select>
 
-    <select id="deleteCourseById" parameterType="com.kb.csrm.course.dto.CourseDto"  >
+    <delete id="deleteCourseById" parameterType="com.kb.csrm.course.dto.CourseDto"  >
         delete from course
         where course_id = #{courseId}
-    </select>
-    <select id="updateCourseById" parameterType="com.kb.csrm.course.dto.CourseDto" >
+    </delete>
+    <update id="updateCourseById" parameterType="com.kb.csrm.course.dto.CourseDto" >
         update course
         set
         course_name=#{courseName},
         teacher_name=#{teacherName},
         where course_id = #{courseId}
-    </select>
+    </update>
 
 
     <select id="getCourseByKeyWord" parameterType="String" resultMap="BaseResultMap">
@@ -60,6 +55,11 @@
         select college_name
         from college
         where college_id = #{collegeId}
+    </select>
+
+    <select id="getAllCourse" resultMap="BaseResultMap">
+        select *
+        from course
     </select>
 
 </mapper>

@@ -20,13 +20,19 @@ public class CourseController extends BaseController{
     @Autowired
     private ICourseService courseService;
 
+    @RequestMapping("/getAllCourse")
+    @ResponseBody
+    public List<CourseDto> getAllCourse(){
+        return courseService.getAllCourse();
+    }
+
 
     /**添加课程*/
     @RequestMapping("/create")
     @ResponseBody
-    public ResponseData insertCourse(@RequestBody CourseDto courseDto,HttpServletRequest request){
+    public boolean insertCourse(CourseDto courseDto){
         courseService.insertCourse(courseDto);
-        return new ResponseData(true);
+        return true;
     }
 
     /**查询课程*/
@@ -41,17 +47,16 @@ public class CourseController extends BaseController{
     /**删除课程*/
     @RequestMapping("/delete")
     @ResponseBody
-    public ResponseData deleteCourseById(@RequestBody int courseId, HttpServletRequest request){
+    public boolean deleteCourseById(@RequestBody int courseId){
         courseService.deleteCourseById(courseId);
-        return new ResponseData(true);
+        return true;
     }
 
     /**修改课程信息*/
     @RequestMapping("/update")
     @ResponseBody
-    public Boolean updateCourseById(@RequestBody int  courseId ){
-
-        courseService.updateCourseById(courseId);
+    public Boolean updateCourseById(CourseDto courseDto){
+        courseService.updateCourseById(courseDto);
         return true;
     }
 
