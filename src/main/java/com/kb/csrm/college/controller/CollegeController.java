@@ -22,38 +22,47 @@ public class CollegeController extends BaseController {
     @Autowired
     private ICollegeService collegeService;
 
-    @RequestMapping(path = "/getAllCollege")
+    @RequestMapping(path="/getAllCollege")
     @ResponseBody
-    public ResponseData getAllCollege(HttpServletRequest request) {
+    public List<CollegeDto> getAllCollege(ModelMap modelMap){
         List<CollegeDto> collegeList = collegeService.getAllCollege();
-        return new ResponseData(collegeList);
+        modelMap.addAttribute("collegeList",collegeList);
+        return collegeList;
     }
 
     @RequestMapping("/getCollegeById")
     @ResponseBody
-    public CollegeDto getCollegeById(int collegeId) {
+    public CollegeDto getCollegeById(CollegeDto collegeDto){
+        int collegeId = collegeDto.getCollegeId();
         return collegeService.getCollegeById(collegeId);
     }
 
     @RequestMapping("/addCollege")
     @ResponseBody
-    public void addCollege(int collegeId, String collegeName, String facultyName) {
+    public Boolean addCollege(int collegeId, String collegeName, String facultyName){
         CollegeDto collegeDto = new CollegeDto();
         collegeDto.setCollegeId(collegeId);
         collegeDto.setCollegeName(collegeName);
         collegeDto.setFacultyName(facultyName);
         collegeService.addCollege(collegeDto);
+        return true;
     }
 
     @RequestMapping("/deleteCollege")
     @ResponseBody
-    public void deleteCollege(Integer collegeId) {
+    public boolean deleteCollege(@RequestParam("collegeId") int collegeId){
         collegeService.deleteCollege(collegeId);
+        return true;
     }
 
     @RequestMapping("/updateCollege")
     @ResponseBody
-    public void updateCollege(CollegeDto collegeDto) {
+    public boolean updateCollege(@RequestParam("collegeId") int collegeId, @RequestParam("collegeName")String collegeName, @RequestParam("facultyName")String facultyName){
+        CollegeDto collegeDto = new CollegeDto();
+        collegeDto.setCollegeId(collegeId);
+        collegeDto.setCollegeName(collegeName);
+        collegeDto.setFacultyName(facultyName);
         collegeService.updateCollege(collegeDto);
+        return true;
     }
 }

@@ -5,6 +5,7 @@ import com.kb.csrm.function.service.IFunctionService;
 import com.sun.org.apache.xpath.internal.functions.FuncDoclocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,30 +20,34 @@ public class FunctionController {
     private IFunctionService functionService;
 
     @RequestMapping("/getAllFunction")
-    public List<FunctionDto> getAllFunction(){
+    public List<FunctionDto> getAllFunction(ModelMap modelMap){
         List<FunctionDto> functionList = functionService.getAllFunction();
-        System.out.println(functionList);
+        modelMap.addAttribute("functionList",functionList);
         return functionList;
     }
 
     @RequestMapping("/getFunctionById")
-    public FunctionDto getFunctionById(int functionId){
-        FunctionDto functionDto = functionService.getFunctionById(functionId);
+    public FunctionDto getFunctionById(FunctionDto functionDto){
+        int functionId = functionDto.getFunctionId();
+        functionDto = functionService.getFunctionById(functionId);
         return functionDto;
     }
 
     @RequestMapping("/addFunction")
-    public void addFunction(FunctionDto functionDto){
+    public boolean addFunction(FunctionDto functionDto){
         functionService.addFunction(functionDto);
+        return true;
     }
 
     @RequestMapping("/deleteFunction")
-    public void deleteFunction(int functionId){
+    public boolean deleteFunction(int functionId){
         functionService.deleteFunction(functionId);
+        return true;
     }
 
     @RequestMapping("/updateFunction")
-    public void updateFunction(FunctionDto functionDto){
+    public boolean updateFunction(FunctionDto functionDto){
         functionService.updateFunction(functionDto);
+        return true;
     }
 }

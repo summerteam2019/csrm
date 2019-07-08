@@ -13,33 +13,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 @RequestMapping("/course")
 public class CourseController extends BaseController{
 
     @Autowired
     private ICourseService courseService;
 
-    /**验证课程ID是否已存在*/
-    @ResponseBody
-    @RequestMapping("/valid.action")
-    public Map<String,Object> validCourse(
-            @RequestParam("name")String name,
-            @RequestParam(value="id",defaultValue="0",required=false)Integer id){
-        Map<String,Object>map=new HashMap<String,Object>();
-        map.put("name", name);
-        map.put("id", id);
-        boolean flag=courseService.validCourse(map);
-        Map<String,Object>maps=new HashMap<String,Object>();
-        if(flag){
-            maps.put("i", 1);
-            maps.put("msg", "此课程ID未使用！");
-        }else{
-            maps.put("i", 0);
-            maps.put("msg", "此课程ID已使用！");
-        }
-        return maps;
-    }
 
     /**添加课程*/
     @RequestMapping("/create")
@@ -50,19 +30,18 @@ public class CourseController extends BaseController{
     }
 
     /**查询课程*/
-    @RequestMapping("/selectOne")
+    @RequestMapping("/select")
     @ResponseBody
-    public ResponseData selectCourseById(@RequestBody Long courseId, HttpServletRequest request){
-
-        courseService.selectCourseById(courseId);
-        return new ResponseData(true);
+    public CourseDto selectCourseByIdById(CourseDto courseDto){
+        int courseId = courseDto.getCourseId();
+        return courseService.selectCourseById(courseId);
     }
+
 
     /**删除课程*/
     @RequestMapping("/delete")
     @ResponseBody
-    public ResponseData deleteCourseById(@RequestBody Long courseId, HttpServletRequest request){
-
+    public ResponseData deleteCourseById(@RequestBody int courseId, HttpServletRequest request){
         courseService.deleteCourseById(courseId);
         return new ResponseData(true);
     }

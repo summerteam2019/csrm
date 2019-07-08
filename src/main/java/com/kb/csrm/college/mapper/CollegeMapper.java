@@ -13,7 +13,6 @@ public interface CollegeMapper {
      *
      * @return
      */
-    @Select("select * from college")
     List<CollegeDto> getAllCollege();
 
     /**
@@ -22,7 +21,6 @@ public interface CollegeMapper {
      * @param collegeId
      * @return
      */
-    @Select("select * from college where college_id = #{collegeId}")
     CollegeDto getCollegeById(int collegeId);
 
     /**
@@ -30,7 +28,6 @@ public interface CollegeMapper {
      *
      * @param collegeDto
      */
-    @Insert("insert into college values (#{collegeId},#{collegeName},#{facultyName})")
     void addCollege(CollegeDto collegeDto);
 
     /**
@@ -38,7 +35,6 @@ public interface CollegeMapper {
      *
      * @param collegeDto
      */
-    @Delete("delete from college where college_id = #{collegeId}")
     void deleteCollege(CollegeDto collegeDto);
 
     /**
@@ -46,6 +42,5 @@ public interface CollegeMapper {
      *
      * @param collegeDto
      */
-    @Update("update college set college_name = #{collegeName}, faculty_name = #{facultyName} where college_id = #{collegeId}")
     void updateCollege(CollegeDto collegeDto);
 }

@@ -149,7 +149,29 @@
 <div id="footer">
 
 </div>
+<script src="js/jquery.js"></script>
 <script src="js/jquerysession.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: "",//请求程序页面
+            success: function (data) {
+                for(var i in data){
+                    $("p#class"+(i+1)).text(data[i].intro);
+                    $("h3#class"+(i+1)).text(data[i].title);
+                    $("div#class"+(i+1).left).text(data[i].teacher);
+                    $("div#class"+(i+1).right).text(data[i].count);
+                    $("#class"+(i+1)).attr({
+                        "src" : "data[i].src",
+                    });
+                }
+            },
+        });
+    });
+
+</script>
 </body>
 
 </html>

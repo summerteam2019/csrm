@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<div id="head-pic">
 <div id="header">
     <div id="logo">
         <a href="首页（公共首页和游客首页）.html">慕课网</a>
@@ -30,6 +31,11 @@
         <input type="text" name="search" placeholder="搜索感兴趣课程" value="">
         <button onclick="javascrtpt:window.location.href='搜索结果（游客）.html'">搜索</button>
     </div>
+</div>
+</div>
+
+<div id="kongbai">
+    <h><br></h>>
 </div>
 
 <div id="content">
@@ -87,18 +93,18 @@
                 课程推荐
                 <a href="http://www.baidu.com">更多 ></a>
             </div>
-            <div class="item_class" onclick="" id="class1">
+            <div class="item_class" onclick="" id="class1"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程1.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
-                    <h3>课程名称</h3>
-                    <p>课程介绍课程信息</p>
+                    <h3></h3>
+                    <p></p>
                 </div>
                 <div class="item_class_bottom">
-                    <span class="left">陈真教授</span>
-                    <span class="right">77人在学</span>
+                    <span class="left"></span>
+                    <span class="right"></span>
                 </div>
             </div>
-            <div class="item_class"onclick=""id="class2">
+            <div class="item_class"onclick=""id="class2"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程2.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -109,7 +115,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class"onclick=""id="class3">
+            <div class="item_class"onclick=""id="class3"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程3.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -120,7 +126,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class"onclick=""id="class4">
+            <div class="item_class"onclick=""id="class4"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程4.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -131,7 +137,7 @@
                     <span class="right">77人在学</span>
                 </div>
             </div>
-            <div class="item_class" style="margin-right: 0;"onclick=""id="class5">
+            <div class="item_class" style="margin-right: 0;"onclick=""id="class5"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程5.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3>课程名称</h3>
@@ -160,13 +166,12 @@
             url: "",//请求程序页面
             success: function (data) {
                 for(var i in data){
+                    $("p#class"+(i+1)).text(data[i].intro);
+                    $("h3#class"+(i+1)).text(data[i].title);
+                    $("div#class"+(i+1).left).text(data[i].teacher);
+                    $("div#class"+(i+1).right).text(data[i].count);
                     $("#class"+(i+1)).attr({
-                        "onclick" : "window.location.href= 'data[i].href'",
                         "src" : "data[i].src",
-                        "h3" : "data[i].title",
-                        "p" : "data[i].intro",
-                        "span.left" : "data[i].teacher",
-                        "span.right" : "data[i].count"
                     });
                 }
             },

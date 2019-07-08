@@ -9,12 +9,6 @@ import java.util.Map;
 
 @Mapper
 public interface CourseMapper {
-    /**
-     *根据课程id验证课程是否存在
-     * @param map
-     * @return
-     */
-    List<CourseDto> getCourseByCon(Map<String,Object> map);
 
     /**
      * 添加新课程
@@ -27,7 +21,7 @@ public interface CourseMapper {
      * @param courseId
      * @return
      */
-    CourseDto selectCourseById(@Param(value = "courseID") double courseId);
+    CourseDto selectCourseById( int  courseId);
 
     /**
      * 根据ID删除课程

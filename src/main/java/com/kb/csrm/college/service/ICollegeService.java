@@ -31,7 +31,7 @@ public interface ICollegeService {
     void deleteCollege(int collegeId);
 
     /**
-     * 删除院校
+     * 编辑院校
      * @param collegeDto
      */
     void updateCollege(CollegeDto collegeDto);

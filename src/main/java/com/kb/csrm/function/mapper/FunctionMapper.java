@@ -14,7 +14,6 @@ public interface FunctionMapper {
      *
      * @return
      */
-    @Select("select * from function_menu")
     List<FunctionDto> getAllFunction();
 
     /**
@@ -23,15 +22,13 @@ public interface FunctionMapper {
      * @param functionId
      * @return
      */
-    @Select("select * from function_menu where function_id = #{functionId}")
-    FunctionDto getFunctionById(@Param(value = "functionId")int functionId);
+    FunctionDto getFunctionById(int functionId);
 
     /**
      * 添加功能
      *
      * @param functionDto
      */
-    @Insert("insert into function_menu values (#{functionId},#{functionName},#{functionMeaning},#{functionUrl},#{parentId})")
     void addFunction(FunctionDto functionDto);
 
     /**
@@ -39,7 +36,6 @@ public interface FunctionMapper {
      *
      * @param functionId
      */
-    @Delete("delete from function_menu where function_id = #{functionId}")
     void deleteFunction(int functionId);
 
     /**
@@ -47,6 +43,5 @@ public interface FunctionMapper {
      *
      * @param functionDto
      */
-    @Update("update function_menu set function_name = #{functionName}, function_meaning = #{functionMeaning}, function_url = #{functionUrl}, parent_id = #{parentId}")
     void updateFunction(FunctionDto functionDto);
 }
