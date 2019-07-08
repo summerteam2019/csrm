@@ -20,7 +20,7 @@
     <div id="login">
         <ul>
             <li>
-                <a href="登陆.html">登录</a>
+                <a href="登陆（试验）.html">登录</a>
             </li>
             <li>
                 <a href="注册.html">注册</a>
@@ -91,7 +91,7 @@
         <div class="practise">
             <div class="title">
                 课程推荐
-                <a href="http://www.baidu.com">更多 ></a>
+                <a href="">更多 ></a>
             </div>
             <div class="item_class" onclick="" id="class1"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程1.jpg" height="124" width="100%"/>
@@ -107,45 +107,45 @@
             <div class="item_class"onclick=""id="class2"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程2.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
-                    <h3>课程名称</h3>
-                    <p>课程介绍课程信息</p>
+                    <h3></h3>
+                    <p></p>
                 </div>
                 <div class="item_class_bottom">
-                    <span class="left">陈真教授</span>
-                    <span class="right">77人在学</span>
+                    <span class="left"></span>
+                    <span class="right"></span>
                 </div>
             </div>
             <div class="item_class"onclick=""id="class3"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程3.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
-                    <h3>课程名称</h3>
-                    <p>课程介绍课程信息</p>
+                    <h3></h3>
+                    <p></p>
                 </div>
                 <div class="item_class_bottom">
-                    <span class="left">陈真教授</span>
-                    <span class="right">77人在学</span>
+                    <span class="left"></span>
+                    <span class="right"></span>
                 </div>
             </div>
             <div class="item_class"onclick=""id="class4"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程4.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
-                    <h3>课程名称</h3>
-                    <p>课程介绍课程信息</p>
+                    <h3></h3>
+                    <p></p>
                 </div>
                 <div class="item_class_bottom">
-                    <span class="left">陈真教授</span>
-                    <span class="right">77人在学</span>
+                    <span class="left"></span>
+                    <span class="right"></span>
                 </div>
             </div>
             <div class="item_class" style="margin-right: 0;"onclick=""id="class5"onclick="window.open('学生课程详情页面V3.html','_self')">
                 <img src="img/推荐课程5.jpg" height="124" width="100%"/>
                 <div class="item_class_intro">
-                    <h3>课程名称</h3>
-                    <p>课程介绍课程信息</p>
+                    <h3></h3>
+                    <p></p>
                 </div>
                 <div class="item_class_bottom">
-                    <span class="left">陈真教授</span>
-                    <span class="right">77人在学</span>
+                    <span class="left"></span>
+                    <span class="right"></span>
                 </div>
             </div>
         </div>
@@ -171,7 +171,7 @@
                     $("div#class"+(i+1).left).text(data[i].teacher);
                     $("div#class"+(i+1).right).text(data[i].count);
                     $("#class"+(i+1)).attr({
-                        "src" : "data[i].src",
+                        "src" : data[i].src,
                     });
                 }
             },
@@ -179,7 +179,6 @@
     });
 
 </script>
-
 </body>
 
 </html>

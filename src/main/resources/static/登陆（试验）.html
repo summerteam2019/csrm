@@ -37,7 +37,7 @@
                 <a href="学生中心.html">学生中心</a>
             </li>
             <li>
-                <a href="首页（公共首页和游客首页）.html">退出登录</a>
+                <a href="首页（公共首页和游客首页）.html">退出登陆</a>
             </li>
         </ul>
     </div>
@@ -51,7 +51,7 @@
         <form class="form form-horizontal">
 
             <div class="row cl" style="text-align:center ;font-size:20px;font-weight:bold">
-                登录验证
+                登陆验证
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
@@ -119,11 +119,11 @@
                         alert("用户不存在");
                     } else if (msg.flag == "0") {
                         if (msg.role == "student") {//根据返回值进行跳转
-                            window.location.href = '你的跳转的目标地址';
+                            window.location.href = '首页（学生首页）.html';
                         } else if (msg.role == "teacher") {
-                            window.location.href = '';
+                            window.location.href = '首页（教师首页）.html';
                         } else if (msg.role == "admin") {
-                            window.lacation.href = '';
+                            window.lacation.href = 'index.html';
                         }
                     }
 
