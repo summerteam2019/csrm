@@ -122,7 +122,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="cd-tabs">
 				<nav>
 					<ul class="cd-tabs-navigation">
-						<li><a data-content="cinema" href="#0">讨  论 </a></li>
+						<!--<li><a data-content="cinema" href="#0">讨  论 </a></li>-->
 						<li><a data-content="television" href="#0" class="selected ">评  分 </a></li>
 						<li><a data-content="stuNotice" href="#0">课 程 通 知 </a></li>
 						<li><a data-content="download" href="#0" >资 源 下 载</a></li>
@@ -187,7 +187,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 					</li>
-					<li data-content="television" class="selected ">
+
+
+
+					<li data-content="television" class="selected "id="pingfen">
 						<div class="comments-top-top">
 							<div class="top-comment-left">
 								<img class="img-responsive" src="images/co.png" alt="">
@@ -201,9 +204,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li><a href="#"><i> </i></a></li>
 									<li><a href="0"><i> </i></a></li>
 								</ul>
-								<p class="top-comment-rightp">老师的课，不管是专业性还是组织结构来说，都非常棒！ 老师的授课风格也是严肃中带着些幽默，非常
-									亲切！ 可能由于我知识量的欠缺，课程内容对我来说，专业概念稍微偏多，在理解和记忆上还是有一定
-									挑战的，如果在概念的讲解上，能添加更多生动详实的案例，或者搭配一些扩充的资料，那就更棒了！ </p>
+								<p class="top-comment-rightp"></p>
                                 <h6 class="timestamp"> - 发表于2019年6月26日</h6>
 							</div>
 							<div class="clearfix"></div>
@@ -294,7 +295,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+<script type="text/javascript">
 
+	$(document).ready(function(){
+		$.ajax({
+			type: "POST",
+			url: "",//请求程序页面
+			success: function (data) {
+
+					$("#pingfen"+(i+1)).text(data[i].intro);
+					$("h3#class"+(i+1)).text(data[i].title);
+					$("div#class"+(i+1).left).text(data[i].teacher);
+					$("div#class"+(i+1).right).text(data[i].count);
+					$("#class"+(i+1)).attr({
+						"src" : data[i].src,
+					});
+
+			},
+		});
+	});
+
+</script>
 
 
 
