@@ -1,5 +1,6 @@
 package com.kb.csrm.scConnection.mapper;
 
+import com.kb.csrm.course.dto.CourseDto;
 import com.kb.csrm.scConnection.dto.SCConnectionDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,7 +14,7 @@ public interface SCConnectionMapper {
      * @param userId
      * @return
      */
-    List<SCConnectionDto> getSCConnectionByUserId(Integer userId);
+    List<CourseDto> getCourseByUserId(Integer userId);
 
     /**
      * 根据课程ID获取选课信息

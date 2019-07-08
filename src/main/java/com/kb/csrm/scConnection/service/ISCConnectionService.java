@@ -1,5 +1,6 @@
 package com.kb.csrm.scConnection.service;
 
+import com.kb.csrm.course.dto.CourseDto;
 import com.kb.csrm.scConnection.dto.SCConnectionDto;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface ISCConnectionService {
      * @param userId
      * @return
      */
-    List<SCConnectionDto> getSCConnectionByUserId(Integer userId);
+    List<CourseDto> getSCConnectionByUserId(Integer userId);
 
     /**
      * 根据课程ID获取选课信息

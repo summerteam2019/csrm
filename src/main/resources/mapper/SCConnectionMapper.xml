@@ -7,8 +7,8 @@
         <result column="course_id" property="courseId" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="getSCConnectionByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select *
+    <select id="getCourseByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select c.*
         from student_course_connection sc, user u, course c
         where sc.user_id = #{userId}
           and u.user_id = #{userId}

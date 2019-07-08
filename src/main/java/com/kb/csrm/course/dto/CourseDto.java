@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Table (name="course")
 public class CourseDto {
@@ -56,6 +57,21 @@ public class CourseDto {
      */
     @Column
     private int courseCount;
+    /**
+     * 图片地址
+     */
+    @Column
+    private String courseImg;
+    /**
+     * 是否推荐
+     */
+    @Column
+    private int recommend;
+    /**
+     * 课程所属大学名称
+     */
+    @Transient
+    private String collegeName;
 
     public int getCourseId() {
         return courseId;
@@ -128,4 +144,30 @@ public class CourseDto {
     public void setCourseCount(int courseCount) {
         this.courseCount = courseCount;
     }
+
+    public String getCourseImg() {
+        return courseImg;
+    }
+
+    public void setCourseImg(String courseImg) {
+        this.courseImg = courseImg;
+    }
+
+    public int getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(int recommend) {
+        this.recommend = recommend;
+    }
+
+    public String getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
+
 }
