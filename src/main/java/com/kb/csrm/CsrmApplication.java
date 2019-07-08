@@ -1,5 +1,6 @@
 package com.kb.csrm;
 
+import com.kb.csrm.imoocCrawler.crawler.Crawler;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -33,4 +33,9 @@ public interface ICourseService {
      */
     void updateCourseById (Long courseId);
 
+    /**
+     * 获取推荐课程
+     * @return
+     */
+    List<CourseDto> getRecommendedCourse();
 }

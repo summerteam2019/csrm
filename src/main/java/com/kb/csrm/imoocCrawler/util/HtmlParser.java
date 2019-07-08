@@ -161,8 +161,7 @@ public class HtmlParser {
 		String courseIntroduce;
 		String teacherName;
 		String collegeName;
-		String courseURL;
-		String staticURL = "https://www.icourse163.org";
+		String staticURL = "http://www.imooc.com";
 		CourseDto course = new CourseDto();
 		String htmlStr;
 		for(int pageNum = 1; pageNum <= totalPages; pageNum++) {
@@ -175,16 +174,14 @@ public class HtmlParser {
 				}
 				doc = Jsoup.parse(htmlStr);
 			}
-			courseItems = doc.select(".u-clist .f-bgw .f-cb .f-pr .j-href .ga-click");
+			courseItems = doc.select(".container div .course-card-container");
 			for(Element courseItem : courseItems) {
-				imgSrc = courseItem.getElementsByTag("img").attr("src");
-				courseName = courseItem.getElementsByClass("u-course-name f-thide").text();
-				courseURL = staticURL.concat(courseItem.attr("data-href"));
-				courseIntroduce = courseItem.getElementsByClass("p5 brief f-ib f-f0 f-cb").text();
-				teacherName = courseItem.getElementsByClass("f-fc9").text();
-				collegeName = courseItem.getElementsByClass("t21 f-fc9").text();
-
-				//此处执行数据处理存储
+				imgSrc = "http:"+ courseItem.getElementsByTag("img").attr("data-original");
+				courseName = courseItem.getElementsByClass("course-card-name").text();
+				courseIntroduce = courseItem.getElementsByClass("course-card-desc").text();
+				teacherName = "网络教师";
+				collegeName = "慕课网";
+				course = new CourseDto();
 				course.setCourseName(courseName);
 				course.setCourseIntroduce(courseIntroduce);
 				course.setTeacherName(teacherName);
@@ -221,8 +218,8 @@ public class HtmlParser {
 			if(Objects.isNull(doc)) {
 				throw new RuntimeException(errorMsg);
 			}
-			Element lastPageElement = doc.select(".ux-pager_itm").last();
-			String lastPageHref = (lastPageElement.getElementsByClass("active text-page-tag").isEmpty()) 
+			Element lastPageElement = doc.select(".page a").last();
+			String lastPageHref = (lastPageElement.getElementsByClass("active text-page-tag").isEmpty())
 					? lastPageElement.attr("href") : lastPageElement.text();
 			return Integer.parseInt(StringUtils.substring(lastPageHref, getLastEqualsIndex(lastPageHref)));
 		} catch(Exception e) {

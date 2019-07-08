@@ -16,6 +16,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.slf4j.SLF4JLogger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 下载工具类
@@ -25,7 +27,7 @@ import org.apache.logging.slf4j.SLF4JLogger;
 @Slf4j
 public class DownloadUtil {
 
-	private SLF4JLogger log;
+	private final static Logger log = LoggerFactory.getLogger(DownloadUtil.class);
 	
 	private final String INSERTED_IMG_STORE_PATH;
 	private static final int downloadImageThreadNum = 5;
@@ -104,7 +106,8 @@ public class DownloadUtil {
 		ThreadPoolExecutor threadPool = ThreadFactory.getThreadPool();
 		try {
 			HttpURLConnection conn = getConnectionByUrl(imgUrl); 
-	        int fileSize = conn.getContentLength(); //得到文件大小
+	        int fileSize = conn.getContentLength();
+	        //得到文件大小
 	        conn.disconnect();
 	        int currentPartSize = fileSize / downloadImageThreadNum;
 	        int startPos;

@@ -36,4 +36,22 @@ public interface CourseMapper {
      * @return
      */
     void updateCourseById(@Param(value = "courseID") double courseId);
+
+    /**
+     * 获取管理员推荐课程
+     * @return
+     */
+    List<CourseDto> getRecommend();
+
+    /**
+     * 获取当前最高点击的n门课程
+     * @return
+     */
+    List<CourseDto> getHighCount(@Param("num") int n);
+
+    /**
+     * 批量存储从网上获取的课程
+     * @param courseList
+     */
+    void batchInsert(List<CourseDto> courseList);
 }

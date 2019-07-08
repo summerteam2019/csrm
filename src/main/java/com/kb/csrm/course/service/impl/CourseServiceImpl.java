@@ -33,4 +33,9 @@ public class CourseServiceImpl implements ICourseService{
     public void updateCourseById(Long courseId) {
         courseMapper.updateCourseById(courseId);
     }
+
+    @Override
+    public List<CourseDto> getRecommendedCourse() {
+        return courseMapper.getRecommend();
+    }
 }

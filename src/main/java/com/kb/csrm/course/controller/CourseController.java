@@ -55,4 +55,11 @@ public class CourseController extends BaseController{
         return new ResponseData(true);
     }
 
+    /**查询课程*/
+    @RequestMapping("/getRecommend")
+    @ResponseBody
+    public ResponseData getRecommendedCourse(){
+        return new ResponseData(courseService.getRecommendedCourse());
+    }
+
 }

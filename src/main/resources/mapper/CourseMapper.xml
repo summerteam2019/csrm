@@ -18,12 +18,27 @@
         course_name,
         teacher_name,
         course_introduce,
-        course_time,
+        course_time
         )values (
         #{courseName},
         #{teacherName},
         #{courseIntroduce},
         #{courseTime})
+    </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into course(
+        course_name,
+        teacher_name,
+        course_introduce,
+        college_id)
+        <foreach collection="list" item="item" separator="union all">
+            (SELECT
+            #{item.courseName},
+            #{item.teacherName},
+            #{item.courseIntroduce},
+            9999
+            from dual)
+        </foreach>
     </insert>
 
     <select id="selectCourseById" parameterType="double" resultMap="BaseResultMap">
@@ -31,7 +46,7 @@
         course_id,
         teacher_name,
         course_name,
-        course_rate,
+        course_rate
         FROM course
         WHERE course_id = #{courseId}
     </select>
@@ -52,6 +67,27 @@
         course_rate=#{courseRate},
         course_count=#{courseCount}
         where course_id = #{courseId}
+    </select>
+
+    <select id="getRecommend" resultType="com.kb.csrm.course.dto.CourseDto">
+        SELECT
+        course_id,
+        teacher_name,
+        course_name,
+        course_rate
+        FROM course
+        WHERE recommend = 1
+    </select>
+
+    <select id="getHighCount" parameterType="int" resultType="com.kb.csrm.course.dto.CourseDto">
+        SELECT
+        course_id,
+        teacher_name,
+        course_name,
+        course_rate
+        FROM course
+        ORDER BY course_count
+        LIMIT #{num}
     </select>
 
 </mapper>
