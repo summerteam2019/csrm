@@ -1,7 +1,5 @@
 package com.kb.csrm.course.dto;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

@@ -15,17 +15,23 @@ import java.util.List;
 public interface IUserService {
 
     /**
+     * 获取所有用户
+     * @return
+     */
+    List<UserDto> getAllUser();
+
+    /**
      * 添加新用户
      * @param userDto
      */
-    void insertUser (UserDto userDto);
+    void insertUserById (UserDto userDto);
 
     /**
      * 按ID查找用户
      * @param userId
      * @return
      */
-    UserDto selectUserById (Long userId);
+    UserDto selectUserById (int userId);
 
     /**
      * 查找所有用户
@@ -38,12 +44,12 @@ public interface IUserService {
      * @param userId
      * @return
      */
-    UserDto deleteUserById (Long userId);
+    void deleteUserById (int userId);
 
     /**
      * 按ID更改用户信息
-     * @param userId
+     * @param
      * @return
      */
-    UserDto updateUserById (Long userId);
+    void updateUserById (UserDto userDto);
 }

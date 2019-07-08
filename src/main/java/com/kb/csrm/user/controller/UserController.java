@@ -15,6 +15,8 @@ import com.kb.csrm.util.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,20 +30,31 @@ public class UserController extends BaseController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/create")
+    @RequestMapping(path="/getAllUser")
     @ResponseBody
-    public ResponseData createUser(@RequestBody UserDto userDto, HttpServletRequest request){
-
-        userService.insertUser(userDto);
-        return new ResponseData(true);
+    public List<UserDto> getAllUser(ModelMap modelMap){
+        List<UserDto> userList = userService.getAllUser();
+        modelMap.addAttribute("userList",userList);
+        return userList;
     }
 
-    @RequestMapping("/selectOne")
+    @RequestMapping("/create")
     @ResponseBody
-    public ResponseData selectUserById(@RequestBody Long userId, HttpServletRequest request){
+    public Boolean addCollege(int userId, String userName, String roleName,String mail){
+        UserDto userDto = new UserDto();
+        userDto.setUserId(userId);
+        userDto.setUserName(userName);
+        userDto.setRoleName(roleName);
+        userService.insertUserById(userDto);
+        return true;
+    }
 
-        userService.selectUserById(userId);
-        return new ResponseData(true);
+
+    @RequestMapping("/select")
+    @ResponseBody
+    public UserDto getUserById(UserDto userDto){
+        int userId = userDto.getUserId();
+        return userService.selectUserById(userId);
     }
 
     @RequestMapping("/query")
@@ -53,18 +66,21 @@ public class UserController extends BaseController {
 
     @RequestMapping("/delete")
     @ResponseBody
-    public ResponseData deleteUserById(@RequestBody Long userId, HttpServletRequest request){
-
+    public boolean deleteUserById(@RequestParam("userId") int userId){
         userService.deleteUserById(userId);
-        return new ResponseData(true);
+        return true;
     }
 
     @RequestMapping("/update")
     @ResponseBody
-    public ResponseData updateUserById(@RequestBody Long userId, HttpServletRequest request){
-
-        userService.updateUserById(userId);
-        return new ResponseData(true);
+    public boolean updateUserById(@RequestParam("userId") int userId, @RequestParam("userName")String userName, @RequestParam("roleName")String roleName, @RequestParam("mail")String mail){
+        UserDto userDto = new UserDto();
+        userDto.setUserId(userId);
+        userDto.setUserName(userName);
+        userDto.setRoleName(roleName);
+        userDto.setMail(mail);
+        userService.updateUserById(userDto);
+        return true;
     }
 
 }

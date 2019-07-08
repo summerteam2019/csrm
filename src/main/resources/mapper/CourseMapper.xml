@@ -13,6 +13,11 @@
         <result column="course_count" property="courseCount" jdbcType="INTEGER" />
     </resultMap>
 
+    <select id="getAllCourse" resultMap="BaseResultMap">
+        select *
+        from course
+    </select>
+
     <insert id="insertCourse"  parameterType="com.kb.csrm.course.dto.CourseDto">
         insert into course(
         course_name,
@@ -26,31 +31,21 @@
         #{courseTime})
     </insert>
 
-    <select id="selectCourseById" parameterType="double" resultMap="BaseResultMap">
-        SELECT
-        course_id,
-        teacher_name,
-        course_name,
-        course_rate,
+    <select id="selectCourseById" resultMap="BaseResultMap">
+        SELECT *
         FROM course
         WHERE course_id = #{courseId}
     </select>
 
-    <select id="deleteCourseById" parameterType="double"  resultMap="BaseResultMap">
-        delete
-        form course
+    <select id="deleteCourseById" parameterType="com.kb.csrm.course.dto.CourseDto"  >
+        delete from course
         where course_id = #{courseId}
     </select>
-    <select id="updateCourseById" parameterType="double" resultMap="BaseResultMap">
+    <select id="updateCourseById" parameterType="com.kb.csrm.course.dto.CourseDto" >
         update course
-        set teacher_id=#{teacherId},
-        college_id=#{collegeId},
-        teacher_name=#{teacherName},
+        set
         course_name=#{courseName},
-        course_introduce=#{courseIntroduce},
-        course_time=#{courseTime},
-        course_rate=#{courseRate},
-        course_count=#{courseCount}
+        teacher_name=#{teacherName},
         where course_id = #{courseId}
     </select>
 

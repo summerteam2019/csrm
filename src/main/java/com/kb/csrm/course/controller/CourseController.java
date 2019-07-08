@@ -49,10 +49,10 @@ public class CourseController extends BaseController{
     /**修改课程信息*/
     @RequestMapping("/update")
     @ResponseBody
-    public ResponseData updateCourseById(@RequestBody Long courseId, HttpServletRequest request){
+    public Boolean updateCourseById(@RequestBody int  courseId ){
 
         courseService.updateCourseById(courseId);
-        return new ResponseData(true);
+        return true;
     }
 
     @RequestMapping("/getCourseByKeyWord")

@@ -15,6 +15,12 @@ public class CourseServiceImpl implements ICourseService{
     private CourseMapper courseMapper;
 
     @Override
+    public List<CourseDto> getAllCourse(){
+        System.out.println(courseMapper.getAllCourse());
+        return courseMapper.getAllCourse();
+    }
+
+    @Override
     public void insertCourse(CourseDto courseDto) {
         courseMapper.insertCourse(courseDto);
     }
@@ -25,13 +31,15 @@ public class CourseServiceImpl implements ICourseService{
     }
 
     @Override
-    public CourseDto deleteCourseById(int courseId) {
-        return courseMapper.deleteCourseById(courseId);
+    public void deleteCourseById(int courseId) {
+        CourseDto courseDto = new CourseDto();
+        courseDto.setCourseId(courseId);
+        courseMapper.deleteCourseById(courseDto);
     }
 
     @Override
-    public CourseDto updateCourseById(Long courseId) {
-        return courseMapper.updateCourseById(courseId);
+    public void updateCourseById(CourseDto courseDto) {
+        courseMapper.updateCourseById(courseDto);
     }
 
 

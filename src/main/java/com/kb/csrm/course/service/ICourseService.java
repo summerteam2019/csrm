@@ -7,6 +7,12 @@ import java.util.Map;
 public interface ICourseService {
 
     /**
+     * 获取所有院校
+     * @return
+     */
+    List<CourseDto> getAllCourse();
+
+    /**
      * 添加新用户
      * @param
      */
@@ -24,14 +30,14 @@ public interface ICourseService {
      * @param courseId
      * @return
      */
-    CourseDto deleteCourseById (int courseId);
+    void deleteCourseById (int courseId);
 
     /**
      * 按ID修改用户信息
      * @param courseId
      * @return
      */
-    CourseDto updateCourseById (Long courseId);
+    void updateCourseById (CourseDto courseId);
 
 
     /**

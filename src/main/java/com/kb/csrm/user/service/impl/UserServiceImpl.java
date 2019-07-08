@@ -23,12 +23,18 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     @Override
-    public void insertUser(UserDto userDto) {
+    public List<UserDto> getAllUser(){
+        System.out.println(userMapper.getAllUser());
+        return userMapper.getAllUser();
+    }
+
+    @Override
+    public void insertUserById(UserDto userDto) {
         userMapper.insertUser(userDto);
     }
 
     @Override
-    public UserDto selectUserById(Long userId) {
+    public UserDto selectUserById(int userId) {
         return userMapper.selectUserById(userId);
     }
 
@@ -38,12 +44,14 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserDto deleteUserById(Long userId) {
-        return userMapper.deleteUserById(userId);
+    public void deleteUserById(int userId) {
+        UserDto userDto = new UserDto();
+        userDto.setUserId(userId);
+        userMapper.deleteUserById(userDto);
     }
 
     @Override
-    public UserDto updateUserById(Long userId) {
-        return userMapper.updateUserById(userId);
+    public void updateUserById(UserDto userDto) {
+        userMapper.updateUserById(userDto);
     }
 }

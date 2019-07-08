@@ -16,50 +16,27 @@
         <result column="pw_answer" property="pwAnswer" jdbcType="VARCHAR" />
     </resultMap>
 
+    <select id="getAllUser" resultMap="BaseResultMap">
+        select *
+        from user
+    </select>
+
     <insert id="insertUser"  parameterType="com.kb.csrm.user.dto.UserDto">
         insert into user(
         user_id,
         user_name,
-        account,
-        password,
         role_name,
-        mail,
-        college_id,
-        faculty_id,
-        age,
-        education,
-        pw_question,
-        pw_answer
+        mail
         )values (
         #{userId},
         #{userName},
-        #{account},
-        #{password},
         #{roleName},
-        #{mail},
-        #{collegeId},
-        #{facultyId},
-        #{age},
-        #{education},
-        #{pwQuestion},
-        #{pwAnswer}
-
+        #{mail})
     </insert>
 
-    <select id="selectUserById" parameterType="double" resultMap="BaseResultMap">
+    <select id="selectUserById" resultMap="BaseResultMap">
         SELECT
-        user_id,
-        user_name,
-        account,
-        password,
-        role_name,
-        mail,
-        college_id,
-        faculty_id,
-        age,
-        education,
-        pw_question,
-        pw_answer
+        *
         FROM user
         WHERE user_id = #{userId}
     </select>
@@ -81,25 +58,17 @@
         FROM user
     </select>
 
-    <select id="deleteUserById" parameterType="double" resultMap="BaseResultMap">
+    <select id="deleteUserById" parameterType="com.kb.csrm.user.dto.UserDto">
         delete
-        form user
+        from user
         where user_id = #{userId}
     </select>
-    <select id="updateUserById" parameterType="double" resultMap="BaseResultMap">
+    <select id="updateUserById" parameterType="com.kb.csrm.user.dto.UserDto">
         update user
         set user_id=#{userId},
         user_name=#{userName},
-        account=#{account},
-        password=#{password},
         role_name=#{roleName},
-        mail=#{mail},
-        college_id=#{collegeId},
-        faculty_id=#{facultyId},
-        age=#{age},
-        education=#{education},
-        pw_question=#{pwQuestion},
-        pw_answer=#{pwAnswer}
+        mail=#{mail}
         where user_id = #{userId}
     </select>
 
