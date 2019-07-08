@@ -9,44 +9,77 @@
         <result column="resource_size" property="resourceSize" jdbcType="VARCHAR" />
         <result column="resource_filename" property="resourceFilename" jdbcType="VARCHAR" />
         <result column="resource_address" property="resourceAddress" jdbcType="VARCHAR" />
-        <result column="resource_time" property="resourceTime" jdbcType="DATE" />
+        <result column="resource_time" property="resourceTime" jdbcType="TIMESTAMP" />
         <result column="download_count" property="downloadCount" jdbcType="INTEGER" />
     </resultMap>
 
-    <insert id="insertResource"  parameterType="com.kb.csrm.resource.dto.ResourceDto">
+    <insert id="insertResource"  parameterType="com.kb.csrm.resource.dto.ResourceDto" useGeneratedKeys="true" keyProperty="resource_id">
         insert into resource(
+        course_id,
+        user_id,
         resource_name,
         resource_size,
         resource_filename,
         resource_address,
-        resource_time
-        )values (
-        #{resourceName};
-        #{resourceSize};
-        #{resourceFilename};
-        #{resourceAddress};
-        #{resourceTime}
+        resource_time,
+        download_count
+        )
+        values (
+        #{courseId}
+        #{userId},
+        #{resourceName},
+        #{resourceSize},
+        #{resourceFilename},
+        #{resourceAddress},
+        #{resourceTime},
+        #{downloadCount}
+        )
     </insert>
 
     <select id="selectResourceById" parameterType="double" resultMap="BaseResultMap">
-        SELECT
-        resource_id,
-        resource_name,
-        resource_size,
-        resource_filename,
-        resource_address,
-        resource_time
+        SELECT *
         FROM resource
         WHERE resource_id = #{resourceId}
     </select>
 
-    <select id="deleteResourceById" parameterType="double" resultMap="BaseResultMap">
-        delete
-        form resource
-        where resource_id = #{resourceId}
+    <select id="getAllResource" resultMap="BaseResultMap">
+        select *
+        from resource
     </select>
 
-    <select id="updateResourceById" parameterType="double" resultMap="BaseResultMap">
+    <select id="getResourceByCourseName" parameterType="String" resultMap="BaseResultMap">
+        select
+        resource.resource_id,
+        resource.course_id,
+        resource.user_id,
+        resource.resource_name,
+        resource.resource_size,
+        resource.resource_filename,
+        resource.resource_address,
+        resource.resource_time,
+        resource.download_count
+        from resource, course
+        where resource.course_id = course.course_id AND course.course_name = #{courseName}
+    </select>
+
+    <select id="getUserName" parameterType="com.kb.csrm.resource.dto.ResourceDto" resultType="String">
+        select user_name
+        from user
+        where user_id = #{userId}
+    </select>
+
+    <select id="getCourseName" parameterType="com.kb.csrm.resource.dto.ResourceDto" resultType="String">
+        select course_name
+        from course
+        where course_id = #{courseId};
+    </select>
+
+    <delete id="deleteResource" parameterType="int">
+        delete from resource
+        where resource_id = #{resourceId}
+    </delete>
+
+    <update id="updateResourceById" parameterType="int">
         update resource
         set resource_id=#{resourceId},
         course_id=#{courseId},
@@ -58,6 +91,6 @@
         resource_time=#{resourceTime},
         download_count=#{downloadCount}
         where resource_id = #{resourceId}
-    </select>
+    </update>
 
 </mapper>

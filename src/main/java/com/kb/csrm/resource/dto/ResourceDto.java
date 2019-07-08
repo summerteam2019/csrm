@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 import java.util.Date;
 
 @Table(name="resource")
@@ -50,7 +51,7 @@ public class ResourceDto {
      * 资源上传时间
      */
     @Column
-    private Date resourceTime;
+    private Timestamp resourceTime;
     /**
      * 资源下载次数
      */
@@ -113,11 +114,11 @@ public class ResourceDto {
         this.resourceAddress = resourceAddress;
     }
 
-    public Date getResourceTime() {
+    public Timestamp getResourceTime() {
         return resourceTime;
     }
 
-    public void setResourceTime(Date resourceTime) {
+    public void setResourceTime(Timestamp resourceTime) {
         this.resourceTime = resourceTime;
     }
 

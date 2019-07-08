@@ -18,13 +18,33 @@ public class ResourceServiceImpl implements IResourceService{
     }
 
     @Override
+    public List<ResourceDto> getAllResource(){
+        return resourceMapper.getAllResource();
+    }
+
+    @Override
     public ResourceDto selectResourceById(int resourceId) {
         return resourceMapper.selectResourceById(resourceId);
     }
 
     @Override
-    public ResourceDto deleteResourceById(int resourceId) {
-        return resourceMapper.deleteResourceById(resourceId);
+    public List<ResourceDto> getResourceByCourseName(String courseName){
+        return resourceMapper.getResourceByCourseName(courseName);
+    }
+
+    @Override
+    public String getUserName(ResourceDto resourceDto){
+        return resourceMapper.getUserName(resourceDto);
+    }
+
+    @Override
+    public String getCourseName(ResourceDto resourceDto){
+        return resourceMapper.getCourseName(resourceDto);
+    }
+
+    @Override
+    public ResourceDto deleteResource(int resourceId) {
+        return resourceMapper.deleteResource(resourceId);
     }
 
     @Override

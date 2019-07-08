@@ -10,6 +10,12 @@ public interface IResourceService {
     void insertResource (ResourceDto resourceDto);
 
     /**
+     * 获取所有资源
+     * @return
+     */
+    List<ResourceDto> getAllResource();
+
+    /**
      * 按ID查找资源
      * @param
      * @return
@@ -17,11 +23,32 @@ public interface IResourceService {
     ResourceDto selectResourceById (int resourceId);
 
     /**
+     * 根据课程名称查找资源
+     * @param courseName
+     * @return
+     */
+    List<ResourceDto> getResourceByCourseName(String courseName);
+
+    /**
+     * 获取资源上传者的用户名
+     * @param resourceDto
+     * @return
+     */
+    String getUserName(ResourceDto resourceDto);
+
+    /**
+     * 获取资源对应的课程
+     * @param resourceDto
+     * @return
+     */
+    String getCourseName(ResourceDto resourceDto);
+
+    /**
      * 按ID删除资源
      * @param
      * @return
      */
-    ResourceDto deleteResourceById (int resourceId);
+    ResourceDto deleteResource(int resourceId);
 
     /**
      * 按ID修改资源信息
