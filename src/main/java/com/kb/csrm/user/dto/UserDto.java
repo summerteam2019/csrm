@@ -111,7 +111,7 @@ public class UserDto {
         return roleName;
     }
 
-    public void setRoleId(String roleName) {
+    public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
 

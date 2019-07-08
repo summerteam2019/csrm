@@ -9,4 +9,6 @@ public interface ILoginService {
      * @param account
      */
     UserDto login(String account);
+
+    void signup(UserDto user);
 }

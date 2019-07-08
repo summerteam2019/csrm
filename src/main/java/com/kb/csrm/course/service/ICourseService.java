@@ -24,13 +24,13 @@ public interface ICourseService {
      * @param courseId
      * @return
      */
-    CourseDto deleteCourseById (int courseId);
+    void deleteCourseById (int courseId);
 
     /**
      * 按ID修改用户信息
      * @param courseId
      * @return
      */
-    CourseDto updateCourseById (Long courseId);
+    void updateCourseById (Long courseId);
 
 }

@@ -17,7 +17,6 @@
 
     <insert id="insertUser" parameterType="com.kb.csrm.user.dto.UserDto">
         insert into user(
-        user_id,
         user_name,
         account,
         password,
@@ -29,7 +28,6 @@
         pw_question,
         pw_answer
         )values (
-        #{userId},
         #{userName},
         #{account},
         #{password},
@@ -113,5 +111,21 @@
         pw_answer
         FROM user
         WHERE account = #{account}
+    </select>
+
+    <select id="signup" parameterType="com.kb.csrm.user.dto.UserDto">
+        insert into user(
+        user_name,
+        account,
+        password,
+        role_name,
+        mail
+        )values (
+        #{userName},
+        #{account},
+        #{password},
+        #{roleName},
+        #{mail}
+        )
     </select>
 </mapper>

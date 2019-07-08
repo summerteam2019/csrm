@@ -40,18 +40,19 @@
         </div>
         <div class="row cl">
             <label class="col-xs-4 col-sm-4"></label>
-            <div class=" col-xs-8 col-sm-4"style="font-size:22px">欢迎来到注册界面，请完善以信息进行注册</div>
+            <div class=" col-xs-8 col-sm-4" style="font-size:22px">欢迎来到注册界面，请完善以信息进行注册</div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-4">手机号码</label>
             <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text" value="" placeholder="请输入你的手机号码" id="mobilePhone" name="mobilePhone">
+                <input type="text" class="input-text" value="" placeholder="请输入你的手机号码" id="mobilePhone"
+                       name="mobilePhone">
             </div>
         </div>
 
         <div class="row cl">
             <label class="col-xs-4 col-sm-4"></label>
-            <div class=" col-xs-8 col-sm-4"style="font-size:10px">提示：您的手机号码将作为你的登录账号</div>
+            <div class=" col-xs-8 col-sm-4" style="font-size:10px">提示：您的手机号码将作为你的登录账号</div>
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-4">密码</label>
@@ -96,13 +97,14 @@
         </div>
         <div class="row cl">
             <label class="col-xs-4 col-sm-4"></label>
-            <div class=" col-xs-8 col-sm-4"style="font-size:10px">提示：请如实选择身份类型</div>
+            <div class=" col-xs-8 col-sm-4" style="font-size:10px">提示：请如实选择身份类型</div>
         </div>
 
 
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-4">
-                <input id="zhuce" class="btn btn-primary radius" type="submit" value="&nbsp;立&nbsp;即&nbsp;注&nbsp;册&nbsp;">
+                <input id="zhuce" class="btn btn-primary radius" type="button"
+                       value="&nbsp;立&nbsp;即&nbsp;注&nbsp;册&nbsp;">
             </div>
         </div>
     </form>
@@ -127,30 +129,30 @@
             rules: {
                 mobilePhone: {
                     required: true,
-                    isPhone: true,
+                    isPhone: true
                 },
                 password: {
-                    required: true,
+                    required: true
                 },
                 password2: {
                     required: true,
                     equalTo: "#password"
                 },
                 sex: {
-                    required: true,
+                    required: true
                 },
                 adminName: {
                     required: true,
                     minlength: 4,
-                    maxlength: 16,
+                    maxlength: 16
 
                 },
                 email: {
                     required: true,
-                    email: true,
-                },
+                    email: true
+                }
 
-            },
+            }
         });
     });
 </script>
@@ -163,7 +165,7 @@
             var passwordagain = $("#password2")
             var adminname = $("#adminName").val();
             var email = $("#email").val();
-            var rolename =  $("input[name='sex']:checked").val();
+            var rolename = $("input[name='sex']:checked").val();
             if (!username) {
                 alert("手机号码必填!");
                 $("#username").focus();//获取焦点
@@ -189,25 +191,26 @@
                 $("#email").focus();//获取焦点
                 return;
             }
+            var user = {
+                    "account": username,
+                    "password": password,
+                    "userName": adminname,
+                    "roleName": rolename,
+                    "mail": email
+                };
             $.ajax({
                 type: "POST",
-                url: "",//请求程序页面
+                url: "login/signup",//请求程序页面
                 async: false,//当有返回值以后才会进行后面的js程序。
-                data: {
-                    "username": username,
-                    "password": password,
-                    "adminname": adminname,
-                    "email": email,
-                    "rolename": rolename
-                },//请求需要发送的处理数据
+                data: user,//请求需要发送的处理数据
                 success: function (result) {
-                        if (result){
-                            alert("注册成功");
-                            window.location.href = "登陆.html";
-                        }
-                        else{
-                            alert("注册失败");
-                        }
+                    if (result) {
+                        alert("注册成功");
+                        window.location.href = "登陆.html";
+                    }
+                    else {
+                        alert("注册失败");
+                    }
                 },
 
             });

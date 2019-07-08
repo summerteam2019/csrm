@@ -50,6 +50,8 @@ public interface UserMapper {
      */
     UserDto updateUserById(@Param(value = "userID") double userId);
     UserDto login(@Param(value="account")int account);
+
+    void signup(UserDto user);
 }
 
 

@@ -10,6 +10,7 @@ package com.kb.csrm.user.controller;
 
 import com.kb.csrm.user.dto.UserDto;
 import com.kb.csrm.user.service.ILoginService;
+import com.kb.csrm.util.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,5 +56,12 @@ public class LoginController {
         }
         map.put("flag", flag);
         return map;
+    }
+
+    @RequestMapping("/signup")
+    @ResponseBody
+    public ResponseData signUp(UserDto user, HttpServletRequest request) {
+        loginService.signup(user);
+        return new ResponseData(true);
     }
 }

@@ -25,12 +25,12 @@ public class CourseServiceImpl implements ICourseService{
     }
 
     @Override
-    public CourseDto deleteCourseById(int courseId) {
-        return courseMapper.deleteCourseById(courseId);
+    public void deleteCourseById(int courseId) {
+        courseMapper.deleteCourseById(courseId);
     }
 
     @Override
-    public CourseDto updateCourseById(Long courseId) {
-        return courseMapper.updateCourseById(courseId);
+    public void updateCourseById(Long courseId) {
+        courseMapper.updateCourseById(courseId);
     }
 }

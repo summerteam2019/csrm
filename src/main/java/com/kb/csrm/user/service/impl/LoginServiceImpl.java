@@ -26,4 +26,9 @@ public class LoginServiceImpl implements ILoginService {
         int acc = Integer.parseInt(account);
         return userMapper.login(acc);
     }
+
+    @Override
+    public void signup(UserDto user) {
+        userMapper.signup(user);
+    }
 }

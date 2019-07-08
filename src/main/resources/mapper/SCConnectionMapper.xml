@@ -9,8 +9,10 @@
 
     <select id="getSCConnectionByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select *
-        from student_course_connection
-        where user_id = #{userId}
+        from student_course_connection sc, user u, course c
+        where sc.user_id = #{userId}
+          and u.user_id = #{userId}
+          and c.course_id = #{courseId}
     </select>
 
     <select id="getSCConnectionByCourseId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -22,7 +24,6 @@
     <insert id="addSCConnection" parameterType="com.kb.csrm.scConnection.dto.SCConnectionDto">
         insert into student_course_connection
         values (
-        #{scConnectionId},
         #{userId},
         #{courseId}
         )
