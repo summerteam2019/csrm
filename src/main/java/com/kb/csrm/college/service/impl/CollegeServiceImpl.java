@@ -25,6 +25,11 @@ public class CollegeServiceImpl implements ICollegeService {
     }
 
     @Override
+    public List<CollegeDto> getCollegeByName(String collegeName){
+        return collegeMapper.getCollegeByName(collegeName);
+    }
+
+    @Override
     public void addCollege(CollegeDto collegeDto){
         collegeMapper.addCollege(collegeDto);
     }

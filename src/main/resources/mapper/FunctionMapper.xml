@@ -20,6 +20,12 @@
         where function_id = #{functionId}
     </select>
 
+    <select id="getFunctionByName" parameterType="String" resultMap="BaseResultMap">
+        select *
+        from function_menu
+        where function_name LIKE #{functionName}
+    </select>
+
     <insert id="addFunction" parameterType="com.kb.csrm.function.dto.FunctionDto">
         insert into function_menu
         values (

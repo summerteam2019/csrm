@@ -24,6 +24,11 @@ public class FunctionServiceImpl implements IFunctionService {
     }
 
     @Override
+    public FunctionDto getFunctionByName(String functionName){
+        return functionMapper.getFunctionByName(functionName);
+    }
+
+    @Override
     public void addFunction(FunctionDto functionDto){
         functionMapper.addFunction(functionDto);
     }

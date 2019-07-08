@@ -20,6 +20,13 @@ public interface IFunctionService {
     FunctionDto getFunctionById(int functionId);
 
     /**
+     * 根据名称获取功能
+     * @param functionName
+     * @return
+     */
+    FunctionDto getFunctionByName(String functionName);
+
+    /**
      * 添加功能
      * @param functionDto
      */

@@ -34,6 +34,26 @@ public interface IAppraiseService {
     AppraiseDto getAppraiseByCourseId(int courseId);
 
     /**
+     * 获取评论用户的用户名
+     * @param appraiseDto
+     * @return
+     */
+    String getAppraiseUser(AppraiseDto appraiseDto);
+
+    /**
+     * 获取评论课程的课程名
+     * @param appraiseDto
+     * @return
+     */
+    String getAppraiseCourse(AppraiseDto appraiseDto);
+
+    /**
+     * 根据关键字获取评论
+     * @param keyWord
+     * @return
+     */
+    List<AppraiseDto> getAppraiseByKeyWord(String keyWord);
+    /**
      * 添加评论
      * @param appraiseDto
      */

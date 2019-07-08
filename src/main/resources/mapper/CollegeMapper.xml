@@ -18,6 +18,12 @@
         where college_id = #{collegeId}
     </select>
 
+    <select id="getCollegeByName" parameterType="String" resultMap="BaseResultMap">
+        select *
+        from college
+        where college_name LIKE #{collegeName}
+    </select>
+
     <insert id="addCollege" parameterType="com.kb.csrm.college.dto.CollegeDto">
         insert into college
         values (

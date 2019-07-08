@@ -25,7 +25,7 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 院校管理 <span class="c-gray en">&gt;</span> 院校列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<input type="text" class="input-text" style="width:250px" placeholder="学院名称或ID" id="collegeIdOrName" name="collegeIdOrName">
+		<input type="text" class="input-text" style="width:250px" placeholder="学院名称" id="fCollegeName" name="fCollegeName">
 		<button type="submit" class="btn btn-success" onclick="findOneCollege()"><i class="Hui-iconfont">&#xe665;</i> 搜院校</button>
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
@@ -142,7 +142,7 @@ $(function(){
 						"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editCollegeModal('" +obj[i].collegeId + " ')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
 						+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteCollege('" +obj[i].collegeId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
 						"</tr>";
-			};
+			}
 			document.getElementById("mesContent").innerHTML = str;
 		}
 	};
@@ -151,15 +151,13 @@ $(function(){
 }
 )
 function findOneCollege() {
-	var collegeId = $("#collegeIdOrName").val();
+	var collegeName = $("#fCollegeName").val();
 	$.ajax({
 		type:"post",
-		url:"college/getCollegeById",
+		url:"college/getCollegeByName",
 		dataType:"json",
 		data:{
-			"collegeId": collegeId,
-			"collegeName": null,
-			"facultyName": null
+			"collegeName": collegeName
 		},
 		success: function(data) {
 			if(data != null){
@@ -167,17 +165,19 @@ function findOneCollege() {
 				xmlhttp.onreadystatechange = function () {
 					if (this.readyState == 4 && this.status == 200) {
 						var str = "";
-						str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + data.collegeId + " name=''></td>" +
-								"<td>" + data.collegeId + "</td>" +
-								"<td>" + data.collegeName + "</td>" +
-								"<td>" + data.facultyName + "</td>" +
-								"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editCollegeModal('院校编辑','college-edit.html?cid=" + data.collegeId + " ','','400')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
-								+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteCollege('" + data.collegeId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
-								"</tr>";
+						for(i = 0; i < data.length; i++){
+							str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + data[i].collegeId + " name=''></td>" +
+									"<td>"+data[i].collegeId+"</td>" +
+									"<td>"+data[i].collegeName+"</td>" +
+									"<td>"+data[i].facultyName+"</td>" +
+									"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editCollegeModal('" +data[i].collegeId + " ')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
+									+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteCollege('" +data[i].collegeId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
+									"</tr>";
+						}
 						document.getElementById("mesContent").innerHTML = str;
 					}
 				};
-				xmlhttp.open("GET", "/college/getCollegeById", true);
+				xmlhttp.open("GET", "/college/getCollegeByName", true);
 				xmlhttp.send();
 			}
 			else{

@@ -25,7 +25,7 @@
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 管理员管理 <span class="c-gray en">&gt;</span> 功能管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<input type="text" class="input-text" style="width:250px" placeholder="功能名称" id="findFid" name="findFid">
+		<input type="text" class="input-text" style="width:250px" placeholder="功能名称" id="findFName" name="findFName">
 		<button type="submit" class="btn btn-success" onclick="findOne()"><i class="Hui-iconfont">&#xe665;</i>
 			搜索功能
 		</button>
@@ -175,17 +175,15 @@ $(function(){
 });
 
 function findOne() {
-	var functionId = $("#findFid").val();
+	var functionName = $("#findFName").val();
 	$.ajax({
 		type: "post",
-		url: "function/getFunctionById",//请求程序页面
+		url: "function/getFunctionByName",//请求程序页面
 		dataType: "json",
 		data: {
-			"functionId": functionId,
-			"functionName": null,
+			"functionName": functionName,
 			"functionMeaning": null,
-			"functionUrl": null,
-			//"parentId": null
+			"functionUrl": null
 		},//请求需要发送的处理数据
 		success: function (data) {
 			if(data != null){
@@ -205,7 +203,7 @@ function findOne() {
 						document.getElementById("mesContent").innerHTML = str;
 					}
 				};
-				xmlhttp.open("GET", "/function/getFunctionById", true);
+				xmlhttp.open("GET", "/function/getFunctionByName", true);
 				xmlhttp.send();
 			}
 			else{
