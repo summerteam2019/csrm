@@ -102,4 +102,10 @@
         pw_answer=#{pwAnswer}
         where user_id = #{userId}
     </select>
+
+    <select id="login" parameterType="int" resultMap="BaseResultMap">
+        select *
+        from user
+        where account = #{account}
+    </select>
 </mapper>

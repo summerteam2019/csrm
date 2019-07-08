@@ -31,9 +31,9 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/getAppraiseById")
     @ResponseBody
-    public ResponseData getAppraiseById(@RequestBody Integer appraiseId, HttpServletRequest request){
+    public AppraiseDto getAppraiseById(@RequestBody int appraiseId){
         appraiseService.getAppraiseById(appraiseId);
-        return new ResponseData(true);
+        return appraiseService.getAppraiseById(appraiseId);
     }
 
     @RequestMapping("/getAppraiseByUserId")
@@ -60,10 +60,10 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/deleteAppraise")
     @ResponseBody
-    public ResponseData deleteAppraise(@RequestBody Integer appraiseId, HttpServletRequest request){
+    public boolean deleteAppraise(int appraiseId){
 
         appraiseService.deleteAppraise(appraiseId);
-        return new ResponseData(true);
+        return true;
     }
 
     @RequestMapping("/updateAppraise")
