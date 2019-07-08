@@ -55,4 +55,17 @@ public class CourseController extends BaseController{
         return new ResponseData(true);
     }
 
+    @RequestMapping("/getCourseByKeyWord")
+    @ResponseBody
+    public Object[] getCourseByKeyWord(String courseName) {
+        List<CourseDto> courseList = courseService.getCourseByKeyWord(courseName);
+        Object[] allCourse = new Object[2];
+        String[] collegeName = new String[courseList.size()];
+        for(int i = 0; i < courseList.size(); i++){
+            collegeName[i] = courseService.getCollegeName(courseList.get(i));
+        }
+        allCourse[0] = courseList;
+        allCourse[1] = collegeName;
+        return allCourse;
+    }
 }

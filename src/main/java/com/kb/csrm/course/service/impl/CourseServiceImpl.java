@@ -33,4 +33,15 @@ public class CourseServiceImpl implements ICourseService{
     public CourseDto updateCourseById(Long courseId) {
         return courseMapper.updateCourseById(courseId);
     }
+
+
+    @Override
+    public List<CourseDto> getCourseByKeyWord(String courseName){
+        return courseMapper.getCourseByKeyWord(courseName);
+    }
+
+    @Override
+    public String getCollegeName(CourseDto courseDto){
+        return courseMapper.getCollegeName(courseDto);
+    }
 }

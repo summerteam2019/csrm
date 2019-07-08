@@ -36,4 +36,19 @@ public interface CourseMapper {
      * @return
      */
     CourseDto updateCourseById(@Param(value = "courseID") double courseId);
+
+
+    /**
+     * 根据关键字查询课程
+     * @param courseName
+     * @return
+     */
+    List<CourseDto> getCourseByKeyWord(String courseName);
+
+    /**
+     * 获取课程对应的学校名
+     * @param courseDto
+     * @return
+     */
+    String getCollegeName(CourseDto courseDto);
 }
