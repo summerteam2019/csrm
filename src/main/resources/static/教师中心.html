@@ -122,17 +122,7 @@
 
     function searchCourse(){
         var courseKeyWord = $("#searchCourse").val();
-        $.ajax({
-            type: "POST",
-            url: "/course/getCourseByKeyWord",//请求程序页面
-            dataType: "json",
-            data: {
-                "courseName": courseKeyWord
-            },
-            success: function(){
-
-            }
-        });
+        window.location.href = '搜索结果.html?courseKeyWord=' + courseKeyWord;
     }
 
 </script>
