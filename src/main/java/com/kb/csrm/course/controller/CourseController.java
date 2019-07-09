@@ -96,4 +96,16 @@ public class CourseController extends BaseController{
         return new ResponseData(courseService.getChosenCourse(userId));
     }
 
+    /**
+     * 获取点击量最高的5门课程
+     *
+     * @return
+     */
+    @RequestMapping("/getHighCount")
+    @ResponseBody
+    public ResponseData getChosenCourse(HttpServletRequest request){
+        return new ResponseData(courseService.getHighCount(5));
+    }
+
+
 }

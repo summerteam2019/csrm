@@ -55,6 +55,11 @@ public class CourseServiceImpl implements ICourseService {
     }
 
     @Override
+    public List<CourseDto> getHighCount(int num) {
+        return  courseMapper.getHighCount(num);
+    }
+
+    @Override
     public void updateCourseById(CourseDto courseDto) {
         int courseId = courseDto.getCourseId();
         courseMapper.updateCourseById(courseId);

@@ -67,4 +67,11 @@ public interface ICourseService {
      * @return
      */
     List<CourseDto> getChosenCourse(Long userId);
+
+    /**
+     * 获取点击量最高的课程
+     * @param num
+     * @return
+     */
+    List<CourseDto> getHighCount(int num);
 }
