@@ -169,14 +169,14 @@
             type: "POST",
             url: "",//请求程序页面
             success: function (data) {
-                for(var i=0;i<data.length;i++){
-                    $("h4#class"+(i+1)).text(data[i].id);
-                    $("p#class"+(i+1)).text(data[i].intro);
-                    $("h3#class"+(i+1)).text(data[i].title);
-                    $("div#class"+(i+1).left).text(data[i].teacher);
-                    $("div#class"+(i+1).right).text(data[i].count);
+                for(var i=0;i<data.rows.length;i++){
+                    $("h4#class"+(i+1)).text(data.rows[i].id);
+                    $("p#class"+(i+1)).text(data.rows[i].intro);
+                    $("h3#class"+(i+1)).text(data.rows[i].title);
+                    $("div#class"+(i+1).left).text(data.rows[i].teacher);
+                    $("div#class"+(i+1).right).text(data.rows[i].count);
                     $("#class"+(i+1)).attr({
-                        "src" : data[i].src,
+                        "src" : data.rows[i].src,
                     });
                 }
             },
