@@ -55,27 +55,7 @@
                 <input type="text" class="input-text"  name="email" id="email"disabled="disabled">
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">当前密码</label>
-            <div class="formControls col-xs-8 col-sm-4">
-                <input type="password" class="input-text" autocomplete="off" placeholder="输入当前密码确认身份" value="" id="password"
-                       name="password">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">新密码</label>
-            <div class="formControls col-xs-8 col-sm-4">
-                <input type="password" class="input-text" autocomplete="off" placeholder="请输入你的新密码" value="" id="newPassword"
-                       name="newPassword">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">确认密码</label>
-            <div class="formControls col-xs-8 col-sm-4">
-                <input type="password" class="input-text" autocomplete="off" placeholder="请再次输入新密码" id="newPassword2"
-                       name="newPassword2">
-            </div>
-        </div>
+
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-4">学校</label>
             <div class="formControls col-xs-8 col-sm-4">
@@ -111,28 +91,14 @@
             <label class="form-label col-xs-4 col-sm-4">学历</label>
             <div class="formControls col-xs-8 col-sm-4"> <span class="select-box" style="width:150px;">
                     <select class="select" name="education"id="education" size="1">
-                        <option value="0">高中</option>
-                        <option value="1">本科在读</option>
-                        <option value="2">本科毕业</option>
-                        <option value="3">研究生</option>
+                        <option value="高中">高中</option>
+                        <option value="本科在读">本科在读</option>
+                        <option value="本科毕业">本科毕业</option>
+                        <option value="研究生">研究生</option>
                     </select>
                     </span> </div>
         </div>
 
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">密保问题</label>
-            <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text" autocomplete="off" value="" id="protection"
-                       name="protection"disabled="disabled">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">密保问题答案</label>
-            <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text" autocomplete="off" value="" id="protectionQuestion"
-                       name="protectionAnswer">
-            </div>
-        </div>
 
         <!--        <div class="row cl">
                 <label class="form-label col-xs-4 col-sm-3">角色：</label>
@@ -179,82 +145,37 @@
             radioClass: 'iradio-green',
             increaseArea: '20%'
         });
-
-        $("#form-admin-add").validate({
-            rules: {
-                password: {
-                    required: true,
-                },
-                newpassword: {
-                    required: true,
-                },
-                newPassword2: {
-                    required: false,
-                    equalTo: "#newPassword"
-                },
-                protectionQuestion: {
-                    required: true,
-                },
-            },
-
-        });
     });
 
     $(function () {
         $("#adminName").val($.session.get("NAME"));
-        $("#protection").val($.session.get("PROTECTION"));
         $("#email").val($.session.get("EMAIL"));
         $("#school").val($.session.get("SCHOOL"));
         $("#faculty").val($.session.get("FACULTY"));
         $("#age").val($.session.get("AGE"));
+        $("#education").val($.session.get("EDUCATION"));
+
+
     });
 
     $(function () {
         $("#xiugai").click(function () {
             var adminname = $("#adminName").val();
-            var password = $("#password").val();
-            var newpassword = $("#newPassword").val();
-            var newpassword2 = $("#newPassword2").val();
-            var protctionanswer=$("#protectionAnswer").val();
             var school=$("#school").val();
             var faculty=$("#faculty").val();
             var age=$("#age").val();
             var education=$("#education").val();
 
-            if (!password) {
-                alert("旧密码必填!");
-                $("#username").focus();//获取焦点
-                return;
-            }
-            if (!newpassword) {
-                alert("新密码必填！");
-                $("#username").focus();//获取焦点
-                return;
-            }
-            if (!newpassword2) {
-                alert("必须确认密码!");
-                $("#username").focus();//获取焦点
-                return;
-            }
-            if (!protctionanswer) {
-                alert("密保答案必填!");
-                $("#protectionAnswer").focus();//获取焦点
-                return;
-            }
             $.ajax({
                 type: "POST",
                 url: "",//请求程序页面
                 async: false,//当有返回值以后才会进行后面的js程序。
                 data: {
                     "userName": adminname,
-                    "oldpassword": password,
-                    "newpassword":newpassword,
                     "collegeName":school,
                     "facultyName":faculty,
                     "age": age,
                     "education":education,
-                    "pwAnswer":protctionanswer,
-
                 },//请求需要发送的处理数据
                 success: function (result) {
                     if (result){
