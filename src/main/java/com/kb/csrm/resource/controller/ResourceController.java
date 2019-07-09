@@ -26,19 +26,51 @@ public class ResourceController extends BaseController{
         return new ResponseData(true);
     }
 
+    @RequestMapping("/getAllResource")
+    @ResponseBody
+    public Object[] getAllResource(){
+        Object[] allResource = new Object[3];
+        List<ResourceDto> resourceList = resourceService.getAllResource();
+        String[] userName = new String[resourceList.size()];
+        String[] courseName = new String[resourceList.size()];
+        for(int i = 0; i < resourceList.size(); i++){
+            userName[i] = resourceService.getUserName(resourceList.get(i));
+            courseName[i] = resourceService.getCourseName(resourceList.get(i));
+        }
+        allResource[0] = resourceList;
+        allResource[1] = userName;
+        allResource[2] = courseName;
+        return allResource;
+    }
+
 
     @RequestMapping("/select")
     @ResponseBody
-    public ResourceDto selectResourceByIdById(ResourceDto resourceDto){
+    public ResourceDto selectResourceById(ResourceDto resourceDto){
         int resourceId = resourceDto.getResourceId();
         return resourceService.selectResourceById(resourceId);
     }
 
+    @RequestMapping("/getResourceByCourseName")
+    @ResponseBody
+    public Object[] getResourceByCourseName(String courseName){
+        Object[] allResource = new Object[3];
+        List<ResourceDto> resourceList = resourceService.getResourceByCourseName(courseName);
+        String[] userName = new String[resourceList.size()];
+        for(int i = 0; i < resourceList.size(); i++){
+            userName[i] = resourceService.getUserName(resourceList.get(i));
+        }
+        allResource[0] = resourceList;
+        allResource[1] = userName;
+        allResource[2] = courseName;
+        return allResource;
+    }
+
     @RequestMapping("/delete")
     @ResponseBody
-    public ResponseData deleteResourceById(@RequestBody int resourceId, HttpServletRequest request){
-        resourceService.deleteResourceById(resourceId);
-        return new ResponseData(true);
+    public boolean deleteResourceById(int resourceId){
+        resourceService.deleteResource(resourceId);
+        return true;
     }
 
     @RequestMapping("/update")

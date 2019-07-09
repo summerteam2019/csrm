@@ -11,11 +11,18 @@ package com.kb.csrm.user.mapper;
 import com.kb.csrm.user.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 @Mapper
 public interface UserMapper {
+
+    /**
+     * 获取所有院校
+     * @return
+     */
+    List<UserDto> getAllUser();
 
     /**
      * 添加新用户
@@ -28,7 +35,7 @@ public interface UserMapper {
      * @param userId
      * @return
      */
-    UserDto selectUserById(@Param(value = "userID") double userId);
+    UserDto selectUserById(int userId);
 
     /**
      * 根据筛选条件查询用户
@@ -38,17 +45,17 @@ public interface UserMapper {
 
     /**
      * 根据ID删除用户
-     * @param userId
+     * @param
      * @return
      */
-    UserDto deleteUserById(@Param(value = "userID") double userId);
+    void deleteUserById(UserDto userDto);
 
     /**
      * 根据ID更改用户
-     * @param userId
+     * @param
      * @return
      */
-    UserDto updateUserById(@Param(value = "userID") double userId);
+    void updateUserById(UserDto userDto);
     UserDto login(@Param(value="account")int account);
 
     void signup(UserDto user);

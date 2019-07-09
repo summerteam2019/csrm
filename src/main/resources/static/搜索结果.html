@@ -61,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 		<div class="check">
 			<div><h1>为您找到相关的课程如下</h1></div>
-			<div class="col-md-9 cart-items">
+			<div class="col-md-9 cart-items" id="mesContent">
 
 				<div class="cart-header">
 
@@ -89,7 +89,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 
 				<div class="cart-header2">
-
 					<div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
 							<img src="images/pic1.jpg" class="img-responsive" alt=""/>
@@ -145,6 +144,66 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <script src="js/jquerysession.js"></script>
 
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+
+<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var urlinfo=window.location.href; //获取当前页面的url
+		var len=urlinfo.length;//获取url的长度
+		var offset=urlinfo.indexOf("?");//设置参数字符串开始的位置
+		var newsidinfo=urlinfo.substr(offset,len)//取出参数字符串 这里会获得类似“id=1”这样的字符串
+		var newsids=newsidinfo.split("=");//对获得的参数字符串按照“=”进行分割
+		var newsid=newsids[1];//得到参数值
+		var newsname=newsids[0];//得到参数名字
+		var courseKeyWord = newsid;
+		$.ajax({
+			type: "POST",
+			url: "/course/getCourseByKeyWord",//请求程序页面
+			dataType: "json",
+			data: {
+				"courseName": courseKeyWord
+			},
+			success: function(data){
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						var str = "";
+						for(i = 0; i < data[0].length; i++){
+							str += "<div class='cart-header'>" +
+									 "<div class=\"cart-sec simpleCart_shelfItem\">" +
+									    "<div class=\"cart-item cyc\">" +
+									       "<img src='图片文件夹路径/" +data[0][i].collegeName+ ".jpg' class=\"img-responsive\" alt=\"\"/>" +
+									    "</div>" +
+									    "<div class=\"cart-item-info\">" +
+									       "<h3><a href=\"课程详情.html?courseId=\" " +data[0][i].courseId+">"+data[0][i].courseName+"</a></h3>" +
+									       "<ul class=\"qty\">" +
+									           "<li><p>"+data[1][i]+"</p></li>" +
+									           "<li><p>"+data[0][i].teacherName+"</p></li>" +
+									       "</ul>" +
+									       "<div class=\"delivery\">" +
+									           "<p>"+data[0][i].courseIntroduce+"</p>" +
+									           "<div class=\"clearfix\"></div>" +
+									       "</div>" +
+									    "</div>" +
+									    "<div class=\"clearfix\"></div>" +
+									 "</div>" +
+									"</div>";
+						}
+						document.getElementById("mesContent").innerHTML = str;
+					}
+				};
+				xmlhttp.open("GET", "/course/getCourseByKeyWord", true);
+				xmlhttp.send();
+			}
+		});
+	});
+</script>
 </body>
 </html>
 			

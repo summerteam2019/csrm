@@ -42,31 +42,39 @@
     </insert>
 
     <select id="selectCourseById" parameterType="double" resultMap="BaseResultMap">
-        SELECT
-        course_id,
-        teacher_name,
-        course_name,
-        course_rate
+        SELECT *
         FROM course
         WHERE course_id = #{courseId}
     </select>
 
-    <select id="deleteCourseById" parameterType="double"  resultMap="BaseResultMap">
-        delete
-        form course
+    <delete id="deleteCourseById" parameterType="com.kb.csrm.course.dto.CourseDto"  >
+        delete from course
         where course_id = #{courseId}
-    </select>
-    <select id="updateCourseById" parameterType="double" resultMap="BaseResultMap">
+    </delete>
+    <update id="updateCourseById" parameterType="com.kb.csrm.course.dto.CourseDto" >
         update course
-        set teacher_id=#{teacherId},
-        college_id=#{collegeId},
-        teacher_name=#{teacherName},
+        set
         course_name=#{courseName},
-        course_introduce=#{courseIntroduce},
-        course_time=#{courseTime},
-        course_rate=#{courseRate},
-        course_count=#{courseCount}
+        teacher_name=#{teacherName},
         where course_id = #{courseId}
+    </update>
+
+
+    <select id="getCourseByKeyWord" parameterType="String" resultMap="BaseResultMap">
+        select *
+        from course
+        where course_name LIKE CONCAT('%',#{courseName},'%')
+    </select>
+
+    <select id="getCollegeName" parameterType="com.kb.csrm.course.dto.CourseDto" resultType="String">
+        select college_name
+        from college
+        where college_id = #{collegeId}
+    </select>
+
+    <select id="getAllCourse" resultMap="BaseResultMap">
+        select *
+        from course
     </select>
 
     <select id="getRecommend" resultType="com.kb.csrm.course.dto.CourseDto">

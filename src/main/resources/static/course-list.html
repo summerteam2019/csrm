@@ -19,112 +19,282 @@
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
-<title>课程管理</title>
+<title>课程列表</title>
 </head>
 <body>
 <nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 课程管理 <span class="c-gray en">&gt;</span> 课程列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 <div class="page-container">
 	<div class="text-c">
-		<form class="Huiform" method="get" action="" target="_self">
-			<input type="text" class="input-text" style="width:150px" placeholder="请输入课程ID" id="courseId" name="courseId">
-			<button type="submit" class="btn btn-success" id="" onclick="selectCourseById()"><i class="Hui-iconfont">&#xe665;</i> 搜课程</button>
-		</form>
+		<input type="text" class="input-text" style="width:250px" placeholder="课程名称或ID" id="courseIdOrName" name="courseIdOrName">
+		<button type="submit" class="btn btn-success" onclick="findOneCourse()"><i class="Hui-iconfont">&#xe665;</i> 搜课程</button>
 	</div>
-	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a></span> <span class="r">共有数据：<strong>54</strong> 条</span> </div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<span class="l">
+			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+			<a class="btn btn-primary radius" onclick="addACourseModal()" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加课程</a></span>
+		<span class="r">共有数据：<strong>54</strong> 条</span>
+	</div>
 	<div class="mt-20">
-		<table class="table table-border table-bordered table-bg table-sort">
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
 			<thead>
-				<tr class="text-c">
-					<th width="25"><input type="checkbox" name="" value=""></th>
-					<th width="50">课程ID</th>
-					<th width="100">课程名</th>
-					<th width="50">教师名</th>
-					<th width="50">课程评分</th>
-					<th width="50">点击次数</th>
-					<th width="100">操作</th>
-				</tr>
+			<tr class="text-c">
+				<th width="25"><input type="checkbox" name="" value=""></th>
+				<th width="50">课程ID</th>
+				<th width="100">课程名</th>
+				<th width="50">教师名</th>
+				<th width="50">课程评分</th>
+				<th width="100">操作</th>
+			</tr>
 			</thead>
-			<tbody>
-				<tr class="text-c">
-					<td><input name="" type="checkbox" value=""></td>
-					<td>1</td>
-					<td>BIM安装工程应用</td>
-					<td>刘真</td>
-					<td>4.8</td>
-					<td>3200</td>
-					<td class="f-14 product-brand-manage"><a style="text-decoration:none" onClick="course_edit('课程添加','course-add.html','400','400','300')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a style="text-decoration:none" class="ml-5" onClick="deleteCourseById(id)" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
+			<tbody id="mesContent">
 			</tbody>
 		</table>
+		<br>
 	</div>
 </div>
+
+<!--添加学院模态框-->
+<div id="addCourseModal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+	 aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">添加课程</h4>
+			</div>
+			<div class="container">
+				<div class="form-group">
+					<label for="cid">课程ID:</label>
+					<input type="text" class="form-control" id="cid" name="cid" value="">
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="cname">课程名:</label>
+					<input type="text" class="form-control" id="cname" name="cname" value="">
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="teacher">教师名:</label>
+					<input type="text" class="form-control" id="teacher" name="teacher" value="">
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="score">课程评分:</label>
+					<input type="text" class="form-control" id="score" name="score" value="">
+				</div>
+				<br><br>
+				<button type="submit" class="btn btn-primary" onclick="addCourse()">提交</button>
+				<br><br>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<!--编辑学院模态框-->
+<div id="editCourseModal" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false"
+	 aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">编辑课程</h4>
+			</div>
+			<div class="container">
+				<input type="hidden" id="editCid">
+				<div class="form-group">
+					<label for="cname-e">课程名称:</label>
+					<input type="text" class="form-control" id="cname-e" name="cname-e" value="">
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="teacher-e">教师名:</label>
+					<input type="text" class="form-control" id="teacher-e" name="teacher-e" value="">
+				</div>
+				<br><br>
+				<button type="submit" class="btn btn-primary" onclick="editCourseSave()">提交</button>
+				<br><br>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+
+<!--/_footer 作为公共模版分离出去-->
+
 <!--请在下方写此页面业务相关的脚本-->
+
 <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script> 
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
 
-<script type="text/javascript">
-	<!--定义添加界面大小-->
-function course_edit(title,url,w,h){
-	layer_show(title,url,w,h);
-}
-</script>
-<script type="text/javascript">
-	<!--删除课程-->
-	function deleteCourseById(id) {
-		if (confirm("您确定要删除这条数据吗？")) {
-			$.ajax({
-				url: 'course/delete',
-				dataType: 'json',
-				type: 'post',
-				data: {rid: id},
-				success: function (data) {
-					if (data) {
-						alert("删除成功");
-					} else {
-						alert("删除失败");
-					}
-					$("#test-table").bootstrapTable('refresh');
-				},
-				error: function () {
-					alert("请求失败");
-				}
-			});
+$(function(){
+	<!--获取全部课程-->
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			obj = JSON.parse(this.responseText);
+			var str = "";
+			for(i = 0; i < obj.length; i++){
+				str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + obj[i].courseId + " name=''></td>" +
+						"<td>"+obj[i].courseId+"</td>" +
+						"<td>"+obj[i].courseName+"</td>" +
+						"<td>"+obj[i].teacherName+"</td>" +
+						"<td>"+obj[i].courseRate+"</td>" +
+						"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editCourseModal('" +obj[i].courseId + " ')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
+						+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteCourse('" +obj[i].courseId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
+						"</tr>";
+			};
+			document.getElementById("mesContent").innerHTML = str;
 		}
-	}
-	<!--查询课程-->
-	function selectCourseById()
-	{
-		var courseId = $("#courseId").val();
+	};
+	xmlhttp.open("GET", "/course/getAllCourse", true);
+	xmlhttp.send();
+}
+)
+function findOneCourse() {
+	var courseId = $("#courseIdOrName").val();
+	$.ajax({
+		type:"post",
+		url:"course/select",
+		dataType:"json",
+		data:{
+			"courseId": courseId,
+			"courseName":null,
+			"teacherName":null,
+			"courseRate":null,
+		},
+		success: function(data) {
+			if(data != null){
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function () {
+					if (this.readyState == 4 && this.status == 200) {
+						var str = "";
+						str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + data.courseId + " name=''></td>" +
+								"<td>" + data.courseId + "</td>" +
+								"<td>" + data.courseName + "</td>" +
+								"<td>" + data.teacherName + "</td>" +
+								"<td>" + data.courseRate + "</td>" +
+								"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editCourseModal('" + data.collegeId + " ')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
+								+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteCourse('" + data.collegeId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
+								"</tr>";
+						document.getElementById("mesContent").innerHTML = str;
+					}
+				};
+				xmlhttp.open("GET", "/course/select", true);
+				xmlhttp.send();
+			}
+			else{
+				alert("不存在该课程！");
+			}
+		},
+		error: function(){
+			alert("不存在该课程！");
+		}
+	});
+}
+
+/*添加学院*/
+function addACourseModal(){
+	$("#addCourseModal").modal("show");
+}
+function addCourse(){
+	var courseId = $("#cid").val();
+	var courseName = $("#cname").val();
+	var teacherName = $("#teacher").val();
+	var courseRate = $("#score").val();
+	$.ajax({
+		type: "POST",
+		url: "course/create",//请求程序页面
+		dataType: "json",
+		async: false,//当有返回值以后才会进行后面的js程序。
+		data: {
+			"courseId": courseId,
+			"courseName": courseName,
+			"teacherName": teacherName,
+		    "courseRate":courseRate},
+		//请求需要发送的处理数据
+		success: function (data) {
+			if(data){
+				alert("添加成功！");
+				$("#addCourseModal").modal("hide");
+				location.replace(location.href);
+			}
+			else {
+				alert("添加失败！");
+			}
+
+		}
+	});
+}
+
+//删除学院
+function deleteCourse(id){
+	if(confirm('您确定要删除该院校吗')){
 		$.ajax({
+			url:"course/delete",
 			type:"post",
-			url:"course/select",
 			dataType:"json",
 			data:{
-				"courseId": courseId,
-				"courseName":null,
-				"teacherName":null,
-				"courseRate":null
+				"courseId":id
 			},
-			success: function(data) {
-				alert(data.courseName);
-				<!--显示查询结果-->
-				$("#mesContent").attr({
-					"type" : "checkbox",
-					"td": "data.courseId",
-					"td": "data.courseName",
-					"td": "data.teacherName",
-					"td": "data.courseRate"
-				});
+			success:function(data){
+				if(data){
+					alert("删除成功");
+					location.replace(location.href);
+				}else{
+					alert("删除失败");
+				}
+			},
+			error:function(){
+				alert("请求失败");
 			}
 		});
 	}
+}
+
+/*院校-编辑*/
+function editCourseModal(cid){
+	$("#editCid").val(cid);
+	$("#editCourseModal").modal("show");
+}
+function editCourseSave() {
+	var courseId = $("#editCid").val();
+	var courseName = $("#cname-e").val();
+	var teacherName = $("#teacher-e").val();
+	var courseRate = $("#score-e").val();
+	$.ajax({
+		type: "POST",
+		url: "college/update",//请求程序页面
+		dataType: "json",
+		async: false,//当有返回值以后才会进行后面的js程序。
+		data: {
+			"courseId": courseId,
+			"courseName": courseName,
+			"teacherName": teacherName,
+			"courseRate":courseRate,
+		},//请求需要发送的处理数据
+		success: function (data) {
+			if(data){
+				alert("修改成功！");
+				location.replace(location.href);
+				$("#editCourseModal").modal("hide");
+
+			}
+			else {
+				alert("修改失败！");
+			}
+
+		}
+
+	});
+}
 </script>
 </body>
 </html>

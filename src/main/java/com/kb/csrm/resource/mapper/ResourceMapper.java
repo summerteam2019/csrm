@@ -16,6 +16,19 @@ public interface ResourceMapper {
     void insertResource(ResourceDto resource);
 
     /**
+     * 根据课程名获取资源
+     * @param courseName
+     * @return
+     */
+    List<ResourceDto> getResourceByCourseName(String courseName);
+
+    /**
+     * 获取所有资源
+     * @return
+     */
+    List<ResourceDto> getAllResource();
+
+    /**
      * 根据ID查询资源
      * @param resourceId
      * @return
@@ -23,11 +36,24 @@ public interface ResourceMapper {
     ResourceDto selectResourceById(int resourceId);
 
     /**
+     * 获取资源上传者的用户名
+     * @param resourceDto
+     * @return
+     */
+    String getUserName(ResourceDto resourceDto);
+
+    /**
+     * 获取资源对应的课程
+     * @param resourceDto
+     * @return
+     */
+    String getCourseName(ResourceDto resourceDto);
+    /**
      * 根据ID删除资源
      * @param resourceId
      * @return
      */
-    ResourceDto deleteResourceById(int resourceId);
+    ResourceDto deleteResource(int resourceId);
 
     /**
      * 根据ID修改资源信息

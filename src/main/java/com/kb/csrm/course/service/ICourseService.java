@@ -7,6 +7,12 @@ import java.util.Map;
 public interface ICourseService {
 
     /**
+     * 获取全部课程
+     * @return
+     */
+    List<CourseDto> getAllCourse();
+
+    /**
      * 添加新用户
      * @param
      */
@@ -32,6 +38,22 @@ public interface ICourseService {
      * @return
      */
     void updateCourseById (Long courseId);
+    void updateCourseById (CourseDto courseId);
+
+    /**
+     * 根据关键字查询课程
+     * @param courseName
+     * @return
+     */
+    List<CourseDto> getCourseByKeyWord(String courseName);
+
+    /**
+     * 获取课程对应的学校名
+     * @param courseDto
+     * @return
+     */
+    String getCollegeName(CourseDto courseDto);
+
 
     /**
      * 获取推荐课程

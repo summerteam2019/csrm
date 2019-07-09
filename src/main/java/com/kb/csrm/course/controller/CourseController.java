@@ -20,13 +20,19 @@ public class CourseController extends BaseController{
     @Autowired
     private ICourseService courseService;
 
+    @RequestMapping("/getAllCourse")
+    @ResponseBody
+    public List<CourseDto> getAllCourse(){
+        return courseService.getAllCourse();
+    }
+
 
     /**添加课程*/
     @RequestMapping("/create")
     @ResponseBody
-    public ResponseData insertCourse(@RequestBody CourseDto courseDto,HttpServletRequest request){
+    public boolean insertCourse(CourseDto courseDto){
         courseService.insertCourse(courseDto);
-        return new ResponseData(true);
+        return true;
     }
 
     /**查询课程*/
@@ -41,18 +47,31 @@ public class CourseController extends BaseController{
     /**删除课程*/
     @RequestMapping("/delete")
     @ResponseBody
-    public ResponseData deleteCourseById(@RequestBody int courseId, HttpServletRequest request){
+    public boolean deleteCourseById(@RequestBody int courseId){
         courseService.deleteCourseById(courseId);
-        return new ResponseData(true);
+        return true;
     }
 
     /**修改课程信息*/
     @RequestMapping("/update")
     @ResponseBody
-    public ResponseData updateCourseById(@RequestBody Long courseId, HttpServletRequest request){
+    public Boolean updateCourseById(CourseDto courseDto){
+        courseService.updateCourseById(courseDto);
+        return true;
+    }
 
-        courseService.updateCourseById(courseId);
-        return new ResponseData(true);
+    @RequestMapping("/getCourseByKeyWord")
+    @ResponseBody
+    public Object[] getCourseByKeyWord(String courseName) {
+        List<CourseDto> courseList = courseService.getCourseByKeyWord(courseName);
+        Object[] allCourse = new Object[2];
+        String[] collegeName = new String[courseList.size()];
+        for(int i = 0; i < courseList.size(); i++){
+            collegeName[i] = courseService.getCollegeName(courseList.get(i));
+        }
+        allCourse[0] = courseList;
+        allCourse[1] = collegeName;
+        return allCourse;
     }
 
     /**查询课程*/

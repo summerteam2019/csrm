@@ -3,9 +3,7 @@ package com.kb.csrm.course.mapper;
 import com.kb.csrm.course.dto.CourseDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface CourseMapper {
@@ -35,6 +33,28 @@ public interface CourseMapper {
      * @param courseId
      * @return
      */
+    CourseDto updateCourseById(@Param(value = "courseID") int courseId);
+
+
+    /**
+     * 根据关键字查询课程
+     * @param courseName
+     * @return
+     */
+    List<CourseDto> getCourseByKeyWord(String courseName);
+
+    /**
+     * 获取课程对应的学校名
+     * @param courseDto
+     * @return
+     */
+    String getCollegeName(CourseDto courseDto);
+
+    /**
+     * 获取全部课程
+     * @return
+     */
+    List<CourseDto> getAllCourse();
     void updateCourseById(@Param(value = "courseID") double courseId);
 
     /**

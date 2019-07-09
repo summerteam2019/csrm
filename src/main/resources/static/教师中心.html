@@ -39,8 +39,8 @@
         </ul>
     </div>
     <div id="search">
-        <input type="text" name="search" placeholder="请输入感兴趣课程" value=""/>
-        <button>搜索</button>
+        <input type="text" id="searchCourse" name="search" placeholder="请输入感兴趣课程" />
+        <button onclick="searchCourse()">搜索</button>
     </div>
 </div>
 
@@ -119,6 +119,11 @@
             },
         });
     });
+
+    function searchCourse(){
+        var courseKeyWord = $("#searchCourse").val();
+        window.location.href = '搜索结果.html?courseKeyWord=' + courseKeyWord;
+    }
 
 </script>
 </body>

@@ -15,6 +15,11 @@ public class CourseServiceImpl implements ICourseService{
     private CourseMapper courseMapper;
 
     @Override
+    public List<CourseDto> getAllCourse(){
+        return courseMapper.getAllCourse();
+    }
+
+    @Override
     public void insertCourse(CourseDto courseDto) {
         courseMapper.insertCourse(courseDto);
     }
@@ -37,5 +42,19 @@ public class CourseServiceImpl implements ICourseService{
     @Override
     public List<CourseDto> getRecommendedCourse() {
         return courseMapper.getRecommend();
+    public void updateCourseById(CourseDto courseDto) {
+        int courseId = courseDto.getCourseId();
+        courseMapper.updateCourseById(courseId);
+    }
+
+
+    @Override
+    public List<CourseDto> getCourseByKeyWord(String courseName){
+        return courseMapper.getCourseByKeyWord(courseName);
+    }
+
+    @Override
+    public String getCollegeName(CourseDto courseDto){
+        return courseMapper.getCollegeName(courseDto);
     }
 }
