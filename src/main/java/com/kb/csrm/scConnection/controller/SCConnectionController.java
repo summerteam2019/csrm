@@ -22,7 +22,7 @@ public class SCConnectionController extends BaseController {
 
     @RequestMapping("/getConnByUserId")
     @ResponseBody
-    public ResponseData getConnByUserId(@RequestBody Integer userId, HttpServletRequest request){
+    public ResponseData getConnByUserId(@ RequestParam("userId") Integer userId, HttpServletRequest request){
 
         return new ResponseData(scConnectionService.getSCConnectionByUserId(userId));
     }
