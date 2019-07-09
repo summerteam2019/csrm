@@ -85,4 +85,15 @@ public class CourseController extends BaseController{
         return new ResponseData(courseService.getRecommendedCourse());
     }
 
+    /**
+     * 获取推荐课程
+     *
+     * @return
+     */
+    @RequestMapping("/getChosenCourse")
+    @ResponseBody
+    public ResponseData getChosenCourse(@RequestParam("userId") Long userId, HttpServletRequest request){
+        return new ResponseData(courseService.getChosenCourse(userId));
+    }
+
 }

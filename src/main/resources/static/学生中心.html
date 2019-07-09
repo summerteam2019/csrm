@@ -87,10 +87,10 @@
             url: "",//请求程序页面
             data: {"userid": userid},
             success: function (data) {
-                for (var i in data) {
+                for (var i in data.rows) {
                     $("#yixuan").append(" <div class=\"intoduce\">\n" +
                         "                <div class=\"item_class\"  >\n" +
-                        "                    <img src=\"data.rows[i].src\" height=\"124\" width=\"100%\"/>\n" +
+                        "                    <img src=\"img/course/"+data.rows[i].courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+data.rows[i].courseName+"</h3>\n" +
                         "                        <p>"+data.rows[i].courseIntoduce+"</p>\n" +
@@ -103,7 +103,7 @@
                         "\n" +
                         "            </div>");
                 }
-            },
+            }
         });
     });
     $(function () {

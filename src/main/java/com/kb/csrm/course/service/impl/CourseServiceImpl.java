@@ -3,6 +3,7 @@ package com.kb.csrm.course.service.impl;
 import com.kb.csrm.course.dto.CourseDto;
 import com.kb.csrm.course.mapper.CourseMapper;
 import com.kb.csrm.course.service.ICourseService;
+import com.kb.csrm.scConnection.mapper.SCConnectionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ import java.util.Map;
 public class CourseServiceImpl implements ICourseService {
     @Autowired
     private CourseMapper courseMapper;
+
+    @Autowired
+    private SCConnectionMapper scConnectionMapper;
 
     @Override
     public List<CourseDto> getAllCourse() {
@@ -43,6 +47,11 @@ public class CourseServiceImpl implements ICourseService {
     @Override
     public List<CourseDto> getRecommendedCourse() {
         return courseMapper.getRecommend();
+    }
+
+    @Override
+    public List<CourseDto> getChosenCourse(Long userId) {
+        return scConnectionMapper.getCourseByUserId(userId);
     }
 
     @Override

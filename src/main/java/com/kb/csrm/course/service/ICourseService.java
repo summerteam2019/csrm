@@ -60,4 +60,11 @@ public interface ICourseService {
      * @return
      */
     List<CourseDto> getRecommendedCourse();
+
+    /**
+     * 获取学生已选课程
+     * @param userId
+     * @return
+     */
+    List<CourseDto> getChosenCourse(Long userId);
 }
