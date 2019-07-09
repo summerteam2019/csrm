@@ -26,7 +26,7 @@
         where function_name LIKE #{functionName}
     </select>
 
-    <insert id="addFunction" parameterType="com.kb.csrm.function.dto.FunctionDto">
+    <insert id="addFunction" parameterType="com.kb.csrm.function.dto.FunctionDto" >
         insert into function_menu
         values (
         #{functionId},

@@ -24,14 +24,22 @@ public interface IAppraiseService {
      * @param userId
      * @return
      */
-    AppraiseDto getAppraiseByUserId(int userId);
+    List<AppraiseDto> getAppraiseByUserId(int userId);
 
     /**
      * 根据课程ID获取评论
      * @param courseId
      * @return
      */
-    AppraiseDto getAppraiseByCourseId(int courseId);
+    List<AppraiseDto> getAppraiseByCourseId(int courseId);
+
+    /**
+     * 根据用户ID和课程ID获取评论
+     * @param userId
+     * @param courseId
+     * @return
+     */
+    AppraiseDto getAppraiseByUserAndCourse(int userId, int courseId);
 
     /**
      * 获取评论用户的用户名

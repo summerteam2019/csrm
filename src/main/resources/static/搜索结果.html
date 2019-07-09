@@ -163,12 +163,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		var newsname=newsids[0];//得到参数名字
 		var courseKeyWord = newsid;
 		$.ajax({
-			type: "POST",
-			url: "/course/getCourseByKeyWord",//请求程序页面
-			dataType: "json",
-			data: {
-				"courseName": courseKeyWord
-			},
+				type: "POST",
+				url: "/course/getCourseByKeyWord",//请求程序页面
+				dataType: "json",
+				data: {
+					"courseName": courseKeyWord
+				},
 			success: function(data){
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.onreadystatechange = function() {
