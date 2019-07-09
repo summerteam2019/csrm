@@ -21,8 +21,10 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 下载工具类
- * @author yanrun
  *
+ * @author yi.wang11@hand-china.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
  */
 @Slf4j
 public class DownloadUtil {

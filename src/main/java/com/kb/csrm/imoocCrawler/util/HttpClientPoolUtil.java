@@ -34,10 +34,11 @@ import org.apache.http.protocol.HttpContext;
 import org.apache.http.ssl.SSLContextBuilder;
 
 /**
- * HttpClient连接池工具类
- * 
- * @author yanrun
+ * HTTPClient连接池工具类
  *
+ * @author yi.wang11@hand-china.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
  */
 public class HttpClientPoolUtil {
 

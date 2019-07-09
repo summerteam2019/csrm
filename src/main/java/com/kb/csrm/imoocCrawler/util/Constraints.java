@@ -1,8 +1,10 @@
 package com.kb.csrm.imoocCrawler.util;
 /**
- * 常量类
- * @author yanrun
+ * 常量类.
  *
+ * @author yi.wang11@hand-china.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
  */
 public interface Constraints {
 

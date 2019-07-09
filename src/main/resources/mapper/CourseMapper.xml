@@ -77,22 +77,27 @@
         from course
     </select>
 
-    <select id="getRecommend" resultType="com.kb.csrm.course.dto.CourseDto">
+    <select id="getRecommend" resultMap="BaseResultMap">
         SELECT
         course_id,
         teacher_name,
         course_name,
-        course_rate
+        course_rate,
+        course_count,
+        course_introduce,
+        recommend
         FROM course
         WHERE recommend = 1
     </select>
 
-    <select id="getHighCount" parameterType="int" resultType="com.kb.csrm.course.dto.CourseDto">
+    <select id="getHighCount" parameterType="int" resultMap="BaseResultMap">
         SELECT
         course_id,
         teacher_name,
         course_name,
-        course_rate
+        course_rate,
+        course_count,
+        course_introduce
         FROM course
         ORDER BY course_count
         LIMIT #{num}

@@ -155,15 +155,19 @@
     $(document).ready(function(){
         $.ajax({
             type: "POST",
-            url: "",//请求程序页面
+            url: "course/getRecommend",//请求程序页面
             success: function (data) {
-                for(var i in data){
-                    $("p#class"+(i+1)).text(data[i].intro);
-                    $("h3#class"+(i+1)).text(data[i].title);
-                    $("div#class"+(i+1).left).text(data[i].teacher);
-                    $("div#class"+(i+1).right).text(data[i].count);
+                var course1 = data.rows[0];
+                $("p#class"+1).text(course1.courseIntroduce);
+                document.getElementById("demo").innerHTML = txt;
+                for(var i in data.rows){
+                    var course = data.rows[i];
+                    $("p#class"+(i+1)).text(course.courseIntroduce);
+                    $("h3#class"+(i+1)).text(course.courseName);
+                    $("div#class"+(i+1).left).text(course.teacherName);
+                    $("div#class"+(i+1).right).text(course.count);
                     $("#class"+(i+1)).attr({
-                        "src" : data[i].src,
+                        "src" : "img/"+course.courseName+".jpg"
                     });
                 }
             },

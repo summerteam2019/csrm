@@ -31,9 +31,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * HTML解析类
- * @author yanrun
+ * HTML文件解析类
  *
+ * @author yi.wang11@hand-china.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
  */
 @Slf4j
 public class HtmlParser {

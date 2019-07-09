@@ -1,9 +1,11 @@
 package com.kb.csrm.imoocCrawler.util;
 
 /**
- * 操作系统工具类
- * @author yanrun
+ * 操作系统工具
  *
+ * @author yi.wang11@hand-china.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
  */
 public class OSUtil {
 	

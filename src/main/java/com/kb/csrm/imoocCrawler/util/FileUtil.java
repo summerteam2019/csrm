@@ -7,10 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
- * 文件工具类
- * 
- * @author yanrun
+ * 文件创建工具类
  *
+ * @author yi.wang11@hand-china.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
  */
 public class FileUtil {
 

@@ -35,6 +35,8 @@ public interface CourseMapper {
      */
     CourseDto updateCourseById(@Param(value = "courseID") int courseId);
 
+    void updateCourseById(@Param(value = "courseID") CourseDto courseId);
+
 
     /**
      * 根据关键字查询课程

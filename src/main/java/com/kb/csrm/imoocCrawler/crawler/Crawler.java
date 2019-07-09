@@ -1,6 +1,6 @@
 package com.kb.csrm.imoocCrawler.crawler;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -21,9 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 爬虫类
+ * The type Crawler
  *
- * @author yiwang
+ * @author yi.wang11@hand-china.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
  */
 @Slf4j
 @Service
