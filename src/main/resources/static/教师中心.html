@@ -100,7 +100,7 @@
             url: "",//请求程序页面
             data: {"userid": userid},
             success: function (data) {
-                for (var i in data) {
+                for (var i=0;i<data.length;i++) {
                     $("#yixuan").append(" <div class=\"intoduce\">\n" +
                         "                <div class=\"item_class\"  onclick=\"window.location.href= 'data[i].href'\">\n" +
                         "                    <img src=\"data[i].src\" height=\"124\" width=\"100%\"/>\n" +

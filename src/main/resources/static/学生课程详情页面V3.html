@@ -87,9 +87,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     });
 				</script>
 			</div>
-			<div class="col-md-7 single-top-in simpleCart_shelfItem">
+			<div class="col-md-7 single-top-in simpleCart_shelfItem" >
 				<div class="single-para ">
-					<h4>BIM安装工程造价应用</h4>
+					<h4 id="kecheng"></h4>
 					<div class="star-on">
 						<ul class="star-footer">
 							<li><a href="#"><i> </i></a></li>
@@ -99,20 +99,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<li><a href="#"><i> </i></a></li>
 						</ul>
 						<div class="review">
-							<a href="#"> 423 人在学 </a>
-
+							<span id="dianji"></span>
+							<span>次点击</span>
 						</div>
 					</div>
 
-					<p>         本课程通过理实一体化的教学手段，培养学生应用安装预算定额和清单计价规范开展安装工程计量与计价
-						的能力，具备熟悉安装工程定额和计算各类安装工程工程量的能力。本课程配套大量课程资源，同时本课
-						程为校际联合课程，为后续课程《BIM安装工程造价应用》中的软件操作打下坚实。</p>
+					<p id="jieshao"></p>
 
 					<ul class="tag-men">
-						<li><span>任课教师</span>
-							<span class="women1">: 刘真</span></li>
-						<li><span>所属院校</span>
-							<span class="women1">: 武汉大学计算机学院</span></li>
+						<li><span>任课教师:</span>
+							<span class="women1" id="jiaoshi"></span></li>
+						<li><span>所属院校:</span>
+							<span class="women1" id="yuanxiao"></span></li>
 					</ul>
 					<a href="#" class="add-cart item_add">选  课</a>
 
@@ -123,8 +121,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<nav>
 					<ul class="cd-tabs-navigation">
 						<!--<li><a data-content="cinema" href="#0">讨  论 </a></li>-->
-						<li><a data-content="television" href="#0" class="selected ">评  分 </a></li>
-						<li><a data-content="stuNotice" href="#0">课 程 通 知 </a></li>
+						<li><a data-content="television" href="#0" class="selected ">评  分</a></li>
+						<li><a data-content="stuNotice" href="#0">课 程 通 知</a></li>
 						<li><a data-content="download" href="#0" >资 源 下 载</a></li>
 
 					</ul>
@@ -288,33 +286,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 
-
-
-
-
-
-
-
 <script type="text/javascript">
-
 	$(document).ready(function(){
+		function getQueryString(name) {
+			var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+			var r = window.location.search.substr(1).match(reg);
+			if (r != null) return unescape(r[2]);
+			return null;
+		}
+		var courseId = getQueryString('courseid');
 		$.ajax({
 			type: "POST",
 			url: "",//请求程序页面
+			data: {"courseId": courseId},
 			success: function (data) {
+				$("#kecheng").text(data.courseName);
+				$("#dianji").text(data.courseCount);
+				$("#jieshao").text(data.courseIntroduce);
+				$("#jiaoshi").text(data.teacherName);
+				$("#yuanxiao").text(data.collegeName);
+			}
 
-					$("#pingfen"+(i+1)).text(data[i].intro);
-					$("h3#class"+(i+1)).text(data[i].title);
-					$("div#class"+(i+1).left).text(data[i].teacher);
-					$("div#class"+(i+1).right).text(data[i].count);
-					$("#class"+(i+1)).attr({
-						"src" : data[i].src,
-					});
-
-			},
-		});
+			});
 	});
-
 </script>
 
 

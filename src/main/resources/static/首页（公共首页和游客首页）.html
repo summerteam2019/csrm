@@ -93,7 +93,7 @@
                 课程推荐
                 <a href="">更多 ></a>
             </div>
-            <div class="item_class" onclick="？id=1" id="class1">
+            <div class="item_class" onclick=""id=1" id="class1">
                 <img src="" height="124" width="100%"/>
                 <div class="item_class_intro">
                     <h3></h3>
@@ -169,7 +169,7 @@
             type: "POST",
             url: "",//请求程序页面
             success: function (data) {
-                for(var i in data){
+                for(var i=0;i<data.length;i++){
                     $("h4#class"+(i+1)).text(data[i].id);
                     $("p#class"+(i+1)).text(data[i].intro);
                     $("h3#class"+(i+1)).text(data[i].title);
@@ -185,7 +185,7 @@
     $(function () {
         $(".item_class").click(function () {
             var courseid = $(this).find('h4').val();
-            window.location.href = "学生课程详情页面?courseid="+courseid;
+            window.location.href = "学生课程详情页面V3.html?courseid="+courseid;
         });
     });
 </script>
