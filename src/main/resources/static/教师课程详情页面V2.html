@@ -114,7 +114,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><span>所属院校</span>
 							<span class="women1">: 武汉大学计算机学院</span></li>
 					</ul>
-					<a href="#" class="add-cart item_add">选  课</a>
+
 
 				</div>
 			</div>
@@ -122,10 +122,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="cd-tabs">
 				<nav>
 					<ul class="cd-tabs-navigation">
-						<li><a data-content="cinema" href="#0">讨  论 </a></li>
-						<li><a data-content="television" href="#0" class="selected ">评  分 </a></li>
-						<li><a data-content="tNotice" href="#0">发 布 通 知 </a></li>
-						<li><a data-content="upload" href="#0" >资 源 上 传 </a></li>
+						<li><a data-content="television" href="#0" class="selected ">评  分</a></li>
+						<li><a data-content="tNotice" href="#0">发 布 通 知</a></li>
+						<li><a data-content="upload" href="#0" >资 源 上 传</a></li>
 
 					</ul>
 				</nav>
@@ -229,7 +228,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<label for="rate_1_0_1_1" title="1星"></label>
 										</fieldset>
 									</div>
-									<!--
+
 									<select class="" name="score" size="1">
 										<option value="0">1分</option>
 										<option value="1">2分</option>
@@ -286,30 +285,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 <script src="js/jquerysession.js"></script>
-</body>
-</html>
-<script type="text/javascript">
-	//===========================点击展开关闭效果====================================
-	function openShutManager(oSourceObj,oTargetObj,shutAble,oOpenTip,oShutTip){
-		var sourceObj = typeof oSourceObj == "string" ? document.getElementById(oSourceObj) : oSourceObj;
-		var targetObj = typeof oTargetObj == "string" ? document.getElementById(oTargetObj) : oTargetObj;
-		var openTip = oOpenTip || "";
-		var shutTip = oShutTip || "";
-		if(targetObj.style.display!="block"){
-			if(shutAble) return;
-			targetObj.style.display="block";
-			if(openTip  &&  shutTip){
-				sourceObj.innerHTML = openTip;
-			}
-		} else {
-			targetObj.style.display="none";
-			if(openTip  &&  shutTip){
-				sourceObj.innerHTML = shutTip;
-			}
-		}
-	}
-</script>
 
+
+
+
+
+
+
+
+</body>
+
+</html>
 <script>
 
 	$('[name="starLevel"]').bind("click",function(){

@@ -246,13 +246,15 @@
                 url: "",//请求程序页面
                 async: false,//当有返回值以后才会进行后面的js程序。
                 data: {
-                    "username": adminname,
+                    "userName": adminname,
                     "oldpassword": password,
                     "newpassword":newpassword,
-                    "school":school,
-                    "faculty":faculty,
+                    "collegeName":school,
+                    "facultyName":faculty,
                     "age": age,
                     "education":education,
+                    "pwAnswer":protctionanswer,
+
                 },//请求需要发送的处理数据
                 success: function (result) {
                     if (result){
