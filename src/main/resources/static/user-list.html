@@ -73,13 +73,33 @@
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="userRole">用户角色 :</label>
+					<label for="account">用户账号:</label>
+					<input type="text" class="form-control" id="account" name="account" value="">
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="password">密码：</label>
+					<input type="text" class="form-control" id="password" name="password" value="">
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="userRole">用户角色:</label>
 					<input type="text" class="form-control" id="userRole" name="userRole" value="">
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="mail">邮箱:</label>
 					<input type="text" class="form-control" id="mail" name="mail" value="">
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="pwQuestion">密保问题：</label>
+					<input type="text" class="form-control" id="pwQuestion" name="pwQuestion" value="">
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="pwAnswer">密保答案 :</label>
+					<input type="text" class="form-control" id="pwAnswer" name="pwAnswer" value="">
 				</div>
 				<br><br>
 				<button type="submit" class="btn btn-primary" onclick="addUser()">提交</button>
@@ -180,14 +200,16 @@ function findOneUser() {
 				xmlhttp.onreadystatechange = function () {
 					if (this.readyState == 4 && this.status == 200) {
 						var str = "";
-						str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + data.userId + " name=''></td>" +
-								"<td>" + data.userId + "</td>" +
-								"<td>" + data.userName + "</td>" +
-								"<td>" + data.roleName + "</td>" +
-								"<td>" + data.mail + "</td>" +
-								"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editUserModal('" + data.userId + " ')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
-								+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteUser('" + data.userId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
-								"</tr>";
+						for(i = 0; i < data.length; i++) {
+							str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + data[i].userId + " name=''></td>" +
+									"<td>" + data[i].userId + "</td>" +
+									"<td>" + data[i].userName + "</td>" +
+									"<td>" + data[i].roleName + "</td>" +
+									"<td>" + data[i].mail + "</td>" +
+									"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editUserModal('" + data[i].userId + " ')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
+									+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteUser('" + data[i].userId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
+									"</tr>";
+						}
 						document.getElementById("mesContent").innerHTML = str;
 					}
 				};
@@ -211,18 +233,27 @@ function addAUserModal(){
 function addUser(){
 	var userId = $("#cid").val();
 	var userName = $("#userName").val();
+	var account = $("#account").val();
+	var password = $("#password").val();
 	var roleName = $("#roleName").val();
 	var mail = $("#mail").val();
+	var pwQuestion = $("#pwQuestion").val();
+	var pwAnswer = $("#pwAnswer").val();
 	$.ajax({
 		type: "POST",
-		url: "course/create",//请求程序页面
+		url: "user/create",//请求程序页面
 		dataType: "json",
 		async: false,//当有返回值以后才会进行后面的js程序。
 		data: {
 			"userId": userId,
 			"userName": userName,
+			"account":account,
+			"password":password,
 			"roleName": roleName,
-		    "mail":mail},
+		    "mail":mail,
+			"pwQuestion":pwQuestion,
+			"pwAnswer":pwAnswer},
+
 		//请求需要发送的处理数据
 		success: function (data) {
 			if(data){
@@ -274,7 +305,7 @@ function editUserSave() {
 	var mail = $("#mail-e").val();
 	$.ajax({
 		type: "POST",
-		url: "college/update",//请求程序页面
+		url: "user/update",//请求程序页面
 		dataType: "json",
 		async: false,//当有返回值以后才会进行后面的js程序。
 		data: {
