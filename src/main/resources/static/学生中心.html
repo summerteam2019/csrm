@@ -85,7 +85,8 @@
         $.ajax({
             type: "POST",
             url: "",//请求程序页面
-            data: {"userid": userid},
+            data: {"userId": userid},
+            async: false,
             success: function (data) {
                 for (var i in data.rows) {
                     $("#yixuan").append(" <div class=\"intoduce\">\n" +
@@ -105,13 +106,12 @@
                 }
             }
         });
-    });
-    $(function () {
         $(".item_class").click(function () {
             var courseid = $(this).find('h4').val();
             window.location.href = "学生课程详情页面V3.html?courseid="+courseid;
         });
     });
+
 
 </script>
 

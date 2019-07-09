@@ -164,30 +164,46 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquerysession.js"></script>
 <script type="text/javascript">
+
     $(document).ready(function(){
         $.ajax({
             type: "POST",
-            url: "",//请求程序页面
+            url: "course/getRecommend",//请求程序页面
+            async: false,
             success: function (data) {
-                for(var i=0;i<data.rows.length;i++){
-                    $("h4#class"+(i+1)).text(data.rows[i].id);
-                    $("p#class"+(i+1)).text(data.rows[i].intro);
-                    $("h3#class"+(i+1)).text(data.rows[i].title);
-                    $("div#class"+(i+1).left).text(data.rows[i].teacher);
-                    $("div#class"+(i+1).right).text(data.rows[i].count);
+                for(var i in data.rows){
+                    var course = data.rows[i];
+                    $("p#class"+(i+1)).text(course.courseIntroduce);
+                    $("h3#class"+(i+1)).text(course.courseName);
+                    $("div#class"+(i+1).left).text(course.teacherName);
+                    $("div#class"+(i+1).right).text(course.courseCount);
                     $("#class"+(i+1)).attr({
-                        "src" : data.rows[i].src,
+                        "src" : "img/"+course.courseName+".jpg"
                     });
                 }
             },
         });
-    });
-    $(function () {
         $(".item_class").click(function () {
-            var courseid = $(this).find('h4').val();
-            window.location.href = "学生课程详情页面V3.html?courseid="+courseid;
+            var userId = $.session.get("ID");
+            var courseId = $(this).find('h4').val();
+            $.ajax({
+                type: "POST",
+                url: "scConnection/ifChoose",//请求程序页面
+                async: false,
+                success: function (data) {
+                    if(data){
+                        window.location.href = "学生课程详情页面V3.html?courseid="+courseid;
+                    }
+                    else{
+                        window.location.href = "教师课程详情页面V2.html?courseid="+courseid;
+                    }
+                },
+            });
         });
     });
+
+
+
 </script>
 </body>
 

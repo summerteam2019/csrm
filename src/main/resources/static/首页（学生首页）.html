@@ -156,10 +156,8 @@
         $.ajax({
             type: "POST",
             url: "course/getRecommend",//请求程序页面
+            async: false,
             success: function (data) {
-                var course1 = data.rows[0];
-                $("p#class"+1).text(course1.courseIntroduce);
-                document.getElementById("demo").innerHTML = txt;
                 for(var i in data.rows){
                     var course = data.rows[i];
                     $("p#class"+(i+1)).text(course.courseIntroduce);
