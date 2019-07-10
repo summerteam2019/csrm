@@ -114,6 +114,7 @@
         $.ajax({
             type: "POST",
             url: "course/getRecommend",//请求程序页面
+            async: false,
             success: function (data) {
                 for(var i in data.rows){
                     var course = data.rows[i];
@@ -135,6 +136,7 @@
         $.ajax({
             type: "POST",
             url: "course/getHighCount",//请求程序页面
+            async: false,
             success: function (data) {
                 for(var i in data.rows){
                     var course = data.rows[i];
