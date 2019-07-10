@@ -13,40 +13,40 @@
         <result column="education" property="education" jdbcType="VARCHAR"/>
         <result column="pw_question" property="pwQuestion" jdbcType="VARCHAR"/>
         <result column="pw_answer" property="pwAnswer" jdbcType="VARCHAR"/>
+        <result column="college_name" property="collegeName" jdbcType="VARCHAR"/>
+        <result column="faculty_name" property="facultyName" jdbcType="VARCHAR"/>
     </resultMap>
+
+    <select id="getAllUser" resultMap="BaseResultMap">
+        select *
+        from user
+    </select>
+
+    <select id="getUserByName" parameterType="String" resultMap="BaseResultMap">
+        select *
+        from user
+        where user_name LIKE #{userName}
+    </select>
 
     <insert id="insertUser" parameterType="com.kb.csrm.user.dto.UserDto">
         insert into user(
-        account,
-        user_name,
-        role_name,
-        pawword,
-        mail
-        )values (
-        #{account},
-        #{userName},
-        #{roleName},
-        #{password},
-        #{mail}
-        )
-    </insert>
-
-    <select id="selectUserById" resultMap="BaseResultMap">
-        SELECT
-        user_id,
         user_name,
         account,
         password,
         role_name,
         mail,
-        college_id,
-        age,
-        education,
         pw_question,
         pw_answer
-        FROM user
-        WHERE user_id = #{userId}
-    </select>
+        )values (
+        #{userName},
+        #{account},
+        #{password},
+        #{roleName},
+        #{mail},
+        #{pwQuestion},
+        #{pwAnswer})
+    </insert>
+
 
     <select id="query" resultMap="BaseResultMap">
         SELECT
@@ -71,28 +71,30 @@
     </select>
     <select id="updateUserById" parameterType="com.kb.csrm.user.dto.UserDto">
         update user
-        set user_id=#{userId},
+        set
         user_name=#{userName},
-        role_name=#{roleName},
         mail=#{mail}
         where user_id = #{userId}
     </select>
 
     <select id="login" parameterType="INT" resultMap="BaseResultMap">
         SELECT
-        user_id,
-        user_name,
-        account,
-        password,
-        role_name,
-        mail,
-        college_id,
-        age,
-        education,
-        pw_question,
-        pw_answer
-        FROM user
-        WHERE account = #{account}
+        u.user_id,
+        u.user_name,
+        u.account,
+        u.password,
+        u.role_name,
+        u.mail,
+        u.college_id,
+        c.college_name,
+        c.faculty_name,
+        u.age,
+        u.education,
+        u.pw_question,
+        u.pw_answer
+        FROM user u, college c
+        WHERE u.account = #{account}
+        and u.college_id = c.college_id
     </select>
 
     <select id="signup" parameterType="com.kb.csrm.user.dto.UserDto">
@@ -110,4 +112,17 @@
         #{mail}
         )
     </select>
+
+    <update id="updateInfo" parameterType="com.kb.csrm.user.dto.UserDto">
+        update user
+        set
+        user_name=#{userName},
+        age=#{age},
+        college_id=(
+        select college_id from college where college_name = #{collegeName} and faculty_name = #{facultyName}
+        ),
+        age=#{age},
+        education=#{education}
+        where user_id = #{userId}
+    </update>
 </mapper>

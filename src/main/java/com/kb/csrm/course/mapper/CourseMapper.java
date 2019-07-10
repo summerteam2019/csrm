@@ -23,19 +23,18 @@ public interface CourseMapper {
 
     /**
      * 根据ID删除课程
-     * @param courseId
+     * @param courseDto
      * @return
      */
-    void deleteCourseById(@Param(value = "courseID") double courseId);
+    void deleteCourseById(CourseDto courseDto);
 
     /**
      * 根据ID修改课程信息
-     * @param courseId
+     * @param courseDto
      * @return
      */
-    CourseDto updateCourseById(@Param(value = "courseID") int courseId);
 
-    void updateCourseById(@Param(value = "courseID") CourseDto courseId);
+    void updateCourseById( CourseDto courseDto);
 
 
     /**
@@ -76,4 +75,11 @@ public interface CourseMapper {
      * @param courseList
      */
     void batchInsert(List<CourseDto> courseList);
+
+    /**
+     * 获取教授课程
+     * @param userId
+     * @return
+     */
+    List<CourseDto> getTaughtCourse(@Param("userId") Long userId);
 }

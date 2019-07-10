@@ -34,4 +34,9 @@ public class SCConnectionServiceImpl implements ISCConnectionService {
     public void deleteSCConnection(SCConnectionDto scConnectionDto){
         scConnectionMapper.deleteSCConnection(scConnectionDto);
     }
+
+    @Override
+    public int ifChoose(long userId, long courseId) {
+        return scConnectionMapper.ifChoose(userId, courseId);
+    }
 }

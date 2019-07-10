@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,7 @@ public class SCConnectionController extends BaseController {
 
     @RequestMapping("/getConnByUserId")
     @ResponseBody
-    public ResponseData getConnByUserId(@RequestBody Integer userId, HttpServletRequest request){
+    public ResponseData getConnByUserId(@ RequestParam("userId") Integer userId, HttpServletRequest request){
 
         return new ResponseData(scConnectionService.getSCConnectionByUserId(userId));
     }
@@ -47,5 +48,13 @@ public class SCConnectionController extends BaseController {
 
         scConnectionService.deleteSCConnection(scConnectionDto);
         return new ResponseData(true);
+    }
+
+    @RequestMapping("/ifChoose")
+    @ResponseBody
+    public boolean ifChoose(@RequestParam("userId") long userId, @RequestParam("courseId") long courseId, HttpServletRequest request){
+
+        boolean flag = scConnectionService.ifChoose(userId, courseId)==0 ? false : true;
+        return flag;
     }
 }

@@ -85,12 +85,13 @@
         $.ajax({
             type: "POST",
             url: "",//请求程序页面
-            data: {"userid": userid},
+            data: {"userId": userid},
+            async: false,
             success: function (data) {
-                for (var i in data) {
+                for (var i in data.rows) {
                     $("#yixuan").append(" <div class=\"intoduce\">\n" +
                         "                <div class=\"item_class\"  >\n" +
-                        "                    <img src=\"data.rows[i].src\" height=\"124\" width=\"100%\"/>\n" +
+                        "                    <img src=\"img/course/"+data.rows[i].courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+data.rows[i].courseName+"</h3>\n" +
                         "                        <p>"+data.rows[i].courseIntoduce+"</p>\n" +
@@ -103,15 +104,14 @@
                         "\n" +
                         "            </div>");
                 }
-            },
+            }
         });
-    });
-    $(function () {
         $(".item_class").click(function () {
             var courseid = $(this).find('h4').val();
             window.location.href = "学生课程详情页面V3.html?courseid="+courseid;
         });
     });
+
 
 </script>
 

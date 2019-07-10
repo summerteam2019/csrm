@@ -45,7 +45,10 @@ public class LoginController {
                 request.getSession().setAttribute("ACCOUNT", userDto.getAccount());
                 request.getSession().setAttribute("ID", userDto.getUserId());
                 request.getSession().setAttribute("ROLE", userDto.getRoleName());
-                request.getSession().setMaxInactiveInterval(30*60);
+                request.getSession().setAttribute("SCHOOL", userDto.getCollegeName());
+                request.getSession().setAttribute("FACULTY", userDto.getFacultyName());
+                request.getSession().setAttribute("AGE", userDto.getAge());
+                request.getSession().setAttribute("EDUCATION", userDto.getEducation());
             } else {
                 flag = 1;
                 //登录密码不正确

@@ -297,8 +297,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		var courseId = getQueryString('courseid');
 		$.ajax({
 			type: "POST",
-			url: "",//请求程序页面
+			url: "course/getChosenCourse",//请求程序页面
 			data: {"courseId": courseId},
+			async: false,
 			success: function (data) {
 				$("#kecheng").text(data.courseName);
 				$("#dianji").text(data.courseCount);

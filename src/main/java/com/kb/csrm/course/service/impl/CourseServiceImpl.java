@@ -3,6 +3,7 @@ package com.kb.csrm.course.service.impl;
 import com.kb.csrm.course.dto.CourseDto;
 import com.kb.csrm.course.mapper.CourseMapper;
 import com.kb.csrm.course.service.ICourseService;
+import com.kb.csrm.scConnection.mapper.SCConnectionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,9 @@ import java.util.Map;
 public class CourseServiceImpl implements ICourseService {
     @Autowired
     private CourseMapper courseMapper;
+
+    @Autowired
+    private SCConnectionMapper scConnectionMapper;
 
     @Override
     public List<CourseDto> getAllCourse() {
@@ -32,13 +36,11 @@ public class CourseServiceImpl implements ICourseService {
 
     @Override
     public void deleteCourseById(int courseId) {
-        courseMapper.deleteCourseById(courseId);
+        CourseDto courseDto = new CourseDto();
+        courseDto.setCourseId(courseId);
+        courseMapper.deleteCourseById(courseDto);
     }
 
-    @Override
-    public void updateCourseById(Long courseId) {
-        courseMapper.updateCourseById(courseId);
-    }
 
     @Override
     public List<CourseDto> getRecommendedCourse() {
@@ -46,9 +48,23 @@ public class CourseServiceImpl implements ICourseService {
     }
 
     @Override
+    public List<CourseDto> getChosenCourse(Long userId) {
+        return scConnectionMapper.getCourseByUserId(userId);
+    }
+
+    @Override
+    public List<CourseDto> getHighCount(int num) {
+        return  courseMapper.getHighCount(num);
+    }
+
+    @Override
+    public List<CourseDto> getTaughtCourse(Long userId) {
+        return courseMapper.getTaughtCourse(userId);
+    }
+
+    @Override
     public void updateCourseById(CourseDto courseDto) {
-        int courseId = courseDto.getCourseId();
-        courseMapper.updateCourseById(courseId);
+        courseMapper.updateCourseById(courseDto);
     }
 
 

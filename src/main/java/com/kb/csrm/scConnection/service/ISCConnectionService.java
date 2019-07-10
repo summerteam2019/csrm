@@ -32,4 +32,11 @@ public interface ISCConnectionService {
      * @param scConnectionDto
      */
     void deleteSCConnection(SCConnectionDto scConnectionDto);
+
+    /**
+     * 查询该用户是否已选课
+     * @param userId
+     * @param courseId
+     */
+    int ifChoose(long userId, long courseId);
 }

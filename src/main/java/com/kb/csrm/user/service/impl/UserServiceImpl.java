@@ -34,9 +34,10 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserDto selectUserById(int userId) {
-        return userMapper.selectUserById(userId);
+    public List<UserDto> getUserByName(String userName){
+        return userMapper.getUserByName(userName);
     }
+
 
     @Override
     public List<UserDto> query() {
@@ -53,5 +54,10 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void updateUserById(UserDto userDto) {
         userMapper.updateUserById(userDto);
+    }
+
+    @Override
+    public void updateInfo(UserDto userDto) {
+        userMapper.updateInfo(userDto);
     }
 }

@@ -30,7 +30,6 @@
 	</div>
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-			<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 			<a class="btn btn-primary radius" onclick="addACourseModal()" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加课程</a></span>
 		<span class="r">共有数据：<strong>54</strong> 条</span>
 	</div>
@@ -63,11 +62,6 @@
 				<h4 class="modal-title" id="myModalLabel">添加课程</h4>
 			</div>
 			<div class="container">
-				<div class="form-group">
-					<label for="cid">课程ID:</label>
-					<input type="text" class="form-control" id="cid" name="cid" value="">
-				</div>
-				<br><br>
 				<div class="form-group">
 					<label for="cname">课程名:</label>
 					<input type="text" class="form-control" id="cname" name="cname" value="">
@@ -159,16 +153,13 @@ $(function(){
 }
 )
 function findOneCourse() {
-	var courseId = $("#courseIdOrName").val();
+	var courseName = $("#courseIdOrName").val();
 	$.ajax({
 		type:"post",
 		url:"course/select",
 		dataType:"json",
 		data:{
-			"courseId": courseId,
-			"courseName":null,
-			"teacherName":null,
-			"courseRate":null,
+			"courseName": courseName,
 		},
 		success: function(data) {
 			if(data != null){
@@ -176,14 +167,16 @@ function findOneCourse() {
 				xmlhttp.onreadystatechange = function () {
 					if (this.readyState == 4 && this.status == 200) {
 						var str = "";
-						str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + data.courseId + " name=''></td>" +
-								"<td>" + data.courseId + "</td>" +
-								"<td>" + data.courseName + "</td>" +
-								"<td>" + data.teacherName + "</td>" +
-								"<td>" + data.courseRate + "</td>" +
-								"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editCourseModal('" + data.collegeId + " ')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
-								+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteCourse('" + data.collegeId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
+						for(i = 0; i < data.length; i++){
+						str += "<tr class='text-c'>" + "<td><input type='checkbox' value= " + data[i].courseId + " name=''></td>" +
+								"<td>" + data[i].courseId + "</td>" +
+								"<td>" + data[i].courseName + "</td>" +
+								"<td>" + data[i].teacherName + "</td>" +
+								"<td>" + data[i].courseRate + "</td>" +
+								"<td><a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"editCourseModal('" + data[i].collegeId + " ')\" href=\"javascript:;\" title=\"编辑\"><i class=\"Hui-iconfont\">&#xe6df;</i></a>"
+								+ "<a style=\"text-decoration:none\" class=\"ml-5\" onClick=\"deleteCourse('" + data[i].collegeId + " ')\" href=\"javascript:;\" title=\"删除\"><i class=\"Hui-iconfont\">&#xe6e2;</i></a></td>" +
 								"</tr>";
+						}
 						document.getElementById("mesContent").innerHTML = str;
 					}
 				};
@@ -205,7 +198,6 @@ function addACourseModal(){
 	$("#addCourseModal").modal("show");
 }
 function addCourse(){
-	var courseId = $("#cid").val();
 	var courseName = $("#cname").val();
 	var teacherName = $("#teacher").val();
 	var courseRate = $("#score").val();
@@ -215,7 +207,6 @@ function addCourse(){
 		dataType: "json",
 		async: false,//当有返回值以后才会进行后面的js程序。
 		data: {
-			"courseId": courseId,
 			"courseName": courseName,
 			"teacherName": teacherName,
 		    "courseRate":courseRate},
@@ -271,7 +262,7 @@ function editCourseSave() {
 	var courseRate = $("#score-e").val();
 	$.ajax({
 		type: "POST",
-		url: "college/update",//请求程序页面
+		url: "course/update",//请求程序页面
 		dataType: "json",
 		async: false,//当有返回值以后才会进行后面的js程序。
 		data: {

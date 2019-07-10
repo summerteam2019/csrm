@@ -7,7 +7,7 @@
         <result column="course_id" property="courseId" jdbcType="INTEGER"/>
     </resultMap>
 
-    <select id="getCourseByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="getCourseByUserId" parameterType="long" resultMap="BaseResultMap">
         select c.*
         from student_course_connection sc, user u, course c
         where sc.user_id = #{userId}
@@ -28,6 +28,12 @@
         #{courseId}
         )
     </insert>
+    <select id="ifChoose" parameterType="long" resultType="int">
+        select count(1)
+        from student_course_connection sc
+        where sc.user_id = #{userId}
+          and sc.course_id = #{courseId}
+    </select>
 
     <delete id="deleteSCConnection" parameterType="com.kb.csrm.scConnection.dto.SCConnectionDto">
         delete from student_course_connection

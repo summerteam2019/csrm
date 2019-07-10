@@ -34,11 +34,10 @@ public interface ICourseService {
 
     /**
      * 按ID修改用户信息
-     * @param courseId
+     * @param courseDto
      * @return
      */
-    void updateCourseById (Long courseId);
-    void updateCourseById (CourseDto courseId);
+    void updateCourseById (CourseDto courseDto);
 
     /**
      * 根据关键字查询课程
@@ -60,4 +59,25 @@ public interface ICourseService {
      * @return
      */
     List<CourseDto> getRecommendedCourse();
+
+    /**
+     * 获取学生已选课程
+     * @param userId
+     * @return
+     */
+    List<CourseDto> getChosenCourse(Long userId);
+
+    /**
+     * 获取点击量最高的课程
+     * @param num
+     * @return
+     */
+    List<CourseDto> getHighCount(int num);
+
+    /**
+     * 获取教授课程
+     * @param userId
+     * @return
+     */
+    List<CourseDto> getTaughtCourse(Long userId);
 }

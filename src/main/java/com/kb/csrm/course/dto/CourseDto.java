@@ -56,11 +56,6 @@ public class CourseDto {
     @Column
     private int courseCount;
     /**
-     * 图片地址
-     */
-    @Column
-    private String courseImg;
-    /**
      * 是否推荐
      */
     @Column
@@ -70,6 +65,15 @@ public class CourseDto {
      */
     @Transient
     private String collegeName;
+
+    /**
+     * 课程所属学院名称
+     */
+    @Transient
+    private String facultyName;
+
+    @Transient
+    private int ifChose;
 
     public int getCourseId() {
         return courseId;
@@ -143,14 +147,6 @@ public class CourseDto {
         this.courseCount = courseCount;
     }
 
-    public String getCourseImg() {
-        return courseImg;
-    }
-
-    public void setCourseImg(String courseImg) {
-        this.courseImg = courseImg;
-    }
-
     public int getRecommend() {
         return recommend;
     }
@@ -167,5 +163,20 @@ public class CourseDto {
         this.collegeName = collegeName;
     }
 
+    public int getIfChose() {
+        return ifChose;
+    }
+
+    public void setIfChose(int ifChose) {
+        this.ifChose = ifChose;
+    }
+
+    public String getFacultyName() {
+        return facultyName;
+    }
+
+    public void setFacultyName(String facultyName) {
+        this.facultyName = facultyName;
+    }
 
 }
