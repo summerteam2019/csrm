@@ -155,9 +155,12 @@
                 }
             },
         });
-        $(".item_class").click(function () {
-            var courseId = $(this).find('h4').val();
-            window.location.href = "课程详情.html?courseid="+courseId;
+        $(document).ajaxComplete(function(){
+            $(".item_class").click(function () {
+                var courseId = $(this).find('h4').val();
+                window.location.href = "课程详情.html?courseid="+courseId;
+            });
+
         });
     });
 
