@@ -141,8 +141,8 @@
         co.college_name,
         co.faculty_name
         FROM course c, college co
-        and c.college_id = co.college_id
-        ORDER BY c.course_count
+        where c.college_id = co.college_id
+        ORDER BY c.course_count desc
         LIMIT #{num}
     </select>
 
