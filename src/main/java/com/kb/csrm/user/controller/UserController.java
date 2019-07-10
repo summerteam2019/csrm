@@ -74,4 +74,11 @@ public class UserController extends BaseController {
         return true;
     }
 
+    @RequestMapping("/updateInfo")
+    @ResponseBody
+    public boolean updateInfo(UserDto userDto){
+        userService.updateInfo(userDto);
+        return true;
+    }
+
 }

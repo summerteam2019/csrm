@@ -41,9 +41,19 @@
     </insert>
 
     <select id="selectCourseById" parameterType="double" resultMap="BaseResultMap">
-        SELECT *
-        FROM course
-        WHERE course_id = #{courseId}
+        SELECT
+        c.course_id,
+        c.teacher_name,
+        c.course_name,
+        c.course_rate,
+        c.course_count,
+        c.course_introduce,
+        c.recommend,
+        c.college_id
+        co.college_name || co.faculty_name collegeName
+        FROM course c, college co
+        WHERE c.course_id = #{courseId}
+        and c.college_id = co.college_id
     </select>
 
     <delete id="deleteCourseById" parameterType="com.kb.csrm.course.dto.CourseDto"  >
@@ -61,46 +71,88 @@
 
 
     <select id="getCourseByKeyWord" parameterType="String" resultMap="BaseResultMap">
-        select *
-        from course
-        where course_name LIKE CONCAT('%',#{courseName},'%')
+        SELECT
+        c.course_id,
+        c.teacher_name,
+        c.course_name,
+        c.course_rate,
+        c.course_count,
+        c.course_introduce,
+        c.recommend,
+        c.college_id
+        co.college_name || co.faculty_name collegeName
+        FROM course c, college co
+        where c.course_name LIKE CONCAT('%',#{courseName},'%')
+        and c.college_id = co.college_id
     </select>
 
     <select id="getCollegeName" parameterType="com.kb.csrm.course.dto.CourseDto" resultType="String">
-        select college_name
+        select college_name || faculty_name
         from college
         where college_id = #{collegeId}
     </select>
 
     <select id="getAllCourse" resultMap="BaseResultMap">
-        select *
-        from course
+        SELECT
+        c.course_id,
+        c.teacher_name,
+        c.course_name,
+        c.course_rate,
+        c.course_count,
+        c.course_introduce,
+        c.recommend,
+        c.college_id
+        co.college_name || co.faculty_name collegeName
+        FROM course c, college co
+        WHERE c.recommend = 1
+        and c.college_id = co.college_id
     </select>
 
     <select id="getRecommend" resultMap="BaseResultMap">
         SELECT
-        course_id,
-        teacher_name,
-        course_name,
-        course_rate,
-        course_count,
-        course_introduce,
-        recommend
-        FROM course
-        WHERE recommend = 1
+        c.course_id,
+        c.teacher_name,
+        c.course_name,
+        c.course_rate,
+        c.course_count,
+        c.course_introduce,
+        c.recommend,
+        co.college_name || co.faculty_name collegeName
+        FROM course c, college co
+        WHERE c.recommend = 1
+        and c.college_id = co.college_id
     </select>
 
     <select id="getHighCount" parameterType="int" resultMap="BaseResultMap">
         SELECT
-        course_id,
-        teacher_name,
-        course_name,
-        course_rate,
-        course_count,
-        course_introduce
-        FROM course
-        ORDER BY course_count
+        SELECT
+        c.course_id,
+        c.teacher_name,
+        c.course_name,
+        c.course_rate,
+        c.course_count,
+        c.course_introduce,
+        c.recommend,
+        co.college_name || co.faculty_name collegeName
+        FROM course c, college co
+        and c.college_id = co.college_id
+        ORDER BY c.course_count
         LIMIT #{num}
+    </select>
+
+    <select id="getTaughtCourse" parameterType="long" resultMap="BaseResultMap">
+        SELECT
+        c.course_id,
+        c.teacher_name,
+        c.course_name,
+        c.course_rate,
+        c.course_count,
+        c.course_introduce,
+        c.recommend,
+        co.college_name || co.faculty_name collegeName
+        from course c, college co
+        WHERE c.teacher_id = #{userId}
+        and c.college_id = co.college_id
     </select>
 
 </mapper>

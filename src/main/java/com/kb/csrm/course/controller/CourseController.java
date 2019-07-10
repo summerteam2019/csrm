@@ -92,7 +92,7 @@ public class CourseController extends BaseController{
     }
 
     /**
-     * 获取推荐课程
+     * 获取已选课程
      *
      * @return
      */
@@ -100,6 +100,17 @@ public class CourseController extends BaseController{
     @ResponseBody
     public ResponseData getChosenCourse(@RequestParam("userId") Long userId, HttpServletRequest request){
         return new ResponseData(courseService.getChosenCourse(userId));
+    }
+
+    /**
+     * 获取教授课程
+     *
+     * @return
+     */
+    @RequestMapping("/getTaughtCourse")
+    @ResponseBody
+    public ResponseData getTaughtCourse(@RequestParam("userId") Long userId, HttpServletRequest request){
+        return new ResponseData(courseService.getTaughtCourse(userId));
     }
 
     /**

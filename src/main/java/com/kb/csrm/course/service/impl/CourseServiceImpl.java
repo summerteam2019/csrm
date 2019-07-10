@@ -58,6 +58,11 @@ public class CourseServiceImpl implements ICourseService {
     }
 
     @Override
+    public List<CourseDto> getTaughtCourse(Long userId) {
+        return courseMapper.getTaughtCourse(userId);
+    }
+
+    @Override
     public void updateCourseById(CourseDto courseDto) {
         courseMapper.updateCourseById(courseDto);
     }

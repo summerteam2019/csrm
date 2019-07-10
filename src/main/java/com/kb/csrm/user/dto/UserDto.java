@@ -14,6 +14,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Table(name = "user")
 public class UserDto {
@@ -74,6 +75,22 @@ public class UserDto {
      */
     @Column
     private String pwAnswer;
+
+    @Transient
+    private String collegeName;
+
+    @Transient
+    private String facultyName;
+
+    public String getNewpassword() {
+        return newpassword;
+    }
+
+    public void setNewpassword(String newpassword) {
+        this.newpassword = newpassword;
+    }
+
+    private String newpassword;
 
     public int getUserId() {
         return userId;
@@ -161,5 +178,22 @@ public class UserDto {
 
     public void setPwAnswer(String pwAnswer) {
         this.pwAnswer = pwAnswer;
+    }
+
+    public String getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
+    public String getFacultyName() {
+        return facultyName;
+    }
+
+    public void setFacultyName(String facultyName
+    ) {
+        this.facultyName = facultyName;
     }
 }

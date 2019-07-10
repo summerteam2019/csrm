@@ -55,4 +55,9 @@ public class UserServiceImpl implements IUserService {
     public void updateUserById(UserDto userDto) {
         userMapper.updateUserById(userDto);
     }
+
+    @Override
+    public void updateInfo(UserDto userDto) {
+        userMapper.updateInfo(userDto);
+    }
 }

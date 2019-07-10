@@ -54,4 +54,11 @@ public interface IUserService {
      * @return
      */
     void updateUserById (UserDto userDto);
+
+    /**
+     * 修改个人信息
+     * @param
+     * @return
+     */
+    void updateInfo (UserDto userDto);
 }

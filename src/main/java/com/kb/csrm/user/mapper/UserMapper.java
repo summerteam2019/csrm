@@ -57,9 +57,25 @@ public interface UserMapper {
      * @return
      */
     void updateUserById(UserDto userDto);
+
+    /**
+     * 登陆校验
+     * @param account
+     * @return
+     */
     UserDto login(@Param(value="account")int account);
 
+    /**
+     * 注册
+     * @param user
+     */
     void signup(UserDto user);
+
+    /**
+     * 修改用户信息
+     * @param userDto
+     */
+    void updateInfo(UserDto userDto);
 }
 
 

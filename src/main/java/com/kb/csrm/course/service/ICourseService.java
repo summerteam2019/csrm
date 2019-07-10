@@ -34,7 +34,7 @@ public interface ICourseService {
 
     /**
      * 按ID修改用户信息
-     * @param courseId
+     * @param courseDto
      * @return
      */
     void updateCourseById (CourseDto courseDto);
@@ -73,4 +73,11 @@ public interface ICourseService {
      * @return
      */
     List<CourseDto> getHighCount(int num);
+
+    /**
+     * 获取教授课程
+     * @param userId
+     * @return
+     */
+    List<CourseDto> getTaughtCourse(Long userId);
 }

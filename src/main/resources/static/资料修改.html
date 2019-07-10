@@ -142,17 +142,19 @@
             var faculty=$("#faculty").val();
             var age=$("#age").val();
             var education=$("#education").val();
+            var userid = $.session.get('userid');
 
             $.ajax({
                 type: "POST",
                 url: "",//请求程序页面
                 async: false,//当有返回值以后才会进行后面的js程序。
                 data: {
+                    "userId": userid,
                     "userName": adminname,
                     "collegeName":school,
                     "facultyName":faculty,
                     "age": age,
-                    "education":education,
+                    "education":education
                 },//请求需要发送的处理数据
                 success: function (result) {
                     if (result){

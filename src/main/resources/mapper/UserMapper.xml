@@ -107,4 +107,17 @@
         #{mail}
         )
     </select>
+
+    <update id="updateInfo" parameterType="com.kb.csrm.user.dto.UserDto">
+        update user
+        set
+        user_name=#{userName},
+        age=#{age},
+        college_id=(
+        select college_id from college where college_name = #{collegeName} and faculty_name = #{facultyName}
+        ),
+        age=#{age},
+        education=#{education}
+        where user_id = #{userId}
+    </update>
 </mapper>
