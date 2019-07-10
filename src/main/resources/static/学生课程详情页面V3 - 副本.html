@@ -427,10 +427,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 	function addResource(){
 		var userId = 2; //记得换成userID
-		var courseId = 3;
+		var courseId = 2;
 		var resourceName = $("#resourceName").val();
 		var resourceSize = 111;
-		var resourceFilename = $("#file").val().toString();
+		var file = document.getElementById('file');
+		var resourceFilename = file.files[0].name;
 		$.ajax({
 			type: "POST",
 			url: "/resource/addResource",//请求程序页面
@@ -444,7 +445,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				"resourceAddress": "http://localhost:8080/resource/files/" + resourceFilename
 			},
 			success:function(data){
-				alert("ccccccc");
+				alert("");
 			}
 		});
 	}
