@@ -42,13 +42,18 @@ public class AppraiseServiceImpl implements IAppraiseService {
     }
 
     @Override
-    public AppraiseDto getAppraiseByUserId(int userId){
+    public List<AppraiseDto> getAppraiseByUserId(int userId){
         return appraiseMapper.getAppraiseByUserId(userId);
     }
 
     @Override
-    public AppraiseDto getAppraiseByCourseId(int courseId){
+    public List<AppraiseDto> getAppraiseByCourseId(int courseId){
         return appraiseMapper.getAppraiseByCourseId(courseId);
+    }
+
+    @Override
+    public AppraiseDto getAppraiseByUserAndCourse(int userId, int courseId){
+        return appraiseMapper.getAppraiseByUserAndCourse(userId, courseId);
     }
 
     @Override

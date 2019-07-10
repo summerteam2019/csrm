@@ -62,9 +62,22 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/getAppraiseByCourseId")
     @ResponseBody
-    public ResponseData getAppraiseByCourseId(@RequestBody int courseId, HttpServletRequest request){
-        appraiseService.getAppraiseByCourseId(courseId);
-        return new ResponseData(true);
+    public Object[] getAppraiseByCourseId(int courseId){
+        Object[] appraiseCourse = new Object[2];
+        List<AppraiseDto> appraiseList = appraiseService.getAppraiseByCourseId(courseId);
+        String[] userName = new String[appraiseList.size()];
+        for(int i = 0; i < appraiseList.size(); i++){
+            userName[i] = appraiseService.getAppraiseUser(appraiseList.get(i));
+        }
+        appraiseCourse[0] = appraiseList;
+        appraiseCourse[1] = userName;
+        return appraiseCourse;
+    }
+
+    @RequestMapping("/getAppraiseByUserAndCourse")
+    @ResponseBody
+    public AppraiseDto getAppraiseByUserAndCourse(int userId, int courseId){
+        return appraiseService.getAppraiseByUserAndCourse(userId, courseId);
     }
 
     @RequestMapping("/getAppraiseByKeyWord")
@@ -87,10 +100,9 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/addAppraise")
     @ResponseBody
-    public ResponseData addAppraise(@RequestBody AppraiseDto appraiseDto, HttpServletRequest request){
-
+    public boolean addAppraise(AppraiseDto appraiseDto){
         appraiseService.addAppraise(appraiseDto);
-        return new ResponseData(true);
+        return true;
     }
 
     @RequestMapping("/deleteAppraise")
@@ -103,8 +115,8 @@ public class AppraiseController extends BaseController {
 
     @RequestMapping("/updateAppraise")
     @ResponseBody
-    public ResponseData updateAppraise(@RequestBody AppraiseDto appraiseDto, HttpServletRequest request){
+    public boolean updateAppraise(AppraiseDto appraiseDto){
         appraiseService.updateAppraise(appraiseDto);
-        return new ResponseData(true);
+        return true;
     }
 }

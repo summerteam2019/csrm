@@ -1,5 +1,7 @@
 package com.kb.csrm.appraise.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,6 +28,7 @@ public class AppraiseDto {
     private String appraiseContent;
 
     @Column
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp appraiseTime;
 
     @Column

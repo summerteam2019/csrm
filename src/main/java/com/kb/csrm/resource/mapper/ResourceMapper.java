@@ -9,11 +9,12 @@ import java.util.List;
 
 @Mapper
 public interface ResourceMapper {
+
     /**
      * 添加新资源
      * @param resource
      */
-    void insertResource(ResourceDto resource);
+    void addResource(ResourceDto resource);
 
     /**
      * 根据课程名获取资源
@@ -36,6 +37,13 @@ public interface ResourceMapper {
     ResourceDto selectResourceById(int resourceId);
 
     /**
+     * 根据课程ID获取资源
+     * @param courseId
+     * @return
+     */
+    List<ResourceDto> getResourceByCourseId(int courseId);
+
+    /**
      * 获取资源上传者的用户名
      * @param resourceDto
      * @return
@@ -48,6 +56,7 @@ public interface ResourceMapper {
      * @return
      */
     String getCourseName(ResourceDto resourceDto);
+
     /**
      * 根据ID删除资源
      * @param resourceId
@@ -60,5 +69,6 @@ public interface ResourceMapper {
      * @param resourceId
      * @return
      */
-    ResourceDto updateResourceById(@Param(value = "resourceId") double resourceId);
+    ResourceDto updateResourceById(@Param(value = "resourceId") int resourceId);
+
 }

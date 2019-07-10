@@ -4,17 +4,30 @@ import com.kb.csrm.resource.dto.ResourceDto;
 import com.kb.csrm.resource.mapper.ResourceMapper;
 import com.kb.csrm.resource.service.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 @Service
 public class ResourceServiceImpl implements IResourceService{
+
+    private final Path rootLocation = Paths.get("resource");
+
     @Autowired
     private ResourceMapper resourceMapper;
 
     @Override
-    public void insertResource(ResourceDto resourceDto) {
-        resourceMapper.insertResource(resourceDto);
+    public void addResource(ResourceDto resourceDto) {
+        resourceMapper.addResource(resourceDto);
     }
 
     @Override
@@ -33,6 +46,11 @@ public class ResourceServiceImpl implements IResourceService{
     }
 
     @Override
+    public List<ResourceDto> getResourceByCourseId(int courseId){
+        return resourceMapper.getResourceByCourseId(courseId);
+    }
+
+    @Override
     public String getUserName(ResourceDto resourceDto){
         return resourceMapper.getUserName(resourceDto);
     }
@@ -48,7 +66,38 @@ public class ResourceServiceImpl implements IResourceService{
     }
 
     @Override
-    public ResourceDto updateResourceById(Long resourceId) {
+    public ResourceDto updateResourceById(int resourceId) {
         return resourceMapper.updateResourceById(resourceId);
+    }
+
+    @Override
+    public void uploadResource(MultipartFile file){
+        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        try
+        {
+            Files.copy(file.getInputStream(), this.rootLocation.resolve(filename), StandardCopyOption.REPLACE_EXISTING);
+        }
+        catch (IOException e)
+        {
+
+        }
+    }
+
+    @Override
+    public Resource loadResource(String filename){
+        try
+        {
+            Path file = rootLocation.resolve(filename);
+            Resource resource = new UrlResource(file.toUri());
+            if (resource.exists() || resource.isReadable())
+            {
+                return resource;
+            }
+        }
+        catch (MalformedURLException e)
+        {
+
+        }
+        return null;
     }
 }
