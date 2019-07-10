@@ -140,12 +140,19 @@
             success: function (data) {
                 for(var i in data.rows){
                     var course = data.rows[i];
-                    $("#zuire").append("  <div class=\"item_class\"  onClick=\"getCanshu('"+course.courseId+"')\">\n" +
-                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                    var courseId = data.rows[i].courseId;
+                    $("#zuire").append("  <div class=\"item_class course_div"+ i +"\" onClick=\"getCanshu()\">\n" +                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+course.courseName+"</h3>\n" +
                         "                        <p>"+course.courseIntroduce+"</p>\n" +
                         "                    </div>\n" +
+                        "<script type=\"text/javascript\">\n" +
+                        "    $(function(){\n" +
+                        "    $(\".course_div"+i+"\").click(function getCanshu() {\n" +
+                        "        window.location.href = \"课程详情.html?courseid=" + courseId + "\";\n" +
+                        "    });\n" +
+                        "    });\n" +
+                        "<\/script>\n" +
                         "                    <div class=\"item_class_bottom\">\n" +
                         "                        <span class=\"left\">"+course.teacherName+"</span>\n" +
                         "                        <span class=\"right\">"+course.courseCount+"次点击</span>\n" +
@@ -153,22 +160,10 @@
                         "                    </div>\n" +
                         "                </div>");
                 }
-            },
+            }
         });
-
-           // $(".item_class").click(function () {
-            //    var courseId = $(this).find('h4').val();
-            //    window.location.href = "课程详情.html?courseid="+courseId;
-           // });
     });
 
-</script>
-<script type="text/javascript">
-    $(function(){
-    $(".item_class").click(function getCanshu(id) {
-        window.location.href = "课程详情.html?courseid="+id;
-    });
-    });
 </script>
 </body>
 
