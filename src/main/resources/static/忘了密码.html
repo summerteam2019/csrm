@@ -41,63 +41,36 @@
         </div>
         <div class="row cl">
             <label class="col-xs-4 col-sm-4"></label>
-            <div class=" col-xs-8 col-sm-4"style="font-size:22px">资料修改 </div>
+            <div class=" col-xs-8 col-sm-4"style="font-size:22px">密码修改</div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">用户名</label>
+            <label class="form-label col-xs-4 col-sm-4">手机号</label>
             <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text"   id="adminName" name="adminName"disabled="disabled">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">邮箱</label>
-            <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text"  name="email" id="email"disabled="disabled">
+                <input type="text" class="input-text" value="" id="phone">
             </div>
         </div>
 
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">学校</label>
+            <label class="form-label col-xs-4 col-sm-4">密保答案</label>
             <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text" autocomplete="off" value="" id="school"
-                       name="school">
+                <input type="text" class="input-text"  value="" placeholder="输入密保答案" id="daan">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">院系</label>
+            <label class="form-label col-xs-4 col-sm-4">新密码</label>
             <div class="formControls col-xs-8 col-sm-4">
-                <input type="text" class="input-text" autocomplete="off" value="" id="faculty"
-                       name="faculty">
+                <input type="password" class="input-text" autocomplete="off" value="" placeholder="输入新密码" id="password"
+                       name="password">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">年龄</label>
-            <div class="formControls col-xs-8 col-sm-4"> <span class="select-box" style="width:150px;">
-                    <select class="select" name="age" size="1"id="age">
-                        <option value=16>16</option>
-                        <option value=17>17</option>
-                        <option value=18>18</option>
-                        <option value=19>19</option>
-                        <option value=20>20</option>
-                        <option value=21>21</option>
-                        <option value=22>22</option>
-                        <option value=23>23</option>
-                        <option value=24>24</option>
-                        <option value=25>25</option>
-                    </select>
-                    </span> </div>
+            <label class="form-label col-xs-4 col-sm-4">确认密码</label>
+            <div class="formControls col-xs-8 col-sm-4">
+                <input type="password" class="input-text" autocomplete="off" value="" placeholder="请确认密码" id="password2"
+                       name="password">
+            </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-4">学历</label>
-            <div class="formControls col-xs-8 col-sm-4"> <span class="select-box" style="width:150px;">
-                    <select class="select" name="education"id="education" size="1">
-                        <option value="高中">高中</option>
-                        <option value="本科在读">本科在读</option>
-                        <option value="本科毕业">本科毕业</option>
-                        <option value="研究生">研究生</option>
-                    </select>
-                    </span> </div>
-        </div>
+
 
 
         <div class="row cl">
@@ -125,19 +98,8 @@
     });
 
     $(function () {
-        $("#adminName").val($.session.get("NAME"));
-        $("#email").val($.session.get("EMAIL"));
-        $("#school").val($.session.get("SCHOOL"));
-        $("#faculty").val($.session.get("FACULTY"));
-        $("#age").val($.session.get("AGE"));
-        $("#education").val($.session.get("EDUCATION"));
-
-
-    });
-
-    $(function () {
         $("#xiugai").click(function () {
-            var adminname = $("#adminName").val();
+            var account = $("#phone").val();
             var school=$("#school").val();
             var faculty=$("#faculty").val();
             var age=$("#age").val();
@@ -157,7 +119,7 @@
                 success: function (result) {
                     if (result){
                         alert("修改成功");
-                        window.location.href = "学生中心.html";
+                        window.location.href = "登陆（试验）.html";
                     }
                     else{
                         alert("修改失败");
