@@ -117,8 +117,7 @@
             success: function (data) {
                 for(var i in data.rows){
                     var course = data.rows[i];
-                    $("#tuijian").append(" <div class=\"intoduce\">\n" +
-                        "                <div class=\"item_class\"  >\n" +
+                    $("#tuijian").append("  <div class=\"item_class\"  >\n" +
                         "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+course.courseName+"</h3>\n" +
@@ -127,11 +126,9 @@
                         "                    <div class=\"item_class_bottom\">\n" +
                         "                        <span class=\"left\">"+course.teacherName+"</span>\n" +
                         "                        <span class=\"right\">"+course.courseCount+"次点击</span>\n" +
-                        "                        <h4>"+course.courseId+"</h4>               \n" +
+                        "                        <h4 hidden='hidden'>"+course.courseId+"</h4>               \n" +
                         "                    </div>\n" +
-                        "                </div>\n" +
-                        "\n" +
-                        "            </div>");
+                        "                </div>");
                 }
             },
         });
@@ -141,8 +138,7 @@
             success: function (data) {
                 for(var i in data.rows){
                     var course = data.rows[i];
-                    $("#zuire").append(" <div class=\"intoduce\">\n" +
-                        "                <div class=\"item_class\"  >\n" +
+                    $("#zuire").append("  <div class=\"item_class\"  >\n" +
                         "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+course.courseName+"</h3>\n" +
@@ -151,11 +147,9 @@
                         "                    <div class=\"item_class_bottom\">\n" +
                         "                        <span class=\"left\">"+course.teacherName+"</span>\n" +
                         "                        <span class=\"right\">"+course.courseCount+"次点击</span>\n" +
-                        "                        <h4>"+course.courseId+"</h4>               \n" +
+                        "                        <h4 hidden='hidden'>"+course.courseId+"</h4>               \n" +
                         "                    </div>\n" +
-                        "                </div>\n" +
-                        "\n" +
-                        "            </div>");
+                        "                </div>");
                 }
             },
         });
