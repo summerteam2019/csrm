@@ -140,7 +140,7 @@
             success: function (data) {
                 for(var i in data.rows){
                     var course = data.rows[i];
-                    $("#zuire").append("  <div class=\"item_class\"  >\n" +
+                    $("#zuire").append("  <div class=\"item_class\"  onClick=\"getCanshu("+course.courseId+")\">\n" +
                         "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+course.courseName+"</h3>\n" +
@@ -155,15 +155,20 @@
                 }
             },
         });
-        $(document).ajaxComplete(function(){
+
             $(".item_class").click(function () {
                 var courseId = $(this).find('h4').val();
                 window.location.href = "课程详情.html?courseid="+courseId;
             });
 
-        });
+
     });
 
+</script>
+<script type="text/javascript">
+    function getCanshu(id){
+        window.location.href = "课程详情.html?courseid="+id;
+    }
 </script>
 </body>
 
