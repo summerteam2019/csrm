@@ -95,7 +95,7 @@
         var userid = $.session.get('userid');
         $.ajax({
             type: "POST",
-            url: "",//请求程序页面
+            url: "course/getTaughtCourse",//请求程序页面
             data: {"userId": userid},
             success: function (data) {
                 for (var i in data.rows) {

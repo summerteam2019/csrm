@@ -38,7 +38,7 @@ public class Crawler {
 
     private boolean needToDownloadImg = true;
     private boolean print = true;
-    private String imgPath = System.getProperty("user.home") + "/Desktop/Testing";
+    private String imgPath = System.getProperty("user.home") + "/Documents/csrm/src/main/resources/static/img/course";
     private String targetUrl = "http://www.imooc.com/course/list?page=1";
     private ThreadPoolExecutor threadPool = ThreadFactory.getThreadPool();
 
