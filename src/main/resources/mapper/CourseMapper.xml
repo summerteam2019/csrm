@@ -131,7 +131,6 @@
 
     <select id="getHighCount" parameterType="int" resultMap="BaseResultMap">
         SELECT
-        SELECT
         c.course_id,
         c.teacher_name,
         c.course_name,
