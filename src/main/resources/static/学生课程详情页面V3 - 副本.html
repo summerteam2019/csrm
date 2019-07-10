@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>课程讨论</title>
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
@@ -249,12 +249,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<li data-content="download">
 						<div class="comments-top-top">
+							<div id="resource">
 							<div class="top-comment-left">
-								<a href="https://www.baidu.com/link?url=0_HYXUk68SvdVfu1DCQfTi0a0voBuyY7M5hti2R3yJIAzyK7GgGPPhj4BOwha92_S0xtIzfGK91rIuy5_ggRbu-CYHUJ1s6J1T-ovVp0dNa&wd=&eqid=965e3c8200088631000000055d15baeb">
-									<img class="img-responsive" src="img/推荐课程1.jpg" alt="" href="#">
-								</a>
+								<div>
+									<form id="formUploadFile">
+										<input type="file" name="file" id="file"/>
+										<input id="resourceName" type="text" placeholder="请输入资源名"/>
+										<input type="submit" value="资源上传" onclick="uploadResource();addResource()"/>
+									</form>
+								</div>
+								<div>
+									<a href="http://localhost:8080/resource/files/aaa.txt" text="">下载</a>
+								</div>
 							</div>
-
+							</div>
 						</div>
 					</li>
 
@@ -339,7 +347,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	//发表评分
 	function submitScore(){
-		var userId = 12; //记得换成userId
+		var userId = 128; //记得换成userId
 		var courseId = newsid;
 		var appraiseGrade = $("#starNum").val();
 		var appraiseContent = $("#appraiseContent").val();
@@ -375,13 +383,75 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				}
 			}
 		});
+	}
 
+	//显示课程资源
+	$(function(){
+		var courseId = newsid;
+		$.ajax({
+			type: "POST",
+			url: "/resource/getResourceByCourseId",//请求程序页面
+			dataType: "json",
+			data: {
+				"courseId": courseId
+			},
+			success: function(data){
+				var resource = "";
+				for(i = 0; i < data.length; i++){
+					resource += "<div class=\"top-comment-left\">" +
+							        "<a href='http://localhost:8080/resource/files/"+data[i].resourceFilename+"'>"+data[i].resourceName+"</a>" +
+							    "</div>"
+				}
+				$("#resource").append(resource);
+			}
+		});
+	});
 
+	//资源上传
+	function uploadResource(){
+		var formData = new FormData($("#formUploadFile")[0]);
+		$.ajax({
+			type: "POST",
+			url: "/resource/uploadResource",//请求程序页面
+			data: formData,
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function(data){
 
+				alert(data);
 
+			}
+		});
+	}
+	function addResource(){
+		var userId = 2; //记得换成userID
+		var courseId = 3;
+		var resourceName = $("#resourceName").val();
+		var resourceSize = 111;
+		var resourceFilename = $("#file").val().toString();
+		$.ajax({
+			type: "POST",
+			url: "/resource/addResource",//请求程序页面
+			dataType: "json",
+			data: {
+				"courseId": courseId,
+				"userId": userId,
+				"resourceName": resourceName,
+				"resourceSize": resourceSize,
+				"resourceFilename": resourceFilename,
+				"resourceAddress": "http://localhost:8080/resource/files/" + resourceFilename
+			},
+			success:function(data){
+				alert("ccccccc");
+			}
+		});
 	}
 
 </script>
+
+<!--星星评分-->
 <script>
 
 	$('[name="starLevel"]').bind("click",function(){
@@ -397,6 +467,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 */
 	})
 </script>
+
+
+
+
+
 </body>
 </html>
 

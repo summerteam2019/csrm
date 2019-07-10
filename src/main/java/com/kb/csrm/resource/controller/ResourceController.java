@@ -4,13 +4,17 @@ import com.kb.csrm.resource.service.IResourceService;
 import com.kb.csrm.util.BaseController;
 import com.kb.csrm.util.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/resource")
@@ -19,11 +23,11 @@ public class ResourceController extends BaseController{
     @Autowired
     private IResourceService resourceService;
 
-    @RequestMapping("/create")
+    @RequestMapping("/addResource")
     @ResponseBody
-    public ResponseData insertResource(@RequestBody ResourceDto resourceDto, HttpServletRequest request){
-        resourceService.insertResource(resourceDto);
-        return new ResponseData(true);
+    public boolean addResource(ResourceDto resourceDto){
+        resourceService.addResource(resourceDto);
+        return true;
     }
 
     @RequestMapping("/getAllResource")
@@ -66,6 +70,12 @@ public class ResourceController extends BaseController{
         return allResource;
     }
 
+    @RequestMapping("/getResourceByCourseId")
+    @ResponseBody
+    public List<ResourceDto> getResourceByCourseId(int courseId){
+        return resourceService.getResourceByCourseId(courseId);
+    }
+
     @RequestMapping("/delete")
     @ResponseBody
     public boolean deleteResourceById(int resourceId){
@@ -75,9 +85,28 @@ public class ResourceController extends BaseController{
 
     @RequestMapping("/update")
     @ResponseBody
-    public ResponseData updateResourceById(@RequestBody Long resourceId, HttpServletRequest request){
+    public ResponseData updateResourceById(int resourceId){
         resourceService.updateResourceById(resourceId);
         return new ResponseData(true);
     }
+
+    @PostMapping("/uploadResource")
+    @ResponseBody
+    public String resourceUpload(@RequestParam("file") MultipartFile file,
+                                 RedirectAttributes redirectAttributes){
+        resourceService.uploadResource(file);
+        redirectAttributes.addFlashAttribute("message","You successfully uploaded " + file.getOriginalFilename() + "!");
+        return "成功上传！";
+    }
+
+    @GetMapping("/files/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+
+        Resource file = resourceService.loadResource(filename);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }
+
 
 }

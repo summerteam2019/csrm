@@ -13,7 +13,7 @@
         <result column="download_count" property="downloadCount" jdbcType="INTEGER" />
     </resultMap>
 
-    <insert id="insertResource"  parameterType="com.kb.csrm.resource.dto.ResourceDto" useGeneratedKeys="true" keyProperty="resource_id">
+    <insert id="addResource"  parameterType="com.kb.csrm.resource.dto.ResourceDto">
         insert into resource(
         course_id,
         user_id,
@@ -21,18 +21,16 @@
         resource_size,
         resource_filename,
         resource_address,
-        resource_time,
-        download_count
+        resource_time
         )
         values (
-        #{courseId}
+        #{courseId},
         #{userId},
         #{resourceName},
         #{resourceSize},
         #{resourceFilename},
         #{resourceAddress},
-        #{resourceTime},
-        #{downloadCount}
+        CURRENT_TIME(0)
         )
     </insert>
 
@@ -72,6 +70,12 @@
         select course_name
         from course
         where course_id = #{courseId};
+    </select>
+
+    <select id="getResourceByCourseId" parameterType="int" resultMap="BaseResultMap">
+        select *
+        from resource
+        where course_id = #{courseId}
     </select>
 
     <delete id="deleteResource" parameterType="int">

@@ -1,13 +1,16 @@
 package com.kb.csrm.resource.service;
 import com.kb.csrm.resource.dto.ResourceDto;
+import org.springframework.core.io.Resource;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 public interface IResourceService {
+
     /**
      * 添加新资源
      * @param
      */
-    void insertResource (ResourceDto resourceDto);
+    void addResource (ResourceDto resourceDto);
 
     /**
      * 获取所有资源
@@ -28,6 +31,13 @@ public interface IResourceService {
      * @return
      */
     List<ResourceDto> getResourceByCourseName(String courseName);
+
+    /**
+     * 根据课程ID获取资源
+     * @param courseId
+     * @return
+     */
+    List<ResourceDto> getResourceByCourseId(int courseId);
 
     /**
      * 获取资源上传者的用户名
@@ -55,5 +65,19 @@ public interface IResourceService {
      * @param
      * @return
      */
-    ResourceDto updateResourceById (Long resourceId);
+    ResourceDto updateResourceById (int resourceId);
+
+    /**
+     * 上传文件
+     * @param file
+     */
+    void uploadResource(MultipartFile file);
+
+    /**
+     * 下载文件
+     * @param filename
+     * @return
+     */
+    Resource loadResource(String filename);
+
 }

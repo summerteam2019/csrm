@@ -1,5 +1,6 @@
 package com.kb.csrm.resource.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.stereotype.Component;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -51,6 +52,7 @@ public class ResourceDto {
      * 资源上传时间
      */
     @Column
+    @JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     private Timestamp resourceTime;
     /**
      * 资源下载次数

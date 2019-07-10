@@ -101,7 +101,6 @@ public class AppraiseController extends BaseController {
     @RequestMapping("/addAppraise")
     @ResponseBody
     public boolean addAppraise(AppraiseDto appraiseDto){
-
         appraiseService.addAppraise(appraiseDto);
         return true;
     }
