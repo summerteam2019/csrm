@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <title>首页</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+<div id="head-pic">
+<div id="header">
+    <div id="logo">
+        <a href="首页（公共首页和游客首页）.html">慕课网</a>
+    </div>
+
+    <div id="login">
+        <ul>
+            <li>
+                <a href="登陆（试验）.html">登录</a>
+            </li>
+            <li>
+                <a href="注册.html">注册</a>
+            </li>
+        </ul>
+    </div>
+    <div id="search">
+        <input type="text" name="search" placeholder="搜索感兴趣课程" value="">
+        <button onclick="javascrtpt:window.location.href='搜索结果（游客）.html'">搜索</button>
+    </div>
+</div>
+</div>
+
+
+<div id="content">
+    <div id="menu">
+        <div class="left_menu">
+            <div id="item1" class="item">
+                <a href="搜索结果（游客）.html">
+                    <span>计算机</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item2" class="item">
+                <a href="搜索结果（游客）.html">
+                    <span>古典音乐</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item3" class="item">
+                <a href="搜索结果（游客）.html">
+                    <span>管理</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item4" class="item">
+                <a href="搜索结果（游客）.html">
+                    <span>期末宝典</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item5" class="item">
+                <a href="搜索结果（游客）.html">
+                    <span>四六级</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item6" class="item">
+                <a href="搜索结果（游客）.html">
+                    <span>摄影</span>
+                    <i>></i>
+                </a>
+            </div>
+            <div id="item7" class="item">
+                <a href="http://www.baidu.com">
+                    <span>更多</span>
+                    <i>></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="introduce">
+        <div class="practise"id="tuijian">
+            <div class="title">
+                <h2>课程推荐</h2>
+            </div>
+
+        </div>
+    </div>
+<br>
+    <div class="introduce">
+        <div class="practise"id="zuire">
+            <div class="title">
+                <h2>最热课程</h2>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div id="footer">
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/jquerysession.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: "course/getRecommend",//请求程序页面
+            success: function (data) {
+                for(var i in data.rows){
+                    var course = data.rows[i];
+                    $("#tuijian").append(" <div class=\"intoduce\">\n" +
+                        "                <div class=\"item_class\"  >\n" +
+                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                        "                    <div class=\"item_class_intro\">\n" +
+                        "                        <h3>"+course.courseName+"</h3>\n" +
+                        "                        <p>"+course.courseIntoduce+"</p>\n" +
+                        "                    </div>\n" +
+                        "                    <div class=\"item_class_bottom\">\n" +
+                        "                        <span class=\"left\">"+course.teacherName+"</span>\n" +
+                        "                        <span class=\"right\">"+course.courseCount+"次点击</span>\n" +
+                        "                        <h4>"+course.courseId+"</h4>               \n" +
+                        "                    </div>\n" +
+                        "                </div>\n" +
+                        "\n" +
+                        "            </div>");
+                }
+            },
+        });
+        $.ajax({
+            type: "POST",
+            url: "course/getHighCount",//请求程序页面
+            success: function (data) {
+                for(var i in data.rows){
+                    var course = data.rows[i];
+                    $("#zuire").append(" <div class=\"intoduce\">\n" +
+                        "                <div class=\"item_class\"  >\n" +
+                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                        "                    <div class=\"item_class_intro\">\n" +
+                        "                        <h3>"+course.courseName+"</h3>\n" +
+                        "                        <p>"+course.courseIntoduce+"</p>\n" +
+                        "                    </div>\n" +
+                        "                    <div class=\"item_class_bottom\">\n" +
+                        "                        <span class=\"left\">"+course.teacherName+"</span>\n" +
+                        "                        <span class=\"right\">"+course.courseCount+"次点击</span>\n" +
+                        "                        <h4>"+course.courseId+"</h4>               \n" +
+                        "                    </div>\n" +
+                        "                </div>\n" +
+                        "\n" +
+                        "            </div>");
+                }
+            },
+        });
+        $(".item_class").click(function () {
+            var courseId = $(this).find('h4').val();
+            window.location.href = "课程详情.html?courseid="+courseId;
+        });
+    });
+
+</script>
+</body>
+
+</html>
