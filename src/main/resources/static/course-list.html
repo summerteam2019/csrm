@@ -63,11 +63,6 @@
 			</div>
 			<div class="container">
 				<div class="form-group">
-					<label for="cid">课程ID:</label>
-					<input type="text" class="form-control" id="cid" name="cid" value="">
-				</div>
-				<br><br>
-				<div class="form-group">
 					<label for="cname">课程名:</label>
 					<input type="text" class="form-control" id="cname" name="cname" value="">
 				</div>
@@ -203,7 +198,6 @@ function addACourseModal(){
 	$("#addCourseModal").modal("show");
 }
 function addCourse(){
-	var courseId = $("#cid").val();
 	var courseName = $("#cname").val();
 	var teacherName = $("#teacher").val();
 	var courseRate = $("#score").val();
@@ -213,7 +207,6 @@ function addCourse(){
 		dataType: "json",
 		async: false,//当有返回值以后才会进行后面的js程序。
 		data: {
-			"courseId": courseId,
 			"courseName": courseName,
 			"teacherName": teacherName,
 		    "courseRate":courseRate},

@@ -40,11 +40,7 @@ public class UserController extends BaseController {
 
     @RequestMapping("/create")
     @ResponseBody
-    public Boolean addCollege(int userId, String userName, String roleName,String mail){
-        UserDto userDto = new UserDto();
-        userDto.setUserId(userId);
-        userDto.setUserName(userName);
-        userDto.setRoleName(roleName);
+    public boolean insertUserById(UserDto userDto){
         userService.insertUserById(userDto);
         return true;
     }
@@ -52,9 +48,9 @@ public class UserController extends BaseController {
 
     @RequestMapping("/select")
     @ResponseBody
-    public UserDto getUserById(UserDto userDto){
-        int userId = userDto.getUserId();
-        return userService.selectUserById(userId);
+    public List<UserDto> getUserByName(String userName){
+        List<UserDto> userList = userService.getUserByName(userName);
+        return userList;
     }
 
     @RequestMapping("/query")
@@ -73,12 +69,7 @@ public class UserController extends BaseController {
 
     @RequestMapping("/update")
     @ResponseBody
-    public boolean updateUserById(@RequestParam("userId") int userId, @RequestParam("userName")String userName, @RequestParam("roleName")String roleName, @RequestParam("mail")String mail){
-        UserDto userDto = new UserDto();
-        userDto.setUserId(userId);
-        userDto.setUserName(userName);
-        userDto.setRoleName(roleName);
-        userDto.setMail(mail);
+    public Boolean updateCourseById(UserDto userDto){
         userService.updateUserById(userDto);
         return true;
     }

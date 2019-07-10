@@ -26,16 +26,15 @@ public interface CourseMapper {
      * @param courseId
      * @return
      */
-    void deleteCourseById(@Param(value = "courseID") double courseId);
+    void deleteCourseById(CourseDto courseDto);
 
     /**
      * 根据ID修改课程信息
      * @param courseId
      * @return
      */
-    CourseDto updateCourseById(@Param(value = "courseID") int courseId);
 
-    void updateCourseById(@Param(value = "courseID") CourseDto courseId);
+    void updateCourseById( CourseDto courseDto);
 
 
     /**

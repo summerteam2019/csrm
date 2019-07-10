@@ -63,11 +63,6 @@
 			</div>
 			<div class="container">
 				<div class="form-group">
-					<label for="cid">用户ID:</label>
-					<input type="text" class="form-control" id="cid" name="cid" value="">
-				</div>
-				<br><br>
-				<div class="form-group">
 					<label for="userName">用户名:</label>
 					<input type="text" class="form-control" id="userName" name="userName" value="">
 				</div>
@@ -83,8 +78,8 @@
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="userRole">用户角色:</label>
-					<input type="text" class="form-control" id="userRole" name="userRole" value="">
+					<label for="roleName">用户角色:</label>
+					<input type="text" class="form-control" id="roleName" name="roleName" value="">
 				</div>
 				<br><br>
 				<div class="form-group">
@@ -183,16 +178,13 @@ $(function(){
 }
 )
 function findOneUser() {
-	var userId = $("#userIdOrName").val();
+	var userName = $("#userIdOrName").val();
 	$.ajax({
 		type:"post",
 		url:"user/select",
 		dataType:"json",
 		data:{
-			"userId": userId,
-			"userName":null,
-			"roleName":null,
-			"mail":null
+			"userName":userName
 		},
 		success: function(data) {
 			if(data != null){
@@ -231,7 +223,6 @@ function addAUserModal(){
 	$("#addUserModal").modal("show");
 }
 function addUser(){
-	var userId = $("#cid").val();
 	var userName = $("#userName").val();
 	var account = $("#account").val();
 	var password = $("#password").val();
@@ -245,7 +236,6 @@ function addUser(){
 		dataType: "json",
 		async: false,//当有返回值以后才会进行后面的js程序。
 		data: {
-			"userId": userId,
 			"userName": userName,
 			"account":account,
 			"password":password,
@@ -272,7 +262,7 @@ function addUser(){
 function deleteUser(id){
 	if(confirm('您确定要删除该用户吗')){
 		$.ajax({
-			url:"course/delete",
+			url:"user/delete",
 			type:"post",
 			dataType:"json",
 			data:{

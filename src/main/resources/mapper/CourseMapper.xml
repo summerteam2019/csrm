@@ -17,14 +17,13 @@
         insert into course(
         course_name,
         teacher_name,
-        course_introduce,
-        course_time
+        course_Rate
         )values (
         #{courseName},
         #{teacherName},
-        #{courseIntroduce},
-        #{courseTime})
+        #{courseRate})
     </insert>
+
     <insert id="batchInsert" parameterType="java.util.List">
         insert into course(
         course_name,
@@ -51,11 +50,12 @@
         delete from course
         where course_id = #{courseId}
     </delete>
+
     <update id="updateCourseById" parameterType="com.kb.csrm.course.dto.CourseDto" >
         update course
         set
         course_name=#{courseName},
-        teacher_name=#{teacherName},
+        teacher_name=#{teacherName}
         where course_id = #{courseId}
     </update>
 

@@ -26,6 +26,12 @@ public class CourseController extends BaseController{
         return courseService.getAllCourse();
     }
 
+    @RequestMapping(path="/select")
+    @ResponseBody
+    public List<CourseDto> getCourseByName(String courseName){
+        List<CourseDto> courseList = courseService.getCourseByKeyWord(courseName);
+        return courseList;
+    }
 
     /**添加课程*/
     @RequestMapping("/create")
@@ -36,7 +42,7 @@ public class CourseController extends BaseController{
     }
 
     /**查询课程*/
-    @RequestMapping("/select")
+    @RequestMapping("/selectOne")
     @ResponseBody
     public CourseDto selectCourseByIdById(CourseDto courseDto){
         int courseId = courseDto.getCourseId();
@@ -47,7 +53,7 @@ public class CourseController extends BaseController{
     /**删除课程*/
     @RequestMapping("/delete")
     @ResponseBody
-    public boolean deleteCourseById(@RequestBody int courseId){
+    public boolean deleteCourseById(@RequestParam("courseId") int courseId){
         courseService.deleteCourseById(courseId);
         return true;
     }

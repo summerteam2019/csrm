@@ -27,11 +27,13 @@ public interface IUserService {
     void insertUserById (UserDto userDto);
 
     /**
-     * 按ID查找用户
-     * @param userId
+     * 根据名称获取用户
+     * @param
      * @return
      */
-    UserDto selectUserById (int userId);
+    List<UserDto> getUserByName(String UserName);
+
+
 
     /**
      * 查找所有用户

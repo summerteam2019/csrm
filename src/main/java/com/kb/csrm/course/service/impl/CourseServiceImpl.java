@@ -36,13 +36,11 @@ public class CourseServiceImpl implements ICourseService {
 
     @Override
     public void deleteCourseById(int courseId) {
-        courseMapper.deleteCourseById(courseId);
+        CourseDto courseDto = new CourseDto();
+        courseDto.setCourseId(courseId);
+        courseMapper.deleteCourseById(courseDto);
     }
 
-    @Override
-    public void updateCourseById(Long courseId) {
-        courseMapper.updateCourseById(courseId);
-    }
 
     @Override
     public List<CourseDto> getRecommendedCourse() {
@@ -61,8 +59,7 @@ public class CourseServiceImpl implements ICourseService {
 
     @Override
     public void updateCourseById(CourseDto courseDto) {
-        int courseId = courseDto.getCourseId();
-        courseMapper.updateCourseById(courseId);
+        courseMapper.updateCourseById(courseDto);
     }
 
 

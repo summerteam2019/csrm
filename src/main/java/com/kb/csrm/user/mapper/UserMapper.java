@@ -25,17 +25,18 @@ public interface UserMapper {
     List<UserDto> getAllUser();
 
     /**
+     * 根据用户名称获取用户信息
+     * @param
+     * @return
+     */
+    List<UserDto> getUserByName(String userName);
+
+    /**
      * 添加新用户
      * @param user
      */
-    void insertUser(UserDto user);
+    void insertUser(UserDto userDto);
 
-    /**
-     * 根据ID查询用户
-     * @param userId
-     * @return
-     */
-    UserDto selectUserById(int userId);
 
     /**
      * 根据筛选条件查询用户

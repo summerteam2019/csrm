@@ -37,8 +37,7 @@ public interface ICourseService {
      * @param courseId
      * @return
      */
-    void updateCourseById (Long courseId);
-    void updateCourseById (CourseDto courseId);
+    void updateCourseById (CourseDto courseDto);
 
     /**
      * 根据关键字查询课程

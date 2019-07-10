@@ -15,38 +15,36 @@
         <result column="pw_answer" property="pwAnswer" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <select id="getAllUser" resultMap="BaseResultMap">
+        select *
+        from user
+    </select>
+
+    <select id="getUserByName" parameterType="String" resultMap="BaseResultMap">
+        select *
+        from user
+        where user_name LIKE #{userName}
+    </select>
+
     <insert id="insertUser" parameterType="com.kb.csrm.user.dto.UserDto">
         insert into user(
-        account,
-        user_name,
-        role_name,
-        pawword,
-        mail
-        )values (
-        #{account},
-        #{userName},
-        #{roleName},
-        #{password},
-        #{mail}
-        )
-    </insert>
-
-    <select id="selectUserById" resultMap="BaseResultMap">
-        SELECT
-        user_id,
         user_name,
         account,
         password,
         role_name,
         mail,
-        college_id,
-        age,
-        education,
         pw_question,
         pw_answer
-        FROM user
-        WHERE user_id = #{userId}
-    </select>
+        )values (
+        #{userName},
+        #{account},
+        #{password},
+        #{roleName},
+        #{mail},
+        #{pwQuestion},
+        #{pwAnswer})
+    </insert>
+
 
     <select id="query" resultMap="BaseResultMap">
         SELECT
@@ -71,9 +69,8 @@
     </select>
     <select id="updateUserById" parameterType="com.kb.csrm.user.dto.UserDto">
         update user
-        set user_id=#{userId},
+        set
         user_name=#{userName},
-        role_name=#{roleName},
         mail=#{mail}
         where user_id = #{userId}
     </select>
