@@ -11,6 +11,8 @@
         <result column="course_time" property="courseTime" jdbcType="VARCHAR" />
         <result column="course_rate" property="courseRate" jdbcType="INTEGER" />
         <result column="course_count" property="courseCount" jdbcType="INTEGER" />
+        <result column="college_name" property="collegeName" jdbcType="VARCHAR" />
+        <result column="faculty_name" property="facultyName" jdbcType="VARCHAR" />
     </resultMap>
 
     <insert id="insertCourse"  parameterType="com.kb.csrm.course.dto.CourseDto">
@@ -49,8 +51,9 @@
         c.course_count,
         c.course_introduce,
         c.recommend,
-        c.college_id
-        co.college_name || co.faculty_name collegeName
+        c.college_id,
+        co.college_name,
+        co.faculty_name
         FROM course c, college co
         WHERE c.course_id = #{courseId}
         and c.college_id = co.college_id
@@ -79,8 +82,9 @@
         c.course_count,
         c.course_introduce,
         c.recommend,
-        c.college_id
-        co.college_name || co.faculty_name collegeName
+        c.college_id,
+        co.college_name,
+        co.faculty_name
         FROM course c, college co
         where c.course_name LIKE CONCAT('%',#{courseName},'%')
         and c.college_id = co.college_id
@@ -101,8 +105,9 @@
         c.course_count,
         c.course_introduce,
         c.recommend,
-        c.college_id
-        co.college_name || co.faculty_name collegeName
+        c.college_id,
+        co.college_name,
+        co.faculty_name
         FROM course c, college co
         WHERE c.recommend = 1
         and c.college_id = co.college_id
@@ -117,7 +122,8 @@
         c.course_count,
         c.course_introduce,
         c.recommend,
-        co.college_name || co.faculty_name collegeName
+        co.college_name,
+        co.faculty_name
         FROM course c, college co
         WHERE c.recommend = 1
         and c.college_id = co.college_id
@@ -133,7 +139,8 @@
         c.course_count,
         c.course_introduce,
         c.recommend,
-        co.college_name || co.faculty_name collegeName
+        co.college_name,
+        co.faculty_name
         FROM course c, college co
         and c.college_id = co.college_id
         ORDER BY c.course_count
@@ -149,7 +156,8 @@
         c.course_count,
         c.course_introduce,
         c.recommend,
-        co.college_name || co.faculty_name collegeName
+        co.college_name,
+        co.faculty_name
         from course c, college co
         WHERE c.teacher_id = #{userId}
         and c.college_id = co.college_id

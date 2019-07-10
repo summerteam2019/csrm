@@ -66,6 +66,12 @@ public class CourseDto {
     @Transient
     private String collegeName;
 
+    /**
+     * 课程所属学院名称
+     */
+    @Transient
+    private String facultyName;
+
     @Transient
     private int ifChose;
 
@@ -165,5 +171,12 @@ public class CourseDto {
         this.ifChose = ifChose;
     }
 
+    public String getFacultyName() {
+        return facultyName;
+    }
+
+    public void setFacultyName(String facultyName) {
+        this.facultyName = facultyName;
+    }
 
 }

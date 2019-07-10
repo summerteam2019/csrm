@@ -13,6 +13,8 @@
         <result column="education" property="education" jdbcType="VARCHAR"/>
         <result column="pw_question" property="pwQuestion" jdbcType="VARCHAR"/>
         <result column="pw_answer" property="pwAnswer" jdbcType="VARCHAR"/>
+        <result column="college_name" property="collegeName" jdbcType="VARCHAR"/>
+        <result column="faculty_name" property="facultyName" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getAllUser" resultMap="BaseResultMap">
@@ -77,19 +79,22 @@
 
     <select id="login" parameterType="INT" resultMap="BaseResultMap">
         SELECT
-        user_id,
-        user_name,
-        account,
-        password,
-        role_name,
-        mail,
-        college_id,
-        age,
-        education,
-        pw_question,
-        pw_answer
-        FROM user
-        WHERE account = #{account}
+        u.user_id,
+        u.user_name,
+        u.account,
+        u.password,
+        u.role_name,
+        u.mail,
+        u.college_id,
+        c.college_name,
+        c.faculty_name,
+        u.age,
+        u.education,
+        u.pw_question,
+        u.pw_answer
+        FROM user u, college c
+        WHERE u.account = #{account}
+        and u.college_id = c.college_id
     </select>
 
     <select id="signup" parameterType="com.kb.csrm.user.dto.UserDto">
