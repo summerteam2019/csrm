@@ -1,0 +1,176 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>课霸慕课网 | 忘了密码 </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="css/style1.css" rel="stylesheet" type="text/css" media="all" />
+	<!--  jquery plguin -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+<!-- start header -->
+<div class="header_bg">
+	<div class="wrap">
+		<div class="header">
+			<div class="logo">
+				<h1><a href="KB游客首页.html"><img src="images/logo.png" alt=""/></a></h1>
+			</div>
+			<div class="h_right">
+				<ul class="menu">
+					<li><a href="KB注册.html">记起来了</a></li>
+					<li><a href="KB游客首页.html">返回首页</a></li>
+				</ul>
+
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<!-- start slider -->
+<div class="slider_bg">
+	<div class="wrap">
+		<div class="slider">
+			<h2>忘了密码</h2>
+			<h3>找回你的密码</h3>
+		</div>
+	</div>
+</div>
+<!-- start main -->
+<div class="main_bg">
+	<div class="wrap">
+		<div class="main">
+			<div class="content">
+				<!-- start contact -->
+				<div class="contact">
+					<div class="contact_left">
+						<div class="contact-form">
+							<h3>请输入密保问题和你的新密码</h3>
+							<form method="" action="">
+								<div>
+									<h3 id="mibao"></h3>
+								</div>
+								<div>
+									<span><label>密保问题答案</label></span>
+									<span><input name="pwanswer" id="pwanswer" type="text" class="textbox"></span>
+								</div>
+								<div>
+									<span><label>新密码</label></span>
+									<span><input name="newpassword" id="newpassword" type="password" class="textbox"></span>
+								</div>
+								<div>
+									<span><label>确认新密码</label></span>
+									<span><input name="newpassword" id="newpassword2" type="password" class="textbox"></span>
+								</div>
+
+								<div>
+									<span><input type="button" id="denglu" value="确认"></span>
+								</div>
+							</form>
+
+						</div>
+
+					</div>
+					<div class="clear"></div>
+				</div>
+				<!-- end contact -->
+			</div>
+		</div>
+	</div>
+</div>
+<div class="footer_bg">
+	<div class="wrap">
+		<div class="footer">
+
+			<div class="f_nav1">
+				<ul>
+					<li><a href="KB游客首页.html">回到首页</a></li>
+					<li><a href="">分享本站</a></li>
+				</ul>
+			</div>
+			<div class="copy">
+				<p class="link"><span>本网站由课霸实训小组制作</span></p>
+			</div>
+			<div class="clear"></div>
+
+		</div>
+	</div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/jquerysession.js"></script>
+<script type="text/javascript">
+	$(function () {
+		var url = document.location.toString();//获取url地址
+		var urlParmStr = url.slice(url.indexOf('?')+1);//获取问号后所有的字符串
+		var arr = urlParmStr.split('&');//通过&符号将字符串分割转成数组
+		var username = arr[0].split("=")[1];//获取数组中第一个参数
+		var pwquestion =arr[1].split("=")[1];//第二个参数
+		$("#mibao").text(pwquestion);
+
+	});
+
+
+
+
+	$(function () {
+		$("#denglu").click(function () {
+			var url = document.location.toString();//获取url地址
+			var urlParmStr = url.slice(url.indexOf('?')+1);//获取问号后所有的字符串
+			var arr = urlParmStr.split('&');//通过&符号将字符串分割转成数组
+			var username = arr[0].split("=")[1];//获取数组中第一个参数
+			var pwquestion =arr[1].split("=")[1];//第二个参数
+			var pwanswer = $("#pwanswer").val();
+			var newpassword = $("#newpassword").val();
+			var newpassword2 =$("#newpassword2").val();
+			if (!pwanswer) {
+				alert("密保问题必填!");
+				$("#username").focus();//获取焦点
+				return;
+			}
+			if (!newpassword) {
+				alert("新密码必填!");
+				$("#newpassword").focus();//获取焦点
+				return;
+			}
+			if (!newpassword2) {
+				alert("必须确认新密码！");
+				$("#newpassword2").focus();//获取焦点
+				return;
+			}
+			if(newpassword!==newpassword2){
+				alert("两次输入必须一致!");
+			}else{
+				var correct = {
+					"account":username,
+					"pwQuestion": pwquestion,
+					"pwAnswer": pwanswer,
+					"newPassword": newpassword,
+				};
+			$.ajax({
+				type: "POST",
+				url: "",//请求程序页面
+				async: false,//当有返回值以后才会进行后面的js程序。
+				data: correct,//请求需要发送的处理数据
+				success: function (msg) {
+					if (msg.flag == "1") {
+						alert("修改成功！");
+						window.location.href = "KB登陆.html" ;
+					}
+						else  {
+						alert("修改成功！请检查信息输入是否正确");
+						}
+					}
+
+
+			});
+			}
+		});
+	});
+
+
+</script>
+
+</body>
+</html>
