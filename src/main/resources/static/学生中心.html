@@ -88,7 +88,7 @@
             data: {"userId": userid},
             async: false,
             success: function (data) {
-                for (var i in data.rows) {
+                for (var i=0;i<data.rows.length;i++) {
                     $("#yixuan").append("  <div class=\"item_class course_div"+ i +"\" onClick=\"getCanshu()\">\n" +                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+course.courseName+"</h3>\n" +
