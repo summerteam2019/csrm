@@ -1,8 +1,9 @@
 #head-pic{
 	z-index: 0;
-	height: 60px;
+	height:1080px;
 	width: 100%;
-	background-image:url(../img/head.png) ;
+	background-image:url(../img/choudeyipi.png) ;
+
 }
 
 #header {
@@ -70,7 +71,7 @@
 }
 
 #content {
-	margin: 0 64px;
+	margin: 0px;
 }
 
 #content #menu {
