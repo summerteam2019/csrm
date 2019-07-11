@@ -1,3 +1,11 @@
+/**
+ * The type AppraiseMapper
+ *
+ * @author 曾佳进 714705217@qq.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
+ */
+
 package com.kb.csrm.appraise.mapper;
 
 import com.kb.csrm.appraise.dto.AppraiseDto;

@@ -1,3 +1,11 @@
+/**
+ * The type CollegeController
+ *
+ * @author 曾佳进 714705217@qq.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
+ */
+
 package com.kb.csrm.college.controller;
 
 import com.kb.csrm.college.dto.CollegeDto;
@@ -22,6 +30,11 @@ public class CollegeController extends BaseController {
     @Autowired
     private ICollegeService collegeService;
 
+    /**
+     * 获取所有学校
+     * @param modelMap
+     * @return
+     */
     @RequestMapping(path="/getAllCollege")
     @ResponseBody
     public List<CollegeDto> getAllCollege(ModelMap modelMap){
@@ -30,6 +43,11 @@ public class CollegeController extends BaseController {
         return collegeList;
     }
 
+    /**
+     * 根据学校名查询学校
+     * @param collegeName
+     * @return
+     */
     @RequestMapping(path="/getCollegeByName")
     @ResponseBody
     public List<CollegeDto> getCollegeByName(String collegeName){
@@ -37,6 +55,11 @@ public class CollegeController extends BaseController {
         return collegeList;
     }
 
+    /**
+     * 根据学校ID查询学校
+     * @param collegeDto
+     * @return
+     */
     @RequestMapping("/getCollegeById")
     @ResponseBody
     public CollegeDto getCollegeById(CollegeDto collegeDto){
@@ -44,6 +67,13 @@ public class CollegeController extends BaseController {
         return collegeService.getCollegeById(collegeId);
     }
 
+    /**
+     * 添加新学校
+     * @param collegeId
+     * @param collegeName
+     * @param facultyName
+     * @return
+     */
     @RequestMapping("/addCollege")
     @ResponseBody
     public Boolean addCollege(int collegeId, String collegeName, String facultyName){
@@ -55,6 +85,11 @@ public class CollegeController extends BaseController {
         return true;
     }
 
+    /**
+     * 删除学校
+     * @param collegeId
+     * @return
+     */
     @RequestMapping("/deleteCollege")
     @ResponseBody
     public boolean deleteCollege(@RequestParam("collegeId") int collegeId){
@@ -62,6 +97,13 @@ public class CollegeController extends BaseController {
         return true;
     }
 
+    /**
+     * 修改学校信息
+     * @param collegeId
+     * @param collegeName
+     * @param facultyName
+     * @return
+     */
     @RequestMapping("/updateCollege")
     @ResponseBody
     public boolean updateCollege(@RequestParam("collegeId") int collegeId, @RequestParam("collegeName")String collegeName, @RequestParam("facultyName")String facultyName){

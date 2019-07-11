@@ -43,6 +43,6 @@
 
     <delete id="deleteSCConnection" parameterType="com.kb.csrm.scConnection.dto.SCConnectionDto">
         delete from student_course_connection
-        where user_id = #{userId}
+        where user_id = #{userId} AND course_id = #{courseId}
     </delete>
 </mapper>

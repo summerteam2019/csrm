@@ -1,3 +1,11 @@
+/**
+ * The type AppraiseController
+ *
+ * @author 曾佳进 714705217@qq.com
+ * @version 1.0
+ * @date ${.now?string["yyyy/MM/dd"]}
+ */
+
 package com.kb.csrm.appraise.controller;
 
 import com.kb.csrm.appraise.dto.AppraiseDto;
@@ -21,6 +29,11 @@ public class AppraiseController extends BaseController {
     @Autowired
     private IAppraiseService appraiseService;
 
+    /**
+     * 获取所有评论
+     * @param modelMap
+     * @return
+     */
     @RequestMapping("/getAllAppraise")
     @ResponseBody
     public Object[] getAllAppraise(ModelMap modelMap){
@@ -39,6 +52,11 @@ public class AppraiseController extends BaseController {
         return allAppraise;
     }
 
+    /**
+     * 通过ID获取评论
+     * @param appraiseDto
+     * @return
+     */
     @RequestMapping("/getAppraiseById")
     @ResponseBody
     public Object[] getAppraiseById(AppraiseDto appraiseDto){
@@ -53,6 +71,12 @@ public class AppraiseController extends BaseController {
         return appraiseObject;
     }
 
+    /**
+     * 通过用户ID获取评论
+     * @param userId
+     * @param request
+     * @return
+     */
     @RequestMapping("/getAppraiseByUserId")
     @ResponseBody
     public ResponseData getAppraiseByUserId(@RequestBody int userId, HttpServletRequest request){
@@ -60,6 +84,11 @@ public class AppraiseController extends BaseController {
         return new ResponseData(true);
     }
 
+    /**
+     * 通过课程ID获取评论
+     * @param courseId
+     * @return
+     */
     @RequestMapping("/getAppraiseByCourseId")
     @ResponseBody
     public Object[] getAppraiseByCourseId(int courseId){
@@ -74,12 +103,23 @@ public class AppraiseController extends BaseController {
         return appraiseCourse;
     }
 
+    /**
+     * 通过用户和课程ID获取评论
+     * @param userId
+     * @param courseId
+     * @return
+     */
     @RequestMapping("/getAppraiseByUserAndCourse")
     @ResponseBody
     public AppraiseDto getAppraiseByUserAndCourse(int userId, int courseId){
         return appraiseService.getAppraiseByUserAndCourse(userId, courseId);
     }
 
+    /**
+     * 通过关键字获取评论
+     * @param appraiseDto
+     * @return
+     */
     @RequestMapping("/getAppraiseByKeyWord")
     @ResponseBody
     public Object[] getAppraiseByKeyWord(AppraiseDto appraiseDto){
@@ -98,6 +138,11 @@ public class AppraiseController extends BaseController {
         return allAppraise;
     }
 
+    /**
+     * 发表评论
+     * @param appraiseDto
+     * @return
+     */
     @RequestMapping("/addAppraise")
     @ResponseBody
     public boolean addAppraise(AppraiseDto appraiseDto){
@@ -105,6 +150,11 @@ public class AppraiseController extends BaseController {
         return true;
     }
 
+    /**
+     * 删除评论
+     * @param appraiseId
+     * @return
+     */
     @RequestMapping("/deleteAppraise")
     @ResponseBody
     public boolean deleteAppraise(int appraiseId){
@@ -113,6 +163,11 @@ public class AppraiseController extends BaseController {
         return true;
     }
 
+    /**
+     * 修改评论
+     * @param appraiseDto
+     * @return
+     */
     @RequestMapping("/updateAppraise")
     @ResponseBody
     public boolean updateAppraise(AppraiseDto appraiseDto){

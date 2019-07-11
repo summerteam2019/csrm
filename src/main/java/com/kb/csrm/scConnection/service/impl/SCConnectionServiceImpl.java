@@ -16,12 +16,12 @@ public class SCConnectionServiceImpl implements ISCConnectionService {
     private SCConnectionMapper scConnectionMapper;
 
     @Override
-    public List<CourseDto> getSCConnectionByUserId(Integer userId){
+    public List<CourseDto> getSCConnectionByUserId(int userId){
         return scConnectionMapper.getCourseByUserId(userId);
     }
 
     @Override
-    public List<SCConnectionDto> getSCConnectionByCourseId(Integer courseId){
+    public List<SCConnectionDto> getSCConnectionByCourseId(int courseId){
         return scConnectionMapper.getSCConnectionByCourseId(courseId);
     }
 

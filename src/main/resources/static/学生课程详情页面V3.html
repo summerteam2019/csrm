@@ -121,9 +121,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<nav>
 					<ul class="cd-tabs-navigation">
 						<!--<li><a data-content="cinema" href="#0">讨  论 </a></li>-->
-						<li><a data-content="television" href="#0" class="selected ">评  分</a></li>
-						<li><a data-content="stuNotice" href="#0">课 程 通 知</a></li>
-						<li><a data-content="download" href="#0" >资 源 下 载</a></li>
+						<li><a data-content="television" class="selected " href="#0">评  分</a></li>
+						<li><a data-content="stuNotice"  href="#0">课 程 通 知</a></li>
+						<li><a data-content="download" href="#0">资 源 下 载</a></li>
 
 					</ul>
 				</nav>
@@ -186,24 +186,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</li>
 
-
-
 					<li data-content="television" class="selected "id="pingfen">
 						<div class="comments-top-top">
-							<div class="top-comment-left">
-								<img class="img-responsive" src="images/co.png" alt="">
-							</div>
-							<div class="top-comment-right top-comment-right-comment">
-								<h6><a href="#">陈晨</a></h6>
-								<ul class="star-footer">
-									<li><a href="#"><i> </i></a></li>
-									<li><a href="#"><i> </i></a></li>
-									<li><a href="#"><i> </i></a></li>
-									<li><a href="#"><i> </i></a></li>
-									<li><a href="0"><i> </i></a></li>
-								</ul>
-								<p class="top-comment-rightp"></p>
-                                <h6 class="timestamp"> - 发表于2019年6月26日</h6>
+							<div id="mesContent">
+
 							</div>
 							<div class="clearfix"></div>
 							<br>
@@ -227,21 +213,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<label for="rate_1_0_1_1" title="1星"></label>
 										</fieldset>
 									</div>
-									<!--
-									<select class="" name="score" size="1">
-										<option value="0">1分</option>
-										<option value="1">2分</option>
-										<option value="2">3分</option>
-										<option value="3">4分</option>
-										<option value="4">5分</option>
-									</select>
-									-->
 									<br>
 									<br>
 									<h4>评价内容</h4>
-									<textarea cols="90" rows="3" placeholder="在此处填写内容"></textarea>
+									<textarea cols="90" rows="3" placeholder="在此处填写内容" id="appraiseContent"></textarea>
 									<br>
-									<a class="add-re" href="#">发表评分</a>
+									<a class="add-re" onclick="submitScore()">发表评分</a>
 									<span style="font-size: 2rem;line-height: 2.9rem;padding: 1rem;font-style: oblique;" id="starStr"></span>
 								</div>
 							</div>
@@ -269,9 +246,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<li data-content="download">
 						<div class="comments-top-top">
 							<div class="top-comment-left">
-								<a href="https://www.baidu.com/link?url=0_HYXUk68SvdVfu1DCQfTi0a0voBuyY7M5hti2R3yJIAzyK7GgGPPhj4BOwha92_S0xtIzfGK91rIuy5_ggRbu-CYHUJ1s6J1T-ovVp0dNa&wd=&eqid=965e3c8200088631000000055d15baeb">
-									<img class="img-responsive" src="img/推荐课程1.jpg" alt="" href="#">
-								</a>
+								<div>
+									<form id="formUploadFile">
+										<input type="file" name="file" id="file"/>
+										<input id="resourceName" type="text" placeholder="请输入资源名"/>
+										<input type="submit" value="资源上传" onclick="uploadResource();addResource()"/>
+									</form>
+								</div>
 							</div>
 
 						</div>
@@ -285,6 +266,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"></div>
 	</div>
 </div>
+
+<script src="js/jquerysession.js"></script>
+<script src="js/jquery.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -313,17 +297,184 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 
+<script type="text/javascript">
+
+	var urlinfo = window.location.href; //获取当前页面的url
+	var len = urlinfo.length;//获取url的长度
+	var offset = urlinfo.indexOf("?");//设置参数字符串开始的位置
+	var newsidinfo = urlinfo.substr(offset, len)//取出参数字符串 这里会获得类似“id=1”这样的字符串
+	var newsids = newsidinfo.split("=");//对获得的参数字符串按照“=”进行分割
+	var newsid = newsids[1];//得到参数值
+	var newsname = newsids[0];//得到参数名字
+	var courseId = newsid;
 
 
+	//课程显示
+	$(function () {
 
+		var courseId = newsid;
+		$.ajax({
+			type: "POST",
+			url: "course/getChosenCourse",//请求程序页面
+			data: {"courseId": courseId},
+			success: function (data) {
+				$("#kecheng").text(data.courseName);
+				$("#dianji").text(data.courseCount);
+				$("#jieshao").text(data.courseIntroduce);
+				$("#jiaoshi").text(data.teacherName);
+				$("#yuanxiao").text(data.collegeName);
+			}
 
+		});
+	});
 
+	//评论显示
+	$(function () {
+		var courseId = newsid;
+		$.ajax({
+			type: "POST",
+			url: "/appraise/getAppraiseByCourseId",//请求程序页面
+			dataType: "json",
+			data: {
+				"courseId": courseId
+			},
+			async: false,
+			success: function (data) {
+				var str = "";
+				var star = new Array();
+				for (i = 0; i < data[0].length; i++) {
+					star[i] = "<ul class='star-footer'>";
+					for (j = 0; j < data[0][i].appraiseGrade; j++) {
+						star[i] += "<li><i> </i></li>";
+					}
+					star[i] += "</ul>";
+				}
+				for (i = 0; i < data[0].length; i++) {
+					str += "<div class=\"top-comment-left\">" +
+							"<img class=\"img-responsive\" src=\"images/co.png\" alt=\"\">" +
+							"</div>" +
+							"<div class=\"top-comment-right top-comment-right-comment\">" +
+							"<div><h6><a href=\"#\">" + data[1][i] + "</a></h6>" +
+							star[i] +
+							"<p class=\"top-comment-rightp\">" + data[0][i].appraiseContent + "</p>" +
+							"<h6 class=\"timestamp\">- 发表于" + data[0][i].appraiseTime + "</h6></div>" +
+							"<hr>" +
+							"</div>";
+				}
+				$("#mesContent").append(str);
+			}
+		});
 
+	});
 
+	//发表评分
+	function submitScore() {
+		var userId = 128; //记得换成userId
+		var courseId = newsid;
+		var appraiseGrade = $("#starNum").val();
+		var appraiseContent = $("#appraiseContent").val();
+		var appraiseRaise = 0;
+		$.ajax({
+			type: "POST",
+			url: "/appraise/getAppraiseByUserAndCourse",//请求程序页面
+			dataType: "json",
+			data: {
+				"userId": userId,
+				"courseId": courseId
+			},
+			success: function (data) {
+				if (data == null) {
+					$.ajax({
+						type: "POST",
+						url: "/appraise/addAppraise",//请求程序页面
+						dataType: "json",
+						data: {
+							"userId": userId,
+							"courseId": courseId,
+							"appraiseGrade": appraiseGrade,
+							"appraiseContent": appraiseContent,
+							"appraiseRaise": appraiseRaise
+						},
+						success: function (data) {
+							alert("评论成功！");
+							location.replace(location.href);
+						}
+					});
+				} else {
+					alert("你已经评论过了！")
+				}
+			}
+		});
+	}
 
+	//显示课程资源
+	$(function () {
+		var courseId = newsid;
+		$.ajax({
+			type: "POST",
+			url: "/resource/getResourceByCourseId",//请求程序页面
+			dataType: "json",
+			data: {
+				"courseId": courseId
+			},
+			success: function (data) {
+				var resource = "";
+				for (i = 0; i < data.length; i++) {
+					resource += "<div class=\"top-comment-left\">" +
+							"<a href='http://localhost:8080/resource/files/" + data[i].resourceFilename + "'>" + data[i].resourceName + "</a>" +
+							"</div>"
+				}
+				$("#resource").append(resource);
+			}
+		});
+	});
 
+	//资源上传
+	function uploadResource() {
+		var formData = new FormData($("#formUploadFile")[0]);
+		$.ajax({
+			type: "POST",
+			url: "/resource/uploadResource",//请求程序页面
+			data: formData,
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function (data) {
 
-<script src="js/jquerysession.js"></script>
+				alert(data);
+
+			}
+		});
+	}
+
+	function addResource() {
+		var file = document.getElementById('file');
+		var userId = 2; //记得换成userID
+		var courseId = 2;
+		var resourceName = $("#resourceName").val();
+		var resourceSize = file.files[0].size/1024;
+		var resourceFilename = file.files[0].name;
+		$.ajax({
+			type: "POST",
+			url: "/resource/addResource",//请求程序页面
+			dataType: "json",
+			data: {
+				"courseId": courseId,
+				"userId": userId,
+				"resourceName": resourceName,
+				"resourceSize": resourceSize,
+				"resourceFilename": resourceFilename,
+				"resourceAddress": "http://localhost:8080/resource/files/" + resourceFilename
+			},
+			success: function (data) {
+				window.location.href="http://localhost:8080/学生课程详情页面V3.html?courseId="+courseId;
+			}
+		});
+	}
+
+</script>
+
 <script>
 
 	$('[name="starLevel"]').bind("click",function(){

@@ -36,7 +36,7 @@ public class SCConnectionController extends BaseController {
 
     @RequestMapping("/addSCConnection")
     @ResponseBody
-    public ResponseData addSCConnection(@RequestBody SCConnectionDto scConnectionDto, HttpServletRequest request){
+    public ResponseData addSCConnection(SCConnectionDto scConnectionDto){
 
         scConnectionService.addSCConnection(scConnectionDto);
         return new ResponseData(true);
@@ -44,7 +44,7 @@ public class SCConnectionController extends BaseController {
 
     @RequestMapping("/deleteSCConnection")
     @ResponseBody
-    public ResponseData deleteSCConnection(@RequestBody SCConnectionDto scConnectionDto, HttpServletRequest request){
+    public ResponseData deleteSCConnection(SCConnectionDto scConnectionDto, HttpServletRequest request){
 
         scConnectionService.deleteSCConnection(scConnectionDto);
         return new ResponseData(true);
