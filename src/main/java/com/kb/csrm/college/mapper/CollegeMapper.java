@@ -1,9 +1,9 @@
 /**
- * The type CollegeController
+ * The type CollegeMapper
  *
- * @author 曾佳进 714705217@qq.com
+ * @author 曾佳进714705217@qq.com & yi.wang11@hand-china.com
  * @version 1.0
- * @date ${.now?string["yyyy/MM/dd"]}
+ * @date 2019/7/8
  */
 
 package com.kb.csrm.college.mapper;

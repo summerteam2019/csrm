@@ -1,9 +1,9 @@
 /**
- * The type CollegeController
+ * The type ICollegeService
  *
  * @author 曾佳进 714705217@qq.com
  * @version 1.0
- * @date ${.now?string["yyyy/MM/dd"]}
+ * @date 2019/7/3
  */
 
 package com.kb.csrm.college.service;

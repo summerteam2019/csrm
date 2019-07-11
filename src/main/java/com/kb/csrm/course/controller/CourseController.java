@@ -1,3 +1,11 @@
+/**
+ * The type CourseController
+ *
+ * @author 陈开国 & 曾佳进714705217@qq.com & yi.wang11@hand-china.com
+ * @version 1.0
+ * @date 2019/7/11
+ */
+
 package com.kb.csrm.course.controller;
 
 import com.kb.csrm.course.dto.CourseDto;
@@ -97,7 +105,7 @@ public class CourseController extends BaseController{
      */
     @RequestMapping("/getCourseByKeyWord")
     @ResponseBody
-    public Object[] getCourseByKeyWord(String courseName) {
+    public ResponseData getCourseByKeyWord(String courseName) {
         List<CourseDto> courseList = courseService.getCourseByKeyWord(courseName);
         Object[] allCourse = new Object[2];
         String[] collegeName = new String[courseList.size()];
@@ -106,7 +114,8 @@ public class CourseController extends BaseController{
         }
         allCourse[0] = courseList;
         allCourse[1] = collegeName;
-        return allCourse;
+        ResponseData result = new ResponseData(courseService.getCourseByKeyWord(courseName));
+        return new ResponseData(courseService.getCourseByKeyWord(courseName));
     }
 
     /**

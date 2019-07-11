@@ -1,3 +1,12 @@
+/**
+ * The type CourseDto
+ *
+ * @author 陈开国 & yi.wang11@hand-china.com
+ * @version 1.0
+ * @date 2019/7/11
+ */
+
+
 package com.kb.csrm.course.dto;
 
 import javax.persistence.Column;

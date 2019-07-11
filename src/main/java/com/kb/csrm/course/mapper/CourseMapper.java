@@ -1,3 +1,12 @@
+/**
+ * The type CourseMapper
+ *
+ * @author 陈开国 & 曾佳进714705217@qq.com & yi.wang11@hand-china.com
+ * @version 1.0
+ * @date 2019/7/11
+ */
+
+
 package com.kb.csrm.course.mapper;
 
 import com.kb.csrm.course.dto.CourseDto;
