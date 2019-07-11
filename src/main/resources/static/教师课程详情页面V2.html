@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<link href="css/memenu.css" rel="stylesheet" type="text/css" media="all"/>
 	<script type="text/javascript" src="js/memenu.js"></script>
 	<script>$(document).ready(function () {
-		$(".memenu").memenu();
+		//$(".memenu").memenu();
 	});</script>
 
 
@@ -188,65 +188,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</li>
 					<li data-content="television" class="selected ">
 						<div class="comments-top-top">
-							<div class="top-comment-left">
-								<img class="img-responsive" src="images/co.png" alt="">
-							</div>
-							<div class="top-comment-right top-comment-right-comment">
-								<h6><a href="#">陈晨</a></h6>
-								<ul class="star-footer">
-									<li><a href="#"><i> </i></a></li>
-									<li><a href="#"><i> </i></a></li>
-									<li><a href="#"><i> </i></a></li>
-									<li><a href="#"><i> </i></a></li>
-									<li><a href="0"><i> </i></a></li>
-								</ul>
-								<p class="top-comment-rightp">老师的课，不管是专业性还是组织结构来说，都非常棒！ 老师的授课风格也是严肃中带着些幽默，非常
-									亲切！ 可能由于我知识量的欠缺，课程内容对我来说，专业概念稍微偏多，在理解和记忆上还是有一定
-									挑战的，如果在概念的讲解上，能添加更多生动详实的案例，或者搭配一些扩充的资料，那就更棒了！ </p>
-								<h6 class="timestamp"> - 发表于2019年6月26日</h6>
+							<div id="mesContent">
+
 							</div>
 							<div class="clearfix"></div>
 							<br>
-							<!--
-							<hr/>
-							<div class="panel panel-default">
-								<div class="panel-heading" style="font-size: 2rem;">发表评分&nbsp;<span style="color:red;"></span>：</div>
-								<div class="panel-body">
-									<h4>总评</h4>
-									<input name="starNum" id="starNum" type="hidden"/>
-									<div class="starability-container">
-										<fieldset class="starability-slot">
-											<input type="radio" id="rate_1_0_1_5" name="starLevel" value="5" />
-											<label for="rate_1_0_1_5" title="5星"></label>
-											<input type="radio" id="rate_1_0_1_4" name="starLevel" value="4" />
-											<label for="rate_1_0_1_4" title="4星"></label>
-											<input type="radio" id="rate_1_0_1_3" name="starLevel" value="3" />
-											<label for="rate_1_0_1_3" title="3星"></label>
-											<input type="radio" id="rate_1_0_1_2" name="starLevel" value="2" />
-											<label for="rate_1_0_1_2" title="2星"></label>
-											<input type="radio" id="rate_1_0_1_1" name="starLevel" value="1" />
-											<label for="rate_1_0_1_1" title="1星"></label>
-										</fieldset>
-									</div>
-
-									<select class="" name="score" size="1">
-										<option value="0">1分</option>
-										<option value="1">2分</option>
-										<option value="2">3分</option>
-										<option value="3">4分</option>
-										<option value="4">5分</option>
-									</select>
-
-									<br>
-									<br>
-									<h4>评价内容</h4>
-									<textarea cols="90" rows="3" placeholder="在此处填写内容"></textarea>
-									<br>
-									<a class="add-re" href="#">发表评分</a>
-									<span style="font-size: 2rem;line-height: 2.9rem;padding: 1rem;font-style: oblique;" id="starStr"></span>
-								</div>
-							</div>
-							-->
 						</div>
 
 					</li>
@@ -269,10 +215,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<li data-content="upload">
 						<div class="comments-top-top">
-							<div class="top-comment-left">
-								<input type="file" name="pic" id="pic" accept="image/gif" />
-							</div>
+							<div id="resource">
+								<div class="top-comment-left">
 
+								</div>
+							</div>
+							<br>
+							<hr/>
+							<div class="comments-top-top">
+							<form id="formUploadFile">
+								<input type="file" name="file" id="file"/>
+								<input id="resourceName" type="text" placeholder="请输入资源名"/>
+								<input type="submit" value="资源上传" onclick="uploadResource();addResource()"/>
+							</form>
+							</div>
 						</div>
 					</li>
 
@@ -284,30 +240,146 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"></div>
 	</div>
 </div>
+
+
 <script src="js/jquerysession.js"></script>
+<script src="js/jquery.js"></script>
 
+<script type="text/javascript">
 
+	var urlinfo = window.location.href; //获取当前页面的url
+	var len = urlinfo.length;//获取url的长度
+	var offset = urlinfo.indexOf("?");//设置参数字符串开始的位置
+	var newsidinfo = urlinfo.substr(offset, len)//取出参数字符串 这里会获得类似“id=1”这样的字符串
+	var newsids = newsidinfo.split("=");//对获得的参数字符串按照“=”进行分割
+	var newsid = newsids[1];//得到参数值
+	var newsname = newsids[0];//得到参数名字
+	var courseId = newsid;
 
+	//课程显示
+	$(function () {
 
+		var courseId = newsid;
+		$.ajax({
+			type: "POST",
+			url: "course/getChosenCourse",//请求程序页面
+			data: {"courseId": courseId},
+			success: function (data) {
+				$("#kecheng").text(data.courseName);
+				$("#dianji").text(data.courseCount);
+				$("#jieshao").text(data.courseIntroduce);
+				$("#jiaoshi").text(data.teacherName);
+				$("#yuanxiao").text(data.collegeName);
+			}
 
+		});
+	});
 
+	//评论显示
+	$(function () {
+		var courseId = newsid;
+		$.ajax({
+			type: "POST",
+			url: "/appraise/getAppraiseByCourseId",//请求程序页面
+			dataType: "json",
+			data: {
+				"courseId": courseId
+			},
+			async: false,
+			success: function (data) {
+				var str = "";
+				var star = new Array();
+				for (i = 0; i < data[0].length; i++) {
+					star[i] = "<ul class='star-footer'>";
+					for (j = 0; j < data[0][i].appraiseGrade; j++) {
+						star[i] += "<li><i> </i></li>";
+					}
+					star[i] += "</ul>";
+				}
+				for (i = 0; i < data[0].length; i++) {
+					str += "<div class=\"top-comment-left\">" +
+							"<img class=\"img-responsive\" src=\"images/co.png\" alt=\"\">" +
+							"</div>" +
+							"<div class=\"top-comment-right top-comment-right-comment\">" +
+							"<div><h6><a href=\"#\">" + data[1][i] + "</a></h6>" +
+							star[i] +
+							"<p class=\"top-comment-rightp\">" + data[0][i].appraiseContent + "</p>" +
+							"<h6 class=\"timestamp\">- 发表于" + data[0][i].appraiseTime + "</h6></div>" +
+							"<hr>" +
+							"</div>";
+				}
+				$("#mesContent").append(str);
+			}
+		});
 
+	});
+
+	//显示课程资源
+	$(function () {
+		var courseId = newsid;
+		$.ajax({
+			type: "POST",
+			url: "/resource/getResourceByCourseId",//请求程序页面
+			dataType: "json",
+			data: {
+				"courseId": courseId
+			},
+			success: function (data) {
+				var resource = "";
+				for (i = 0; i < data.length; i++) {
+					resource += "<div class=\"top-comment-left\">" +
+							"<a href='http://localhost:8080/resource/files/" + data[i].resourceFilename + "'>" + data[i].resourceName + "</a>" +
+							"</div>"
+				}
+				$("#resource").append(resource);
+			}
+		});
+	});
+
+	//资源上传
+	function uploadResource() {
+		var formData = new FormData($("#formUploadFile")[0]);
+		$.ajax({
+			type: "POST",
+			url: "/resource/uploadResource",//请求程序页面
+			data: formData,
+			async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function (data) {
+				window.location.href="http://localhost:8080/教师课程详情页面V2.html?course="+courseId;
+				alert(data);
+			}
+		});
+	}
+	function addResource() {
+		var file = document.getElementById('file');
+		var userId = 2; //记得换成userID
+		var courseId = newsid;
+		var resourceName = $("#resourceName").val();
+		var resourceSize = file.files[0].size/1024;
+		var resourceFilename = file.files[0].name;
+		$.ajax({
+			type: "POST",
+			url: "/resource/addResource",//请求程序页面
+			dataType: "json",
+			data: {
+				"courseId": courseId,
+				"userId": userId,
+				"resourceName": resourceName,
+				"resourceSize": resourceSize,
+				"resourceFilename": resourceFilename,
+				"resourceAddress": "http://localhost:8080/resource/files/" + resourceFilename
+			},
+			success: function (data) {
+				window.location.href="http://localhost:8080/教师课程详情页面V2.html?courseId="+courseId;
+			}
+		});
+	}
+</script>
 
 </body>
 
 </html>
-<script>
-
-	$('[name="starLevel"]').bind("click",function(){
-		console.log($(this)[0].value)
-		$("#starNum").val($(this)[0].value)
-		var starNum = $(this)[0].value;
-		if(starNum == 1) $("#starStr").text("");
-		if(starNum == 2) $("#starStr").text("");
-		if(starNum == 3) $("#starStr").text("");
-		if(starNum == 4) $("#starStr").text("");
-		if(starNum == 5) $("#starStr").text("");
-	})
-</script>
-
 

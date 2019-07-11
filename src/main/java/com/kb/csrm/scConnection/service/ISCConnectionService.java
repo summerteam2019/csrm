@@ -12,14 +12,14 @@ public interface ISCConnectionService {
      * @param userId
      * @return
      */
-    List<CourseDto> getSCConnectionByUserId(Integer userId);
+    List<CourseDto> getSCConnectionByUserId(int userId);
 
     /**
      * 根据课程ID获取选课信息
      * @param courseId
      * @return
      */
-    List<SCConnectionDto> getSCConnectionByCourseId(Integer courseId);
+    List<SCConnectionDto> getSCConnectionByCourseId(int courseId);
 
     /**
      * 添加选课

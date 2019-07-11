@@ -21,12 +21,21 @@ public class CourseController extends BaseController{
     @Autowired
     private ICourseService courseService;
 
+    /**
+     * 获取所有课程
+     * @return
+     */
     @RequestMapping("/getAllCourse")
     @ResponseBody
     public List<CourseDto> getAllCourse(){
         return courseService.getAllCourse();
     }
 
+    /**
+     * 根据课程名获取课程
+     * @param courseName
+     * @return
+     */
     @RequestMapping(path="/select")
     @ResponseBody
     public List<CourseDto> getCourseByName(String courseName){
@@ -34,7 +43,11 @@ public class CourseController extends BaseController{
         return courseList;
     }
 
-    /**添加课程*/
+    /**
+     * 添加课程
+     * @param courseDto
+     * @return
+     */
     @RequestMapping("/create")
     @ResponseBody
     public boolean insertCourse(CourseDto courseDto){
@@ -42,15 +55,22 @@ public class CourseController extends BaseController{
         return true;
     }
 
-    /**查询课程*/
+    /**
+     * 根据课程ID获取课程
+     * @param courseId
+     * @return
+     */
     @RequestMapping("/selectOne")
     @ResponseBody
     public CourseDto selectCourseById(@Param("courseId") Long courseId){
         return courseService.selectCourseById(courseId);
     }
 
-
-    /**删除课程*/
+    /**
+     * 删除课程
+     * @param courseId
+     * @return
+     */
     @RequestMapping("/delete")
     @ResponseBody
     public boolean deleteCourseById(@RequestParam("courseId") int courseId){
@@ -58,7 +78,11 @@ public class CourseController extends BaseController{
         return true;
     }
 
-    /**修改课程信息*/
+    /**
+     * 修改课程信息
+     * @param courseDto
+     * @return
+     */
     @RequestMapping("/update")
     @ResponseBody
     public Boolean updateCourseById(CourseDto courseDto){
@@ -66,6 +90,11 @@ public class CourseController extends BaseController{
         return true;
     }
 
+    /**
+     * 根据关键字获取课程
+     * @param courseName
+     * @return
+     */
     @RequestMapping("/getCourseByKeyWord")
     @ResponseBody
     public Object[] getCourseByKeyWord(String courseName) {

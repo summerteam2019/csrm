@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	<div id="search">
 		<input type="text" name="search" placeholder="搜索感兴趣课程" value=""/>
-		<button>搜索</button>
+		<button onclick="searchCourse()">搜索</button>
 	</div>
 </div>
 
@@ -110,8 +110,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li><span>所属院校:</span>
 							<span class="women1" id="yuanxiao"></span></li>
 					</ul>
-					<a href="#" class="add-cart item_add">选 课</a>
-
+					<a class="add-cart item_add" onclick="chooseCourse()">选 课</a>
+                    <a class="add-cart item_add" onclick="cancelCourse()">撤 课</a>
 				</div>
 			</div>
 			<div class="clearfix"></div>
@@ -258,16 +258,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="comments-top-top">
 							<div id="resource">
 								<div class="top-comment-left">
-									<div>
-										<form id="formUploadFile">
-											<input type="file" name="file" id="file"/>
-											<input id="resourceName" type="text" placeholder="请输入资源名"/>
-											<input type="submit" value="资源上传" onclick="uploadResource();addResource()"/>
-										</form>
-									</div>
-									<div>
-										<a href="http://localhost:8080/resource/files/aaa.txt" text="">下载</a>
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -287,7 +278,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 <script type="text/javascript">
-	//评论显示
+
 	var urlinfo = window.location.href; //获取当前页面的url
 	var len = urlinfo.length;//获取url的长度
 	var offset = urlinfo.indexOf("?");//设置参数字符串开始的位置
@@ -297,6 +288,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	var newsname = newsids[0];//得到参数名字
 	var courseId = newsid;
 
+	//课程显示
 	$(function () {
 
 		var courseId = newsid;
@@ -315,7 +307,43 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 
+	//选课
+	function chooseCourse(){
+		var userId = 1;
+		var courseId = newsid;
+		$.ajax({
+			type: "POST",
+			url: "scConnection/addSCConnection",
+			dataType: "json",
+			data: {
+				"userId": userId,
+				"courseId": courseId
+			},
+			success: function(data){
+				alert("成功选课！");
+			}
+		});
+	}
 
+	//撤课
+    function cancelCourse(){
+	    var userId = 1;
+	    var courseId = newsid;
+	    $.ajax({
+            type: "POST",
+            url: "scConnection/deleteSCConnection",
+            dataType: "json",
+            data: {
+                "userId": userId,
+                "courseId": courseId
+            },
+            success: function(data){
+                alert("成功撤课！");
+            }
+        });
+    }
+
+	//评论显示
 	$(function () {
 		var courseId = newsid;
 		$.ajax({
@@ -415,48 +443,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	});
 
-	//资源上传
-	function uploadResource() {
-		var formData = new FormData($("#formUploadFile")[0]);
-		$.ajax({
-			type: "POST",
-			url: "/resource/uploadResource",//请求程序页面
-			data: formData,
-			async: false,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success: function (data) {
-
-				alert(data);
-
-			}
-		});
-	}
-
-	function addResource() {
-		var userId = 2; //记得换成userID
-		var courseId = 2;
-		var resourceName = $("#resourceName").val();
-		var resourceSize = 111;
-		var file = document.getElementById('file');
-		var resourceFilename = file.files[0].name;
-		$.ajax({
-			type: "POST",
-			url: "/resource/addResource",//请求程序页面
-			dataType: "json",
-			data: {
-				"courseId": courseId,
-				"userId": userId,
-				"resourceName": resourceName,
-				"resourceSize": resourceSize,
-				"resourceFilename": resourceFilename,
-				"resourceAddress": "http://localhost:8080/resource/files/" + resourceFilename
-			},
-			success: function (data) {
-				alert("");
-			}
-		});
+	//课程搜索
+	function searchCourse(){
+		var courseKeyWord = $("#searchCourse").val();
+		window.location.href = '搜索结果.html?courseKeyWord=' + courseKeyWord;
 	}
 
 </script>
