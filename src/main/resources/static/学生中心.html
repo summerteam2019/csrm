@@ -89,27 +89,28 @@
             async: false,
             success: function (data) {
                 for (var i in data.rows) {
-                    $("#yixuan").append(" <div class=\"intoduce\">\n" +
-                        "                <div class=\"item_class\"  >\n" +
-                        "                    <img src=\"img/course/"+data.rows[i].courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                    $("#yixuan").append("  <div class=\"item_class course_div"+ i +"\" onClick=\"getCanshu()\">\n" +                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
-                        "                        <h3>"+data.rows[i].courseName+"</h3>\n" +
-                        "                        <p>"+data.rows[i].courseIntoduce+"</p>\n" +
+                        "                        <h3>"+course.courseName+"</h3>\n" +
+                        "                        <p>"+course.courseIntroduce+"</p>\n" +
                         "                    </div>\n" +
+                        "<script type=\"text/javascript\">\n" +
+                        "    $(function(){\n" +
+                        "    $(\".course_div"+i+"\").click(function getCanshu() {\n" +
+                        "        window.location.href = \"KB学生课程详情.html?courseid=" + courseId + "\";\n" +
+                        "    });\n" +
+                        "    });\n" +
+                        "<\/script>\n" +
                         "                    <div class=\"item_class_bottom\">\n" +
-                        "                        <span class=\"left\">"+data.rows[i].teacherName+"</span>\n" +
-                        "                        <span class=\"right\">"+data.rows[i].courseCount+"次点击</span>\n" +
+                        "                        <span class=\"left\">"+course.teacherName+"</span>\n" +
+                        "                        <span class=\"right\">"+course.courseCount+"次点击</span>\n" +
+                        "                        <h4 hidden='hidden'>"+course.courseId+"</h4>               \n" +
                         "                    </div>\n" +
-                        "                </div>\n" +
-                        "\n" +
-                        "            </div>");
+                        "                </div>");
                 }
             }
         });
-        $(".item_class").click(function () {
-            var courseid = $(this).find('h4').val();
-            window.location.href = "学生课程详情页面V3.html?courseid="+courseid;
-        });
+
     });
 
 
