@@ -37,6 +37,6 @@ public class SCConnectionServiceImpl implements ISCConnectionService {
 
     @Override
     public int ifChoose(long userId, long courseId) {
-        return scConnectionMapper.ifChoose(userId, courseId);
+        return scConnectionMapper.ifChosen(userId, courseId);
     }
 }

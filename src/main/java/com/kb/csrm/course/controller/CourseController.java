@@ -4,6 +4,7 @@ import com.kb.csrm.course.dto.CourseDto;
 import com.kb.csrm.course.service.ICourseService;
 import com.kb.csrm.util.BaseController;
 import com.kb.csrm.util.ResponseData;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -44,8 +45,7 @@ public class CourseController extends BaseController{
     /**查询课程*/
     @RequestMapping("/selectOne")
     @ResponseBody
-    public CourseDto selectCourseByIdById(CourseDto courseDto){
-        int courseId = courseDto.getCourseId();
+    public CourseDto selectCourseById(@Param("courseId") Long courseId){
         return courseService.selectCourseById(courseId);
     }
 

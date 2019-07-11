@@ -19,7 +19,7 @@ public interface CourseMapper {
      * @param courseId
      * @return
      */
-    CourseDto selectCourseById( int  courseId);
+    CourseDto selectCourseById( Long  courseId);
 
     /**
      * 根据ID删除课程
