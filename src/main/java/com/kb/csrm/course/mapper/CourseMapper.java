@@ -16,10 +16,10 @@ public interface CourseMapper {
 
     /**
      * 根据ID查询课程
-     * @param courseId
+     * @param courseDto
      * @return
      */
-    CourseDto selectCourseById( Long  courseId);
+    CourseDto selectCourseById(CourseDto courseDto);
 
     /**
      * 根据ID删除课程

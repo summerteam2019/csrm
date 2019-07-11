@@ -60,4 +60,14 @@ public class UserServiceImpl implements IUserService {
     public void updateInfo(UserDto userDto) {
         userMapper.updateInfo(userDto);
     }
+
+    @Override
+    public int forgetPassword(long account) {
+        return userMapper.forgetPassword(account);
+    }
+
+    @Override
+    public void changePassword(long account) {
+
+    }
 }

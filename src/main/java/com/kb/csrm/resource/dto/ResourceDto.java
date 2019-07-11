@@ -1,13 +1,19 @@
+/**
+ * 资源模块实体类
+ *
+ * @author chenkaiguo
+ * @version 1.0
+ * @date 2019/07/06
+ */
 package com.kb.csrm.resource.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.stereotype.Component;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
-import java.util.Date;
 
 @Table(name="resource")
 

@@ -73,7 +73,7 @@ public class CourseDto {
     private String facultyName;
 
     @Transient
-    private int ifChose;
+    private int ifChosen;
 
     public int getCourseId() {
         return courseId;
@@ -163,12 +163,12 @@ public class CourseDto {
         this.collegeName = collegeName;
     }
 
-    public int getIfChose() {
-        return ifChose;
+    public int getIfChosen() {
+        return ifChosen;
     }
 
-    public void setIfChose(int ifChose) {
-        this.ifChose = ifChose;
+    public void setIfChosen(int ifChosen) {
+        this.ifChosen = ifChosen;
     }
 
     public String getFacultyName() {

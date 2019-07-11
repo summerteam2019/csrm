@@ -1,20 +1,30 @@
+/**
+ * 资源模块控制器
+ *
+ * @author chenkaiguo
+ * @version 1.0
+ * @date 2019/07/06
+ */
 package com.kb.csrm.resource.controller;
+
 import com.kb.csrm.resource.dto.ResourceDto;
 import com.kb.csrm.resource.service.IResourceService;
 import com.kb.csrm.util.BaseController;
-import com.kb.csrm.util.ResponseData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/resource")
@@ -23,6 +33,12 @@ public class ResourceController extends BaseController{
     @Autowired
     private IResourceService resourceService;
 
+    /**
+     * 添加资源
+     *
+     * @param resourceDto
+     * @return
+     */
     @RequestMapping("/addResource")
     @ResponseBody
     public boolean addResource(ResourceDto resourceDto){
@@ -30,6 +46,10 @@ public class ResourceController extends BaseController{
         return true;
     }
 
+    /**
+     * 获取全部资源列表
+     * @return
+     */
     @RequestMapping("/getAllResource")
     @ResponseBody
     public Object[] getAllResource(){
@@ -47,14 +67,11 @@ public class ResourceController extends BaseController{
         return allResource;
     }
 
-
-    @RequestMapping("/select")
-    @ResponseBody
-    public ResourceDto selectResourceById(ResourceDto resourceDto){
-        int resourceId = resourceDto.getResourceId();
-        return resourceService.selectResourceById(resourceId);
-    }
-
+    /**
+     * 根据课程名称获取资源
+     * @param courseName
+     * @return
+     */
     @RequestMapping("/getResourceByCourseName")
     @ResponseBody
     public Object[] getResourceByCourseName(String courseName){
@@ -70,12 +87,22 @@ public class ResourceController extends BaseController{
         return allResource;
     }
 
+    /**
+     * 根据课程ID获取资源
+     * @param courseId
+     * @return
+     */
     @RequestMapping("/getResourceByCourseId")
     @ResponseBody
     public List<ResourceDto> getResourceByCourseId(int courseId){
         return resourceService.getResourceByCourseId(courseId);
     }
 
+    /**
+     * 删除资源
+     * @param resourceId
+     * @return
+     */
     @RequestMapping("/delete")
     @ResponseBody
     public boolean deleteResourceById(int resourceId){
@@ -83,13 +110,12 @@ public class ResourceController extends BaseController{
         return true;
     }
 
-    @RequestMapping("/update")
-    @ResponseBody
-    public ResponseData updateResourceById(int resourceId){
-        resourceService.updateResourceById(resourceId);
-        return new ResponseData(true);
-    }
-
+    /**
+     * 上传资源
+     * @param file
+     * @param redirectAttributes
+     * @return
+     */
     @PostMapping("/uploadResource")
     @ResponseBody
     public String resourceUpload(@RequestParam("file") MultipartFile file,
@@ -99,6 +125,11 @@ public class ResourceController extends BaseController{
         return "成功上传！";
     }
 
+    /**
+     * 下载资源
+     * @param filename
+     * @return
+     */
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {

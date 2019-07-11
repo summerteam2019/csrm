@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
  *
  * @author yi.wang11@hand-china.com
  * @version 1.0
- * @date ${.now?string["yyyy/MM/dd"]}
+ * @date 2019/07/08
  */
 @Slf4j
 @Service

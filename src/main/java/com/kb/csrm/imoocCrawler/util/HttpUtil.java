@@ -1,13 +1,7 @@
 package com.kb.csrm.imoocCrawler.util;
 
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
-import java.util.Objects;
-
-import com.mysql.jdbc.log.Slf4JLogger;
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
-
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -15,16 +9,19 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.logging.slf4j.SLF4JLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+import java.util.Objects;
 
 /**
  * HTTPClient工具类
  *
  * @author yi.wang11@hand-china.com
  * @version 1.0
- * @date ${.now?string["yyyy/MM/dd"]}
+ * @date 2019/07/08
  */
 @Slf4j
 public class HttpUtil {

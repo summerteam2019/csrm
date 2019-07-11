@@ -61,4 +61,8 @@ public interface IUserService {
      * @return
      */
     void updateInfo (UserDto userDto);
+
+    int forgetPassword(long account);
+
+    void changePassword(long account);
 }

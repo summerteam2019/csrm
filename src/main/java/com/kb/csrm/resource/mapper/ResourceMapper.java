@@ -1,9 +1,15 @@
+/**
+ * 资源模块Mapper
+ *
+ * @author chenkaiguo
+ * @version 1.0
+ * @date 2019/07/06
+ */
 package com.kb.csrm.resource.mapper;
 
 import com.kb.csrm.resource.dto.ResourceDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 

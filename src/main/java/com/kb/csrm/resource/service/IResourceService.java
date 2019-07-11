@@ -1,3 +1,10 @@
+/**
+ * 资源模块服务类接口
+ *
+ * @author chenkaiguo
+ * @version 1.0
+ * @date 2019/07/06
+ */
 package com.kb.csrm.resource.service;
 import com.kb.csrm.resource.dto.ResourceDto;
 import org.springframework.core.io.Resource;
@@ -20,7 +27,7 @@ public interface IResourceService {
 
     /**
      * 按ID查找资源
-     * @param
+     * @param resourceId
      * @return
      */
     ResourceDto selectResourceById (int resourceId);

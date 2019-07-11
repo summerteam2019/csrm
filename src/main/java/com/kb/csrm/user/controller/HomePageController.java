@@ -16,6 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class HomePageController {
+    /**
+     * 首页
+     *
+     * @param model
+     * @param response
+     * @return
+     */
     @RequestMapping("/")
     public String index(Model model, HttpServletResponse response) {
         model.addAttribute("name", "登陆");

@@ -3,12 +3,10 @@
  *
  * @author yi.wang11@hand-china.com
  * @version 1.0
- * @date ${.now?string["yyyy/MM/dd"]}
+ * @date 2019/07/02
  */
 
 package com.kb.csrm.user.dto;
-
-import org.springframework.stereotype.Component;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -76,9 +74,15 @@ public class UserDto {
     @Column
     private String pwAnswer;
 
+    /**
+     * 学校名称
+     */
     @Transient
     private String collegeName;
 
+    /**
+     * 院校名称
+     */
     @Transient
     private String facultyName;
 

@@ -30,8 +30,11 @@ public class CourseServiceImpl implements ICourseService {
     }
 
     @Override
-    public CourseDto selectCourseById(Long courseId) {
-        return courseMapper.selectCourseById(courseId);
+    public CourseDto selectCourseById(int courseId) {
+        CourseDto courseDto = new CourseDto();
+        courseDto.setCourseId(courseId);
+        CourseDto courseDto1 = courseMapper.selectCourseById(courseDto);
+        return courseDto1;
     }
 
     @Override

@@ -1,9 +1,9 @@
 /**
- * The type CrawlerController.
+ * 爬虫控制器
  *
  * @author yi.wang11@hand-china.com
  * @version 1.0
- * @date ${.now?string["yyyy/MM/dd"]}
+ * @date 2019/07/08
  */
 
 package com.kb.csrm.imoocCrawler.controller;
@@ -21,6 +21,10 @@ public class CrawlerController {
     @Autowired
     private Crawler crawler;
 
+    /**
+     * 开始爬取
+     * @return
+     */
     @RequestMapping("/do")
     public ResponseData craw () {
 
