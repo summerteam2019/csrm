@@ -18,9 +18,13 @@ public class SCConnectionDto {
     @Column
     private Integer courseId;
 
+    @Column
+    private String scTime;
+
     public Integer getScConnectionId(){
         return scConnectionId;
     }
+
     public void setScConnectionId(Integer scConnectionId){
         this.scConnectionId = scConnectionId;
     }
@@ -35,7 +39,16 @@ public class SCConnectionDto {
     public Integer getCourseId(){
         return courseId;
     }
+
     public void setCourseId(Integer courseId){
         this.courseId = courseId;
+    }
+
+    public String getScTime() {
+        return scTime;
+    }
+
+    public void setScTime(String scTime) {
+        this.scTime = scTime;
     }
 }

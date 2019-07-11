@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>课霸慕课网</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/index.css"/>
+    <link href="css/style1.css" rel="stylesheet" type="text/css" media="all"/>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mixitup.min.js"></script>
+    <link href="css/magnific-popup1.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<!-- start header -->
+<div class="header_bg">
+    <div class="wrap">
+        <div class="header">
+            <div class="logo">
+                <h1><a href="KB游客首页.html"><img src="img/我们的图标.png" height="44" alt=""/></a></h1>
+            </div>
+            <div class="h_right">
+                <ul class="menu">
+                    <li><a href="KB学生个人中心.html">个人中心</a></li>
+                    <li><a href="KB游客首页.html.html">退出登录</a></li>
+                </ul>
+                <div id="sb-search" class="sb-search">
+                    <form>
+                        <input class="sb-search-input" placeholder="搜索感兴趣的课程" type="text" value="" name="search"
+                               id="search">
+                        <input class="sb-search-submit" type="button" value="">
+                        <span class="sb-icon-search"></span>
+                    </form>
+                </div>
+                <script src="js/classie.js"></script>
+                <script src="js/uisearch.js"></script>
+                <script>
+                    new UISearch(document.getElementById('sb-search'));
+                </script>
+
+            </div>
+
+        </div>
+        <div class="header_btm">
+            <div class="h_left">
+                <h2>欢迎来到课霸慕课网</h2>
+                <h3>大学生公共资源管理平台</h3>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<!-- start main -->
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <!-- start gallery  -->
+            <div class="container">
+                <div id="content">
+
+                    <div class="introduce">
+                        <div class="practise"id="tuijian">
+                            <div class="title">
+                                <h2 style="color: white">课程推荐</h2>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="introduce">
+                        <div class="practise"id="zuire">
+                            <div class="title">
+                                <h2 style="color: white">最热课程</h2>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- end container -->
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+
+    <div class="f_nav1">
+        <ul>
+            <li><a href="KB学生首页.html">回到首页</a></li>
+            <li><a href="">分享本站</a></li>
+        </ul>
+    </div>
+    <div class="copy">
+        <p class="link"><span>本网站由课霸实训小组制作</span></p>
+    </div>
+    <div class="clear"></div>
+
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/jquerysession.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajax({
+            type: "POST",
+            url: "course/getRecommend",//请求程序页面
+            async: false,
+            success: function (data) {
+                for(var i=0;i<data.rows.length;i++){
+                    var course = data.rows[i];
+                    var courseId = data.rows[i].courseId;
+                    $("#tuijian").append("  <div class=\"item_class course_div"+ i +"\" onClick=\"getCanshu()\">\n" +                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                        "                    <div class=\"item_class_intro\">\n" +
+                        "                        <h3>"+course.courseName+"</h3>\n" +
+                        "                        <p>"+course.courseIntroduce+"</p>\n" +
+                        "                    </div>\n" +
+                        "<script type=\"text/javascript\">\n" +
+                        "    $(function(){\n" +
+                        "    $(\".course_div"+i+"\").click(function getCanshu() {\n" +
+                        "        window.location.href = \"KB学生课程详情.html?courseid=" + courseId + "\";\n" +
+                        "    });\n" +
+                        "    });\n" +
+                        "<\/script>\n" +
+                        "                    <div class=\"item_class_bottom\">\n" +
+                        "                        <span class=\"left\">"+course.teacherName+"</span>\n" +
+                        "                        <span class=\"right\">"+course.courseCount+"次点击</span>\n" +
+                        "                        <h4 hidden='hidden'>"+course.courseId+"</h4>               \n" +
+                        "                    </div>\n" +
+                        "                </div>");
+                }
+            },
+        });
+        $.ajax({
+            type: "POST",
+            url: "course/getHighCount",//请求程序页面
+            async: false,
+            success: function (data) {
+                for(var i=0;i<data.rows.length;i++){
+                    var course = data.rows[i];
+                    var courseId = data.rows[i].courseId;
+                    $("#zuire").append("  <div class=\"item_class course_div"+ (i+5) +"\" onClick=\"getCanshu()\">\n" +                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                        "                    <div class=\"item_class_intro\">\n" +
+                        "                        <h3>"+course.courseName+"</h3>\n" +
+                        "                        <p>"+course.courseIntroduce+"</p>\n" +
+                        "                    </div>\n" +
+                        "<script type=\"text/javascript\">\n" +
+                        "    $(function(){\n" +
+                        "    $(\".course_div"+(i+5)+"\").click(function getCanshu() {\n" +
+                        "        window.location.href = \"KB学生课程详情.html?courseid=" + courseId + "\";\n" +
+                        "    });\n" +
+                        "    });\n" +
+                        "<\/script>\n" +
+                        "                    <div class=\"item_class_bottom\">\n" +
+                        "                        <span class=\"left\">"+course.teacherName+"</span>\n" +
+                        "                        <span class=\"right\">"+course.courseCount+"次点击</span>\n" +
+                        "                        <h4 hidden='hidden'>"+course.courseId+"</h4>               \n" +
+                        "                    </div>\n" +
+                        "                </div>");
+                }
+            }
+        });
+    });
+
+</script>
+</body>
+</html>
