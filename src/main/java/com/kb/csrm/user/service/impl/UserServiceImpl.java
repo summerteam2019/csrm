@@ -62,12 +62,22 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public int forgetPassword(long account) {
-        return userMapper.forgetPassword(account);
+    public void changePassword(long account, String password) {
+        userMapper.changePassword(account, password);
     }
 
     @Override
-    public void changePassword(long account) {
+    public int confirmPwAnswer(long account, String pwQuestion, String pwAnswer) {
+        return userMapper.confirmPwAnswer(account, pwQuestion, pwAnswer);
+    }
 
+    @Override
+    public String getPwQuestion(long account) {
+        return userMapper.getPwQuestion(account);
+    }
+
+    @Override
+    public int confirmPassword(long account, String oldPassword) {
+        return userMapper.confirmPassword(account, oldPassword);
     }
 }

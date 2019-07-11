@@ -85,7 +85,38 @@ public interface UserMapper {
      */
     void updateInfo(UserDto userDto);
 
-    int forgetPassword(long account);
+    /**
+     * 修改密码
+     * @param account
+     * @param password
+     * @return
+     */
+    void changePassword(@Param("account") long account, @Param("password") String password);
+
+    /**
+     * 获取密保问题
+     * @param account
+     * @return
+     */
+    String getPwQuestion(long account);
+
+    /**
+     * 确认密保答案
+     * @param account
+     * @param pwQuestion
+     * @param pwAnswer
+     * @return
+     */
+    int confirmPwAnswer(@Param("account") long account,@Param("pwQuestion") String pwQuestion,@Param("pwAnswer") String pwAnswer);
+
+    /**
+     * 确认密码
+     * @param account
+     * @param oldPassword
+     * @return
+     */
+    int confirmPassword(@Param("account") long account,@Param("password")  String oldPassword);
 }
+
 
 

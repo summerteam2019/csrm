@@ -62,7 +62,34 @@ public interface IUserService {
      */
     void updateInfo (UserDto userDto);
 
-    int forgetPassword(long account);
+    /**
+     * 修改密码
+     * @param account
+     * @param password
+     */
+    void changePassword(long account, String password);
 
-    void changePassword(long account);
+    /**
+     * 确认密保答案
+     * @param account
+     * @param pwQuestion
+     * @param pwAnswer
+     * @return
+     */
+    int confirmPwAnswer(long account, String pwQuestion, String pwAnswer);
+
+    /**
+     * 获取密保问题
+     * @param account
+     * @return
+     */
+    String getPwQuestion(long account);
+
+    /**
+     * 确认密码
+     * @param account
+     * @param oldPassword
+     * @return
+     */
+    int confirmPassword(long account, String oldPassword);
 }

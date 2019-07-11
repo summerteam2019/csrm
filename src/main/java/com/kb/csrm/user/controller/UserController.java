@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -115,15 +117,62 @@ public class UserController extends BaseController {
         return true;
     }
 
+    /**
+     * 忘记密码
+     * @param account
+     * @return
+     */
     @RequestMapping("/forgetPassword")
     @ResponseBody
-    public boolean forgetPassword(long account){
-        int flag = userService.forgetPassword(account);
-        if(flag > 0) {
-            return true;
+    public HashMap forgetPassword(long account){
+        HashMap map = new HashMap<String,Object>(16);
+        String pwquestion = userService.getPwQuestion(account);
+        if (null != pwquestion && ""!=pwquestion) {
+            map.put("flag",true);
+            map.put("pwquestion",userService.getPwQuestion(account));
         } else {
-            return false;
+            map.put("flag",false);
+        }
+        return map;
+    }
+
+    /**
+     * 修改密码
+     * @param account
+     * @param password
+     */
+    @RequestMapping("/changePassword")
+    @ResponseBody
+    public Map changePassword(@RequestParam("account") long account, @RequestParam("newPassword") String password,@RequestParam("pwQuestion") String pwQuestion, @RequestParam("pwAnswer") String pwAnswer) {
+        int flag = userService.confirmPwAnswer(account,pwQuestion,pwAnswer);
+        HashMap map = new HashMap<String,Object>(16);
+        if (flag > 0) {
+            userService.changePassword(account,password);
+            map.put("flag",1);
+            return map;
+        } else {
+            map.put("flag",0);
+            return map;
         }
     }
 
+    /**
+     * 修改密码2
+     * @param account
+     * @param password
+     */
+    @RequestMapping("/changePassword2")
+    @ResponseBody
+    public Map changePassword2(@RequestParam("account") long account, @RequestParam("newPassword") String password,@RequestParam("oldPassword") String oldPassword) {
+        int flag = userService.confirmPassword(account,oldPassword);
+        HashMap map = new HashMap<String,Object>(16);
+        if (flag > 0) {
+            userService.changePassword(account,password);
+            map.put("flag",1);
+            return map;
+        } else {
+            map.put("flag",0);
+            return map;
+        }
+    }
 }

@@ -112,7 +112,29 @@
         #{mail}
         )
     </select>
-    <select id="forgetPassword" resultType="java.lang.Integer"></select>
+    <select id="changePassword">
+        update user
+        set password = #{password}
+        where account = #{account}
+    </select>
+    <select id="getPwQuestion" resultType="java.lang.String">
+        select pw_question
+        from user
+        where account = #{account}
+    </select>
+    <select id="confirmPwAnswer" resultType="java.lang.Integer">
+        select COUNT(1)
+        from user
+        where account = #{account}
+        and pw_question = #{pwQuestion}
+        and pw_answer = #{pwAnswer}
+    </select>
+    <select id="confirmPassword" resultType="java.lang.Integer">
+        select COUNT(1)
+        from user
+        where account = #{account}
+        and password = #{password}
+    </select>
 
     <update id="updateInfo" parameterType="com.kb.csrm.user.dto.UserDto">
         update user
