@@ -84,7 +84,6 @@ body {
 	font-size:0;
 	overflow:hidden;
 }
-
 /*start search*/
 .sb-search {
 	position: absolute;
@@ -144,8 +143,8 @@ body {
 .sb-search-submit {
 	background: #fff; /* IE needs this */
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
-	filter: alpha(opacity=0); /* IE 5-7 */
-	opacity: 0;
+    filter: alpha(opacity=0); /* IE 5-7 */
+    opacity: 0;
 	color: transparent;
 	border: none;
 	outline: none;

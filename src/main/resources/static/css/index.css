@@ -1,160 +1,22 @@
-#head-pic{
-	z-index: 0;
-	height:1080px;
-	width: 100%;
-	background-image:url(../img/choudeyipi.png) ;
 
-}
 
-#header {
-	padding: 0 10px;
-	height: 60px;
-	width: 100%;
-	background-color: hsla(0,0%,100%,.4);
 
-}
-#header:after{
-	background-color: rgba(255,255,255,0.4);
-	filter:blur(5px);
-}
-
-#logo {
-	float: left;
-}
-
-#header #logo a {
-	background: url(../img/我们的图标.png) no-repeat center center;
-	margin-left: 64px;
-	display: block;
-	height: 60px;
-	width: 122px;
-	text-indent: 100%;
-	white-space: nowrap;
-	overflow: hidden;
-	background-size: 100%;
-}
-
-#header ul {
-	list-style: none;
-}
-
-#header li {
-	float: left;
-}
-
-#header li a {
-	position: relative;
-	height: 60px;
-	line-height: 60px;
-	padding: 0 20px;
-	font-size: 18px;
-	color: black;
-}
-
-#header li a:hover {
-	color: green;
-}
-
-#login,
-#search {
-	float: right;
-	margin-right: 64px;
-}
-
-#header #login li a {
-	font-size: 14px;
-}
-
-#header #search {
-	height: 60px;
-	line-height: 60px;
-}
 
 #content {
 	margin: 0px;
 }
 
-#content #menu {
-	/*width: 90%;*/
-	height: 427px;
-	margin: auto;
-	position: relative;
-	overflow: hidden;
-	background-image: url(../img/首推课程.jpg);/*首页最大推荐课程*/
-	background-size: 100%;
-}
 
-.left_menu {
-	/*height: 427px;*/
-	position: absolute;
-	left: 0;
-	top: 0;
-	background-color: #ABACAF;
-}
 
-.left_menu .item {
-	padding: 0 20px;
-	position: relative;
-}
+
 
 .select {
 	background-color: #78787B;
 }
 
-.left_menu .item a {
-	width: 200px;
-	height: 60px;
-	display: block;
-	color: white;
-	border-bottom: 1px solid rgba(255, 255, 255, .2);
-	line-height: 60px;
-	padding: 0 8px;
-}
 
-.left_menu .item a span {
-	font-size: 16px;
-}
 
-.left_menu .item a i {
-	width: 4px;
-	height: 14px;
-	position: absolute;
-	right: 34px;
-	/*top: 24px;*/
-	/*color: white;*/
-	text-align: right;
-}
 
-.sub_menu {
-	position: absolute;
-	left: 256px;
-	top: 0;
-	display: none;
-	width: 730px;
-	height: 405px;
-	border: gainsboro 1px solid;
-	padding: 10px;
-	background-size: 100%;
-}
-
-.sub_menu h3 {
-	font-size: 16px;
-	color: green;
-	padding: 10px 0;
-}
-
-.sub_menu p {
-	padding: 5px 0;
-}
-
-.sub_menu a {
-	color: black;
-	white-space: nowrap;
-}
-
-.sub_menu a:hover {
-	color: green;
-}
 
 .introduce .practise,
 .introduce .free {
@@ -184,7 +46,7 @@
 	/*-webkit-box-shadow: 0 5px 10px 0 ;*/
 	/*box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);*/
 	float: left;
-	margin-right: 24px;
+	margin-right: 10px;
 	margin-bottom: 8px;
 	position: relative;
 }
@@ -234,7 +96,7 @@
 	bottom: 0;
 	background-color: white;
 	padding: 10px;
-	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2);
+
 }
 
 .item_class_bottom .left {
