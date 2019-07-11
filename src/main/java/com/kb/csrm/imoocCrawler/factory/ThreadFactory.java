@@ -1,3 +1,11 @@
+/**
+ * 线程池
+ *
+ * @author yi.wang11@hand-china.com
+ * @version 1.0
+ * @date 2019/07/08
+ */
+
 package com.kb.csrm.imoocCrawler.factory;
 
 import java.util.concurrent.ArrayBlockingQueue;

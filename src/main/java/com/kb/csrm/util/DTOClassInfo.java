@@ -8,6 +8,11 @@
 
 package com.kb.csrm.util;
 
+import org.apache.commons.lang.StringUtils;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,11 +21,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import org.apache.commons.lang.StringUtils;
 
 public final class DTOClassInfo {
     private static final Comparator<EntityField> FIELD_COMPARATOR = Comparator.comparing(EntityField::getName);

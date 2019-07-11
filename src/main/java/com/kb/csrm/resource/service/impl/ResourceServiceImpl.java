@@ -1,3 +1,10 @@
+/**
+ * 资源模块服务实体类
+ *
+ * @author chenkaiguo
+ * @version 1.0
+ * @date 2019/07/06
+ */
 package com.kb.csrm.resource.service.impl;
 
 import com.kb.csrm.resource.dto.ResourceDto;

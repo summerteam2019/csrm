@@ -3,7 +3,7 @@
  *
  * @author yi.wang11@hand-china.com
  * @version 1.0
- * @date ${.now?string["yyyy/MM/dd"]}
+ * @date 2019/07/05
  */
 
 package com.kb.csrm.user.controller;
@@ -28,6 +28,14 @@ public class LoginController {
     @Autowired
     private ILoginService loginService;
 
+    /**
+     * 登陆校验
+     *
+     * @param name
+     * @param password
+     * @param request
+     * @return
+     */
     @RequestMapping("/check")
     @ResponseBody
     public Map<String, Object> createUser(@RequestParam("username") String name, @RequestParam("password") String password, HttpServletRequest request) {
@@ -61,6 +69,13 @@ public class LoginController {
         return map;
     }
 
+    /**
+     * 注册新用户
+     *
+     * @param user
+     * @param request
+     * @return
+     */
     @RequestMapping("/signup")
     @ResponseBody
     public ResponseData signUp(UserDto user, HttpServletRequest request) {

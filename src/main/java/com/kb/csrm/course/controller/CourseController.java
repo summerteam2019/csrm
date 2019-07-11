@@ -62,7 +62,7 @@ public class CourseController extends BaseController{
      */
     @RequestMapping("/selectOne")
     @ResponseBody
-    public CourseDto selectCourseById(@Param("courseId") Long courseId){
+    public CourseDto selectCourseById(@RequestParam("courseId") int courseId){
         return courseService.selectCourseById(courseId);
     }
 

@@ -3,7 +3,7 @@
  *
  * @author yi.wang11@hand-china.com
  * @version 1.0
- * @date ${.now?string["yyyy/MM/dd"]}
+ * @date 2019/07/10
  */
 
 package com.kb.csrm.notice.controller;
@@ -23,11 +23,23 @@ public class NoticeController {
     @Autowired
     private INoticeService noticeService;
 
+    /**
+     * 获取课程通知
+     *
+     * @param courseId
+     * @return
+     */
     @RequestMapping("/getNoticeByCourseId")
     public ResponseData getNoticeByCourseId(@RequestParam("courseId") double courseId) {
         return new ResponseData(noticeService.getNoticeByCourseId(courseId));
     }
 
+    /**
+     * 创建新通知
+     *
+     * @param noticeDto
+     * @return
+     */
     @RequestMapping("/insertNotice")
     public ResponseData insertNotice(NoticeDto noticeDto) {
         noticeService.insertNotice(noticeDto);

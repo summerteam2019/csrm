@@ -112,6 +112,7 @@
         #{mail}
         )
     </select>
+    <select id="forgetPassword" resultType="java.lang.Integer"></select>
 
     <update id="updateInfo" parameterType="com.kb.csrm.user.dto.UserDto">
         update user

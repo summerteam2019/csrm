@@ -1,3 +1,10 @@
+/**
+ * 选课模块控制类
+ *
+ * @author zengjiajin
+ * @version 1.0
+ * @date 2019/07/05
+ */
 package com.kb.csrm.scConnection.controller;
 
 import com.kb.csrm.scConnection.dto.SCConnectionDto;
@@ -20,6 +27,13 @@ public class SCConnectionController extends BaseController {
     @Autowired
     private ISCConnectionService scConnectionService;
 
+    /**
+     * 获取学生所有选课
+     *
+     * @param userId
+     * @param request
+     * @return
+     */
     @RequestMapping("/getConnByUserId")
     @ResponseBody
     public ResponseData getConnByUserId(@ RequestParam("userId") Integer userId, HttpServletRequest request){
@@ -27,13 +41,12 @@ public class SCConnectionController extends BaseController {
         return new ResponseData(scConnectionService.getSCConnectionByUserId(userId));
     }
 
-    @RequestMapping("/getConnByCourseId")
-    @ResponseBody
-    public ResponseData getConnByCourseId(@RequestBody Integer courseId, HttpServletRequest request){
-
-        return new ResponseData(scConnectionService.getSCConnectionByCourseId(courseId));
-    }
-
+    /**
+     * 选课
+     * @param scConnectionDto
+     * @param request
+     * @return
+     */
     @RequestMapping("/addSCConnection")
     @ResponseBody
     public ResponseData addSCConnection(SCConnectionDto scConnectionDto){
@@ -42,6 +55,12 @@ public class SCConnectionController extends BaseController {
         return new ResponseData(true);
     }
 
+    /**
+     * 撤课
+     * @param scConnectionDto
+     * @param request
+     * @return
+     */
     @RequestMapping("/deleteSCConnection")
     @ResponseBody
     public ResponseData deleteSCConnection(SCConnectionDto scConnectionDto, HttpServletRequest request){
@@ -50,6 +69,13 @@ public class SCConnectionController extends BaseController {
         return new ResponseData(true);
     }
 
+    /**
+     * 判断该课程是否已选
+     * @param userId
+     * @param courseId
+     * @param request
+     * @return
+     */
     @RequestMapping("/ifChoose")
     @ResponseBody
     public boolean ifChoose(@RequestParam("userId") long userId, @RequestParam("courseId") long courseId, HttpServletRequest request){

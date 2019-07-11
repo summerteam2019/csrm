@@ -42,7 +42,7 @@
         </foreach>
     </insert>
 
-    <select id="selectCourseById" parameterType="long" resultMap="BaseResultMap">
+    <select id="selectCourseById" parameterType="com.kb.csrm.course.dto.CourseDto" resultMap="BaseResultMap">
         SELECT
         c.course_id,
         c.teacher_name,

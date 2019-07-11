@@ -1,3 +1,10 @@
+/**
+ * 选课模块服务层接口
+ *
+ * @author zengjiajin
+ * @version 1.0
+ * @date 2019/07/05
+ */
 package com.kb.csrm.scConnection.service;
 
 import com.kb.csrm.course.dto.CourseDto;

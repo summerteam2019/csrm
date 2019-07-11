@@ -3,7 +3,7 @@
  *
  * @author yi.wang11@hand-china.com
  * @version 1.0
- * @date ${.now?string["yyyy/MM/dd"]}
+ * @date 2019/07/10
  */
 
 package com.kb.csrm.notice.mapper;

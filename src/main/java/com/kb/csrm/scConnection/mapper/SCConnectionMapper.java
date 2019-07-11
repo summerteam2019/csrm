@@ -1,10 +1,16 @@
+/**
+ * 选课模块持久层
+ *
+ * @author zengjiajin
+ * @version 1.0
+ * @date 2019/07/05
+ */
 package com.kb.csrm.scConnection.mapper;
 
 import com.kb.csrm.course.dto.CourseDto;
 import com.kb.csrm.scConnection.dto.SCConnectionDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
