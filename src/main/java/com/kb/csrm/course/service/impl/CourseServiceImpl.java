@@ -30,7 +30,7 @@ public class CourseServiceImpl implements ICourseService {
     }
 
     @Override
-    public CourseDto selectCourseById(int courseId) {
+    public CourseDto selectCourseById(Long courseId) {
         return courseMapper.selectCourseById(courseId);
     }
 

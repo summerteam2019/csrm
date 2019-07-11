@@ -23,7 +23,7 @@ public interface ICourseService {
      * @param courseId
      * @return
      */
-    CourseDto selectCourseById (int courseId);
+    CourseDto selectCourseById (Long courseId);
 
     /**
      * 按ID删除用户

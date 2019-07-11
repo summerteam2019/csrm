@@ -43,5 +43,5 @@ public interface SCConnectionMapper {
      * @param courseId
      * @return
      */
-    int ifChoose(@Param("userId") long userId,@Param("courseId") long courseId);
+    int ifChosen(@Param("userId") long userId,@Param("courseId") long courseId);
 }

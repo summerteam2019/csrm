@@ -23,12 +23,18 @@
 
     <insert id="addSCConnection" parameterType="com.kb.csrm.scConnection.dto.SCConnectionDto">
         insert into student_course_connection
+        (
+            user_id,
+            course_id,
+            sc_time
+        )
         values (
-        #{userId},
-        #{courseId}
+            #{userId},
+            #{courseId},
+            CURRENT_TIME(0)
         )
     </insert>
-    <select id="ifChoose" parameterType="long" resultType="int">
+    <select id="ifChosen" parameterType="long" resultType="int">
         select count(1)
         from student_course_connection sc
         where sc.user_id = #{userId}
