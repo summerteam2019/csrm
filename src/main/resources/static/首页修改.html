@@ -37,51 +37,6 @@
 
 <div id="content">
     <div id="menu">
-        <div class="left_menu">
-            <div id="item1" class="item">
-                <a href="搜索结果（游客）.html">
-                    <span>计算机</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item2" class="item">
-                <a href="搜索结果（游客）.html">
-                    <span>古典音乐</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item3" class="item">
-                <a href="搜索结果（游客）.html">
-                    <span>管理</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item4" class="item">
-                <a href="搜索结果（游客）.html">
-                    <span>期末宝典</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item5" class="item">
-                <a href="搜索结果（游客）.html">
-                    <span>四六级</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item6" class="item">
-                <a href="搜索结果（游客）.html">
-                    <span>摄影</span>
-                    <i>></i>
-                </a>
-            </div>
-            <div id="item7" class="item">
-                <a href="http://www.baidu.com">
-                    <span>更多</span>
-                    <i>></i>
-                </a>
-            </div>
-        </div>
-
     </div>
 
     <div class="introduce">
@@ -116,14 +71,21 @@
             url: "course/getRecommend",//请求程序页面
             async: false,
             success: function (data) {
-                for(var i in data.rows){
+                 for(var i in data.rows){
                     var course = data.rows[i];
-                    $("#tuijian").append("  <div class=\"item_class\"  >\n" +
-                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                    var courseId = data.rows[i].courseId;
+                    $("#tuijian").append("  <div class=\"item_class course_div"+ i +"\" onClick=\"getCanshu()\">\n" +                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+course.courseName+"</h3>\n" +
                         "                        <p>"+course.courseIntroduce+"</p>\n" +
                         "                    </div>\n" +
+                        "<script type=\"text/javascript\">\n" +
+                        "    $(function(){\n" +
+                        "    $(\".course_div"+i+"\").click(function getCanshu() {\n" +
+                        "        window.location.href = \"课程详情.html?courseid=" + courseId + "\";\n" +
+                        "    });\n" +
+                        "    });\n" +
+                        "<\/script>\n" +
                         "                    <div class=\"item_class_bottom\">\n" +
                         "                        <span class=\"left\">"+course.teacherName+"</span>\n" +
                         "                        <span class=\"right\">"+course.courseCount+"次点击</span>\n" +
@@ -141,14 +103,14 @@
                 for(var i in data.rows){
                     var course = data.rows[i];
                     var courseId = data.rows[i].courseId;
-                    $("#zuire").append("  <div class=\"item_class course_div"+ i +"\" onClick=\"getCanshu()\">\n" +                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                    $("#zuire").append("  <div class=\"item_class course_div"+ (i+5) +"\" onClick=\"getCanshu()\">\n" +                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+course.courseName+"</h3>\n" +
                         "                        <p>"+course.courseIntroduce+"</p>\n" +
                         "                    </div>\n" +
                         "<script type=\"text/javascript\">\n" +
                         "    $(function(){\n" +
-                        "    $(\".course_div"+i+"\").click(function getCanshu() {\n" +
+                        "    $(\".course_div"+(i+5)+"\").click(function getCanshu() {\n" +
                         "        window.location.href = \"课程详情.html?courseid=" + courseId + "\";\n" +
                         "    });\n" +
                         "    });\n" +

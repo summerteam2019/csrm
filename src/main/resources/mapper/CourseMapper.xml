@@ -19,7 +19,7 @@
         insert into course(
         course_name,
         teacher_name,
-        course_Rate
+        course_rate
         )values (
         #{courseName},
         #{teacherName},

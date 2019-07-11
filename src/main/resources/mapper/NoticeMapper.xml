@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kb.csrm.notice.mapper.NoticeMapper">
+    <resultMap id="BaseResultMap" type="com.kb.csrm.notice.dto.NoticeDto">
+        <result column="notice_id" property="noticeId" jdbcType="INTEGER"/>
+        <result column="course_id" property="courseId" jdbcType="INTEGER"/>
+        <result column="notice_content" property="noticeContent" jdbcType="VARCHAR"/>
+        <result column="notice_time" property="noticeTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <insert id="insertNotice" parameterType="com.kb.csrm.notice.dto.NoticeDto">
+        insert into notice
+        (
+            course_id,
+            notice_content,
+            notice_time
+        ) values (
+            #{courseId},
+            #{noticeContent},
+            CURRENT_TIME(0)
+        )
+    </insert>
+
+    <select id="getNoticeByCourseId" resultMap="BaseResultMap">
+        select *
+        from notice
+        where course_id = #{courseId}
+    </select>
+
+
+
+
+</mapper>
