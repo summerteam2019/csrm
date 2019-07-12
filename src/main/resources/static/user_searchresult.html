@@ -38,22 +38,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--header-->
 <div id="header">
 	<div id="logo">
-		<a href="首页（学生首页）.html">慕课网</a>
+		<a href="user_index.html">慕课网</a>
 	</div>
 
 	<div id="login">
 		<ul>
 			<li>
-				<a href="user_student_personal.html">个人中心</a>
+				<a href="user_student_personal.html" id="studentp">个人中心</a>
+				<a href="user_teacher_personal.html" id="teacherp">个人中心</a>
 			</li>
 			<li>
-				<a href="首页（公共首页和游客首页）.html">退出登录</a>
+				<a href="user_index.html" id="user">退出登录</a>
+				<a href="user_index.html" id="youke">回到首页</a>
 			</li>
 		</ul>
 	</div>
 	<div id="search">
 		<input type="text" name="search" placeholder="搜索感兴趣课程" value=""/>
-		<button>搜索</button>
+		<button onclick="searchCourse()">搜索</button>
 	</div>
 </div>
 
@@ -62,59 +64,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="check">
 			<div><h1>为您找到相关的课程如下</h1></div>
 			<div class="col-md-9 cart-items" id="mesContent">
-                <!--
-				<div class="cart-header">
 
-					<div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							<img src="images/pic1.jpg" class="img-responsive" alt=""/>
-						</div>
-						<div class="cart-item-info">
-							<h3><a href="user_course.html">英语演讲之道</a></h3>
-							<ul class="qty">
-								<li><p>武汉大学</p></li>
-								<li><p>陈真</p></li>
-							</ul>
-
-							<div class="delivery">
-								<p>系统的又将训练不仅有助于增强一个人的表达能力，更有利于其开拓思路、
-								增强信心、提高沟通技巧，以及培养文化、文学、科技等领域的批判性思维。</p>
-
-								<div class="clearfix"></div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-
-					</div>
-				</div>
-
-				<div class="cart-header2">
-					<div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							<img src="images/pic1.jpg" class="img-responsive" alt=""/>
-						</div>
-						<div class="cart-item-info">
-							<h3><a href="user_course.html">英语演讲之道</a></h3>
-							<ul class="qty">
-								<li><p>武汉大学</p></li>
-								<li><p>陈真</p></li>
-							</ul>
-
-							<div class="delivery">
-								<p>系统的又将训练不仅有助于增强一个人的表达能力，更有利于其开拓思路、
-									增强信心、提高沟通技巧，以及培养文化、文学、科技等领域的批判性思维。</p>
-
-								<div class="clearfix"></div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
-
-					</div>
-				</div>
-				-->
 			</div>
-
-
 
 			<div class="clearfix"></div>
 		</div>
@@ -141,6 +92,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		var newsid=newsids[1];//得到参数值
 		var newsname=newsids[0];//得到参数名字
 		var courseKeyWord = newsid;
+		var userId = userId;
+		var roleName = roleName;
+		if(roleName == "teacher"){
+			document.getElementById("studentp").setAttribute("hidden",true);
+			document.getElementById("youke").setAttribute("hidden",true);
+		}
+		else if(roleName == "student"){
+			document.getElementById("teacherp").setAttribute("hidden",true);
+			document.getElementById("youke").setAttribute("hidden",true);
+		}
+		else{
+			document.getElementById("studentp").setAttribute("hidden",true);
+			document.getElementById("teacherp").setAttribute("hidden",true);
+			document.getElementById("user").setAttribute("hidden",true);
+		}
 		$.ajax({
 				type: "POST",
 				url: "/course/getCourseByKeyWord",//请求程序页面

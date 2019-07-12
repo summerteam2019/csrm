@@ -25,16 +25,17 @@
 <body>
 <div id="header">
     <div id="logo">
-        <a href="首页（公共首页和游客首页）.html">慕课网</a>
+        <a href="user_index.html">慕课网</a>
     </div>
 
     <div id="login">
         <ul>
             <li>
-                <a href="data_correct.html">个人中心</a>
+                <a href="user_teacher_personal.html">个人中心</a>
+                <a href="pw_correct.html">密码修改</a>
             </li>
             <li>
-                <a href="首页（公共首页和游客首页）.html">退出登录</a>
+                <a href="user_index.html">退出登录</a>
             </li>
         </ul>
     </div>
@@ -68,7 +69,7 @@
 </section>
 <div id="product">
     <div class="item_class_bottom">
-        <font size="5"><a href="user_teacher_personal.html">已参与课程</a><a> |</a><a href="已发表.html">已参加讨论</a></font>
+        <font size="5"><a href="user_teacher_personal.html">已教授课程</a></font>
         <br/>
         <hr>
     </div>
@@ -121,7 +122,7 @@
     $(function () {
         $(".item_class").click(function () {
             var courseid = $(this).find('h4').val();
-            window.location.href = "教师课程详情页面V2.html?courseid="+courseid;
+            window.location.href = "user_course.html?courseid="+courseid;
         });
     });
 
