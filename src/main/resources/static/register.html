@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>课霸慕课网 | 登陆 </title>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link href="css/style1.css" rel="stylesheet" type="text/css" media="all" />
+	<!--  jquery plguin -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport"
+		  content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta http-equiv="Cache-Control" content="no-siteapp"/>
+	<!--[if lt IE 9]>
+	<script type="text/javascript" src="lib/html5shiv.js"></script>
+	<script type="text/javascript" src="lib/respond.min.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css"/>
+	<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css"/>
+	<link rel="stylesheet" type="text/css" href="lib/Hui-iconfont/1.0.8/iconfont.css"/>
+	<link rel="stylesheet" type="text/css" href="static/h-ui.admin/skin/default/skin.css" id="skin"/>
+	<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css"/>
+	<link href="static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css"/>
+	<link href="static/h-ui.admin/css/H-ui.login.css" rel="stylesheet" type="text/css"/>
+	<link href="static/h-ui.admin/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css"/>
+	<!--[if IE 6]>
+	<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js"></script>
+	<script>DD_belatedPNG.fix('*');</script>
+	<![endif]-->
+	<title>注册</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+</head>
+<body>
+
+<div class="header_bg">
+	<div class="wrap">
+		<div class="header">
+			<div class="logo">
+				<h1><a href="user_index.html"><img src="images/logo.png" alt=""/></a></h1>
+			</div>
+			<div class="h_right">
+				<ul class="menu">
+					<li><a href="register.html">没有账号？注册一个</a></li>
+					<li><a href="pw_correct.html">忘了密码</a></li>
+				</ul>
+
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-admin-add">
+		<div class="row cl">
+			<label class="col-xs-4 col-sm-4"></label>
+		</div>
+		<div class="row cl">
+			<label class="col-xs-4 col-sm-4"></label>
+		</div>
+		<div class="row cl">
+			<label class="col-xs-4 col-sm-4"></label>
+			<div class=" col-xs-8 col-sm-4" style="font-size:22px">欢迎来到注册界面，请完善以信息进行注册</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-4">手机号码</label>
+			<div class="formControls col-xs-8 col-sm-4">
+				<input type="text" class="input-text" value="" placeholder="请输入你的手机号码" id="mobilePhone"
+					   name="mobilePhone">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="col-xs-4 col-sm-4"></label>
+			<div class=" col-xs-8 col-sm-4" style="font-size:10px">提示：您的手机号码将作为你的登录账号</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-4">密码</label>
+			<div class="formControls col-xs-8 col-sm-4">
+				<input type="password" class="input-text" autocomplete="off" value="" placeholder="密码" id="password"
+					   name="password">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-4">确认密码</label>
+			<div class="formControls col-xs-8 col-sm-4">
+				<input type="password" class="input-text" autocomplete="off" placeholder="请再次输入密码" id="password2"
+					   name="password2">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-4">用户名</label>
+			<div class="formControls col-xs-8 col-sm-4">
+				<input type="text" class="input-text" value="" placeholder="请输入你的用户名" id="adminName" name="adminName">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-4">邮箱</label>
+			<div class="formControls col-xs-8 col-sm-4">
+				<input type="text" class="input-text" placeholder="请输入你的邮箱号码" name="email" id="email">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-4">身份类型</label>
+			<div class="formControls col-xs-8 col-sm-4 skin-minimal">
+				<div class="radio-box">
+					<input name="sex" type="radio" id="sex-1" value="student" checked>
+					<label for="sex-1">学生</label>
+				</div>
+				<div class="radio-box">
+					<input name="sex" type="radio" id="sex-2" name="sex" value="teacher">
+					<label for="sex-2">老师</label>
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="col-xs-4 col-sm-4"></label>
+			<div class=" col-xs-8 col-sm-4" style="font-size:10px">提示：请如实选择身份类型</div>
+		</div>
+
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-4">
+				<input id="zhuce" class="btn btn-primary radius" type="button"
+					   value="&nbsp;立&nbsp;即&nbsp;注&nbsp;册&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script src="js/jquerysession.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$('.skin-green input').iCheck({
+			checkboxClass: 'icheckbox-green',
+			radioClass: 'iradio-green',
+			increaseArea: '20%'
+		});
+
+		$("#form-admin-add").validate({
+			rules: {
+				mobilePhone: {
+					required: true,
+					isPhone: true
+				},
+				password: {
+					required: true
+				},
+				password2: {
+					required: true,
+					equalTo: "#password"
+				},
+				sex: {
+					required: true
+				},
+				adminName: {
+					required: true,
+					minlength: 4,
+					maxlength: 16
+
+				},
+				email: {
+					required: true,
+					email: true
+				}
+
+			}
+		});
+	});
+
+	$(function () {
+		$("#zhuce").click(function () {
+			var username = $("#mobilePhone").val();
+			var password = $("#password").val();
+			var passwordagain = $("#password2")
+			var adminname = $("#adminName").val();
+			var email = $("#email").val();
+			var rolename = $("input[name='sex']:checked").val();
+			if (!username) {
+				alert("手机号码必填!");
+				$("#username").focus();//获取焦点
+				return;
+			}
+			if (!password) {
+				alert("密码必填!");
+				$("#password").focus();//获取焦点
+				return;
+			}
+			if (!passwordagain) {
+				alert("必须确认密码!");
+				$("#password2").focus();//获取焦点
+				return;
+			}
+			if (!adminname) {
+				alert("用户名必填!");
+				$("#adminName").focus();//获取焦点
+				return;
+			}
+			if (!email) {
+				alert("邮箱必填!");
+				$("#email").focus();//获取焦点
+				return;
+			}
+			var user = {
+				"account": username,
+				"password": password,
+				"userName": adminname,
+				"roleName": rolename,
+				"mail": email
+			};
+			$.ajax({
+				type: "POST",
+				url: "login/signup",//请求程序页面
+				async: false,//当有返回值以后才会进行后面的js程序。
+				data: user,//请求需要发送的处理数据
+				success: function (result) {
+					if (result) {
+						alert("注册成功");
+						window.location.href = "登陆.html";
+					}
+					else {
+						alert("注册失败");
+					}
+				},
+
+			});
+
+		});
+
+	});
+
+</script>
+
+</body>
+</html>
