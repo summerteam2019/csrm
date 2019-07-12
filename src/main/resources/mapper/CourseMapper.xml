@@ -98,19 +98,14 @@
 
     <select id="getAllCourse" resultMap="BaseResultMap">
         SELECT
-        c.course_id,
-        c.teacher_name,
-        c.course_name,
-        c.course_rate,
-        c.course_count,
-        c.course_introduce,
-        c.recommend,
-        c.college_id,
-        co.college_name,
-        co.faculty_name
-        FROM course c, college co
-        WHERE c.recommend = 1
-        and c.college_id = co.college_id
+        course_id,
+        teacher_name,
+        course_name,
+        course_rate,
+        course_count,
+        course_introduce,
+        recommend
+        FROM course
     </select>
 
     <select id="getRecommend" resultMap="BaseResultMap">
