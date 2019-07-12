@@ -31,6 +31,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 			<a class="btn btn-primary radius" onclick="addACourseModal()" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加课程</a></span>
+		    <a class="btn btn-primary radius" onclick="getCourse()" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 获取课程</a></span>
 		<span class="r">共有数据：<strong>54</strong> 条</span>
 	</div>
 	<div class="mt-20">
@@ -250,7 +251,7 @@ function deleteCourse(id){
 	}
 }
 
-/*院校-编辑*/
+/*课程-编辑*/
 function editCourseModal(cid){
 	$("#editCid").val(cid);
 	$("#editCourseModal").modal("show");
@@ -284,6 +285,24 @@ function editCourseSave() {
 
 		}
 
+	});
+}
+
+function getCourse(){
+	$.ajax({
+		type: "POST",
+		url: "craw/do",
+		dataType: "json",
+		async: false,
+		success: function (data) {
+			if (data) {
+				alert("获取成功1");
+				location.replace(location.href);
+			} else {
+				alert("获取失败！");
+			}
+
+		}
 	});
 }
 </script>

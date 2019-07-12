@@ -126,13 +126,13 @@
 				};
 				$.ajax({
 					type: "POST",
-					url: "/changePassword2",//请求程序页面
+					url: "user/changePassword2",//请求程序页面
 					async: false,//当有返回值以后才会进行后面的js程序。
 					data: xiugai,//请求需要发送的处理数据
 					success: function (msg) {
 						if (msg.flag == "1") {
 							alert("修改成功！");
-							window.location.href = "KB登陆.html";
+							window.location.href = "login.html";
 						} else {
 							alert("修改失败！请检查信息输入是否正确");
 						}
