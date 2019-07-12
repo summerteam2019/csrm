@@ -13,7 +13,7 @@
 <body>
 <div id="header">
     <div id="logo">
-        <a href="首页（学生首页）.html">慕课网</a>
+        <a href="user_student_index.html">慕课网</a>
     </div>
 
     <div id="login">
@@ -22,13 +22,16 @@
                 <a href="data_correct.html">资料修改</a>
             </li>
             <li>
-                <a href="首页（公共首页和游客首页）.html">退出登录</a>
+                <a href="pw_correct.html">密码修改</a>
+            </li>
+            <li>
+                <a href="user_index.html">退出登录</a>
             </li>
         </ul>
     </div>
     <div id="search">
         <input type="text" name="search" placeholder="搜索感兴趣课程" value=""/>
-        <button>搜索</button>
+        <button onclick="searchCourse()">搜索</button>
     </div>
 </div>
 
@@ -97,7 +100,7 @@
                         "<script type=\"text/javascript\">\n" +
                         "    $(function(){\n" +
                         "    $(\".course_div"+i+"\").click(function getCanshu() {\n" +
-                        "        window.location.href = \"user_course.html?courseid=" + data.rows[i] + "\";\n" +
+                        "        window.location.href = \"user_course.html?courseid=" + courseId + "\";\n" +
                         "    });\n" +
                         "    });\n" +
                         "<\/script>\n" +
@@ -112,7 +115,10 @@
         });
 
     });
-
+    function searchCourse(){
+        var courseKeyWord = $("#searchCourse").val();
+        window.location.href = 'user_searchresult.html?courseKeyWord=' + courseKeyWord;
+    }
 
 </script>
 
