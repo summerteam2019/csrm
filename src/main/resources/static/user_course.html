@@ -533,7 +533,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	//课程搜索
 	function searchCourse(){
 		var courseKeyWord = $("#searchCourse").val();
-		window.location.href = 'user_searchresult.html?courseKeyWord=' + courseKeyWord;
+		window.location.href = encodeURI('user_searchresult.html?courseKeyWord=' + courseKeyWord); //编码
 	}
 
 	//资源上传
