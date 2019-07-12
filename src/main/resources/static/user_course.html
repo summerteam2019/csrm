@@ -38,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--header-->
 <div id="header">
 	<div id="logo">
-		<a href="首页（学生首页）.html">慕课网</a>
+		<a href="user_student_index.html">慕课网</a>
 	</div>
 
 	<div id="login">
@@ -48,14 +48,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a href="user_teacher_personal.html" id="teacher">个人中心</a>
 			</li>
 			<li>
-				<a href="首页（公共首页和游客首页）.html">退出登录</a>
+				<a href="user_index.html" id="user">退出登录</a>
+				<a href="user_index.html" id="youke">返回首页</a>
 			</li>
 		</ul>
 	</div>
 	<div id="search">
-		<input type="text" name="search" placeholder="搜索感兴趣课程" value=""/>
+		<input type="text" name="search" placeholder="搜索感兴趣课程" value="" id="searchCourse"/>
 		<button onclick="searchCourse()">搜索</button>
 	</div>
+	<input type="hidden" id="getUserId"/>
+	<input type="hidden" id="getUserRole"/>
 </div>
 
 <!--content-->
@@ -297,10 +300,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	var newsid = newsids[1];//得到参数值
 	var newsname = newsids[0];//得到参数名字
 	var courseId = newsid;  //课程ID
-	//var roleName = $.session.get("ROLE");   //用户角色
-	//var userId = $.session.get("ID");  //用户ID
-	var userId = 1;
-	var roleName = "teacher";
+
+	$(function(){
+		$.ajax({
+			type: "POST",
+			url: "user/getSession",//请求程序页面
+			dataType: "json",
+			success: function(result){
+				$("#getUserId").val(result.id);
+				$("#getUserRole").val(result.role);
+			}
+		});
+	});
+	var userId = $("#getUserId").val();
+	var roleName = $("#getUserRole").val();
 
 	//判断显示哪些内容
 	$(function(){
@@ -309,11 +322,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			document.getElementById("cancel").setAttribute("hidden",true);
 			document.getElementById("choose").setAttribute("hidden",true);
 			document.getElementById("student").setAttribute("hidden",true);
+			document.getElementById("youke").setAttribute("hidden",true);
 		}
 		else if(roleName == "student"){
 			document.getElementById("uploadResource").setAttribute("hidden",true);
 			document.getElementById("teacherNotice").setAttribute("hidden",true);
 			document.getElementById("teacher").setAttribute("hidden",true);
+			document.getElementById("youke").setAttribute("hidden",true);
 			$.ajax({
 				type: "POST",
 				url: "scConnection/ifChoose",//请求程序页面
@@ -332,6 +347,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					}
 				}
 			});
+		}
+		else{
+			document.getElementById("appraise").setAttribute("hidden",true);
+			document.getElementById("uploadResource").setAttribute("hidden",true);
+			document.getElementById("teacherNotice").setAttribute("hidden",true);
+			document.getElementById("cancel").setAttribute("hidden",true);
+			document.getElementById("choose").setAttribute("hidden",true);
+			document.getElementById("user").setAttribute("hidden",true);
 		}
 	});
 
@@ -486,7 +509,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	//课程搜索
 	function searchCourse(){
 		var courseKeyWord = $("#searchCourse").val();
-		window.location.href = '搜索结果.html?courseKeyWord=' + courseKeyWord;
+		window.location.href = 'user_searchresult.html?courseKeyWord=' + courseKeyWord;
 	}
 
 	//资源上传
@@ -501,7 +524,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			contentType: false,
 			processData: false,
 			success: function (data) {
-				window.location.href="http://localhost:8080/教师课程详情页面V2.html?course="+courseId;
+				window.location.href="http://localhost:8080/user_course.html?course="+courseId;
 				alert(data);
 			}
 		});
@@ -524,7 +547,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				"resourceAddress": "http://localhost:8080/resource/files/" + resourceFilename
 			},
 			success: function (data) {
-				window.location.href="http://localhost:8080/教师课程详情页面V2.html?courseId="+courseId;
+				window.location.href="http://localhost:8080/user_course.html?courseId="+courseId;
 			}
 		});
 	}
