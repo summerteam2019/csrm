@@ -93,11 +93,9 @@
     });
 
     $(document).ready(function () {
-        var userid = $.session.get('userid');
         $.ajax({
             type: "POST",
             url: "course/getTaughtCourse",//请求程序页面
-            data: {"userId": userid},
             success: function (data) {
                 for (var i in data.rows) {
                     $("#yixuan").append(" <div class=\"intoduce\">\n" +

@@ -21,10 +21,9 @@ public class LoginServiceImpl implements ILoginService {
     private UserMapper userMapper;
 
     @Override
-    public UserDto login(String account) {
+    public UserDto login(long account) {
 
-        int acc = Integer.parseInt(account);
-        return userMapper.login(acc);
+        return userMapper.login(account);
     }
 
     @Override

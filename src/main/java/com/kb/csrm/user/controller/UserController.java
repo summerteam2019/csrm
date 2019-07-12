@@ -143,7 +143,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/changePassword")
     @ResponseBody
-    public Map changePassword(@RequestParam("account") long account, @RequestParam("newPassword") String password,@RequestParam("pwQuestion") String pwQuestion, @RequestParam("pwAnswer") String pwAnswer) {
+    public Map changePassword(@RequestParam("account") long account, @RequestParam("newPassword") String password, @RequestParam("pwQuestion") String pwQuestion, @RequestParam("pwAnswer") String pwAnswer) {
         int flag = userService.confirmPwAnswer(account,pwQuestion,pwAnswer);
         HashMap map = new HashMap<String,Object>(16);
         if (flag > 0) {
@@ -158,12 +158,13 @@ public class UserController extends BaseController {
 
     /**
      * 修改密码2
-     * @param account
+     * @param oldPassword
      * @param password
      */
     @RequestMapping("/changePassword2")
     @ResponseBody
-    public Map changePassword2(@RequestParam("account") long account, @RequestParam("newPassword") String password,@RequestParam("oldPassword") String oldPassword) {
+    public Map changePassword2(@RequestParam("newPassword") String password, @RequestParam("oldPassword") String oldPassword, HttpServletRequest request) {
+        long account = (long) request.getSession().getAttribute("ACCOUNT");
         int flag = userService.confirmPassword(account,oldPassword);
         HashMap map = new HashMap<String,Object>(16);
         if (flag > 0) {
@@ -175,4 +176,30 @@ public class UserController extends BaseController {
             return map;
         }
     }
+
+    @RequestMapping("/getSession")
+    @ResponseBody
+    public Map getSession(HttpServletRequest request) {
+        long account = (long) request.getSession().getAttribute("ACCOUNT");
+        String name = (String) request.getSession().getAttribute("NAME");
+        int id = (int) request.getSession().getAttribute("ID");
+        String role = (String) request.getSession().getAttribute("ROLE");
+        String school = (String) request.getSession().getAttribute("SCHOOL");
+        String faculty = (String) request.getSession().getAttribute("FACULTY");
+        int age = (int) request.getSession().getAttribute("AGE");
+        String education = (String) request.getSession().getAttribute("EDUCATION");
+        String mail = (String) request.getSession().getAttribute("MAIL");
+        Map<String, Object> map = new HashMap<String, Object>(16);
+        map.put("account", account);
+        map.put("name", name);
+        map.put("id", id);
+        map.put("role", role);
+        map.put("school", school);
+        map.put("faculty", faculty);
+        map.put("age", age);
+        map.put("education", education);
+        map.put("mail",mail);
+        return map;
+    }
 }
+

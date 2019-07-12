@@ -125,12 +125,19 @@
     });
 
     $(function () {
-        $("#adminName").val($.session.get("NAME"));
-        $("#email").val($.session.get("EMAIL"));
-        $("#school").val($.session.get("SCHOOL"));
-        $("#faculty").val($.session.get("FACULTY"));
-        $("#age").val($.session.get("AGE"));
-        $("#education").val($.session.get("EDUCATION"));
+        $.ajax({
+            type: "POST",
+            url: "/user/getSession",//请求程序页面
+            async: false,//当有返回值以后才会进行后面的js程序。
+            success: function (result) {
+                $("#adminName").val(result.name);
+                $("#email").val(result.mail);
+                $("#school").val(result.school);
+                $("#faculty").val(result.faculty);
+                $("#age").val(result.age);
+                $("#education").val(result.education);
+            }
+        });
 
 
     });

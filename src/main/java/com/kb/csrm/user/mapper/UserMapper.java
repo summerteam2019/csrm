@@ -69,7 +69,7 @@ public interface UserMapper {
      * @param account
      * @return
      */
-    UserDto login(@Param(value = "account") int account);
+    UserDto login(@Param(value = "account") long account);
 
     /**
      * 注册

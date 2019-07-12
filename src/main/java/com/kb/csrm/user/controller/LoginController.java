@@ -38,7 +38,7 @@ public class LoginController {
      */
     @RequestMapping("/check")
     @ResponseBody
-    public Map<String, Object> createUser(@RequestParam("username") String name, @RequestParam("password") String password, HttpServletRequest request) {
+    public Map<String, Object> createUser(@RequestParam("username") long name, @RequestParam("password") String password, HttpServletRequest request) {
 
         Map<String, Object> map = new HashMap<String, Object>();
         Integer flag = null;
@@ -57,6 +57,7 @@ public class LoginController {
                 request.getSession().setAttribute("FACULTY", userDto.getFacultyName());
                 request.getSession().setAttribute("AGE", userDto.getAge());
                 request.getSession().setAttribute("EDUCATION", userDto.getEducation());
+                request.getSession().setAttribute("MAIL",userDto.getMail());
             } else {
                 flag = 1;
                 //登录密码不正确

@@ -147,7 +147,8 @@ public class CourseController extends BaseController{
      */
     @RequestMapping("/getTaughtCourse")
     @ResponseBody
-    public ResponseData getTaughtCourse(@RequestParam("userId") Long userId, HttpServletRequest request){
+    public ResponseData getTaughtCourse(HttpServletRequest request){
+        long userId = (long) request.getSession().getAttribute("ID");
         return new ResponseData(courseService.getTaughtCourse(userId));
     }
 

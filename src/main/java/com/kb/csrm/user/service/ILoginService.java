@@ -8,7 +8,7 @@ public interface ILoginService {
      * 登陆校验
      * @param account
      */
-    UserDto login(String account);
+    UserDto login(long account);
 
     void signup(UserDto user);
 }

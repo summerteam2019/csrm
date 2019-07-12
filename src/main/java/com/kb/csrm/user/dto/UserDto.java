@@ -32,7 +32,7 @@ public class UserDto {
      * 账号
      */
     @Column
-    private String account;
+    private long account;
     /**
      * 密码
      */
@@ -112,11 +112,11 @@ public class UserDto {
         this.userName = userName;
     }
 
-    public String getAccount() {
+    public long getAccount() {
         return account;
     }
 
-    public void setAccount(String account) {
+    public void setAccount(long account) {
         this.account = account;
     }
 
