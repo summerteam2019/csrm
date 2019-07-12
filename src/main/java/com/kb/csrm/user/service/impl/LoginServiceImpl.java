@@ -22,12 +22,16 @@ public class LoginServiceImpl implements ILoginService {
 
     @Override
     public UserDto login(long account) {
-
         return userMapper.login(account);
     }
 
     @Override
     public void signup(UserDto user) {
         userMapper.signup(user);
+    }
+
+    @Override
+    public UserDto loginSession(long name) {
+        return userMapper.loginSession(name);
     }
 }

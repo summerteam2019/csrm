@@ -86,15 +86,12 @@
         u.role_name,
         u.mail,
         u.college_id,
-        c.college_name,
-        c.faculty_name,
         u.age,
         u.education,
         u.pw_question,
         u.pw_answer
-        FROM user u, college c
+        FROM user u
         WHERE u.account = #{account}
-        and u.college_id = c.college_id
     </select>
 
     <select id="signup" parameterType="com.kb.csrm.user.dto.UserDto">
@@ -134,6 +131,25 @@
         from user
         where account = #{account}
         and password = #{password}
+    </select>
+    <select id="loginSession" resultType="com.kb.csrm.user.dto.UserDto">
+        SELECT
+        u.user_id,
+        u.user_name,
+        u.account,
+        u.password,
+        u.role_name,
+        u.mail,
+        u.college_id,
+        c.college_name,
+        c.faculty_name,
+        u.age,
+        u.education,
+        u.pw_question,
+        u.pw_answer
+        FROM user u, college c
+        WHERE u.account = #{account}
+        and u.college_id = c.college_id
     </select>
 
     <update id="updateInfo" parameterType="com.kb.csrm.user.dto.UserDto">

@@ -116,6 +116,13 @@ public interface UserMapper {
      * @return
      */
     int confirmPassword(@Param("account") long account,@Param("password")  String oldPassword);
+
+    /**
+     * 登陆获取session
+     * @param name
+     * @return
+     */
+    UserDto loginSession(long name);
 }
 
 

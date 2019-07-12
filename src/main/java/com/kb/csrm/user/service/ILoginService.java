@@ -10,5 +10,16 @@ public interface ILoginService {
      */
     UserDto login(long account);
 
+    /**
+     * 注册
+     * @param user
+     */
     void signup(UserDto user);
+
+    /**
+     * 获取包含院校的session
+     * @param name
+     * @return
+     */
+    UserDto loginSession(long name);
 }

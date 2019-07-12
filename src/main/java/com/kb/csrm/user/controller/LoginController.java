@@ -49,6 +49,9 @@ public class LoginController {
                 //登陆成功
                 map.put("id", userDto.getUserId());
                 map.put("role", userDto.getRoleName());
+                if (userDto.getCollegeId()!= 0){
+                    userDto = loginService.loginSession(name);
+                }
                 request.getSession().setAttribute("NAME", userDto.getUserName());
                 request.getSession().setAttribute("ACCOUNT", userDto.getAccount());
                 request.getSession().setAttribute("ID", userDto.getUserId());
