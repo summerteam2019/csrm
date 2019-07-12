@@ -114,15 +114,20 @@
             url: "course/getRecommend",//请求程序页面
             async: false,
             success: function (data) {
-        if(roleName == "teacher"){
-            document.getElementById("appraise").setAttribute("hidden",true);
-            document.getElementById("cancel").setAttribute("hidden",true);
-            document.getElementById("choose").setAttribute("hidden",true);
-            document.getElementById("student").setAttribute("hidden",true);
-        }
-        else if(roleName == "student"){
+                if (data == "teacher") {
+                    document.getElementById("youke").setAttribute("hidden", true);
+                    document.getElementById("youkee").setAttribute("hidden", true);
+                } else if (data == "student") {
+                    document.getElementById("youke").setAttribute("hidden", true);
+                    document.getElementById("youkee").setAttribute("hidden", true);
+                }
+                else{
+                    document.getElementById("denglu").setAttribute("hidden", true);
+                    document.getElementById("dengluu").setAttribute("hidden", true);
+                }
 
-        }
+            }
+    });
     });
 
     $(document).ready(function(){
