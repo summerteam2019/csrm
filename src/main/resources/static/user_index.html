@@ -25,14 +25,16 @@
             </div>
             <div class="h_right">
                 <ul class="menu">
-                    <li><a href="login.html">登陆</a></li>
-                    <li><a href="register.html">注册</a></li>
+                    <li><a href="login.html"id="youke">登陆</a></li>
+                    <li><a href="user_student_personal.html" id="denglu">个人中心</a></li>
+                    <li><a href="register.html"id="youkee">注册</a></li>
+                    <li><a href="" id="dengluu">退出登录</a></li>
                 </ul>
                 <div id="sb-search" class="sb-search">
                     <form>
-                        <input class="sb-search-input" placeholder="搜索感兴趣的课程" type="text" value="" name="search"
+                        <input class="sb-search-input" placeholder="搜索感兴趣的课程" type="text" name="search"
                                id="search">
-                        <input class="sb-search-submit" type="button" value="">
+                        <input class="sb-search-submit" type="button" value="" onclick="searchCourse()">
                         <span class="sb-icon-search"></span>
                     </form>
                 </div>
@@ -106,6 +108,23 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquerysession.js"></script>
 <script type="text/javascript">
+    $(function(){
+        $.ajax({
+            type: "POST",
+            url: "course/getRecommend",//请求程序页面
+            async: false,
+            success: function (data) {
+        if(roleName == "teacher"){
+            document.getElementById("appraise").setAttribute("hidden",true);
+            document.getElementById("cancel").setAttribute("hidden",true);
+            document.getElementById("choose").setAttribute("hidden",true);
+            document.getElementById("student").setAttribute("hidden",true);
+        }
+        else if(roleName == "student"){
+
+        }
+    });
+
     $(document).ready(function(){
         $.ajax({
             type: "POST",
@@ -166,6 +185,10 @@
             }
         });
     });
+    function searchCourse(){
+        var courseKeyWord = $("#search").val();
+        window.location.href = 'user_searchresult.html?courseKeyWord=' + courseKeyWord;
+    }
 
 </script>
 </body>
