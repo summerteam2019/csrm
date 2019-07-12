@@ -57,8 +57,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<input type="text" name="search" placeholder="搜索感兴趣课程" value="" id="searchCourse"/>
 		<button onclick="searchCourse()">搜索</button>
 	</div>
-	<input type="hidden" id="getUserId"/>
-	<input type="hidden" id="getUserRole"/>
+	<input type="hidden" id="getUserId" name="getUserId"/>
+	<input type="hidden" id="getUserRole" name="getUserRole"/>
 </div>
 
 <!--content-->
@@ -301,10 +301,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	var newsname = newsids[0];//得到参数名字
 	var courseId = newsid;  //课程ID
 
-	$(function(){
+
+	$(document).ready(function () {
 		$.ajax({
 			type: "POST",
 			url: "user/getSession",//请求程序页面
+			async: false,
 			dataType: "json",
 			success: function(result){
 				$("#getUserId").val(result.id);
@@ -312,11 +314,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 		});
 	});
-	var userId = $("#getUserId").val();
-	var roleName = $("#getUserRole").val();
 
 	//判断显示哪些内容
 	$(function(){
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		if(roleName == "teacher"){
 			document.getElementById("appraise").setAttribute("hidden",true);
 			document.getElementById("cancel").setAttribute("hidden",true);
@@ -332,6 +334,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$.ajax({
 				type: "POST",
 				url: "scConnection/ifChoose",//请求程序页面
+				async: false,
 				dataType: "json",
 				data: {
 					"userId": userId,
@@ -355,13 +358,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			document.getElementById("cancel").setAttribute("hidden",true);
 			document.getElementById("choose").setAttribute("hidden",true);
 			document.getElementById("user").setAttribute("hidden",true);
+			document.getElementById("student").setAttribute("hidden",true);
+			document.getElementById("teacher").setAttribute("hidden",true);
 		}
 	});
 
 	//课程显示
 	$(function () {
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		$.ajax({
 			type: "POST",
+			async: false,
 			url: "course/selectOne",//请求程序页面
 			data: {"courseId": courseId},
 			success: function (data) {
@@ -377,9 +385,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	//选课
 	function chooseCourse(){
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		$.ajax({
 			type: "POST",
 			url: "scConnection/addSCConnection",
+			async: false,
 			dataType: "json",
 			data: {
 				"userId": userId,
@@ -394,9 +405,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	//撤课
     function cancelCourse(){
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 	    $.ajax({
             type: "POST",
             url: "scConnection/deleteSCConnection",
+			async: false,
             dataType: "json",
             data: {
                 "userId": userId,
@@ -411,9 +425,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	//评论显示
 	$(function () {
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		$.ajax({
 			type: "POST",
 			url: "/appraise/getAppraiseByCourseId",//请求程序页面
+			async: false,
 			dataType: "json",
 			data: {
 				"courseId": courseId
@@ -449,12 +466,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	//发表评分
 	function submitScore() {
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		var appraiseGrade = $("#starNum").val();
 		var appraiseContent = $("#appraiseContent").val();
 		var appraiseRaise = 0;
 		$.ajax({
 			type: "POST",
 			url: "/appraise/getAppraiseByUserAndCourse",//请求程序页面
+			async: false,
 			dataType: "json",
 			data: {
 				"userId": userId,
@@ -465,6 +485,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					$.ajax({
 						type: "POST",
 						url: "/appraise/addAppraise",//请求程序页面
+						async: false,
 						dataType: "json",
 						data: {
 							"userId": userId,
@@ -487,9 +508,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	//显示课程资源
 	$(function () {
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		$.ajax({
 			type: "POST",
 			url: "/resource/getResourceByCourseId",//请求程序页面
+			async: false,
 			dataType: "json",
 			data: {
 				"courseId": courseId
@@ -514,6 +538,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	//资源上传
 	function uploadResource() {
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		var formData = new FormData($("#formUploadFile")[0]);
 		$.ajax({
 			type: "POST",
@@ -530,6 +556,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	}
 	function addResource() {
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		var file = document.getElementById('file');
 		var resourceName = $("#resourceName").val();
 		var resourceSize = file.files[0].size/1024;
@@ -537,6 +565,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$.ajax({
 			type: "POST",
 			url: "/resource/addResource",//请求程序页面
+			async: false,
 			dataType: "json",
 			data: {
 				"courseId": courseId,
@@ -554,9 +583,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	//显示课程通知
 	$(function(){
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		$.ajax({
 			type: "POST",
 			url: "notice/getNoticeByCourseId",//请求程序页面
+			async: false,
 			dataType: "json",
 			data: {
 				"courseId": courseId
@@ -581,10 +613,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	//发布课程通知
 	function publishNotice(){
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
 		var noticeContent = $("#noticecontent").val();
 		$.ajax({
 			type: "POST",
 			url: "notice/insertNotice",//请求程序页面
+			async: false,
 			dataType: "json",
 			data: {
 				"courseId": courseId,
