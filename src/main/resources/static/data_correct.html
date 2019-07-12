@@ -134,7 +134,21 @@
 
 
     });
-
+    $(function () {
+        $.ajax({
+            type: "POST",
+            url: "user/getSession",//请求程序页面
+            async: false,
+            success: function (data) {
+                $("#adminName").text(data.userName);
+                $("#email").text(data.userName);
+                $("#school").text(data.userName);
+                $("#faculty").text(data.userName);
+                $("#age").text(data.userName);
+                $("#education").text(data.userName);
+            }
+        });
+    });
     $(function () {
         $("#xiugai").click(function () {
             var adminname = $("#adminName").val();
