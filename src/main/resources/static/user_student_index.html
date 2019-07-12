@@ -21,18 +21,18 @@
     <div class="wrap">
         <div class="header">
             <div class="logo">
-                <h1><a href="user_index.html"><img src="img/我们的图标.png" height="44" alt=""/></a></h1>
+                <h1><a href="user_student_index.html"><img src="img/我们的图标.png" height="44" alt=""/></a></h1>
             </div>
             <div class="h_right">
                 <ul class="menu">
-                    <li><a href="KB学生个人中心.html">个人中心</a></li>
-                    <li><a href="KB游客首页.html.html">退出登录</a></li>
+                    <li><a href="user_student_personal.html">个人中心</a></li>
+                    <li><a href="user_index.html">退出登录</a></li>
                 </ul>
                 <div id="sb-search" class="sb-search">
                     <form>
                         <input class="sb-search-input" placeholder="搜索感兴趣的课程" type="text" value="" name="search"
                                id="search">
-                        <input class="sb-search-submit" type="button" value="">
+                        <input class="sb-search-submit" type="button" value="" onclick="searchCourse()">
                         <span class="sb-icon-search"></span>
                     </form>
                 </div>
@@ -123,7 +123,7 @@
                         "<script type=\"text/javascript\">\n" +
                         "    $(function(){\n" +
                         "    $(\".course_div"+i+"\").click(function getCanshu() {\n" +
-                        "        window.location.href = \"KB学生课程详情.html?courseid=" + courseId + "\";\n" +
+                        "        window.location.href = \"user_course.html?courseid=" + courseId + "\";\n" +
                         "    });\n" +
                         "    });\n" +
                         "<\/script>\n" +
@@ -152,7 +152,7 @@
                         "<script type=\"text/javascript\">\n" +
                         "    $(function(){\n" +
                         "    $(\".course_div"+(i+5)+"\").click(function getCanshu() {\n" +
-                        "        window.location.href = \"KB学生课程详情.html?courseid=" + courseId + "\";\n" +
+                        "        window.location.href = \"usercourse.html?courseid=" + courseId + "\";\n" +
                         "    });\n" +
                         "    });\n" +
                         "<\/script>\n" +
@@ -166,6 +166,10 @@
             }
         });
     });
+    function searchCourse(){
+        var courseKeyWord = $("#search").val();
+        window.location.href = 'user_searchresult.html?courseKeyWord=' + courseKeyWord;
+    }
 
 </script>
 </body>
