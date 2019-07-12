@@ -69,6 +69,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			</div>
 
+			<div class="col-md-3 cart-total">
+				<div class="price-details cart-item-info">
+					<h3>本周最热学科排行</h3>
+					<span>1</span>
+					<span class="1"><h3><a href="http://localhost:8080/user_searchresult.html?courseKeyWord=司法与政治">司法与政治</a></h3></span>
+					<span>2</span>
+					<span class="2"><h3><a href="http://localhost:8080/user_searchresult.html?courseKeyWord=心理学">心理学</a></h3></span>
+					<span>3</span>
+					<span class="3"><h3><a href="http://localhost:8080/user_searchresult.html?courseKeyWord=土木建筑">土木建筑</a></h3></span>
+					<span>4</span>
+					<span class="4"><h3><a href="http://localhost:8080/user_searchresult.html?courseKeyWord=古希腊文明">古希腊文明</a></h3></span>
+					<span>5</span>
+					<span class="5"><h3><a href="http://localhost:8080/user_searchresult.html?courseKeyWord=司法">司法</a></h3></span>
+					<span>6</span>
+					<span class="6"><h3><a href="http://localhost:8080/user_searchresult.html?courseKeyWord=计算机">计算机</a></h3></span>
+					<span>7</span>
+					<span class="7"><h3><a href="http://localhost:8080/user_searchresult.html?courseKeyWord=美术">美术</a></h3></span>
+					<span>8</span>
+					<span class="8"><h3><a href="http://localhost:8080/user_searchresult.html?courseKeyWord=心理">心理</a></h3></span>
+					<div class="clearfix"></div>
+				</div>
+
+			</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -86,29 +109,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var urlinfo=window.location.href; //获取当前页面的url
-		var len=urlinfo.length;//获取url的长度
-		var offset=urlinfo.indexOf("?");//设置参数字符串开始的位置
-		var newsidinfo=urlinfo.substr(offset,len)//取出参数字符串 这里会获得类似“id=1”这样的字符串
-		var newsids=newsidinfo.split("=");//对获得的参数字符串按照“=”进行分割
-		var newsid=newsids[1];//得到参数值
-		var newsname=newsids[0];//得到参数名字
-		var courseKeyWord = newsid;
-
-		$(function(){
-			$.ajax({
-				type: "POST",
-				url: "user/getSession",//请求程序页面
-				dataType: "json",
-				success: function(result){
-					$("#getUserId").val(result.id);
-					$("#getUserRole").val(result.role);
-				}
-			});
+		$.ajax({
+			type: "POST",
+			url: "user/getSession",//请求程序页面
+			dataType: "json",
+			async: false,
+			success: function(result){
+				$("#getUserId").val(result.id);
+				$("#getUserRole").val(result.role);
+			}
 		});
+
 		var userId = $("#getUserId").val();
 		var roleName = $("#getUserRole").val();
-
 		if(roleName == "teacher"){
 			document.getElementById("studentp").setAttribute("hidden",true);
 			document.getElementById("youke").setAttribute("hidden",true);
@@ -123,36 +136,37 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			document.getElementById("user").setAttribute("hidden",true);
 		}
 		$.ajax({
-				type: "POST",
-				url: "/course/getCourseByKeyWord",//请求程序页面
-				dataType: "json",
-				data: {
-					"courseName": courseKeyWord
-				},
+			type: "POST",
+			url: "/course/getCourseByKeyWord",//请求程序页面
+			dataType: "json",
+			async: false,
+			data: {
+				"courseName": courseKeyWord
+			},
 			success: function(data){
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.onreadystatechange = function() {
 					if (this.readyState == 4 && this.status == 200) {
 						var str = "";
-						for(i = 0; i < data[0].length; i++){
+						for(i = 0; i < data.rows.length; i++){
 							str += "<div class='cart-header'>" +
-									 "<div class=\"cart-sec simpleCart_shelfItem\">" +
-									    "<div class=\"cart-item cyc\">" +
-									       "<img src='图片文件夹路径/" +data[0][i].courseName+ ".jpg' class=\"img-responsive\" alt=\"\"/>" +
-									    "</div>" +
-									    "<div class=\"cart-item-info\">" +
-									       "<h3><a href=\"user_course.html?courseId=\" " +data[0][i].courseId+">"+data[0][i].courseName+"</a></h3>" +
-									       "<ul class=\"qty\">" +
-									           "<li><p>"+data[1][i]+"</p></li>" +
-									           "<li><p>"+data[0][i].teacherName+"</p></li>" +
-									       "</ul>" +
-									       "<div class=\"delivery\">" +
-									           "<p>"+data[0][i].courseIntroduce+"</p>" +
-									           "<div class=\"clearfix\"></div>" +
-									       "</div>" +
-									    "</div>" +
-									    "<div class=\"clearfix\"></div>" +
-									 "</div>" +
+									"<div class=\"cart-sec simpleCart_shelfItem\">" +
+									"<div class=\"cart-item cyc\">" +
+									"<img src='图片文件夹路径/" +data.rows[i].courseName+ ".jpg' class=\"img-responsive\" alt=\"\"/>" +
+									"</div>" +
+									"<div class=\"cart-item-info\">" +
+									"<h3><a href=\"user_course.html?courseId=\" " +data.rows[i].courseId+">"+data.rows[i].courseName+"</a></h3>" +
+									"<ul class=\"qty\">" +
+									"<li><p>"+data.rows[i].collegeName+"</p></li>" +
+									"<li><p>"+data.rows[i].teacherName+"</p></li>" +
+									"</ul>" +
+									"<div class=\"delivery\">" +
+									"<p>"+data.rows[i].courseIntroduce+"</p>" +
+									"<div class=\"clearfix\"></div>" +
+									"</div>" +
+									"</div>" +
+									"<div class=\"clearfix\"></div>" +
+									"</div>" +
 									"</div>";
 						}
 						document.getElementById("mesContent").innerHTML = str;
@@ -162,6 +176,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				xmlhttp.send();
 			}
 		});
+
+	});
+
+	$(function(){
+
 	});
 
 	//课程搜索
