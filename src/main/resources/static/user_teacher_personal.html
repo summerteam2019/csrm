@@ -99,6 +99,7 @@
     });
 
     $(function () {
+        var userid = $("#userid").val();
         $.ajax({
             type: "POST",
             url: "course/getTaughtCourse",//请求程序页面
