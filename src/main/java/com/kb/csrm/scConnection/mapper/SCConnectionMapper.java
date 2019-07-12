@@ -22,7 +22,7 @@ public interface SCConnectionMapper {
      * @param userId
      * @return
      */
-    List<CourseDto> getCourseByUserId(long userId);
+    List<CourseDto> getCourseByUserId(int userId);
 
     /**
      * 根据课程ID获取选课信息

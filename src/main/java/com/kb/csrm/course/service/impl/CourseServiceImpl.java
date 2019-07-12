@@ -60,7 +60,7 @@ public class CourseServiceImpl implements ICourseService {
     }
 
     @Override
-    public List<CourseDto> getChosenCourse(Long userId) {
+    public List<CourseDto> getChosenCourse(int userId) {
         return scConnectionMapper.getCourseByUserId(userId);
     }
 
@@ -70,7 +70,7 @@ public class CourseServiceImpl implements ICourseService {
     }
 
     @Override
-    public List<CourseDto> getTaughtCourse(Long userId) {
+    public List<CourseDto> getTaughtCourse(int userId) {
         return courseMapper.getTaughtCourse(userId);
     }
 

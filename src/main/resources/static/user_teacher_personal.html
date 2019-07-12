@@ -106,7 +106,8 @@
             async: false,
             success: function (data) {
                 for (var i=0;i<data.rows.length;i++) {
-                    $("#yixuan").append("  <div class=\"item_class course_div"+ i +"\" onClick=\"getCanshu()\">\n" +                        "                    <img src=\"img/course/"+course.courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                    $("#yixuan").append("  <div class=\"item_class course_div"+ i +"\" onClick=\"getCanshu()\">\n" +
+                        "                    <img src=\"img/course/"+data.rows[i].courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+data.rows[i].courseName+"</h3>\n" +
                         "                        <p>"+data.rows[i].courseIntroduce+"</p>\n" +
@@ -114,7 +115,7 @@
                         "<script type=\"text/javascript\">\n" +
                         "    $(function(){\n" +
                         "    $(\".course_div"+i+"\").click(function getCanshu() {\n" +
-                        "        window.location.href = \"user_course.html?courseid=" + courseId + "\";\n" +
+                        "        window.location.href = \"user_course.html?courseid=" + data.rows[i].courseId + "\";\n" +
                         "    });\n" +
                         "    });\n" +
                         "<\/script>\n" +

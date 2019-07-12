@@ -136,7 +136,8 @@ public class CourseController extends BaseController{
      */
     @RequestMapping("/getChosenCourse")
     @ResponseBody
-    public ResponseData getChosenCourse(@RequestParam("userId") Long userId, HttpServletRequest request){
+    public ResponseData getChosenCourse(HttpServletRequest request){
+        int userId = (int) request.getSession().getAttribute("ID");
         return new ResponseData(courseService.getChosenCourse(userId));
     }
 
@@ -148,7 +149,7 @@ public class CourseController extends BaseController{
     @RequestMapping("/getTaughtCourse")
     @ResponseBody
     public ResponseData getTaughtCourse(HttpServletRequest request){
-        long userId = (long) request.getSession().getAttribute("ID");
+        int userId = (int) request.getSession().getAttribute("ID");
         return new ResponseData(courseService.getTaughtCourse(userId));
     }
 
@@ -159,7 +160,7 @@ public class CourseController extends BaseController{
      */
     @RequestMapping("/getHighCount")
     @ResponseBody
-    public ResponseData getChosenCourse(HttpServletRequest request){
+    public ResponseData getHighCount(HttpServletRequest request){
         return new ResponseData(courseService.getHighCount(5));
     }
 

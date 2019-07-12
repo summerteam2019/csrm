@@ -15,7 +15,7 @@
         <result column="faculty_name" property="facultyName" jdbcType="VARCHAR" />
     </resultMap>
 
-    <select id="getCourseByUserId" parameterType="long" resultMap="BaseResultMap">
+    <select id="getCourseByUserId" parameterType="int" resultMap="BaseResultMap">
         select c.*
         from student_course_connection sc, user u, course c
         where sc.user_id = #{userId}

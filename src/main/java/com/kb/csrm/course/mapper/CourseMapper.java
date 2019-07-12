@@ -90,5 +90,5 @@ public interface CourseMapper {
      * @param userId
      * @return
      */
-    List<CourseDto> getTaughtCourse(@Param("userId") Long userId);
+    List<CourseDto> getTaughtCourse(@Param("userId") int userId);
 }

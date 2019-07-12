@@ -141,7 +141,7 @@
         LIMIT #{num}
     </select>
 
-    <select id="getTaughtCourse" parameterType="long" resultMap="BaseResultMap">
+    <select id="getTaughtCourse" parameterType="int" resultMap="BaseResultMap">
         SELECT
         c.course_id,
         c.teacher_name,

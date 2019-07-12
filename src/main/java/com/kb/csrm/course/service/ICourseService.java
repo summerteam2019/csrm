@@ -74,7 +74,7 @@ public interface ICourseService {
      * @param userId
      * @return
      */
-    List<CourseDto> getChosenCourse(Long userId);
+    List<CourseDto> getChosenCourse(int userId);
 
     /**
      * 获取点击量最高的课程
@@ -88,5 +88,5 @@ public interface ICourseService {
      * @param userId
      * @return
      */
-    List<CourseDto> getTaughtCourse(Long userId);
+    List<CourseDto> getTaughtCourse(int userId);
 }
