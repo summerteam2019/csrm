@@ -70,9 +70,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="col-md-5 single-top">
 				<div class="flexslider">
 					<ul class="slides">
-
-						<li data-thumb="images/si.png">
-							<img src="images/si.png"/>
+						<li>
+							<img id="courseimg" height="316" width="516" src="">
 						</li>
 					</ul>
 				</div>
@@ -378,6 +377,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				$("#jieshao").text(data.courseIntroduce);
 				$("#jiaoshi").text(data.teacherName);
 				$("#yuanxiao").text(data.collegeName + data.facultyName);
+				$("#courseimg").attr("src","img/course/"+data.courseName+".jpg");
+
 			}
 
 		});
