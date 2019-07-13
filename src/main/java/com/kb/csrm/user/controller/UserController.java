@@ -177,6 +177,11 @@ public class UserController extends BaseController {
         }
     }
 
+    /**
+     * 获取session信息
+     * @param request
+     * @return
+     */
     @RequestMapping("/getSession")
     @ResponseBody
     public Map getSession(HttpServletRequest request) {

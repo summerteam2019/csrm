@@ -26,9 +26,9 @@ public class CrawlerController {
      * @return
      */
     @RequestMapping("/do")
-    public ResponseData craw () {
+    public boolean craw () {
 
         crawler.crawCourseDtos();
-        return new ResponseData(true);
+        return true;
     }
 }
