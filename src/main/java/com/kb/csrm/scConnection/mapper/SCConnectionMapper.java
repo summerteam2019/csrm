@@ -18,13 +18,6 @@ import java.util.List;
 public interface SCConnectionMapper {
 
     /**
-     * 根据用户ID获取选课信息
-     * @param userId
-     * @return
-     */
-    List<CourseDto> getCourseByUserId(int userId);
-
-    /**
      * 根据课程ID获取选课信息
      * @param courseId
      * @return

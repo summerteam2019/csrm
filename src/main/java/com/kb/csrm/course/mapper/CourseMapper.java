@@ -17,6 +17,8 @@ import java.util.List;
 @Mapper
 public interface CourseMapper {
 
+    List<CourseDto> getCourseByUserId(int userId);
+
     /**
      * 添加新课程
      * @param course

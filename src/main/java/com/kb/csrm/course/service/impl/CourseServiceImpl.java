@@ -25,9 +25,6 @@ public class CourseServiceImpl implements ICourseService {
     @Autowired
     private CourseMapper courseMapper;
 
-    @Autowired
-    private SCConnectionMapper scConnectionMapper;
-
     @Override
     public List<CourseDto> getAllCourse() {
         return courseMapper.getAllCourse();
@@ -61,7 +58,7 @@ public class CourseServiceImpl implements ICourseService {
 
     @Override
     public List<CourseDto> getChosenCourse(int userId) {
-        return scConnectionMapper.getCourseByUserId(userId);
+        return courseMapper.getCourseByUserId(userId);
     }
 
     @Override

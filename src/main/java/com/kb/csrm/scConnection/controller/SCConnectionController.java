@@ -44,7 +44,7 @@ public class SCConnectionController extends BaseController {
     /**
      * 选课
      * @param scConnectionDto
-     * @param request
+     * @param scConnectionDto
      * @return
      */
     @RequestMapping("/addSCConnection")

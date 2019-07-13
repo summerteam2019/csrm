@@ -30,7 +30,7 @@
         </ul>
     </div>
     <div id="search">
-        <input type="text" name="search" placeholder="搜索感兴趣课程" value=""/>
+        <input id="searchCourse" type="text" name="search" placeholder="搜索感兴趣课程" value=""/>
         <button onclick="searchCourse()">搜索</button>
     </div>
 </div>
@@ -95,7 +95,7 @@
             success: function (data) {
                 for (var i=0;i<data.rows.length;i++) {
                     $("#yixuan").append("  <div class=\"item_class course_div"+ i +"\" onClick=\"getCanshu()\">\n" +
-                        "                    <img src=\"img/course/"+data.rows[i].courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
+                        "                    <img src=\"course/"+data.rows[i].courseName+".jpg"+"\" height=\"124\" width=\"100%\"/>\n" +
                         "                    <div class=\"item_class_intro\">\n" +
                         "                        <h3>"+data.rows[i].courseName+"</h3>\n" +
                         "                        <p>"+data.rows[i].courseIntroduce+"</p>\n" +

@@ -8,6 +8,7 @@
 package com.kb.csrm.scConnection.service.impl;
 
 import com.kb.csrm.course.dto.CourseDto;
+import com.kb.csrm.course.mapper.CourseMapper;
 import com.kb.csrm.scConnection.dto.SCConnectionDto;
 import com.kb.csrm.scConnection.mapper.SCConnectionMapper;
 import com.kb.csrm.scConnection.service.ISCConnectionService;
@@ -22,9 +23,12 @@ public class SCConnectionServiceImpl implements ISCConnectionService {
     @Autowired
     private SCConnectionMapper scConnectionMapper;
 
+    @Autowired
+    private CourseMapper courseMapper;
+
     @Override
     public List<CourseDto> getSCConnectionByUserId(int userId){
-        return scConnectionMapper.getCourseByUserId(userId);
+        return courseMapper.getCourseByUserId(userId);
     }
 
     @Override

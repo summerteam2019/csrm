@@ -157,4 +157,12 @@
         and c.college_id = co.college_id
     </select>
 
+    <select id="getCourseByUserId" parameterType="int" resultMap="BaseResultMap">
+        select c.*
+        from student_course_connection sc, user u, course c
+        where sc.user_id = #{userId}
+          and u.user_id = #{userId}
+          and c.course_id = sc.course_id
+    </select>
+
 </mapper>
