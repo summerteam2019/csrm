@@ -124,7 +124,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<!--<li><a data-content="cinema" href="#0">讨  论 </a></li>-->
 						<li><a data-content="television" href="#0" class="selected ">评 分 </a></li>
 						<li><a data-content="stuNotice" href="#0">课 程 通 知 </a></li>
-						<li><a data-content="download" href="#0">资 源 下 载</a></li>
+						<li><a data-content="download" href="#0">课 程 资 源</a></li>
 
 					</ul>
 				</nav>
@@ -299,7 +299,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	var newsid = newsids[1];//得到参数值
 	var newsname = newsids[0];//得到参数名字
 	var courseId = newsid;  //课程ID
-
+	if(isNaN(courseId)){
+		location.href = document.referrer;
+	}
 
 	$(document).ready(function () {
 		$.ajax({
@@ -538,24 +540,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	//资源上传
-	function uploadResource() {
-		var userId = $("#getUserId").val();
-		var roleName = $("#getUserRole").val();
-		var formData = new FormData($("#formUploadFile")[0]);
-		$.ajax({
-			type: "POST",
-			url: "/resource/uploadResource",//请求程序页面
-			data: formData,
-			async: false,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success: function (data) {
-				window.location.href="http://localhost:8080/user_course.html?course="+courseId;
-				alert(data);
-			}
-		});
-	}
 	function addResource() {
 		var userId = $("#getUserId").val();
 		var roleName = $("#getUserRole").val();
@@ -566,7 +550,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$.ajax({
 			type: "POST",
 			url: "/resource/addResource",//请求程序页面
-			async: false,
+			//async: false,
 			dataType: "json",
 			data: {
 				"courseId": courseId,
@@ -577,10 +561,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				"resourceAddress": "http://localhost:8080/resource/files/" + resourceFilename
 			},
 			success: function (data) {
-				window.location.href="http://localhost:8080/user_course.html?courseId="+courseId;
+				//window.location.href="http://localhost:8080/user_course.html?courseId="+courseId;
+				alert("上传成功！");
 			}
 		});
 	}
+	function uploadResource() {
+		var userId = $("#getUserId").val();
+		var roleName = $("#getUserRole").val();
+		var formData = new FormData($("#formUploadFile")[0]);
+		$.ajax({
+			type: "POST",
+			url: "/resource/uploadResource",//请求程序页面
+			data: formData,
+			//async: false,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function (data) {
+				//window.location.href="http://localhost:8080/user_course.html?course="+courseId;
+				alert(data);
+			}
+		});
+	}
+
+
 
 	//显示课程通知
 	$(function(){
