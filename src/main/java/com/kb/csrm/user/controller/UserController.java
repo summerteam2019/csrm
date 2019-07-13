@@ -128,10 +128,10 @@ public class UserController extends BaseController {
         HashMap map = new HashMap<String,Object>(16);
         String pwquestion = userService.getPwQuestion(account);
         if (null != pwquestion && ""!=pwquestion) {
-            map.put("flag",true);
+            map.put("flag",1);
             map.put("pwquestion",userService.getPwQuestion(account));
         } else {
-            map.put("flag",false);
+            map.put("flag",0);
         }
         return map;
     }
@@ -177,6 +177,11 @@ public class UserController extends BaseController {
         }
     }
 
+    /**
+     * 获取session信息
+     * @param request
+     * @return
+     */
     @RequestMapping("/getSession")
     @ResponseBody
     public Map getSession(HttpServletRequest request) {

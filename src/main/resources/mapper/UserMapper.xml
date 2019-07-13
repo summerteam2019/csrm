@@ -132,7 +132,7 @@
         where account = #{account}
         and password = #{password}
     </select>
-    <select id="loginSession" resultType="com.kb.csrm.user.dto.UserDto">
+    <select id="loginSession" resultMap="BaseResultMap">
         SELECT
         u.user_id,
         u.user_name,
